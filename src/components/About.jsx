@@ -53,7 +53,7 @@ export default function About() {
             transition={{ duration: 0.7 }}
           >
             <SectionEyebrow>About Us</SectionEyebrow>
-            <SectionHeading>
+            <SectionHeading className="text-lg sm:text-xl md:text-4xl lg:text-5xl whitespace-nowrap">
               A little bakery with big flavours
             </SectionHeading>
             <div className="mt-6 md:mt-8 space-y-4 text-muted-foreground text-sm md:text-base leading-relaxed">

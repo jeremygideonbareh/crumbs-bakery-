@@ -58,7 +58,7 @@ export default function Reviews() {
           className="text-center mb-10 md:mb-16"
         >
           <SectionEyebrow>Testimonials</SectionEyebrow>
-          <h2 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground break-words">
+          <h2 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground break-words whitespace-nowrap">
             <CharReveal>What our </CharReveal>
             <span className="text-primary italic"><CharReveal delay={0.3}>community</CharReveal></span>
             <CharReveal delay={0.5}> says</CharReveal>
