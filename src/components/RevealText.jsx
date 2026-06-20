@@ -35,7 +35,7 @@ export function CharReveal({ children, className, delay = 0 }) {
           transition={{ duration: 0.4, delay: delay + i * 0.015, ease: [0.25, 0.4, 0.25, 1] }}
           className="inline-block"
         >
-          {char === ' ' ? '\u00A0' : char}
+          {char}
         </motion.span>
       ))}
     </span>
@@ -59,7 +59,7 @@ export function SectionEyebrow({ children, delay = 0 }) {
 
 export function SectionHeading({ children, className, delay = 0 }) {
   return (
-    <h2 className={`font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground ${className || ''}`}>
+    <h2 className={`font-serif text-2xl sm:text-3xl md:text-5xl font-medium leading-[1.1] text-balance text-foreground break-words ${className || ''}`}>
       <CharReveal delay={delay}>{children}</CharReveal>
     </h2>
   )

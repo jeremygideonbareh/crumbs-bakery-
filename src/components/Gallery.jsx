@@ -63,7 +63,7 @@ export default function Gallery() {
           className="text-center mb-10 md:mb-16"
         >
           <SectionEyebrow>Our Gallery</SectionEyebrow>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-5xl font-medium leading-[1.1] text-balance text-foreground break-words">
             <CharReveal>A taste of what we </CharReveal>
             <span className="text-primary italic"><CharReveal delay={0.3}>bake</CharReveal></span>
           </h2>

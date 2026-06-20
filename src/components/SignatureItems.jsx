@@ -39,7 +39,7 @@ const items = [
     desc: 'From savoury puffs to warm sandwiches — everything served hot, fresh, and satisfying.',
     highlight: 'Quick Bite',
     price: '₹150',
-    image: 'https://images.unsplash.com/photo-1604467794349-0c5c2c6b6b8b?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80',
     badge: 'bg-green-100 text-green-700',
   },
   {
@@ -65,7 +65,7 @@ export default function SignatureItems() {
           className="text-center mb-10 md:mb-16"
         >
           <SectionEyebrow>Our Menu</SectionEyebrow>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-5xl font-medium leading-[1.1] text-balance text-foreground break-words">
             <CharReveal>Signature </CharReveal>
             <span className="text-primary italic"><CharReveal delay={0.3}>bakes</CharReveal></span>
           </h2>
