@@ -47,7 +47,7 @@ const HeroSection = React.forwardRef(
       <motion.section
         ref={ref}
         className={cn(
-          'relative flex w-full flex-col overflow-hidden bg-background text-foreground md:flex-row',
+          'relative flex w-full flex-col overflow-hidden bg-background text-foreground md:flex-row min-h-svh',
           className,
         )}
         initial="hidden"
@@ -127,7 +127,7 @@ const HeroSection = React.forwardRef(
         </div>
 
         {/* Right Side: Image with clip-path animation + gradient fade */}
-        <div className="relative w-full min-h-[300px] md:w-3/5 md:min-h-full">
+        <div className="relative w-full min-h-[300px] md:w-3/5 md:h-full">
           {/* Gradient fade overlay on the left edge of the image */}
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#FFF5F0] via-[#FFF5F0]/70 to-transparent md:from-[#FFF5F0] md:via-[#FFF5F0]/60 md:to-transparent pointer-events-none" />
 
