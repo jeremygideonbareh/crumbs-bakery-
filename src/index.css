@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 10 100% 97%;
+    --foreground: 30 30% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 30 30% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 30% 20%;
+    --primary: 345 55% 77%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 25 75% 80%;
+    --secondary-foreground: 30 30% 20%;
+    --muted: 30 15% 50%;
+    --muted-foreground: 30 10% 40%;
+    --accent: 32 52% 64%;
+    --accent-foreground: 30 30% 20%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 30 20% 88%;
+    --input: 30 20% 88%;
+    --ring: 345 55% 77%;
+    --radius: 0.75rem;
+
+    --main: #e8a0b4;
+    --overlay: rgba(0, 0, 0, 0.6);
+    --bg: #fff5f0;
+    --bw: #ffffff;
+    --blank: #000000;
+    --text: #3d2b1f;
+    --mtext: #ffffff;
+    --ring-offset: #fff5f0;
+    --box-shadow-x: 4px;
+    --box-shadow-y: 4px;
+    --reverse-box-shadow-x: -4px;
+    --reverse-box-shadow-y: -4px;
+    --base-font-weight: 500;
+    --heading-font-weight: 700;
+    --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Satoshi', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

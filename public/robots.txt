@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# ─── Block internal / dev paths ─────────────────────────────────────────────
+Disallow: /api/
+Disallow: /backend/
+Disallow: /node_modules/
+
+# ─── Sitemap ────────────────────────────────────────────────────────────────
+Sitemap: https://apexai.dev/sitemap.xml
