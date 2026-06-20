@@ -29,32 +29,33 @@ const contactInfo = [
 
 export default function Contact({ onOrder }) {
   return (
-    <section id="contact" className="relative py-28 md:py-36 px-6">
+    <section id="contact" className="relative py-20 md:py-28 lg:py-36 px-6">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
-          <p className="text-primary text-sm tracking-[0.2em] uppercase font-medium mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs tracking-wider uppercase font-medium mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
             Get in Touch
-          </p>
+          </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground">
             Find us in <span className="text-primary italic">Shillong</span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-lg mx-auto">
+          <p className="mt-3 md:mt-4 text-sm md:text-base text-muted-foreground max-w-lg mx-auto">
             Stop by for a treat, give us a call, or order online. We'd love to hear from you.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.7 }}
-            className="space-y-4"
+            className="space-y-3 md:space-y-4"
           >
             {contactInfo.map((info, i) => {
               const Icon = info.icon
@@ -65,24 +66,24 @@ export default function Contact({ onOrder }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="flex items-start gap-4 rounded-xl border border-primary/10 bg-white p-5 shadow-sm"
+                  className="flex items-start gap-3 md:gap-4 rounded-xl border border-primary/10 bg-white p-3 md:p-5 shadow-sm"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                    <Icon size={18} className="text-primary" />
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <Icon size={14} className="text-primary" />
                   </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{info.label}</p>
+                  <div className="min-w-0">
+                    <p className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider mb-0.5">{info.label}</p>
                     {info.href ? (
                       <a
                         href={info.href}
                         target={info.href.startsWith('http') ? '_blank' : undefined}
                         rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="text-sm text-foreground hover:text-primary transition-colors whitespace-pre-line"
+                        className="text-xs md:text-sm text-foreground hover:text-primary transition-colors whitespace-pre-line break-words"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-sm text-foreground whitespace-pre-line">{info.value}</p>
+                      <p className="text-xs md:text-sm text-foreground whitespace-pre-line break-words">{info.value}</p>
                     )}
                   </div>
                 </motion.div>
@@ -94,14 +95,14 @@ export default function Contact({ onOrder }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.5 }}
-              className="flex gap-3 pt-2"
+              className="flex gap-2 md:gap-3 pt-1 md:pt-2"
             >
-              <Button onClick={onOrder} className="flex-1">
+              <Button onClick={onOrder} className="flex-1 min-h-11 text-xs md:text-sm">
                 Order Now
               </Button>
               <a href="https://maps.google.com/?q=Crumbs+Bakery+%26+Cafe+Shillong" target="_blank" rel="noopener noreferrer" className="flex-1">
-                <Button variant="neutral" className="w-full">
-                  Get Directions
+                <Button variant="neutral" className="w-full min-h-11 text-xs md:text-sm">
+                  Directions
                 </Button>
               </a>
             </motion.div>
@@ -112,7 +113,7 @@ export default function Contact({ onOrder }) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.7 }}
-            className="rounded-xl overflow-hidden border border-primary/10 h-[400px] shadow-sm"
+            className="rounded-xl overflow-hidden border border-primary/10 h-[250px] md:h-[400px] shadow-sm"
           >
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.079772766145!2d91.8766284!3d25.5855879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37507f89317d134b%3A0xfb2b38342e332fbf!2sCrumbs%20Bakery%20%26%20Cafe!5e0!3m2!1sen!2sin!4v1"

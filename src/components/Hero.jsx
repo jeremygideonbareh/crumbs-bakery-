@@ -18,7 +18,7 @@ export default function Hero({ onOrder }) {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-svh flex items-center justify-center overflow-hidden"
     >
       <motion.div
         className="absolute inset-0"
@@ -39,14 +39,14 @@ export default function Hero({ onOrder }) {
       <div className="absolute inset-0 bg-gradient-to-b from-[#FFF5F0]/80 via-transparent to-[#FFF5F0]" />
 
       <motion.div
-        className="relative z-10 text-center px-6 max-w-4xl mx-auto"
+        className="relative z-10 text-center px-5 md:px-6 max-w-4xl mx-auto w-full"
         style={{ y: contentY }}
       >
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-primary text-sm md:text-base tracking-[0.2em] uppercase mb-6 font-medium"
+          className="text-primary text-xs md:text-base tracking-[0.2em] uppercase mb-4 md:mb-6 font-medium"
         >
           Shillong's Best-Kept Secret
         </motion.p>
@@ -55,7 +55,7 @@ export default function Hero({ onOrder }) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium leading-[1.05] text-balance text-foreground"
+          className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium leading-[1.05] text-balance text-foreground"
         >
           Where every
           <br />
@@ -66,7 +66,7 @@ export default function Hero({ onOrder }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-8 text-muted-foreground text-base md:text-lg max-w-xl mx-auto leading-relaxed"
+          className="mt-5 md:mt-8 text-muted-foreground text-sm md:text-lg max-w-xl mx-auto leading-relaxed px-2"
         >
           Handcrafted tiramisu, cream puffs, cheesecakes, and artisanal bakes — made fresh daily in the heart of Shillong.
         </motion.p>
@@ -75,13 +75,13 @@ export default function Hero({ onOrder }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 px-4"
         >
-          <Button onClick={onOrder} size="lg">
+          <Button onClick={onOrder} size="lg" className="w-full sm:w-auto min-h-11 text-sm">
             Order Custom Cake
           </Button>
-          <a href="#menu">
-            <Button variant="neutral" size="lg">
+          <a href="#menu" className="w-full sm:w-auto">
+            <Button variant="neutral" size="lg" className="w-full min-h-11 text-sm">
               Explore Menu
             </Button>
           </a>
@@ -91,21 +91,21 @@ export default function Hero({ onOrder }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="mt-16 flex items-center justify-center gap-8 text-sm"
+          className="mt-12 md:mt-16 flex items-center justify-center gap-5 md:gap-8 text-sm"
         >
           <div className="text-center">
-            <p className="text-2xl font-serif text-primary font-medium">4.8</p>
-            <p className="text-xs mt-1 text-muted-foreground">Rating</p>
+            <p className="text-xl md:text-2xl font-serif text-primary font-medium">4.8</p>
+            <p className="text-[10px] md:text-xs mt-0.5 text-muted-foreground">Rating</p>
           </div>
-          <div className="w-px h-10 bg-border" />
+          <div className="w-px h-8 md:h-10 bg-border" />
           <div className="text-center">
-            <p className="text-2xl font-serif text-primary font-medium">9+</p>
-            <p className="text-xs mt-1 text-muted-foreground">Reviews</p>
+            <p className="text-xl md:text-2xl font-serif text-primary font-medium">9+</p>
+            <p className="text-[10px] md:text-xs mt-0.5 text-muted-foreground">Reviews</p>
           </div>
-          <div className="w-px h-10 bg-border" />
+          <div className="w-px h-8 md:h-10 bg-border" />
           <div className="text-center">
-            <p className="text-2xl font-serif text-primary font-medium">✨</p>
-            <p className="text-xs mt-1 text-muted-foreground">5★ Rated</p>
+            <p className="text-xl md:text-2xl font-serif text-primary font-medium">✨</p>
+            <p className="text-[10px] md:text-xs mt-0.5 text-muted-foreground">5★ Rated</p>
           </div>
         </motion.div>
       </motion.div>

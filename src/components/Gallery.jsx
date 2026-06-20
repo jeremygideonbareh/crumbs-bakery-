@@ -51,7 +51,7 @@ export default function Gallery() {
   }
 
   return (
-    <section id="gallery" className="relative py-28 md:py-36 px-6">
+    <section id="gallery" className="relative py-20 md:py-28 lg:py-36 px-6">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
 
       <div className="mx-auto max-w-6xl relative z-10">
@@ -59,20 +59,21 @@ export default function Gallery() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
-          <p className="text-primary text-sm tracking-[0.2em] uppercase font-medium mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs tracking-wider uppercase font-medium mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
             Our Gallery
-          </p>
+          </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground">
             A taste of what we <span className="text-primary italic">bake</span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-lg mx-auto">
+          <p className="mt-3 md:mt-4 text-sm md:text-base text-muted-foreground max-w-lg mx-auto">
             Every creation is a work of art — made fresh, with love, in our Shillong bakery.
           </p>
         </motion.div>
 
-        <div className="columns-2 md:columns-3 gap-4 space-y-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {images.map((img, i) => (
             <motion.button
               key={img.src}
@@ -81,16 +82,16 @@ export default function Gallery() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               onClick={() => setSelected(img)}
-              className="group relative w-full overflow-hidden rounded-xl break-inside-avoid block text-left"
+              className="group relative w-full overflow-hidden rounded-xl aspect-[4/3] block"
             >
               <img
                 src={img.src}
                 alt={img.alt}
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <p className="absolute bottom-3 left-3 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-1 group-hover:translate-y-0">
+              <p className="absolute bottom-2 left-2 right-2 text-white text-xs md:text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-1 group-hover:translate-y-0 truncate">
                 {img.caption}
               </p>
             </motion.button>
@@ -104,31 +105,31 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-3 md:p-4"
             onClick={() => setSelected(null)}
           >
             <button
               onClick={(e) => { e.stopPropagation(); setSelected(null) }}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+              className="absolute top-3 right-3 md:top-4 md:right-4 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
               aria-label="Close"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
 
             <button
               onClick={(e) => { e.stopPropagation(); goPrev() }}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
               aria-label="Previous"
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={18} />
             </button>
 
             <button
               onClick={(e) => { e.stopPropagation(); goNext() }}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
               aria-label="Next"
             >
-              <ChevronRight size={20} />
+              <ChevronRight size={18} />
             </button>
 
             <motion.img
@@ -139,11 +140,11 @@ export default function Gallery() {
               transition={{ duration: 0.3 }}
               src={selected.src}
               alt={selected.alt}
-              className="max-w-full max-h-[85vh] rounded-xl shadow-2xl object-contain"
+              className="max-w-full max-h-[80vh] md:max-h-[85vh] rounded-xl shadow-2xl object-contain"
               onClick={(e) => e.stopPropagation()}
             />
 
-            <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/80 text-sm bg-black/40 px-4 py-2 rounded-full">
+            <p className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 text-white/80 text-xs md:text-sm bg-black/40 px-3 py-1.5 md:px-4 md:py-2 rounded-full whitespace-nowrap">
               {selected.caption}
             </p>
           </motion.div>

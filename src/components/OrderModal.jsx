@@ -118,34 +118,34 @@ export default function OrderModal({ open, onClose }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm p-0 sm:p-4"
           onClick={(e) => { if (e.target === e.currentTarget) resetAndClose() }}
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0, y: 30 }}
+            initial={{ scale: 0.95, opacity: 0, y: 50 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 30 }}
+            exit={{ scale: 0.95, opacity: 0, y: 50 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl max-h-[90vh] flex flex-col"
+            className="w-full sm:max-w-2xl bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl max-h-[92dvh] sm:max-h-[90vh] flex flex-col"
           >
-            <div className="flex items-center justify-between p-6 border-b border-primary/10">
+            <div className="flex items-center justify-between px-4 md:px-6 py-4 border-b border-primary/10 shrink-0">
               <div className="flex items-center gap-2">
-                <ShoppingCart size={18} className="text-primary" />
-                <h2 className="font-serif text-xl text-foreground">Custom Cake Order</h2>
+                <ShoppingCart size={16} className="text-primary" />
+                <h2 className="font-serif text-base md:text-xl text-foreground">Custom Cake Order</h2>
               </div>
-              <button onClick={resetAndClose} className="text-muted-foreground hover:text-foreground transition-colors">
-                <X size={20} />
+              <button onClick={resetAndClose} className="text-muted-foreground hover:text-foreground transition-colors p-1">
+                <X size={18} />
               </button>
             </div>
 
-            <div className="px-6 pt-4">
-              <div className="w-full h-2 bg-primary/10 rounded-full overflow-hidden">
+            <div className="px-4 md:px-6 pt-3 md:pt-4 shrink-0">
+              <div className="w-full h-1.5 md:h-2 bg-primary/10 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-primary rounded-full transition-all duration-500 ease-out"
                   style={{ width: `${progress}%` }}
                 />
               </div>
-              <div className="flex justify-between mt-2 text-[10px] text-muted-foreground">
+              <div className="flex justify-between mt-1.5 text-[9px] md:text-[10px] text-muted-foreground">
                 {STEPS.map((s, i) => (
                   <span key={s} className={`${i <= step ? 'text-primary font-medium' : ''}`}>
                     {i + 1}
@@ -154,26 +154,26 @@ export default function OrderModal({ open, onClose }) {
               </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-6 py-6">
+            <div className="flex-1 overflow-y-auto px-4 md:px-6 py-4 md:py-6 overscroll-contain">
               {step === 0 && (
                 <div>
-                  <p className="font-serif text-2xl text-foreground mb-1">{STEPS[0]}</p>
-                  <p className="text-sm text-muted-foreground mb-5">What kind of cake are you craving?</p>
-                  <div className="grid grid-cols-2 gap-3">
+                  <p className="font-serif text-lg md:text-2xl text-foreground mb-0.5 md:mb-1">{STEPS[0]}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground mb-4 md:mb-5">What kind of cake are you craving?</p>
+                  <div className="grid grid-cols-2 gap-2 md:gap-3">
                     {cakeBases.map((b) => (
                       <button
                         key={b.id}
                         onClick={() => setBase(b)}
-                        className={`text-left p-4 rounded-xl border-2 transition-all ${
+                        className={`text-left p-3 md:p-4 rounded-xl border-2 transition-all active:scale-[0.98] ${
                           base?.id === b.id
                             ? 'border-primary bg-primary/5 shadow-sm'
                             : 'border-primary/10 hover:border-primary/30'
                         }`}
                       >
-                        <span className="text-2xl">{b.emoji}</span>
-                        <p className="font-medium text-foreground text-sm mt-1">{b.name}</p>
-                        <p className="text-xs text-muted-foreground">{b.desc}</p>
-                        {b.price > 0 && <p className="text-xs text-primary mt-1">+₹{b.price}</p>}
+                        <span className="text-xl md:text-2xl">{b.emoji}</span>
+                        <p className="font-medium text-foreground text-xs md:text-sm mt-1">{b.name}</p>
+                        <p className="text-[10px] md:text-xs text-muted-foreground">{b.desc}</p>
+                        {b.price > 0 && <p className="text-[10px] md:text-xs text-primary mt-0.5">+₹{b.price}</p>}
                       </button>
                     ))}
                   </div>
@@ -182,22 +182,22 @@ export default function OrderModal({ open, onClose }) {
 
               {step === 1 && (
                 <div>
-                  <p className="font-serif text-2xl text-foreground mb-1">{STEPS[1]}</p>
-                  <p className="text-sm text-muted-foreground mb-5">How many people are you serving?</p>
-                  <div className="grid grid-cols-2 gap-3">
+                  <p className="font-serif text-lg md:text-2xl text-foreground mb-0.5 md:mb-1">{STEPS[1]}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground mb-4 md:mb-5">How many people are you serving?</p>
+                  <div className="grid grid-cols-2 gap-2 md:gap-3">
                     {sizes.map((s) => (
                       <button
                         key={s.id}
                         onClick={() => setSize(s)}
-                        className={`text-left p-4 rounded-xl border-2 transition-all ${
+                        className={`text-left p-3 md:p-4 rounded-xl border-2 transition-all active:scale-[0.98] ${
                           size?.id === s.id
                             ? 'border-primary bg-primary/5 shadow-sm'
                             : 'border-primary/10 hover:border-primary/30'
                         }`}
                       >
-                        <p className="font-medium text-foreground">{s.name}</p>
-                        <p className="text-xs text-muted-foreground">{s.desc}</p>
-                        <p className="text-sm text-primary font-medium mt-1">₹{s.price}</p>
+                        <p className="font-medium text-foreground text-sm md:text-base">{s.name}</p>
+                        <p className="text-[10px] md:text-xs text-muted-foreground">{s.desc}</p>
+                        <p className="text-xs md:text-sm text-primary font-medium mt-1">₹{s.price}</p>
                       </button>
                     ))}
                   </div>
@@ -206,42 +206,42 @@ export default function OrderModal({ open, onClose }) {
 
               {step === 2 && (
                 <div>
-                  <p className="font-serif text-2xl text-foreground mb-1">{STEPS[2]}</p>
-                  <p className="text-sm text-muted-foreground mb-5">Pick your filling & frosting</p>
+                  <p className="font-serif text-lg md:text-2xl text-foreground mb-0.5 md:mb-1">{STEPS[2]}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground mb-4 md:mb-5">Pick your filling & frosting</p>
 
-                  <p className="text-xs font-medium text-foreground uppercase tracking-wider mb-2">Filling</p>
-                  <div className="grid grid-cols-2 gap-2 mb-6">
+                  <p className="text-[10px] md:text-xs font-medium text-foreground uppercase tracking-wider mb-2">Filling</p>
+                  <div className="grid grid-cols-2 gap-2 mb-4 md:mb-6">
                     {fillings.map((f) => (
                       <button
                         key={f.id}
                         onClick={() => setFilling(f)}
-                        className={`text-left p-3 rounded-xl border-2 transition-all ${
+                        className={`text-left p-2.5 md:p-3 rounded-xl border-2 transition-all active:scale-[0.98] ${
                           filling?.id === f.id
                             ? 'border-primary bg-primary/5 shadow-sm'
                             : 'border-primary/10 hover:border-primary/30'
                         }`}
                       >
-                        <p className="font-medium text-foreground text-sm">{f.name}</p>
-                        <p className="text-xs text-muted-foreground">{f.desc}</p>
-                        {f.price > 0 && <p className="text-xs text-primary">+₹{f.price}</p>}
+                        <p className="font-medium text-foreground text-xs md:text-sm">{f.name}</p>
+                        <p className="text-[10px] text-muted-foreground">{f.desc}</p>
+                        {f.price > 0 && <p className="text-[10px] text-primary">+₹{f.price}</p>}
                       </button>
                     ))}
                   </div>
 
-                  <p className="text-xs font-medium text-foreground uppercase tracking-wider mb-2">Frosting</p>
+                  <p className="text-[10px] md:text-xs font-medium text-foreground uppercase tracking-wider mb-2">Frosting</p>
                   <div className="grid grid-cols-2 gap-2">
                     {frostings.map((f) => (
                       <button
                         key={f.id}
                         onClick={() => setFrosting(f)}
-                        className={`text-left p-3 rounded-xl border-2 transition-all ${
+                        className={`text-left p-2.5 md:p-3 rounded-xl border-2 transition-all active:scale-[0.98] ${
                           frosting?.id === f.id
                             ? 'border-primary bg-primary/5 shadow-sm'
                             : 'border-primary/10 hover:border-primary/30'
                         }`}
                       >
-                        <p className="font-medium text-foreground text-sm">{f.name}</p>
-                        {f.price > 0 && <p className="text-xs text-primary">+₹{f.price}</p>}
+                        <p className="font-medium text-foreground text-xs md:text-sm">{f.name}</p>
+                        {f.price > 0 && <p className="text-[10px] text-primary">+₹{f.price}</p>}
                       </button>
                     ))}
                   </div>
@@ -250,111 +250,111 @@ export default function OrderModal({ open, onClose }) {
 
               {step === 3 && (
                 <div>
-                  <p className="font-serif text-2xl text-foreground mb-1">{STEPS[3]}</p>
-                  <p className="text-sm text-muted-foreground mb-5">Add extra touches & personalise</p>
+                  <p className="font-serif text-lg md:text-2xl text-foreground mb-0.5 md:mb-1">{STEPS[3]}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground mb-4 md:mb-5">Add extra touches & personalise</p>
 
-                  <p className="text-xs font-medium text-foreground uppercase tracking-wider mb-2">Extras</p>
-                  <div className="grid grid-cols-2 gap-2 mb-6">
+                  <p className="text-[10px] md:text-xs font-medium text-foreground uppercase tracking-wider mb-2">Extras</p>
+                  <div className="grid grid-cols-2 gap-2 mb-4 md:mb-6">
                     {extras.map((e) => (
                       <button
                         key={e.id}
                         onClick={() => toggleExtra(e)}
-                        className={`text-left p-3 rounded-xl border-2 transition-all ${
+                        className={`text-left p-2.5 md:p-3 rounded-xl border-2 transition-all active:scale-[0.98] ${
                           selectedExtras.find((x) => x.id === e.id)
                             ? 'border-primary bg-primary/5 shadow-sm'
                             : 'border-primary/10 hover:border-primary/30'
                         }`}
                       >
-                        <span>{e.emoji} <span className="font-medium text-foreground text-sm">{e.name}</span></span>
-                        <p className="text-xs text-primary">+₹{e.price}</p>
+                        <span className="text-sm md:text-base">{e.emoji} <span className="font-medium text-foreground text-xs md:text-sm">{e.name}</span></span>
+                        <p className="text-[10px] text-primary">+₹{e.price}</p>
                       </button>
                     ))}
                   </div>
 
-                  <p className="text-xs font-medium text-foreground uppercase tracking-wider mb-2">Cake Message</p>
+                  <p className="text-[10px] md:text-xs font-medium text-foreground uppercase tracking-wider mb-2">Cake Message</p>
                   <input
                     type="text"
                     placeholder="e.g. Happy Birthday, Sarah! 🎂"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full rounded-xl border-2 border-primary/10 p-3 text-sm text-foreground bg-transparent focus:border-primary outline-none mb-4"
+                    className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none mb-3 md:mb-4"
                   />
 
-                  <p className="text-xs font-medium text-foreground uppercase tracking-wider mb-2">Pickup/Delivery Date</p>
+                  <p className="text-[10px] md:text-xs font-medium text-foreground uppercase tracking-wider mb-2">Pickup/Delivery Date</p>
                   <input
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full rounded-xl border-2 border-primary/10 p-3 text-sm text-foreground bg-transparent focus:border-primary outline-none"
+                    className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none"
                   />
                 </div>
               )}
 
               {step === 4 && (
                 <div>
-                  <p className="font-serif text-2xl text-foreground mb-1">{STEPS[4]}</p>
-                  <p className="text-sm text-muted-foreground mb-5">Review your custom cake order</p>
+                  <p className="font-serif text-lg md:text-2xl text-foreground mb-0.5 md:mb-1">{STEPS[4]}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground mb-4 md:mb-5">Review your custom cake order</p>
 
-                  <div className="space-y-3 mb-6">
-                    <div className="flex justify-between items-center p-3 rounded-xl bg-primary/5 border border-primary/10">
-                      <div><p className="font-medium text-foreground text-sm">Base</p><p className="text-xs text-muted-foreground">{base?.name}</p></div>
-                      <span className="text-sm font-medium text-foreground">₹{base?.price || 0}</span>
+                  <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                    <div className="flex justify-between items-center p-2.5 md:p-3 rounded-xl bg-primary/5 border border-primary/10">
+                      <div><p className="font-medium text-foreground text-xs md:text-sm">Base</p><p className="text-[10px] md:text-xs text-muted-foreground">{base?.name}</p></div>
+                      <span className="text-xs md:text-sm font-medium text-foreground">₹{base?.price || 0}</span>
                     </div>
-                    <div className="flex justify-between items-center p-3 rounded-xl bg-primary/5 border border-primary/10">
-                      <div><p className="font-medium text-foreground text-sm">Size</p><p className="text-xs text-muted-foreground">{size?.name} — {size?.desc}</p></div>
-                      <span className="text-sm font-medium text-foreground">₹{size?.price || 0}</span>
+                    <div className="flex justify-between items-center p-2.5 md:p-3 rounded-xl bg-primary/5 border border-primary/10">
+                      <div><p className="font-medium text-foreground text-xs md:text-sm">Size</p><p className="text-[10px] md:text-xs text-muted-foreground">{size?.name} — {size?.desc}</p></div>
+                      <span className="text-xs md:text-sm font-medium text-foreground">₹{size?.price || 0}</span>
                     </div>
-                    <div className="flex justify-between items-center p-3 rounded-xl bg-primary/5 border border-primary/10">
-                      <div><p className="font-medium text-foreground text-sm">Filling</p><p className="text-xs text-muted-foreground">{filling?.name}</p></div>
-                      <span className="text-sm font-medium text-foreground">₹{filling?.price || 0}</span>
+                    <div className="flex justify-between items-center p-2.5 md:p-3 rounded-xl bg-primary/5 border border-primary/10">
+                      <div><p className="font-medium text-foreground text-xs md:text-sm">Filling</p><p className="text-[10px] md:text-xs text-muted-foreground">{filling?.name}</p></div>
+                      <span className="text-xs md:text-sm font-medium text-foreground">₹{filling?.price || 0}</span>
                     </div>
-                    <div className="flex justify-between items-center p-3 rounded-xl bg-primary/5 border border-primary/10">
-                      <div><p className="font-medium text-foreground text-sm">Frosting</p><p className="text-xs text-muted-foreground">{frosting?.name}</p></div>
-                      <span className="text-sm font-medium text-foreground">₹{frosting?.price || 0}</span>
+                    <div className="flex justify-between items-center p-2.5 md:p-3 rounded-xl bg-primary/5 border border-primary/10">
+                      <div><p className="font-medium text-foreground text-xs md:text-sm">Frosting</p><p className="text-[10px] md:text-xs text-muted-foreground">{frosting?.name}</p></div>
+                      <span className="text-xs md:text-sm font-medium text-foreground">₹{frosting?.price || 0}</span>
                     </div>
                     {selectedExtras.length > 0 && (
-                      <div className="flex justify-between items-start p-3 rounded-xl bg-primary/5 border border-primary/10">
-                        <div><p className="font-medium text-foreground text-sm">Extras</p>
-                          <p className="text-xs text-muted-foreground">{selectedExtras.map((e) => e.name).join(', ')}</p>
+                      <div className="flex justify-between items-start p-2.5 md:p-3 rounded-xl bg-primary/5 border border-primary/10">
+                        <div><p className="font-medium text-foreground text-xs md:text-sm">Extras</p>
+                          <p className="text-[10px] text-muted-foreground">{selectedExtras.map((e) => e.name).join(', ')}</p>
                         </div>
-                        <span className="text-sm font-medium text-foreground">₹{selectedExtras.reduce((s, e) => s + e.price, 0)}</span>
+                        <span className="text-xs md:text-sm font-medium text-foreground">₹{selectedExtras.reduce((s, e) => s + e.price, 0)}</span>
                       </div>
                     )}
                     {message && (
-                      <div className="flex justify-between items-center p-3 rounded-xl bg-primary/5 border border-primary/10">
-                        <div><p className="font-medium text-foreground text-sm">Message</p><p className="text-xs text-muted-foreground italic">"{message}"</p></div>
+                      <div className="flex justify-between items-center p-2.5 md:p-3 rounded-xl bg-primary/5 border border-primary/10">
+                        <div><p className="font-medium text-foreground text-xs md:text-sm">Message</p><p className="text-[10px] text-muted-foreground italic truncate max-w-[200px]">"{message}"</p></div>
                       </div>
                     )}
                     {date && (
-                      <div className="flex justify-between items-center p-3 rounded-xl bg-primary/5 border border-primary/10">
-                        <div><p className="font-medium text-foreground text-sm">Date</p><p className="text-xs text-muted-foreground">{new Date(date).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p></div>
+                      <div className="flex justify-between items-center p-2.5 md:p-3 rounded-xl bg-primary/5 border border-primary/10">
+                        <div><p className="font-medium text-foreground text-xs md:text-sm">Date</p><p className="text-[10px] text-muted-foreground">{new Date(date).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}</p></div>
                       </div>
                     )}
                   </div>
 
-                  <div className="flex items-center justify-between p-4 rounded-xl bg-primary/10 border-2 border-primary">
-                    <p className="font-serif text-lg text-foreground">Total</p>
-                    <p className="font-serif text-2xl text-primary font-medium">₹{total}</p>
+                  <div className="flex items-center justify-between p-3 md:p-4 rounded-xl bg-primary/10 border-2 border-primary">
+                    <p className="font-serif text-base md:text-lg text-foreground">Total</p>
+                    <p className="font-serif text-lg md:text-2xl text-primary font-medium">₹{total}</p>
                   </div>
                 </div>
               )}
             </div>
 
-            <div className="flex items-center justify-between p-6 border-t border-primary/10">
+            <div className="flex items-center justify-between px-4 md:px-6 py-3 md:py-4 border-t border-primary/10 shrink-0">
               {step > 0 ? (
-                <Button variant="neutral" onClick={handleBack}>
-                  <ChevronLeft size={16} /> Back
+                <Button variant="neutral" onClick={handleBack} size="sm" className="text-xs md:text-sm min-h-10">
+                  <ChevronLeft size={14} /> Back
                 </Button>
               ) : (
                 <div />
               )}
               {step < STEPS.length - 1 ? (
-                <Button onClick={handleNext}>
-                  Next <ChevronRight size={16} />
+                <Button onClick={handleNext} size="sm" className="text-xs md:text-sm min-h-10">
+                  Next <ChevronRight size={14} />
                 </Button>
               ) : (
-                <Button onClick={handleSubmit}>
-                  <Check size={16} /> Place Order — ₹{total}
+                <Button onClick={handleSubmit} size="sm" className="text-xs md:text-sm min-h-10">
+                  <Check size={14} /> Place — ₹{total}
                 </Button>
               )}
             </div>
