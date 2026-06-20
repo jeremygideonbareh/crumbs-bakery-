@@ -33,7 +33,7 @@ const patternSVG = encodeURIComponent(`
 
 export default function About() {
   return (
-    <section id="about" className="relative py-20 md:py-28 lg:py-36 px-6 overflow-hidden">
+    <section id="about" className="relative py-20 md:py-28 lg:py-36 px-4 md:px-6 overflow-hidden">
       <div
         className="absolute inset-0 bg-[#FFF5F0]"
         style={{

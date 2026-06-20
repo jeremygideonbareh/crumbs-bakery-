@@ -14,7 +14,7 @@ export function WordReveal({ children, className, delay = 0 }) {
           transition={{ duration: 0.5, delay: delay + i * 0.04, ease: [0.25, 0.4, 0.25, 1] }}
           className="inline-block"
         >
-          {word}&nbsp;
+          {word} 
         </motion.span>
       ))}
     </span>
@@ -59,7 +59,7 @@ export function SectionEyebrow({ children, delay = 0 }) {
 
 export function SectionHeading({ children, className, delay = 0 }) {
   return (
-    <h2 className={`font-serif text-2xl sm:text-3xl md:text-5xl font-medium leading-[1.1] text-balance text-foreground break-words ${className || ''}`}>
+    <h2 className={`font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground break-words ${className || ''}`}>
       <CharReveal delay={delay}>{children}</CharReveal>
     </h2>
   )

@@ -49,7 +49,7 @@ const reviews = [
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="relative py-20 md:py-28 lg:py-36 px-6">
+    <section id="reviews" className="relative py-20 md:py-28 lg:py-36 px-4 md:px-6">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -58,7 +58,7 @@ export default function Reviews() {
           className="text-center mb-10 md:mb-16"
         >
           <SectionEyebrow>Testimonials</SectionEyebrow>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-5xl font-medium leading-[1.1] text-balance text-foreground break-words">
+          <h2 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground break-words">
             <CharReveal>What our </CharReveal>
             <span className="text-primary italic"><CharReveal delay={0.3}>community</CharReveal></span>
             <CharReveal delay={0.5}> says</CharReveal>
