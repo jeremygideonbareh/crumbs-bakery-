@@ -31,7 +31,7 @@ export default function Navbar({ onOrder }) {
     >
       <div className="mx-auto max-w-6xl flex items-center justify-between px-6 py-4">
         <a href="#" className="font-serif text-xl md:text-2xl text-primary tracking-wide">
-          Crumbs
+          Crumbs Bakery &amp; Cafe
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
