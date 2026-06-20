@@ -2,6 +2,7 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import { Globe, Phone, MapPin } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const icons = {
   website: Globe,
@@ -47,7 +48,7 @@ const HeroSection = React.forwardRef(
       <motion.section
         ref={ref}
         className={cn(
-          'relative flex w-full flex-col overflow-hidden bg-background text-foreground md:flex-row min-h-svh',
+          'relative flex w-full flex-col overflow-hidden bg-background text-foreground md:flex-row min-h-screen',
           className,
         )}
         initial="hidden"
@@ -57,7 +58,6 @@ const HeroSection = React.forwardRef(
       >
         {/* Left Side: Content */}
         <div className="flex w-full flex-col justify-between p-8 md:w-[45%] md:p-12 lg:p-16">
-          {/* Top Section: Logo & Main Content */}
           <div>
             <motion.header className="mb-12" variants={itemVariants}>
               {logo && (
@@ -97,18 +97,22 @@ const HeroSection = React.forwardRef(
               >
                 {subtitle}
               </motion.p>
-              <motion.div variants={itemVariants}>
-                <button
-                  onClick={onOrder}
-                  className="text-lg font-bold tracking-widest text-primary transition-colors hover:text-primary/80"
-                >
+              <motion.div
+                className="flex flex-col sm:flex-row gap-3"
+                variants={itemVariants}
+              >
+                <Button onClick={onOrder} size="lg" className="min-h-11 text-sm w-full sm:w-auto">
                   {callToAction.text}
-                </button>
+                </Button>
+                <a href="#menu" className="w-full sm:w-auto">
+                  <Button variant="neutral" size="lg" className="min-h-11 text-sm w-full">
+                    Explore Menu
+                  </Button>
+                </a>
               </motion.div>
             </motion.main>
           </div>
 
-          {/* Bottom Section: Footer Info */}
           <motion.footer className="mt-12 w-full" variants={itemVariants}>
             <div className="grid grid-cols-1 gap-6 text-xs text-muted-foreground sm:grid-cols-3">
               <div className="flex items-center">
@@ -128,8 +132,7 @@ const HeroSection = React.forwardRef(
         </div>
 
         {/* Right Side: Image with clip-path animation + gradient fade */}
-        <div className="relative w-full min-h-[300px] md:w-[55%] md:h-full">
-          {/* Gradient fade overlay on the left edge of the image — only affects first 30% */}
+        <div className="relative w-full min-h-[50vh] md:w-[55%] md:min-h-screen">
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#FFF5F0] via-[#FFF5F0]/50 via-20% to-transparent to-35% pointer-events-none" />
 
           <motion.div
