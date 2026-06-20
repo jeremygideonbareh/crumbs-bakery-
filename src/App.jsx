@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Toaster } from 'sonner'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
+import { HeroSection } from './components/ui/hero-section-2'
 import About from './components/About'
 import SignatureItems from './components/SignatureItems'
 import Gallery from './components/Gallery'
@@ -11,6 +11,8 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import OrderModal from './components/OrderModal'
 import Loader from './components/Loader'
+
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1775210603506-201ed7bec326?w=1920&q=80'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -40,7 +42,28 @@ function App() {
         animate={{ opacity: 1, transition: { duration: 1 } }}
       >
         <Navbar onOrder={() => setOrderOpen(true)} />
-        <Hero onOrder={() => setOrderOpen(true)} />
+
+        <HeroSection
+          onOrder={() => setOrderOpen(true)}
+          slogan="SHILLONG'S BEST-KEPT SECRET"
+          title={
+            <>
+              Where every <br />
+              <span className="text-primary italic">crumb</span> tells a story
+            </>
+          }
+          subtitle="Handcrafted tiramisu, cream puffs, cheesecakes, and artisanal bakes — made fresh daily in the heart of Shillong."
+          callToAction={{
+            text: 'ORDER CUSTOM CAKE',
+          }}
+          backgroundImage={HERO_IMAGE}
+          contactInfo={{
+            website: 'crumbsbakery.in',
+            phone: '+91 96127 72089',
+            address: 'Jaiaw, Shillong, Meghalaya',
+          }}
+        />
+
         <About />
         <SignatureItems />
         <Gallery />

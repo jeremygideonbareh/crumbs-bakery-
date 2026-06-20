@@ -19,6 +19,10 @@ __pycache__/
 *.pyo
 *.db
 
+# Handoff docs
+HANDOFF.md
+HANDOFF_*.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
