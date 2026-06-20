@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { SectionEyebrow, SectionHeading } from './RevealText'
+import { SectionEyebrow, SectionHeading, CharReveal } from './RevealText'
 
 const contactInfo = [
   {
@@ -39,9 +39,10 @@ export default function Contact({ onOrder }) {
           className="text-center mb-10 md:mb-16"
         >
           <SectionEyebrow>Get in Touch</SectionEyebrow>
-          <SectionHeading>
-            Find us in <span className="text-primary italic">Shillong</span>
-          </SectionHeading>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground">
+            <CharReveal>Find us in </CharReveal>
+            <span className="text-primary italic"><CharReveal delay={0.3}>Shillong</CharReveal></span>
+          </h2>
           <p className="mt-3 md:mt-4 text-sm md:text-base text-muted-foreground max-w-lg mx-auto">
             Stop by for a treat, give us a call, or order online. We'd love to hear from you.
           </p>

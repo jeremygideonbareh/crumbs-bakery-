@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import { SectionEyebrow, SectionHeading } from './RevealText'
+import { SectionEyebrow, SectionHeading, CharReveal } from './RevealText'
 
 const images = [
   {
@@ -63,9 +63,10 @@ export default function Gallery() {
           className="text-center mb-10 md:mb-16"
         >
           <SectionEyebrow>Our Gallery</SectionEyebrow>
-          <SectionHeading>
-            A taste of what we <span className="text-primary italic">bake</span>
-          </SectionHeading>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground">
+            <CharReveal>A taste of what we </CharReveal>
+            <span className="text-primary italic"><CharReveal delay={0.3}>bake</CharReveal></span>
+          </h2>
           <p className="mt-3 md:mt-4 text-sm md:text-base text-muted-foreground max-w-lg mx-auto">
             Every creation is a work of art — made fresh, with love, in our Shillong bakery.
           </p>

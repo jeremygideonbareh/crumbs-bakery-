@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 
 export function WordReveal({ children, className, delay = 0 }) {
+  if (typeof children !== 'string') return <span className={className}>{children}</span>
   const words = children.split(' ')
   return (
     <span className={className}>
@@ -21,6 +22,7 @@ export function WordReveal({ children, className, delay = 0 }) {
 }
 
 export function CharReveal({ children, className, delay = 0 }) {
+  if (typeof children !== 'string') return <span className={className}>{children}</span>
   const chars = children.split('')
   return (
     <span className={className}>
