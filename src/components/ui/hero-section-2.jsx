@@ -133,14 +133,20 @@ const HeroSection = React.forwardRef(
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#FFF5F0] via-[#FFF5F0]/50 via-20% to-transparent to-35% pointer-events-none" />
 
           <motion.div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
+            className="absolute inset-0 overflow-hidden"
             initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
             animate={{
               clipPath: 'polygon(3% 0, 100% 0, 100% 100%, 0% 100%)',
             }}
             transition={{ duration: 1.2, ease: 'circOut' }}
-          />
+          >
+            <img
+              src={backgroundImage}
+              alt=""
+              className="w-full h-full object-cover object-center"
+              loading="eager"
+            />
+          </motion.div>
         </div>
       </motion.section>
     )
