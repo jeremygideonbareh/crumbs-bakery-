@@ -56,7 +56,7 @@ const HeroSection = React.forwardRef(
         {...props}
       >
         {/* Left Side: Content */}
-        <div className="flex w-full flex-col justify-between p-8 md:w-2/5 md:p-12 lg:p-16">
+        <div className="flex w-full flex-col justify-between p-8 md:w-[45%] md:p-12 lg:p-16">
           {/* Top Section: Logo & Main Content */}
           <div>
             <motion.header className="mb-12" variants={itemVariants}>
@@ -81,7 +81,8 @@ const HeroSection = React.forwardRef(
 
             <motion.main variants={containerVariants}>
               <motion.h1
-                className="text-4xl font-bold leading-tight text-foreground md:text-5xl"
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium leading-[1.05] text-balance text-foreground font-serif"
+                style={{ fontVariationSettings: '"SOFT" 80' }}
                 variants={itemVariants}
               >
                 {title}
@@ -91,7 +92,7 @@ const HeroSection = React.forwardRef(
                 variants={itemVariants}
               />
               <motion.p
-                className="mb-8 max-w-md text-base text-muted-foreground"
+                className="mb-8 max-w-md text-sm md:text-base text-muted-foreground leading-relaxed"
                 variants={itemVariants}
               >
                 {subtitle}
@@ -127,16 +128,16 @@ const HeroSection = React.forwardRef(
         </div>
 
         {/* Right Side: Image with clip-path animation + gradient fade */}
-        <div className="relative w-full min-h-[300px] md:w-3/5 md:h-full">
-          {/* Gradient fade overlay on the left edge of the image */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#FFF5F0] via-[#FFF5F0]/70 to-transparent md:from-[#FFF5F0] md:via-[#FFF5F0]/60 md:to-transparent pointer-events-none" />
+        <div className="relative w-full min-h-[300px] md:w-[55%] md:h-full">
+          {/* Gradient fade overlay on the left edge of the image — only affects first 30% */}
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#FFF5F0] via-[#FFF5F0]/50 via-20% to-transparent to-35% pointer-events-none" />
 
           <motion.div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${backgroundImage})` }}
             initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
             animate={{
-              clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)',
+              clipPath: 'polygon(3% 0, 100% 0, 100% 100%, 0% 100%)',
             }}
             transition={{ duration: 1.2, ease: 'circOut' }}
           />
