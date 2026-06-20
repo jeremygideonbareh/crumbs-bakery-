@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from '@/components/ui/button'
+import { CharReveal, WordReveal } from './RevealText'
 
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1775210603506-201ed7bec326?w=1920&q=80'
 
@@ -12,7 +13,7 @@ export default function Hero({ onOrder }) {
   })
 
   const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
-  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.45, 0.7])
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.35, 0.55])
   const contentY = useTransform(scrollYProgress, [0, 1], [0, 80])
 
   return (
@@ -32,11 +33,9 @@ export default function Hero({ onOrder }) {
       </motion.div>
 
       <motion.div
-        className="absolute inset-0 bg-gradient-to-t from-[#FFF5F0] via-[#FFF5F0]/60 to-[#FFF5F0]/30"
+        className="absolute inset-0 bg-gradient-to-t from-[#FFF5F0] via-[#FFF5F0]/40 to-[#FFF5F0]/15"
         style={{ opacity: overlayOpacity }}
       />
-
-      <div className="absolute inset-0 bg-gradient-to-b from-[#FFF5F0]/80 via-transparent to-[#FFF5F0]" />
 
       <motion.div
         className="relative z-10 text-center px-5 md:px-6 max-w-4xl mx-auto w-full"
@@ -56,10 +55,14 @@ export default function Hero({ onOrder }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium leading-[1.05] text-balance text-foreground"
+          style={{ fontVariationSettings: '"SOFT" 80' }}
         >
-          Where every
+          <CharReveal>Where every </CharReveal>
           <br />
-          <span className="text-primary italic">crumb</span> tells a story
+          <span className="text-primary italic">
+            <CharReveal delay={0.3}>crumb</CharReveal>
+          </span>{' '}
+          <CharReveal delay={0.5}>tells a story</CharReveal>
         </motion.h1>
 
         <motion.p
@@ -68,7 +71,9 @@ export default function Hero({ onOrder }) {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-5 md:mt-8 text-muted-foreground text-sm md:text-lg max-w-xl mx-auto leading-relaxed px-2"
         >
-          Handcrafted tiramisu, cream puffs, cheesecakes, and artisanal bakes — made fresh daily in the heart of Shillong.
+          <WordReveal delay={0.7}>
+            Handcrafted tiramisu, cream puffs, cheesecakes, and artisanal bakes — made fresh daily in the heart of Shillong.
+          </WordReveal>
         </motion.p>
 
         <motion.div

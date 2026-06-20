@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { SectionEyebrow, SectionHeading } from './RevealText'
 
 const images = [
   {
@@ -61,13 +62,10 @@ export default function Gallery() {
           viewport={{ once: true, margin: '-100px' }}
           className="text-center mb-10 md:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs tracking-wider uppercase font-medium mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-            Our Gallery
-          </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground">
+          <SectionEyebrow>Our Gallery</SectionEyebrow>
+          <SectionHeading>
             A taste of what we <span className="text-primary italic">bake</span>
-          </h2>
+          </SectionHeading>
           <p className="mt-3 md:mt-4 text-sm md:text-base text-muted-foreground max-w-lg mx-auto">
             Every creation is a work of art — made fresh, with love, in our Shillong bakery.
           </p>

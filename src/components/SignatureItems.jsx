@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { SectionEyebrow, SectionHeading } from './RevealText'
 
 const items = [
   {
@@ -63,13 +64,10 @@ export default function SignatureItems() {
           viewport={{ once: true, margin: '-100px' }}
           className="text-center mb-10 md:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs tracking-wider uppercase font-medium mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-            Our Menu
-          </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground">
+          <SectionEyebrow>Our Menu</SectionEyebrow>
+          <SectionHeading>
             Signature <span className="text-primary italic">bakes</span>
-          </h2>
+          </SectionHeading>
           <p className="mt-3 md:mt-4 text-sm md:text-base text-muted-foreground max-w-lg mx-auto">
             Every item crafted with care, using traditional recipes and the freshest ingredients.
           </p>

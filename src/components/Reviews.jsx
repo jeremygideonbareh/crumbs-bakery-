@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
+import { SectionEyebrow, SectionHeading } from './RevealText'
 
 const reviews = [
   {
@@ -56,13 +57,10 @@ export default function Reviews() {
           viewport={{ once: true, margin: '-100px' }}
           className="text-center mb-10 md:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs tracking-wider uppercase font-medium mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-            Testimonials
-          </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground">
+          <SectionEyebrow>Testimonials</SectionEyebrow>
+          <SectionHeading>
             What our <span className="text-primary italic">community</span> says
-          </h2>
+          </SectionHeading>
           <div className="mt-4 md:mt-6 flex items-center justify-center gap-3">
             <div className="flex -space-x-1">
               {[1,2,3,4].map((i) => (

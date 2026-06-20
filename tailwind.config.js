@@ -50,7 +50,8 @@ export default {
         secondaryBlack: "#212121",
       },
       fontFamily: {
-        aeonik: ["Satoshi", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        sans: ["Satoshi", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        serif: ["Fraunces", "Georgia", "ui-serif", "serif"],
         input: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       fontSize: {

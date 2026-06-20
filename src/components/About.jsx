@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { SectionEyebrow, SectionHeading, WordReveal } from './RevealText'
 
 const values = [
   {
@@ -51,28 +52,25 @@ export default function About() {
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.7 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs tracking-wider uppercase font-medium mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              About Us
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground">
-              A little bakery
-              <br />
-              <span className="text-primary italic">with big flavors</span>
-            </h2>
+            <SectionEyebrow>About Us</SectionEyebrow>
+            <SectionHeading>
+              A little bakery with big flavours
+            </SectionHeading>
             <div className="mt-6 md:mt-8 space-y-4 text-muted-foreground text-sm md:text-base leading-relaxed">
               <p>
-                Nestled in the quiet lanes of Jaiaw, Shillong, Crumbs Bakery & Cafe was born from a simple belief —
-                that great baked goods have the power to turn an ordinary day into something special.
+                <WordReveal delay={0.2}>
+                  Nestled in the quiet lanes of Jaiaw, Shillong, Crumbs Bakery & Cafe was born from a simple belief — that great baked goods have the power to turn an ordinary day into something special.
+                </WordReveal>
               </p>
               <p>
-                From our signature tiramisu that customers travel across town for, to cream puffs that melt in your
-                mouth, every recipe has been developed and refined with care. We source the finest ingredients,
-                bake in small batches, and serve everything with a smile.
+                <WordReveal delay={0.4}>
+                  From our signature tiramisu that customers travel across town for, to cream puffs that melt in your mouth, every recipe has been developed and refined with care. We source the finest ingredients, bake in small batches, and serve everything with a smile.
+                </WordReveal>
               </p>
               <p>
-                Whether you're stopping by for a quick coffee and cookie, ordering a custom cake for a celebration,
-                or settling in for an afternoon treat — you're family here.
+                <WordReveal delay={0.6}>
+                  Whether you're stopping by for a quick coffee and cookie, ordering a custom cake for a celebration, or settling in for an afternoon treat — you're family here.
+                </WordReveal>
               </p>
             </div>
           </motion.div>
