@@ -40,6 +40,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        announcement: "#f16780",
+        header: "#55babd",
+        footer: "#f8b1b0",
+        "footer-bar": "#55babd",
         main: "var(--main)",
         overlay: "var(--overlay)",
         bg: "var(--bg)",
@@ -50,8 +54,11 @@ export default {
         secondaryBlack: "#212121",
       },
       fontFamily: {
-        sans: ["Satoshi", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        sans: ["Work Sans", "Satoshi", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
         serif: ["Fraunces", "Georgia", "ui-serif", "serif"],
+        work: ["Work Sans", "sans-serif"],
+        heading: ["Montserrat", "Work Sans", "sans-serif"],
+        display: ["Bebas Neue", "Impact", "sans-serif"],
         input: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       fontSize: {

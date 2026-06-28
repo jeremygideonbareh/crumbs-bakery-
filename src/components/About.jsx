@@ -1,107 +1,114 @@
 import { motion } from 'framer-motion'
-import { SectionEyebrow, SectionHeading, WordReveal } from './RevealText'
 
-const values = [
+const columns = [
   {
-    title: 'Handcrafted Daily',
-    desc: 'Every item is made from scratch each morning using traditional techniques and the finest ingredients.',
-    icon: '🥖',
+    image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=600&q=80',
+    heading: 'CRUMBS BAKERY & CAFE, SHILLONG',
+    body: () => (
+      <>
+        Founded in the heart of Jaiaw, we make amazing{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cakes</a>,{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cupcakes</a>,{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cookies</a> and{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Brownies</a>.
+        You can find us in Shillong every day of the week, serving fresh treats made from scratch.
+      </>
+    ),
+    cta: 'VISIT OUR CAFE',
+    href: '#contact',
   },
   {
-    title: 'Quality First',
-    desc: 'We never compromise on taste. Our 4.8 rating reflects our commitment to excellence in every bite.',
-    icon: '⭐',
+    image: 'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=600&q=80',
+    heading: 'CAKES & BAKES IN SHILLONG',
+    body: () => (
+      <>
+        You can order our exceptional{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cakes</a> and{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cupcakes</a>,
+        as well as our famous{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">New York Cookies</a> and{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Brownies</a>,
+        for pickup in Shillong or hand delivery within the city. Custom orders welcome.
+      </>
+    ),
+    cta: 'ORDER NOW',
+    href: '#order',
   },
   {
-    title: 'Community Rooted',
-    desc: 'Proudly serving Shillong from our Jaiaw location — we believe in building connections over good food.',
-    icon: '🤝',
+    image: 'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?w=600&q=80',
+    heading: 'DELIVERY ACROSS SHILLONG',
+    body: () => (
+      <>
+        Enjoy fresh delivery on our{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cakes</a>,{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cookies</a>, and{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Brownies</a>{' '}
+        anywhere in Shillong with safe, contact-free delivery. Order online and treat yourself or someone special.
+      </>
+    ),
+    cta: 'ORDER DELIVERY',
+    href: '#order',
   },
 ]
 
-const patternSVG = encodeURIComponent(`
-<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" r="1.5" fill="#e8a0b4" opacity="0.15"/>
-  <circle cx="50" cy="30" r="1" fill="#e8a0b4" opacity="0.12"/>
-  <circle cx="30" cy="50" r="1.5" fill="#e8a0b4" opacity="0.1"/>
-  <circle cx="40" cy="10" r="0.8" fill="#e8a0b4" opacity="0.12"/>
-  <circle cx="20" cy="40" r="1" fill="#e8a0b4" opacity="0.08"/>
-  <path d="M0 30 Q15 25 30 30 Q45 35 60 30" stroke="#e8a0b4" stroke-width="0.5" fill="none" opacity="0.08"/>
-  <path d="M0 50 Q15 45 30 50 Q45 55 60 50" stroke="#e8a0b4" stroke-width="0.5" fill="none" opacity="0.06"/>
-</svg>
-`)
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' },
+  },
+}
 
 export default function About() {
   return (
-    <section id="about" className="relative py-20 md:py-28 lg:py-36 px-4 md:px-6 overflow-hidden">
-      <div
-        className="absolute inset-0 bg-[#FFF5F0]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,${patternSVG}")`,
-          backgroundSize: '60px 60px',
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F0] via-transparent to-[#FFF5F0] pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#FFF5F0]/80 via-transparent to-[#FFF5F0]/80 pointer-events-none" />
-
-      <div className="mx-auto max-w-6xl relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7 }}
-          >
-            <SectionEyebrow>About Us</SectionEyebrow>
-            <SectionHeading className="text-lg sm:text-xl md:text-4xl lg:text-5xl whitespace-nowrap">
-              A little bakery with big flavours
-            </SectionHeading>
-            <div className="mt-6 md:mt-8 space-y-4 text-muted-foreground text-sm md:text-base leading-relaxed">
-              <p>
-                <WordReveal delay={0.2}>
-                  Nestled in the quiet lanes of Jaiaw, Shillong, Crumbs Bakery & Cafe was born from a simple belief — that great baked goods have the power to turn an ordinary day into something special.
-                </WordReveal>
+    <section id="about" className="py-16 md:py-20 px-4 md:px-6 bg-background">
+      <div className="mx-auto max-w-6xl">
+        <motion.div
+          className="grid md:grid-cols-3 gap-8 md:gap-10"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+        >
+          {columns.map((col) => (
+            <motion.div
+              key={col.heading}
+              variants={cardVariants}
+              className="flex flex-col"
+            >
+              <div className="aspect-[4/3] overflow-hidden rounded-lg mb-5">
+                <img
+                  src={col.image}
+                  alt={col.heading}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <h3 className="font-display text-xl md:text-2xl tracking-wider text-foreground mb-3">
+                {col.heading}
+              </h3>
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-5 flex-1">
+                <col.body />
               </p>
-              <p>
-                <WordReveal delay={0.4}>
-                  From our signature tiramisu that customers travel across town for, to cream puffs that melt in your mouth, every recipe has been developed and refined with care. We source the finest ingredients, bake in small batches, and serve everything with a smile.
-                </WordReveal>
-              </p>
-              <p>
-                <WordReveal delay={0.6}>
-                  Whether you're stopping by for a quick coffee and cookie, ordering a custom cake for a celebration, or settling in for an afternoon treat — you're family here.
-                </WordReveal>
-              </p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7 }}
-            className="space-y-4"
-          >
-            {values.map((v, i) => (
-              <motion.div
-                key={v.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="group rounded-xl border border-primary/20 bg-white/90 backdrop-blur-sm p-5 md:p-6 hover:border-primary/40 hover:bg-white transition-all shadow-sm hover:shadow-md"
+              <a
+                href={col.href}
+                className="inline-block text-xs uppercase tracking-[0.15em] font-bold text-foreground underline underline-offset-4 decoration-2 decoration-header/50 hover:decoration-header transition-all"
               >
-                <div className="flex items-start gap-4">
-                  <span className="text-xl shrink-0 mt-0.5">{v.icon}</span>
-                  <div>
-                    <h3 className="font-medium text-foreground text-base md:text-lg">{v.title}</h3>
-                    <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+                {col.cta}
+              </a>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )

@@ -11,6 +11,16 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import OrderModal from './components/OrderModal'
 import Loader from './components/Loader'
+import AnnouncementBar from './components/AnnouncementBar'
+import CategoryGrid from './components/CategoryGrid'
+import SheetCakesMarquee from './components/SheetCakesMarquee'
+import BrowseByBake from './components/BrowseByBake'
+import ProductCarousel from './components/ProductCarousel'
+import DeliverySection from './components/DeliverySection'
+import InstagramSection from './components/InstagramSection'
+import PromoCards from './components/PromoCards'
+import NewsSection from './components/NewsSection'
+import FaqSection from './components/FaqSection'
 
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1775210603506-201ed7bec326?w=1920&q=80'
 
@@ -41,6 +51,7 @@ function App() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 1 } }}
       >
+        <AnnouncementBar />
         <Navbar onOrder={() => setOrderOpen(true)} />
 
         <HeroSection
@@ -64,10 +75,19 @@ function App() {
           }}
         />
 
+        <CategoryGrid />
         <About />
+        <SheetCakesMarquee />
+        <BrowseByBake />
         <SignatureItems />
+        <ProductCarousel />
+        <DeliverySection />
         <Gallery />
+        <InstagramSection />
+        <PromoCards />
         <Reviews />
+        <NewsSection />
+        <FaqSection />
         <Contact onOrder={() => setOrderOpen(true)} />
         <Footer />
       </motion.div>

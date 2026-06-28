@@ -19,6 +19,32 @@ function InfoIcon({ type }) {
   )
 }
 
+const statVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+}
+
+const statItemVariants = {
+  hidden: { y: 12, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.4, ease: 'easeOut' },
+  },
+}
+
+const SOCIAL_PROOF_STATS = [
+  { number: '4.9 ★', label: 'Google Reviews' },
+  { number: '500+', label: 'Happy Customers' },
+  { number: '7+ Years', label: 'Serving Shillong' },
+]
+
 const HeroSection = React.forwardRef(
   ({ className, logo, slogan, title, subtitle, callToAction, backgroundImage, contactInfo, onOrder, ...props }, ref) => {
     const containerVariants = {
@@ -78,6 +104,21 @@ const HeroSection = React.forwardRef(
                 </div>
               )}
             </motion.header>
+
+            {/* SOCIAL PROOF COUNTERS */}
+            <motion.div
+              className="flex flex-wrap gap-6 md:gap-10 mb-8 md:mb-12"
+              variants={statVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              {SOCIAL_PROOF_STATS.map((stat) => (
+                <motion.div key={stat.label} variants={statItemVariants}>
+                  <p className="text-2xl md:text-3xl font-bold text-foreground">{stat.number}</p>
+                  <p className="text-xs text-muted-foreground tracking-wide">{stat.label}</p>
+                </motion.div>
+              ))}
+            </motion.div>
 
             <motion.main variants={containerVariants}>
               <motion.h1
