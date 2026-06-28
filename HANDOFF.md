@@ -27,6 +27,10 @@ Full bakery website for Crumbs Bakery & Cafe, Shillong — matching reference si
 | 17 | `Contact` | Existing contact section with order button |
 | 18 | `Footer` | 4-column footer (brand, quick links, contact, follow us) with teal bg |
 
+### Fixes Applied (Jun 29)
+
+- **InstagramSection** — Replaced all 12 truncated Unsplash photo IDs (10-digit prefixes that returned 404s) with the same full-length IDs used elsewhere in the project. Images now render correctly.
+
 ### Design Tokens
 
 - **Colors**: `bg-header` (#55babd teal), `bg-background` (#fff5f0 warm white), `text-header-foreground` (white)
