@@ -31,6 +31,21 @@ Full bakery website for Crumbs Bakery & Cafe, Shillong — matching reference si
 
 - **InstagramSection** — Replaced all 12 truncated Unsplash photo IDs (10-digit prefixes that returned 404s) with the same full-length IDs used elsewhere in the project. Images now render correctly.
 
+### Mobile Optimization (Jun 29)
+
+- **Global CSS** — Added `touch-action: manipulation` on all interactive elements (removes 300ms tap delay), `prefers-reduced-motion` support, overflow-x hidden on body, tap highlight transparency, scrollbar-gutter stability, and `-webkit-text-size-adjust: 100%`
+- **Navbar** — Added semi-transparent backdrop overlay behind mobile drawer; increased link touch targets to 44px+ with full-width tap areas; replaced height-based AnimatePresence animation with transform/opacity for smoother open/close
+- **HeroSection** — Reduced h1 mobile clamp from `text-5xl` to `text-[2rem]`; reduced social proof counters to `text-lg`; reduced image to `40vh` (was 50vh); tightened spacing, padding, and gap values; increased button touch targets to `min-h-[44px]`
+- **CategoryGrid** — Added `activeIndex` state for tap-to-expand on mobile (no hover on touch devices); reduced mobile height to 280px; tighter padding on mobile
+- **ProductCarousel** — Switched from Framer Motion `drag` to native CSS `overflow-x: auto` with `snap-x` scroll on mobile (Framer drag is janky on touch); reduced card min-width to 180px on mobile; made "Add to Order" touch target 44px tall
+- **InstagramSection** — Grid changed from `grid-cols-3` to `grid-cols-2` on mobile (3-col cells were too small to tap); hover overlays disabled on mobile (`md:group-hover:opacity-100`)
+- **FaqSection** — Increased button min-height to 56px; larger chevron icon; tighter padding
+- **AnnouncementBar** — Text now truncates with `whitespace-nowrap` on mobile to prevent overflow; condensed copy ("IN SHILLONG" removed on mobile)
+- **Gallery** — Lightbox navigation buttons increased from 36px to 44px (WCAG compliance); removed `whitespace-nowrap` from heading
+- **Reviews** — Removed `whitespace-nowrap` from heading to prevent overflow
+- **PromoCards** — Aspect ratio changed to 16:9 on mobile (was 4:3) to reduce card height
+- **Contact** — Map height increased to 300px on mobile; button touch targets set to 44px
+
 ### Design Tokens
 
 - **Colors**: `bg-header` (#55babd teal), `bg-background` (#fff5f0 warm white), `text-header-foreground` (white)

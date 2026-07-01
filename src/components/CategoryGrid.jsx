@@ -54,12 +54,15 @@ const categories = [
 
 export default function CategoryGrid() {
   const [hoveredIndex, setHoveredIndex] = useState(null)
+  const [activeIndex, setActiveIndex] = useState(null)
+
+  const isExpanded = (i) => i === hoveredIndex || i === activeIndex
 
   return (
     <section className="bg-background">
-      <div className="flex h-[320px] flex-row md:h-[420px]">
+      <div className="flex h-[280px] flex-row md:h-[420px]">
         {categories.map((cat, index) => {
-          const isHovered = index === hoveredIndex
+          const expanded = isExpanded(index)
 
           return (
             <motion.a
@@ -67,7 +70,13 @@ export default function CategoryGrid() {
               href={cat.href}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              animate={{ flex: isHovered ? 3 : 1 }}
+              onClick={(e) => {
+                if (window.innerWidth < 768) {
+                  e.preventDefault()
+                  setActiveIndex(activeIndex === index ? null : index)
+                }
+              }}
+              animate={{ flex: expanded ? 3 : 1 }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
               className="relative block cursor-pointer overflow-hidden"
             >
@@ -80,7 +89,7 @@ export default function CategoryGrid() {
               <div className="absolute inset-0 bg-black/30 transition-opacity duration-300" />
 
               <AnimatePresence>
-                {isHovered && (
+                {expanded && (
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -91,11 +100,11 @@ export default function CategoryGrid() {
                 )}
               </AnimatePresence>
 
-              <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6">
+              <div className="absolute inset-0 flex flex-col justify-end p-3 md:p-6">
                 <span
                   className={`font-work font-bold uppercase tracking-[0.15em] text-white transition-all duration-300 ${
-                    isHovered
-                      ? 'translate-y-0 text-xs md:text-sm'
+                    expanded
+                      ? 'translate-y-0 text-[11px] md:text-sm'
                       : 'mb-8 self-center text-[10px] [writing-mode:vertical-rl] [text-orientation:mixed] md:text-xs'
                   }`}
                 >
@@ -103,7 +112,7 @@ export default function CategoryGrid() {
                 </span>
 
                 <AnimatePresence>
-                  {isHovered && (
+                  {expanded && (
                     <motion.div
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}

@@ -1,23 +1,19 @@
 import { motion } from 'framer-motion';
 
-const images = Array.from({ length: 12 }, (_, i) =>
-  `https://images.unsplash.com/photo-${
-    [
-      '1558636508',
-      '1578985545',
-      '1486427944',
-      '1528975604',
-      '1556909172',
-      '1464349095',
-      '1501339847',
-      '1558301211',
-      '1606890737',
-      '1588195538',
-      '1565958011',
-      '1499636137',
-    ][i]
-  }?w=300&q=80`
-);
+const images = [
+  'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=300&q=80',
+  'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&q=80',
+  'https://images.unsplash.com/photo-1486427944544-d2c246c4c5f5?w=300&q=80',
+  'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?w=300&q=80',
+  'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=300&q=80',
+  'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=300&q=80',
+  'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=300&q=80',
+  'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=300&q=80',
+  'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=300&q=80',
+  'https://images.unsplash.com/photo-1588195538326-c5b1e1b48098?w=300&q=80',
+  'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=300&q=80',
+  'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=300&q=80',
+];
 
 const menuItems = [
   { label: 'OUR MENU', icon: '🍰' },
@@ -88,7 +84,7 @@ export default function InstagramSection() {
         </div>
 
         {/* Grid */}
-        <div className="flex-1 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {images.map((src, i) => (
             <motion.a
               key={i}
@@ -106,7 +102,7 @@ export default function InstagramSection() {
                 loading="lazy"
               />
               {/* Hover overlay with stats */}
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-5">
+              <div className="absolute inset-0 bg-black/60 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-5">
                 <span className="flex items-center gap-1.5 text-white text-xs font-work">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

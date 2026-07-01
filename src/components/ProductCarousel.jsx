@@ -83,7 +83,7 @@ export default function ProductCarousel() {
     <section className="py-14 md:py-18 px-4 bg-background">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="flex items-end justify-between mb-8 md:mb-10">
+        <div className="flex items-end justify-between mb-6 md:mb-10">
           <div>
             <motion.span
               initial={{ opacity: 0, y: 10 }}
@@ -98,7 +98,7 @@ export default function ProductCarousel() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mt-1 tracking-tight"
+              className="font-display text-3xl md:text-5xl lg:text-6xl text-foreground mt-1 tracking-tight"
             >
               OUR COLLECTION
             </motion.h2>
@@ -115,15 +115,11 @@ export default function ProductCarousel() {
           </motion.p>
         </div>
 
-        {/* Carousel */}
-        <motion.div
+        {/* Carousel - native scroll on mobile, Framer drag on desktop */}
+        <div
           ref={carouselRef}
-          className="flex gap-4 md:gap-5 overflow-x-auto pb-4 cursor-grab active:cursor-grabbing scrollbar-hide"
-          drag="x"
-          dragConstraints={carouselRef}
-          dragElastic={0.1}
-          whileTap={{ cursor: 'grabbing' }}
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="flex gap-3 md:gap-5 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
         >
           {products.map((product, i) => (
             <motion.div
@@ -132,7 +128,7 @@ export default function ProductCarousel() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: i * 0.04 }}
-              className="min-w-[220px] md:min-w-[260px] w-[220px] md:w-[260px] shrink-0 group"
+              className="min-w-[180px] md:min-w-[260px] w-[180px] md:w-[260px] shrink-0 group snap-start"
             >
               <div className="relative aspect-square overflow-hidden bg-header/5 rounded-sm">
                 <img
@@ -141,23 +137,23 @@ export default function ProductCarousel() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
-              <div className="mt-3 px-0.5">
-                <h3 className="font-work text-xs md:text-sm font-semibold text-foreground leading-tight mb-1">
+              <div className="mt-2.5 md:mt-3 px-0.5">
+                <h3 className="font-work text-[13px] md:text-sm font-semibold text-foreground leading-tight mb-0.5 md:mb-1">
                   {product.name}
                 </h3>
-                <p className="font-work text-sm md:text-base font-bold text-header mb-3">
+                <p className="font-work text-sm md:text-base font-bold text-header mb-2 md:mb-3">
                   {product.price}
                 </p>
-                <button className="w-full font-work text-[11px] uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-header hover:text-header-foreground hover:border-header px-4 py-2.5 transition-all duration-200 rounded-sm">
+                <button className="w-full font-work text-[11px] uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-header hover:text-header-foreground hover:border-header px-4 py-3 md:py-2.5 transition-all duration-200 rounded-sm min-h-[44px] md:min-h-0">
                   Add to Order
                 </button>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Mobile scroll hint */}
         <motion.p

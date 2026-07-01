@@ -63,7 +63,7 @@ export default function Gallery() {
           className="text-center mb-10 md:mb-16"
         >
           <SectionEyebrow>Our Gallery</SectionEyebrow>
-          <h2 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground break-words whitespace-nowrap">
+          <h2 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground">
             <CharReveal>A taste of what we </CharReveal>
             <span className="text-primary italic"><CharReveal delay={0.3}>bake</CharReveal></span>
           </h2>
@@ -109,26 +109,26 @@ export default function Gallery() {
           >
             <button
               onClick={(e) => { e.stopPropagation(); setSelected(null) }}
-              className="absolute top-3 right-3 md:top-4 md:right-4 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+              className="absolute top-3 right-3 md:top-4 md:right-4 w-11 h-11 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
               aria-label="Close"
             >
-              <X size={18} />
+              <X size={20} />
             </button>
 
             <button
               onClick={(e) => { e.stopPropagation(); goPrev() }}
-              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
               aria-label="Previous"
             >
-              <ChevronLeft size={18} />
+              <ChevronLeft size={20} />
             </button>
 
             <button
               onClick={(e) => { e.stopPropagation(); goNext() }}
-              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-11 h-11 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
               aria-label="Next"
             >
-              <ChevronRight size={18} />
+              <ChevronRight size={20} />
             </button>
 
             <motion.img

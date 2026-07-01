@@ -96,11 +96,11 @@ export default function Contact({ onOrder }) {
               transition={{ duration: 0.4, delay: 0.5 }}
               className="flex gap-2 md:gap-3 pt-1 md:pt-2"
             >
-              <Button onClick={onOrder} className="flex-1 min-h-11 text-xs md:text-sm">
+              <Button onClick={onOrder} className="flex-1 min-h-[44px] text-xs md:text-sm">
                 Order Now
               </Button>
               <a href="https://maps.google.com/?q=Crumbs+Bakery+%26+Cafe+Shillong" target="_blank" rel="noopener noreferrer" className="flex-1">
-                <Button variant="neutral" className="w-full min-h-11 text-xs md:text-sm">
+                <Button variant="neutral" className="w-full min-h-[44px] text-xs md:text-sm">
                   Directions
                 </Button>
               </a>
@@ -112,7 +112,7 @@ export default function Contact({ onOrder }) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.7 }}
-            className="rounded-xl overflow-hidden border border-primary/10 h-[250px] md:h-[400px] shadow-sm"
+            className="rounded-xl overflow-hidden border border-primary/10 h-[300px] md:h-[400px] shadow-sm"
           >
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.079772766145!2d91.8766284!3d25.5855879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37507f89317d134b%3A0xfb2b38342e332fbf!2sCrumbs%20Bakery%20%26%20Cafe!5e0!3m2!1sen!2sin!4v1"

@@ -74,7 +74,7 @@ const HeroSection = React.forwardRef(
       <motion.section
         ref={ref}
         className={cn(
-          'relative flex w-full flex-col overflow-hidden bg-background text-foreground md:flex-row min-h-screen',
+          'relative flex w-full flex-col overflow-hidden bg-background text-foreground md:flex-row md:min-h-screen',
           className,
         )}
         initial="hidden"
@@ -83,9 +83,9 @@ const HeroSection = React.forwardRef(
         {...props}
       >
         {/* Left Side: Content */}
-        <div className="flex w-full flex-col justify-between p-8 md:w-[45%] md:p-12 lg:p-16">
+        <div className="flex w-full flex-col justify-between px-5 pt-6 pb-0 md:w-[45%] md:p-12 lg:p-16 md:pb-0">
           <div>
-            <motion.header className="mb-12" variants={itemVariants}>
+            <motion.header className="mb-6 md:mb-12" variants={itemVariants}>
               {logo && (
                 <div className="flex items-center">
                   {logo.url && (
@@ -107,33 +107,33 @@ const HeroSection = React.forwardRef(
 
             {/* SOCIAL PROOF COUNTERS */}
             <motion.div
-              className="flex flex-wrap gap-6 md:gap-10 mb-8 md:mb-12"
+              className="flex gap-4 md:gap-10 mb-6 md:mb-12"
               variants={statVariants}
               initial="hidden"
               animate="visible"
             >
               {SOCIAL_PROOF_STATS.map((stat) => (
                 <motion.div key={stat.label} variants={statItemVariants}>
-                  <p className="text-2xl md:text-3xl font-bold text-foreground">{stat.number}</p>
-                  <p className="text-xs text-muted-foreground tracking-wide">{stat.label}</p>
+                  <p className="text-lg md:text-3xl font-bold text-foreground">{stat.number}</p>
+                  <p className="text-[10px] md:text-xs text-muted-foreground tracking-wide">{stat.label}</p>
                 </motion.div>
               ))}
             </motion.div>
 
             <motion.main variants={containerVariants}>
               <motion.h1
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium leading-[1.05] text-balance text-foreground font-serif"
+                className="text-[2rem] leading-[1.1] sm:text-5xl md:text-7xl lg:text-8xl font-medium text-balance text-foreground font-serif"
                 style={{ fontVariationSettings: '"SOFT" 80' }}
                 variants={itemVariants}
               >
                 {title}
               </motion.h1>
               <motion.div
-                className="my-6 h-1 w-20 bg-primary"
+                className="my-4 md:my-6 h-1 w-16 md:w-20 bg-primary"
                 variants={itemVariants}
               />
               <motion.p
-                className="mb-8 max-w-md text-sm md:text-base text-muted-foreground leading-relaxed"
+                className="mb-6 md:mb-8 max-w-md text-sm md:text-base text-muted-foreground leading-relaxed"
                 variants={itemVariants}
               >
                 {subtitle}
@@ -142,11 +142,11 @@ const HeroSection = React.forwardRef(
                 className="flex flex-col sm:flex-row gap-3"
                 variants={itemVariants}
               >
-                <Button onClick={onOrder} size="lg" className="min-h-11 text-sm w-full sm:w-auto">
+                <Button onClick={onOrder} size="lg" className="min-h-[44px] text-sm w-full sm:w-auto">
                   {callToAction.text}
                 </Button>
                 <a href="#menu" className="w-full sm:w-auto">
-                  <Button variant="neutral" size="lg" className="min-h-11 text-sm w-full">
+                  <Button variant="neutral" size="lg" className="min-h-[44px] text-sm w-full">
                     Explore Menu
                   </Button>
                 </a>
@@ -154,8 +154,8 @@ const HeroSection = React.forwardRef(
             </motion.main>
           </div>
 
-          <motion.footer className="mt-12 w-full" variants={itemVariants}>
-            <div className="grid grid-cols-1 gap-6 text-xs text-muted-foreground sm:grid-cols-3">
+          <motion.footer className="mt-6 md:mt-12 w-full" variants={itemVariants}>
+            <div className="grid grid-cols-1 gap-3 md:gap-6 text-[11px] md:text-xs text-muted-foreground sm:grid-cols-3">
               <div className="flex items-center">
                 <InfoIcon type="website" />
                 <span>{contactInfo.website}</span>
@@ -173,7 +173,7 @@ const HeroSection = React.forwardRef(
         </div>
 
         {/* Right Side: Image with clip-path animation + gradient fade */}
-        <div className="relative w-full min-h-[50vh] md:w-[55%] md:min-h-screen">
+        <div className="relative w-full min-h-[40vh] md:w-[55%] md:min-h-screen">
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#FFF5F0] via-[#FFF5F0]/50 via-20% to-transparent to-35% pointer-events-none" />
 
           <motion.div
