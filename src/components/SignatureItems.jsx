@@ -67,7 +67,7 @@ export default function SignatureItems() {
           <SectionEyebrow>Our Menu</SectionEyebrow>
           <h2 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground break-words">
             <CharReveal>Signature </CharReveal>
-            <span className="text-primary italic"><CharReveal delay={0.3}>bakes</CharReveal></span>
+            <span className="text-foreground italic"><CharReveal delay={0.3}>bakes</CharReveal></span>
           </h2>
           <p className="mt-3 md:mt-4 text-sm md:text-base text-muted-foreground max-w-lg mx-auto">
             Every item crafted with care, using traditional recipes and the freshest ingredients.

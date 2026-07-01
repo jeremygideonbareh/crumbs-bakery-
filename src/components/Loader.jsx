@@ -172,7 +172,7 @@ const Loader = () => {
           </div>
         </div>
         <div className="text-center">
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.15em] text-primary loader-title">
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.15em] text-foreground loader-title">
             CRUMBS BAKERY &amp; CAFE
           </h1>
         </div>

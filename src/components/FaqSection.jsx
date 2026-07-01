@@ -95,7 +95,7 @@ export default function FaqSection() {
             >
               <button
                 onClick={() => toggle(i)}
-                className="flex w-full items-center gap-3 md:gap-5 border border-border bg-white p-3.5 md:p-4 text-left transition-all hover:border-header/30 min-h-[56px] md:min-h-0"
+                className="flex w-full items-center gap-3 md:gap-5 border border-border bg-white p-3.5 md:p-4 text-left transition-all hover:border-primary/30 min-h-[56px] md:min-h-0"
               >
                 <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full md:h-14 md:w-14">
                   <img
@@ -112,7 +112,7 @@ export default function FaqSection() {
 
                 <ChevronDown
                   size={18}
-                  className={`shrink-0 text-header transition-transform duration-300 ${
+                  className={`shrink-0 text-muted-foreground transition-transform duration-300 ${
                     openIndex === i ? 'rotate-180' : ''
                   }`}
                 />

@@ -24,7 +24,7 @@ export default function SheetCakesMarquee() {
               alt=""
               className="h-12 w-12 rounded-full object-cover"
             />
-            <span className="text-sm font-bold uppercase tracking-[0.15em] text-white md:text-base">
+            <span className="text-sm font-bold uppercase tracking-[0.15em] text-foreground md:text-base">
               {item.label}
             </span>
           </div>

@@ -44,7 +44,7 @@ export default function InstagramSection() {
     <section className="bg-background">
       <div className="flex flex-col lg:flex-row">
         {/* Sidebar */}
-        <div className="lg:w-72 shrink-0 p-6 md:p-8 bg-header/5">
+        <div className="lg:w-72 shrink-0 p-6 md:p-8 bg-primary/5">
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export default function InstagramSection() {
               <a
                 key={item.label}
                 href="#"
-                className="flex items-center gap-3 px-3 py-2.5 text-sm text-foreground/80 hover:text-foreground hover:bg-header/10 transition-all"
+                className="flex items-center gap-3 px-3 py-2.5 text-sm text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all"
               >
                 <span className="text-base">{item.icon}</span>
                 <span className="font-medium text-xs uppercase tracking-[0.1em]">
@@ -73,7 +73,7 @@ export default function InstagramSection() {
             ))}
           </div>
 
-          <div className="mt-8 pt-6 border-t border-header/10">
+          <div className="mt-8 pt-6 border-t border-primary/10">
             <p className="font-work text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-2">
               FOLLOW US
             </p>
@@ -93,7 +93,7 @@ export default function InstagramSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: (i % 12) * 0.05 }}
-              className="group relative aspect-square overflow-hidden bg-header/5"
+              className="group relative aspect-square overflow-hidden bg-primary/5"
             >
               <img
                 src={src}

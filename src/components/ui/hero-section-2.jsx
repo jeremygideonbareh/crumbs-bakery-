@@ -14,7 +14,7 @@ function InfoIcon({ type }) {
   const Icon = icons[type]
   return (
     <div className="mr-2 flex-shrink-0">
-      <Icon className="h-5 w-5 text-primary" />
+      <Icon className="h-5 w-5 text-foreground" />
     </div>
   )
 }

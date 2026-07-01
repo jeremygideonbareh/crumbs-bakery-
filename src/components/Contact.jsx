@@ -41,7 +41,7 @@ export default function Contact({ onOrder }) {
           <SectionEyebrow>Get in Touch</SectionEyebrow>
           <h2 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground break-words whitespace-nowrap">
             <CharReveal>Find us in </CharReveal>
-            <span className="text-primary italic"><CharReveal delay={0.3}>Shillong</CharReveal></span>
+            <span className="text-foreground italic"><CharReveal delay={0.3}>Shillong</CharReveal></span>
           </h2>
           <p className="mt-3 md:mt-4 text-sm md:text-base text-muted-foreground max-w-lg mx-auto">
             Stop by for a treat, give us a call, or order online. We'd love to hear from you.
@@ -68,7 +68,7 @@ export default function Contact({ onOrder }) {
                   className="flex items-start gap-3 md:gap-4 rounded-xl border border-primary/10 bg-white p-3 md:p-5 shadow-sm"
                 >
                   <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                    <Icon size={14} className="text-primary" />
+                    <Icon size={14} className="text-foreground" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider mb-0.5">{info.label}</p>
@@ -77,7 +77,7 @@ export default function Contact({ onOrder }) {
                         href={info.href}
                         target={info.href.startsWith('http') ? '_blank' : undefined}
                         rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="text-xs md:text-sm text-foreground hover:text-primary transition-colors whitespace-pre-line break-words"
+                        className="text-xs md:text-sm text-foreground hover:text-foreground transition-colors whitespace-pre-line break-words"
                       >
                         {info.value}
                       </a>

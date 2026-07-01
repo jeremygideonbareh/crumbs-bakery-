@@ -95,7 +95,7 @@ export default function NewsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="group flex flex-col bg-white/50 dark:bg-header/10 rounded-sm overflow-hidden border border-header/10 hover:border-header/20 transition-all"
+               className="group flex flex-col bg-white/50 dark:bg-primary/10 rounded-sm overflow-hidden border border-primary/10 hover:border-primary/20 transition-all"
             >
               {/* Image */}
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -113,7 +113,7 @@ export default function NewsSection() {
                 <span className="font-work text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-2">
                   {article.date}
                 </span>
-                <h3 className="font-display text-lg text-foreground mb-2 leading-tight group-hover:text-header transition-colors">
+                <h3 className="font-display text-lg text-foreground mb-2 leading-tight group-hover:text-foreground transition-colors">
                   {article.title}
                 </h3>
                 <p className="font-work text-sm text-muted-foreground leading-relaxed flex-1">
@@ -121,7 +121,7 @@ export default function NewsSection() {
                 </p>
                 <a
                   href="#"
-                  className="font-work text-xs uppercase tracking-[0.15em] text-foreground hover:text-header transition-colors mt-4 inline-flex items-center gap-1.5"
+                  className="font-work text-xs uppercase tracking-[0.15em] text-foreground hover:text-foreground transition-colors mt-4 inline-flex items-center gap-1.5"
                 >
                   Read More
                   <svg

@@ -7,10 +7,10 @@ const columns = [
     body: () => (
       <>
         Founded in the heart of Jaiaw, we make amazing{' '}
-        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cakes</a>,{' '}
-        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cupcakes</a>,{' '}
-        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cookies</a> and{' '}
-        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Brownies</a>.
+        <a href="#menu" className="underline underline-offset-2 hover:text-foreground transition-colors">Cakes</a>,{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-foreground transition-colors">Cupcakes</a>,{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-foreground transition-colors">Cookies</a> and{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-foreground transition-colors">Brownies</a>.
         You can find us in Shillong every day of the week, serving fresh treats made from scratch.
       </>
     ),
@@ -23,11 +23,11 @@ const columns = [
     body: () => (
       <>
         You can order our exceptional{' '}
-        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cakes</a> and{' '}
-        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cupcakes</a>,
+        <a href="#menu" className="underline underline-offset-2 hover:text-foreground transition-colors">Cakes</a> and{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-foreground transition-colors">Cupcakes</a>,
         as well as our famous{' '}
-        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">New York Cookies</a> and{' '}
-        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Brownies</a>,
+        <a href="#menu" className="underline underline-offset-2 hover:text-foreground transition-colors">New York Cookies</a> and{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-foreground transition-colors">Brownies</a>,
         for pickup in Shillong or hand delivery within the city. Custom orders welcome.
       </>
     ),
@@ -40,9 +40,9 @@ const columns = [
     body: () => (
       <>
         Enjoy fresh delivery on our{' '}
-        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cakes</a>,{' '}
-        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Cookies</a>, and{' '}
-        <a href="#menu" className="underline underline-offset-2 hover:text-header transition-colors">Brownies</a>{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-foreground transition-colors">Cakes</a>,{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-foreground transition-colors">Cookies</a>, and{' '}
+        <a href="#menu" className="underline underline-offset-2 hover:text-foreground transition-colors">Brownies</a>{' '}
         anywhere in Shillong with safe, contact-free delivery. Order online and treat yourself or someone special.
       </>
     ),
@@ -102,7 +102,7 @@ export default function About() {
               </p>
               <a
                 href={col.href}
-                className="inline-block text-xs uppercase tracking-[0.15em] font-bold text-foreground underline underline-offset-4 decoration-2 decoration-header/50 hover:decoration-header transition-all"
+                className="inline-block text-xs uppercase tracking-[0.15em] font-bold text-foreground underline underline-offset-4 decoration-2 decoration-primary/50 hover:decoration-primary transition-all"
               >
                 {col.cta}
               </a>

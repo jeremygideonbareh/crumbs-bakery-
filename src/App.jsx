@@ -60,7 +60,7 @@ function App() {
           title={
             <>
               Where every <br />
-              <span className="text-primary italic">crumb</span> tells a story
+              <span className="text-foreground italic">crumb</span> tells a story
             </>
           }
           subtitle="Handcrafted tiramisu, cream puffs, cheesecakes, and artisanal bakes — made fresh daily in the heart of Shillong."

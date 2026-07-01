@@ -48,9 +48,23 @@ Full bakery website for Crumbs Bakery & Cafe, Shillong — matching reference si
 
 ### Design Tokens
 
-- **Colors**: `bg-header` (#55babd teal), `bg-background` (#fff5f0 warm white), `text-header-foreground` (white)
-- **Fonts**: `font-display` (Bebas Neue) for large headings, `font-work` (Montserrat/Work Sans) for body
+- **Colors**: `bg-header` (#C2DAE8 Delicate Blue), `bg-footer` (#F8E0E8 Pink Marshmallow), `bg-background` (#fff5f0 warm white), `--primary` (hsl 340 63% 93% Pink Marshmallow), `--secondary` (hsl 202 45% 84% Delicate Blue), `--accent` (hsl 59 66% 82% Yellow Swatch), `--main` (#F8E0E8 Pink Marshmallow), all text `text-foreground` (#3d2b1f dark brown)
+- **Fonts**: `font-display` (Bebas Neue) for large headings, `font-work` (Montserrat/Work Sans) for body, `font-serif` (Fraunces) for decorative italic accents
 - **Images**: All from Unsplash
+
+### Palette Swap (Jul 1) — PANTONE Pastels
+
+Replaced the old teal/pink palette with PANTONE pastels:
+- **Pink Marshmallow #F8E0E8** → `--primary`, `--main`, `bg-footer` (brand accent + button bg + footer)
+- **Delicate Blue #C2DAE8** → `bg-header`, `bg-footer-bar`, `--secondary` (header/nav/marquee/announcement bg)
+- **Veiled Vista #C8E4CA** → available for future section backgrounds
+- **Yellow Swatch #F1F0B0** → `--accent`, `announcement` (highlight/announcement bg)
+
+Key constraint: all four colors are light pastels — unusable as text on light backgrounds. Every `text-primary`, `text-header`, and `hover:text-header` replaced with `text-foreground` (dark brown #3d2b1f). Colors used exclusively for `bg-*`, `border-*`, and opacity tints.
+
+### CharReveal Fix (Jul 1)
+
+Spaces in `CharReveal` rendered as `\u00A0` (non-breaking space) to prevent whitespace collapse inside `inline-block` spans — fixes headings like "A taste of what we bake" rendering as "Atasteofwhatwebake".
 
 ## Build
 
@@ -65,6 +79,7 @@ npm run dev    # Dev server
 - Some hover animations may differ slightly from reference due to framer-motion limitations
 - Product carousel uses static mock data — needs real product API
 - Contact section still uses old layout — not yet updated to match reference
+- All four PANTONE pastels are light — only usable as bg/border/tint, not text color (dark brown #3d2b1f used for all text)
 
 ## Git
 

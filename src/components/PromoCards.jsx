@@ -56,7 +56,7 @@ export default function PromoCards() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="group relative block overflow-hidden aspect-[16/9] md:aspect-[4/3] border border-header/10 hover:border-header/30 transition-all"
+              className="group relative block overflow-hidden aspect-[16/9] md:aspect-[4/3] border border-primary/10 hover:border-primary/30 transition-all"
             >
               <img
                 src={card.image}

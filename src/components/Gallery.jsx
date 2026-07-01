@@ -65,7 +65,7 @@ export default function Gallery() {
           <SectionEyebrow>Our Gallery</SectionEyebrow>
           <h2 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground">
             <CharReveal>A taste of what we </CharReveal>
-            <span className="text-primary italic"><CharReveal delay={0.3}>bake</CharReveal></span>
+            <span className="text-foreground italic"><CharReveal delay={0.3}>bake</CharReveal></span>
           </h2>
           <p className="mt-3 md:mt-4 text-sm md:text-base text-muted-foreground max-w-lg mx-auto">
             Every creation is a work of art — made fresh, with love, in our Shillong bakery.

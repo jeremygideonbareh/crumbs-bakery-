@@ -130,7 +130,7 @@ export default function OrderModal({ open, onClose }) {
           >
             <div className="flex items-center justify-between px-4 md:px-6 py-4 border-b border-primary/10 shrink-0">
               <div className="flex items-center gap-2">
-                <ShoppingCart size={16} className="text-primary" />
+                <ShoppingCart size={16} className="text-foreground" />
                 <h2 className="font-serif text-base md:text-xl text-foreground">Custom Cake Order</h2>
               </div>
               <button onClick={resetAndClose} className="text-muted-foreground hover:text-foreground transition-colors p-1">
@@ -147,7 +147,7 @@ export default function OrderModal({ open, onClose }) {
               </div>
               <div className="flex justify-between mt-1.5 text-[9px] md:text-[10px] text-muted-foreground">
                 {STEPS.map((s, i) => (
-                  <span key={s} className={`${i <= step ? 'text-primary font-medium' : ''}`}>
+                  <span key={s} className={`${i <= step ? 'text-foreground font-medium' : ''}`}>
                     {i + 1}
                   </span>
                 ))}
@@ -173,7 +173,7 @@ export default function OrderModal({ open, onClose }) {
                         <span className="text-xl md:text-2xl">{b.emoji}</span>
                         <p className="font-medium text-foreground text-xs md:text-sm mt-1">{b.name}</p>
                         <p className="text-[10px] md:text-xs text-muted-foreground">{b.desc}</p>
-                        {b.price > 0 && <p className="text-[10px] md:text-xs text-primary mt-0.5">+₹{b.price}</p>}
+                        {b.price > 0 && <p className="text-[10px] md:text-xs text-foreground mt-0.5">+₹{b.price}</p>}
                       </button>
                     ))}
                   </div>
@@ -197,7 +197,7 @@ export default function OrderModal({ open, onClose }) {
                       >
                         <p className="font-medium text-foreground text-sm md:text-base">{s.name}</p>
                         <p className="text-[10px] md:text-xs text-muted-foreground">{s.desc}</p>
-                        <p className="text-xs md:text-sm text-primary font-medium mt-1">₹{s.price}</p>
+                        <p className="text-xs md:text-sm text-foreground font-medium mt-1">₹{s.price}</p>
                       </button>
                     ))}
                   </div>
@@ -223,7 +223,7 @@ export default function OrderModal({ open, onClose }) {
                       >
                         <p className="font-medium text-foreground text-xs md:text-sm">{f.name}</p>
                         <p className="text-[10px] text-muted-foreground">{f.desc}</p>
-                        {f.price > 0 && <p className="text-[10px] text-primary">+₹{f.price}</p>}
+                        {f.price > 0 && <p className="text-[10px] text-foreground">+₹{f.price}</p>}
                       </button>
                     ))}
                   </div>
@@ -241,7 +241,7 @@ export default function OrderModal({ open, onClose }) {
                         }`}
                       >
                         <p className="font-medium text-foreground text-xs md:text-sm">{f.name}</p>
-                        {f.price > 0 && <p className="text-[10px] text-primary">+₹{f.price}</p>}
+                        {f.price > 0 && <p className="text-[10px] text-foreground">+₹{f.price}</p>}
                       </button>
                     ))}
                   </div>
@@ -266,7 +266,7 @@ export default function OrderModal({ open, onClose }) {
                         }`}
                       >
                         <span className="text-sm md:text-base">{e.emoji} <span className="font-medium text-foreground text-xs md:text-sm">{e.name}</span></span>
-                        <p className="text-[10px] text-primary">+₹{e.price}</p>
+                        <p className="text-[10px] text-foreground">+₹{e.price}</p>
                       </button>
                     ))}
                   </div>
@@ -334,7 +334,7 @@ export default function OrderModal({ open, onClose }) {
 
                   <div className="flex items-center justify-between p-3 md:p-4 rounded-xl bg-primary/10 border-2 border-primary">
                     <p className="font-serif text-base md:text-lg text-foreground">Total</p>
-                    <p className="font-serif text-lg md:text-2xl text-primary font-medium">₹{total}</p>
+                    <p className="font-serif text-lg md:text-2xl text-foreground font-medium">₹{total}</p>
                   </div>
                 </div>
               )}

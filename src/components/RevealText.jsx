@@ -35,7 +35,7 @@ export function CharReveal({ children, className, delay = 0 }) {
           transition={{ duration: 0.4, delay: delay + i * 0.015, ease: [0.25, 0.4, 0.25, 1] }}
           className="inline-block"
         >
-          {char}
+          {char === ' ' ? '\u00A0' : char}
         </motion.span>
       ))}
     </span>
@@ -49,7 +49,7 @@ export function SectionEyebrow({ children, delay = 0 }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.5, delay, ease: 'easeOut' }}
-      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs tracking-wider uppercase font-medium mb-5"
+      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-foreground text-xs tracking-wider uppercase font-medium mb-5"
     >
       <span className="w-1.5 h-1.5 rounded-full bg-primary" />
       {children}

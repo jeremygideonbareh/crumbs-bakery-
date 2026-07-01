@@ -130,7 +130,7 @@ export default function ProductCarousel() {
               transition={{ duration: 0.35, delay: i * 0.04 }}
               className="min-w-[180px] md:min-w-[260px] w-[180px] md:w-[260px] shrink-0 group snap-start"
             >
-              <div className="relative aspect-square overflow-hidden bg-header/5 rounded-sm">
+              <div className="relative aspect-square overflow-hidden bg-primary/5 rounded-sm">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -144,10 +144,10 @@ export default function ProductCarousel() {
                 <h3 className="font-work text-[13px] md:text-sm font-semibold text-foreground leading-tight mb-0.5 md:mb-1">
                   {product.name}
                 </h3>
-                <p className="font-work text-sm md:text-base font-bold text-header mb-2 md:mb-3">
+                <p className="font-work text-sm md:text-base font-bold text-foreground mb-2 md:mb-3">
                   {product.price}
                 </p>
-                <button className="w-full font-work text-[11px] uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-header hover:text-header-foreground hover:border-header px-4 py-3 md:py-2.5 transition-all duration-200 rounded-sm min-h-[44px] md:min-h-0">
+                <button className="w-full font-work text-[11px] uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-4 py-3 md:py-2.5 transition-all duration-200 rounded-sm min-h-[44px] md:min-h-0">
                   Add to Order
                 </button>
               </div>

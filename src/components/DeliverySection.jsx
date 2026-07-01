@@ -81,7 +81,7 @@ export default function DeliverySection() {
           </p>
           <a
             href="#contact"
-            className="inline-block border-2 border-foreground/20 px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] text-foreground transition-all hover:border-header hover:text-header"
+            className="inline-block border-2 border-foreground/20 px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] text-foreground transition-all hover:border-primary hover:text-foreground"
           >
             SHILLONG CAKE DELIVERY
           </a>

@@ -60,20 +60,20 @@ export default function Reviews() {
           <SectionEyebrow>Testimonials</SectionEyebrow>
           <h2 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground">
             <CharReveal>What our </CharReveal>
-            <span className="text-primary italic"><CharReveal delay={0.3}>community</CharReveal></span>
+            <span className="text-foreground italic"><CharReveal delay={0.3}>community</CharReveal></span>
             <CharReveal delay={0.5}> says</CharReveal>
           </h2>
           <div className="mt-4 md:mt-6 flex items-center justify-center gap-3">
             <div className="flex -space-x-1">
               {[1,2,3,4].map((i) => (
-                <div key={i} className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center text-[8px] md:text-[10px] font-medium text-primary">
+                <div key={i} className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center text-[8px] md:text-[10px] font-medium text-foreground">
                   {String.fromCharCode(64 + i)}
                 </div>
               ))}
-              <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center text-[8px] md:text-[10px] font-medium text-primary">+</div>
+              <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center text-[8px] md:text-[10px] font-medium text-foreground">+</div>
             </div>
             <p className="text-xs md:text-sm text-muted-foreground">
-              <span className="text-primary font-medium">4.8</span> avg from 9+ reviews
+              <span className="text-foreground font-medium">4.8</span> avg from 9+ reviews
             </p>
           </div>
         </motion.div>

@@ -63,7 +63,7 @@ const itemVariants = {
 
 export default function Footer() {
   return (
-    <footer className="bg-header text-white">
+    <footer className="bg-footer text-foreground">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <motion.div
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12"
@@ -74,10 +74,10 @@ export default function Footer() {
         >
           {/* Column 1 — Brand */}
           <motion.div variants={itemVariants}>
-            <h3 className="font-display text-xl tracking-wider text-white mb-3">
+            <h3 className="font-display text-xl tracking-wider text-foreground mb-3">
               Crumbs Bakery &amp; Cafe
             </h3>
-            <p className="text-white/70 text-sm leading-relaxed mb-5 font-work">
+            <p className="text-foreground/70 text-sm leading-relaxed mb-5 font-work">
               Handcrafted treats made from scratch daily in the heart of Jaiaw, Shillong.
               Bringing warmth and sweetness to your table since day one.
             </p>
@@ -87,7 +87,7 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-9 h-9 flex items-center justify-center rounded-full border border-white/20 text-white/70 hover:bg-white hover:text-header hover:border-white transition-all"
+                  className="w-9 h-9 flex items-center justify-center rounded-full border border-foreground/20 text-foreground/70 hover:bg-foreground/10 hover:text-foreground hover:border-foreground transition-all"
                 >
                   {social.icon}
                 </a>
@@ -97,7 +97,7 @@ export default function Footer() {
 
           {/* Column 2 — Quick Links */}
           <motion.div variants={itemVariants}>
-            <h4 className="font-display text-sm tracking-[0.2em] text-white mb-4">
+            <h4 className="font-display text-sm tracking-[0.2em] text-foreground mb-4">
               QUICK LINKS
             </h4>
             <ul className="space-y-2.5">
@@ -105,7 +105,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-white/70 text-sm font-work hover:text-white transition-colors"
+                    className="text-foreground/70 text-sm font-work hover:text-foreground transition-colors"
                   >
                     {link.label}
                   </a>
@@ -116,29 +116,29 @@ export default function Footer() {
 
           {/* Column 3 — Contact */}
           <motion.div variants={itemVariants}>
-            <h4 className="font-display text-sm tracking-[0.2em] text-white mb-4">
+            <h4 className="font-display text-sm tracking-[0.2em] text-foreground mb-4">
               CONTACT
             </h4>
-            <ul className="space-y-3 text-white/70 text-sm font-work">
+            <ul className="space-y-3 text-foreground/70 text-sm font-work">
               <li>
-                <span className="block text-white/50 text-[10px] uppercase tracking-[0.15em] mb-0.5">Address</span>
+                <span className="block text-foreground/50 text-[10px] uppercase tracking-[0.15em] mb-0.5">Address</span>
                 Jaiaw, Shillong<br />
                 Meghalaya, India
               </li>
               <li>
-                <span className="block text-white/50 text-[10px] uppercase tracking-[0.15em] mb-0.5">Phone</span>
-                <a href="tel:+919999999999" className="hover:text-white transition-colors">
+                <span className="block text-foreground/50 text-[10px] uppercase tracking-[0.15em] mb-0.5">Phone</span>
+                <a href="tel:+919999999999" className="hover:text-foreground transition-colors">
                   +91 99999 99999
                 </a>
               </li>
               <li>
-                <span className="block text-white/50 text-[10px] uppercase tracking-[0.15em] mb-0.5">Email</span>
-                <a href="mailto:hello@crumbs.in" className="hover:text-white transition-colors">
+                <span className="block text-foreground/50 text-[10px] uppercase tracking-[0.15em] mb-0.5">Email</span>
+                <a href="mailto:hello@crumbs.in" className="hover:text-foreground transition-colors">
                   hello@crumbs.in
                 </a>
               </li>
               <li>
-                <span className="block text-white/50 text-[10px] uppercase tracking-[0.15em] mb-0.5">Hours</span>
+                <span className="block text-foreground/50 text-[10px] uppercase tracking-[0.15em] mb-0.5">Hours</span>
                 Mon – Sat: 9 AM – 8 PM<br />
                 Sun: 10 AM – 6 PM
               </li>
@@ -147,10 +147,10 @@ export default function Footer() {
 
           {/* Column 4 — Follow Us */}
           <motion.div variants={itemVariants}>
-            <h4 className="font-display text-sm tracking-[0.2em] text-white mb-4">
+            <h4 className="font-display text-sm tracking-[0.2em] text-foreground mb-4">
               FOLLOW US
             </h4>
-            <p className="text-white/70 text-sm font-work mb-4">
+            <p className="text-foreground/70 text-sm font-work mb-4">
               Stay connected for daily treats, behind-the-scenes, and special offers.
             </p>
             <div className="flex flex-wrap gap-2">
@@ -159,7 +159,7 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-white/20 text-white/70 text-xs font-work hover:bg-white hover:text-header hover:border-white transition-all"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-foreground/20 text-foreground/70 text-xs font-work hover:bg-foreground/10 hover:text-foreground hover:border-foreground transition-all"
                 >
                   {social.icon}
                   <span>{social.label}</span>
@@ -171,8 +171,8 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/20 py-4 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-white/50 text-[10px] md:text-xs font-work">
+      <div className="border-t border-foreground/20 py-4 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-foreground/50 text-[10px] md:text-xs font-work">
           <p>&copy; {new Date().getFullYear()} Crumbs Bakery &amp; Cafe. All rights reserved.</p>
           <p>Made with love in Shillong</p>
         </div>
