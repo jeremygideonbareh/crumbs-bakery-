@@ -53,7 +53,7 @@ const articles = [
 
 export default function NewsSection() {
   return (
-    <section className="py-16 md:py-20 px-4 md:px-6 bg-background">
+    <section className="py-10 md:py-20 px-4 md:px-6 bg-background">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
@@ -61,7 +61,7 @@ export default function NewsSection() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-work text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium"
+            className="font-work text-[13px] uppercase tracking-[0.2em] text-muted-foreground font-medium"
           >
             What&apos;s New
           </motion.span>
@@ -110,7 +110,7 @@ export default function NewsSection() {
 
               {/* Content */}
               <div className="flex flex-col flex-1 p-5">
-                <span className="font-work text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-2">
+                <span className="font-work text-xs uppercase tracking-[0.15em] text-muted-foreground mb-2">
                   {article.date}
                 </span>
                 <h3 className="font-display text-lg text-foreground mb-2 leading-tight group-hover:text-foreground transition-colors">
@@ -121,7 +121,7 @@ export default function NewsSection() {
                 </p>
                 <a
                   href="#"
-                  className="font-work text-xs uppercase tracking-[0.15em] text-foreground hover:text-foreground transition-colors mt-4 inline-flex items-center gap-1.5"
+                  className="font-work text-sm uppercase tracking-[0.15em] text-foreground hover:text-foreground transition-colors mt-4 inline-flex items-center gap-1.5 py-3"
                 >
                   Read More
                   <svg
@@ -151,7 +151,7 @@ export default function NewsSection() {
         >
           <a
             href="#"
-            className="font-work text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
+            className="font-work text-sm uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 py-3"
           >
             View All Posts
             <svg

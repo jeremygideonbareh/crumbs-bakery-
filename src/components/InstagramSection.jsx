@@ -54,7 +54,7 @@ export default function InstagramSection() {
             INSTAGRAM
           </motion.h2>
 
-          <p className="font-work text-xs text-muted-foreground mb-6 leading-relaxed">
+          <p className="font-work text-[13px] text-muted-foreground mb-6 leading-relaxed">
             Tag us in your photos for a chance to be featured on our page!
           </p>
 
@@ -63,10 +63,10 @@ export default function InstagramSection() {
               <a
                 key={item.label}
                 href="#"
-                className="flex items-center gap-3 px-3 py-2.5 text-sm text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all"
+                className="flex items-center gap-3 px-3 py-3.5 text-sm text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all"
               >
                 <span className="text-base">{item.icon}</span>
-                <span className="font-medium text-xs uppercase tracking-[0.1em]">
+                <span className="font-medium text-[13px] uppercase tracking-[0.1em]">
                   {item.label}
                 </span>
               </a>
@@ -74,7 +74,7 @@ export default function InstagramSection() {
           </div>
 
           <div className="mt-8 pt-6 border-t border-primary/10">
-            <p className="font-work text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-2">
+            <p className="font-work text-xs uppercase tracking-[0.15em] text-muted-foreground mb-2">
               FOLLOW US
             </p>
             <p className="font-display text-xl text-foreground">

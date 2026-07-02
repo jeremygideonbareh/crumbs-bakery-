@@ -30,7 +30,7 @@ const contactInfo = [
 
 export default function Contact({ onOrder }) {
   return (
-    <section id="contact" className="relative py-20 md:py-28 lg:py-36 px-4 md:px-6">
+    <section id="contact" className="relative py-12 md:py-28 lg:py-36 px-4 md:px-6">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,7 @@ export default function Contact({ onOrder }) {
           className="text-center mb-10 md:mb-16"
         >
           <SectionEyebrow>Get in Touch</SectionEyebrow>
-          <h2 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground break-words whitespace-nowrap">
+          <h2 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-balance text-foreground break-words">
             <CharReveal>Find us in </CharReveal>
             <span className="text-foreground italic"><CharReveal delay={0.3}>Shillong</CharReveal></span>
           </h2>
@@ -71,13 +71,13 @@ export default function Contact({ onOrder }) {
                     <Icon size={14} className="text-foreground" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider mb-0.5">{info.label}</p>
+                    <p className="text-[11px] md:text-xs text-muted-foreground uppercase tracking-wider mb-0.5">{info.label}</p>
                     {info.href ? (
                       <a
                         href={info.href}
                         target={info.href.startsWith('http') ? '_blank' : undefined}
                         rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="text-xs md:text-sm text-foreground hover:text-foreground transition-colors whitespace-pre-line break-words"
+                        className="text-[13px] md:text-sm text-foreground hover:text-foreground transition-colors whitespace-pre-line break-words"
                       >
                         {info.value}
                       </a>
@@ -96,11 +96,11 @@ export default function Contact({ onOrder }) {
               transition={{ duration: 0.4, delay: 0.5 }}
               className="flex gap-2 md:gap-3 pt-1 md:pt-2"
             >
-              <Button onClick={onOrder} className="flex-1 min-h-[44px] text-xs md:text-sm">
+              <Button onClick={onOrder} className="flex-1 min-h-[44px] text-sm md:text-sm">
                 Order Now
               </Button>
               <a href="https://maps.google.com/?q=Crumbs+Bakery+%26+Cafe+Shillong" target="_blank" rel="noopener noreferrer" className="flex-1">
-                <Button variant="neutral" className="w-full min-h-[44px] text-xs md:text-sm">
+                <Button variant="neutral" className="w-full min-h-[44px] text-sm md:text-sm">
                   Directions
                 </Button>
               </a>

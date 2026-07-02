@@ -52,7 +52,7 @@ export default function Gallery() {
   }
 
   return (
-    <section id="gallery" className="relative py-20 md:py-28 lg:py-36 px-4 md:px-6">
+    <section id="gallery" className="relative py-12 md:py-28 lg:py-36 px-4 md:px-6">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
 
       <div className="mx-auto max-w-6xl relative z-10">
@@ -81,7 +81,7 @@ export default function Gallery() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               onClick={() => setSelected(img)}
-              className="group relative w-full overflow-hidden rounded-xl aspect-[4/3] block"
+              className="group relative w-full overflow-hidden rounded-xl aspect-[4/3] block active:scale-[0.97]"
             >
               <img
                 src={img.src}
@@ -90,7 +90,7 @@ export default function Gallery() {
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <p className="absolute bottom-2 left-2 right-2 text-white text-xs md:text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-1 group-hover:translate-y-0 truncate">
+              <p className="absolute bottom-2 left-2 right-2 text-white text-[13px] md:text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-1 group-hover:translate-y-0 truncate">
                 {img.caption}
               </p>
             </motion.button>
@@ -143,7 +143,7 @@ export default function Gallery() {
               onClick={(e) => e.stopPropagation()}
             />
 
-            <p className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 text-white/80 text-xs md:text-sm bg-black/40 px-3 py-1.5 md:px-4 md:py-2 rounded-full whitespace-nowrap">
+            <p className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 text-white/80 text-[13px] md:text-sm bg-black/40 px-3 py-1.5 md:px-4 md:py-2 rounded-full whitespace-nowrap">
               {selected.caption}
             </p>
           </motion.div>

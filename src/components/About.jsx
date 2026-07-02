@@ -71,7 +71,7 @@ const cardVariants = {
 
 export default function About() {
   return (
-    <section id="about" className="py-16 md:py-20 px-4 md:px-6 bg-background">
+    <section id="about" className="py-10 md:py-20 px-4 md:px-6 bg-background">
       <div className="mx-auto max-w-6xl">
         <motion.div
           className="grid md:grid-cols-3 gap-8 md:gap-10"
@@ -102,7 +102,7 @@ export default function About() {
               </p>
               <a
                 href={col.href}
-                className="inline-block text-xs uppercase tracking-[0.15em] font-bold text-foreground underline underline-offset-4 decoration-2 decoration-primary/50 hover:decoration-primary transition-all"
+                className="inline-block py-3 text-sm uppercase tracking-[0.15em] font-bold text-foreground underline underline-offset-4 decoration-2 decoration-primary/50 hover:decoration-primary transition-all"
               >
                 {col.cta}
               </a>

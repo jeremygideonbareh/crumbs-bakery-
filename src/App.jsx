@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { Toaster } from 'sonner'
 import Navbar from './components/Navbar'
 import { HeroSection } from './components/ui/hero-section-2'
@@ -10,7 +10,6 @@ import Reviews from './components/Reviews'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import OrderModal from './components/OrderModal'
-import Loader from './components/Loader'
 import AnnouncementBar from './components/AnnouncementBar'
 import CategoryGrid from './components/CategoryGrid'
 import SheetCakesMarquee from './components/SheetCakesMarquee'
@@ -25,31 +24,13 @@ import FaqSection from './components/FaqSection'
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1775210603506-201ed7bec326?w=1920&q=80'
 
 function App() {
-  const [loading, setLoading] = useState(true)
   const [orderOpen, setOrderOpen] = useState(false)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3000)
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <AnimatePresence>
-        {loading && (
-          <motion.div
-            key="loader"
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#FFF5F0]"
-            exit={{ opacity: 0, transition: { duration: 0.5 } }}
-          >
-            <Loader />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 1 } }}
+        animate={{ opacity: 1, transition: { duration: 0.3 } }}
       >
         <AnnouncementBar />
         <Navbar onOrder={() => setOrderOpen(true)} />

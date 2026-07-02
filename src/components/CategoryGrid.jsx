@@ -60,7 +60,7 @@ export default function CategoryGrid() {
 
   return (
     <section className="bg-background">
-      <div className="flex h-[280px] flex-row md:h-[420px]">
+      <div className="flex h-[320px] flex-row md:h-[420px]">
         {categories.map((cat, index) => {
           const expanded = isExpanded(index)
 
@@ -78,7 +78,7 @@ export default function CategoryGrid() {
               }}
               animate={{ flex: expanded ? 3 : 1 }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="relative block cursor-pointer overflow-hidden"
+              className="relative block cursor-pointer overflow-hidden active:scale-[0.97]"
             >
               <img
                 src={cat.image}
@@ -105,7 +105,7 @@ export default function CategoryGrid() {
                   className={`font-work font-bold uppercase tracking-[0.15em] text-white transition-all duration-300 ${
                     expanded
                       ? 'translate-y-0 text-[11px] md:text-sm'
-                      : 'mb-8 self-center text-[10px] [writing-mode:vertical-rl] [text-orientation:mixed] md:text-xs'
+                      : 'mb-8 self-center text-[11px] [writing-mode:vertical-rl] [text-orientation:mixed] md:text-xs'
                   }`}
                 >
                   {cat.name}
@@ -119,10 +119,10 @@ export default function CategoryGrid() {
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.3, delay: 0.1 }}
                     >
-                      <p className="max-w-[90%] text-[11px] leading-relaxed text-white/80 md:text-xs md:mb-3">
+                      <p className="max-w-[90%] text-xs leading-relaxed text-white/80 md:text-xs md:mb-3">
                         {cat.desc}
                       </p>
-                      <span className="inline-block border-b-2 border-white/60 pb-0.5 text-[11px] font-bold uppercase tracking-[0.2em] text-white transition-colors hover:border-white">
+                      <span className="inline-block border-b-2 border-white/60 pb-0.5 text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors hover:border-white">
                         {cat.cta}
                       </span>
                     </motion.div>

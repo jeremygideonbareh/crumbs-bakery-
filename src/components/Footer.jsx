@@ -87,7 +87,7 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-9 h-9 flex items-center justify-center rounded-full border border-foreground/20 text-foreground/70 hover:bg-foreground/10 hover:text-foreground hover:border-foreground transition-all"
+                  className="w-11 h-11 md:w-9 md:h-9 flex items-center justify-center rounded-full border border-foreground/20 text-foreground/70 hover:bg-foreground/10 hover:text-foreground hover:border-foreground transition-all active:scale-[0.97]"
                 >
                   {social.icon}
                 </a>
@@ -159,7 +159,7 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-foreground/20 text-foreground/70 text-xs font-work hover:bg-foreground/10 hover:text-foreground hover:border-foreground transition-all"
+                  className="inline-flex items-center gap-2 px-4 py-3 rounded-sm border border-foreground/20 text-foreground/70 text-xs font-work hover:bg-foreground/10 hover:text-foreground hover:border-foreground transition-all active:scale-[0.97]"
                 >
                   {social.icon}
                   <span>{social.label}</span>
@@ -172,7 +172,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-foreground/20 py-4 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-foreground/50 text-[10px] md:text-xs font-work">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-foreground/50 text-[11px] md:text-xs font-work">
           <p>&copy; {new Date().getFullYear()} Crumbs Bakery &amp; Cafe. All rights reserved.</p>
           <p>Made with love in Shillong</p>
         </div>

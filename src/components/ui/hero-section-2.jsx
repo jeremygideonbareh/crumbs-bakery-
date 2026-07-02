@@ -96,7 +96,7 @@ const HeroSection = React.forwardRef(
                       <p className="text-lg font-bold text-foreground">{logo.text}</p>
                     )}
                     {slogan && (
-                      <p className="text-xs tracking-wider text-muted-foreground">
+                      <p className="text-[13px] tracking-wider text-muted-foreground">
                         {slogan}
                       </p>
                     )}
@@ -115,7 +115,7 @@ const HeroSection = React.forwardRef(
               {SOCIAL_PROOF_STATS.map((stat) => (
                 <motion.div key={stat.label} variants={statItemVariants}>
                   <p className="text-lg md:text-3xl font-bold text-foreground">{stat.number}</p>
-                  <p className="text-[10px] md:text-xs text-muted-foreground tracking-wide">{stat.label}</p>
+                  <p className="text-[11px] md:text-xs text-muted-foreground tracking-wide">{stat.label}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -155,7 +155,7 @@ const HeroSection = React.forwardRef(
           </div>
 
           <motion.footer className="mt-6 md:mt-12 w-full" variants={itemVariants}>
-            <div className="grid grid-cols-1 gap-3 md:gap-6 text-[11px] md:text-xs text-muted-foreground sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-3 md:gap-6 text-xs md:text-xs text-muted-foreground sm:grid-cols-3">
               <div className="flex items-center">
                 <InfoIcon type="website" />
                 <span>{contactInfo.website}</span>
@@ -174,10 +174,26 @@ const HeroSection = React.forwardRef(
 
         {/* Right Side: Image with clip-path animation + gradient fade */}
         <div className="relative w-full min-h-[40vh] md:w-[55%] md:min-h-screen">
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#FFF5F0] via-[#FFF5F0]/50 via-20% to-transparent to-35% pointer-events-none" />
+          <div className="hidden md:block absolute inset-0 z-10 bg-gradient-to-r from-[#FFF5F0] via-[#FFF5F0]/50 via-20% to-transparent to-35% pointer-events-none" />
 
+          {/* Mobile: simple fade-in */}
           <motion.div
-            className="absolute inset-0 overflow-hidden"
+            className="md:hidden absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            <img
+              src={backgroundImage}
+              alt=""
+              className="w-full h-full object-cover object-center"
+              loading="eager"
+            />
+          </motion.div>
+
+          {/* Desktop: clip-path reveal */}
+          <motion.div
+            className="hidden md:block absolute inset-0 overflow-hidden"
             initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
             animate={{
               clipPath: 'polygon(3% 0, 100% 0, 100% 100%, 0% 100%)',

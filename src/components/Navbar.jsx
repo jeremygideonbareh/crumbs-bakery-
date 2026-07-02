@@ -31,7 +31,7 @@ export default function Navbar({ onOrder }) {
       }`}
     >
       <div className="mx-auto max-w-6xl flex items-center justify-between px-6 py-3.5">
-          <a href="#" className="font-serif text-xl md:text-2xl text-foreground font-bold tracking-wide">
+          <a href="#" className="font-serif text-xl md:text-2xl text-foreground font-bold tracking-wide py-3">
           Crumbs Bakery &amp; Cafe
         </a>
 
@@ -47,7 +47,7 @@ export default function Navbar({ onOrder }) {
           ))}
           <button
             onClick={onOrder}
-            className="bg-white text-foreground font-bold text-[11px] uppercase tracking-[0.15em] px-4 py-2 rounded-sm hover:bg-foreground hover:text-white transition-colors"
+            className="bg-white text-foreground font-bold text-[11px] uppercase tracking-[0.15em] px-4 py-2 rounded-sm hover:bg-foreground hover:text-white transition-all active:scale-[0.97]"
           >
             ORDER NOW
           </button>
@@ -55,7 +55,7 @@ export default function Navbar({ onOrder }) {
 
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden text-foreground"
+          className="md:hidden text-foreground p-3 active:scale-[0.97] transition-transform"
           aria-label="Toggle menu"
         >
           {open ? <X size={22} /> : <Menu size={22} />}
@@ -86,14 +86,14 @@ export default function Navbar({ onOrder }) {
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="w-full text-center text-xs uppercase tracking-[0.15em] font-semibold text-foreground/80 hover:text-foreground hover:bg-foreground/10 transition-colors rounded-sm py-3.5"
+                    className="w-full text-center text-[13px] uppercase tracking-[0.15em] font-semibold text-foreground/80 hover:text-foreground hover:bg-foreground/10 transition-colors rounded-sm py-4 active:scale-[0.97]"
                   >
                     {link.label}
                   </a>
                 ))}
                 <button
                   onClick={() => { setOpen(false); if (onOrder) onOrder() }}
-                  className="w-full bg-white text-foreground font-bold text-xs uppercase tracking-[0.15em] px-5 py-3.5 rounded-sm hover:bg-foreground hover:text-white transition-colors mt-3"
+                  className="w-full bg-white text-foreground font-bold text-xs uppercase tracking-[0.15em] px-5 py-4 rounded-sm hover:bg-foreground hover:text-white transition-colors mt-3 active:scale-[0.97] transition-transform"
                 >
                   ORDER NOW
                 </button>

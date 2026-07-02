@@ -80,7 +80,7 @@ export default function ProductCarousel() {
   const carouselRef = useRef(null);
 
   return (
-    <section className="py-14 md:py-18 px-4 bg-background">
+    <section className="py-10 md:py-18 px-4 bg-background">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="flex items-end justify-between mb-6 md:mb-10">
@@ -89,7 +89,7 @@ export default function ProductCarousel() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="font-work text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium"
+              className="font-work text-[13px] uppercase tracking-[0.2em] text-muted-foreground font-medium"
             >
               Featured Bakes
             </motion.span>
@@ -141,13 +141,13 @@ export default function ProductCarousel() {
               </div>
 
               <div className="mt-2.5 md:mt-3 px-0.5">
-                <h3 className="font-work text-[13px] md:text-sm font-semibold text-foreground leading-tight mb-0.5 md:mb-1">
+                <h3 className="font-work text-sm md:text-sm font-semibold text-foreground leading-tight mb-0.5 md:mb-1">
                   {product.name}
                 </h3>
                 <p className="font-work text-sm md:text-base font-bold text-foreground mb-2 md:mb-3">
                   {product.price}
                 </p>
-                <button className="w-full font-work text-[11px] uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-4 py-3 md:py-2.5 transition-all duration-200 rounded-sm min-h-[44px] md:min-h-0">
+                <button className="w-full font-work text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-4 py-3 md:py-2.5 transition-all duration-200 rounded-sm min-h-[44px] md:min-h-0">
                   Add to Order
                 </button>
               </div>
@@ -160,7 +160,7 @@ export default function ProductCarousel() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="md:hidden text-center font-work text-[11px] uppercase tracking-[0.15em] text-muted-foreground mt-4"
+          className="md:hidden text-center font-work text-xs uppercase tracking-[0.15em] text-muted-foreground mt-4"
         >
           Swipe to browse more &rarr;
         </motion.p>

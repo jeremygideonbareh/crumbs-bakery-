@@ -30,7 +30,7 @@ const bakes = [
 
 export default function BrowseByBake() {
   return (
-    <section className="bg-background px-4 py-14 md:py-18">
+    <section className="bg-background px-4 py-10 md:py-18">
       <div className="mx-auto max-w-5xl">
         <h2 className="mb-8 text-center font-display text-3xl font-bold tracking-wider text-foreground md:mb-10 md:text-4xl lg:text-[44px]">
           BROWSE BY BAKE
@@ -56,7 +56,7 @@ export default function BrowseByBake() {
                 loading="lazy"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                <span className="font-work text-xs font-bold uppercase tracking-[0.2em] text-white md:text-sm">
+                <span className="font-work text-[13px] font-bold uppercase tracking-[0.2em] text-white md:text-sm">
                   {bake.label}
                 </span>
               </div>

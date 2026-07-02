@@ -29,7 +29,7 @@ const cards = [
 
 export default function PromoCards() {
   return (
-    <section className="py-14 md:py-18 px-4 md:px-6 bg-background">
+    <section className="py-10 md:py-18 px-4 md:px-6 bg-background">
       <div className="mx-auto max-w-5xl">
         {/* Section heading */}
         <motion.div
@@ -38,8 +38,8 @@ export default function PromoCards() {
           viewport={{ once: true }}
           className="text-center mb-10"
         >
-          <span className="font-work text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">
-            Join the Community
+           <span className="font-work text-[13px] uppercase tracking-[0.2em] text-muted-foreground font-medium">
+             Join the Community
           </span>
           <h2 className="font-display text-3xl md:text-4xl text-foreground mt-1 tracking-tight">
             CRUMBS PERKS
@@ -68,10 +68,10 @@ export default function PromoCards() {
                 <h3 className="text-white font-display text-lg md:text-xl mb-1">
                   {card.title}
                 </h3>
-                <p className="text-white/80 font-work text-xs mb-3 max-w-[90%] leading-relaxed">
+                <p className="text-white/80 font-work text-[13px] mb-3 max-w-[90%] leading-relaxed">
                   {card.desc}
                 </p>
-                <span className="inline-block text-white text-[11px] uppercase tracking-[0.15em] font-work font-semibold border-b border-white/40 pb-0.5 w-fit group-hover:border-white transition-all">
+                <span className="inline-block text-white text-xs uppercase tracking-[0.15em] font-work font-semibold border-b border-white/40 pb-0.5 w-fit group-hover:border-white transition-all">
                   {card.cta}
                 </span>
               </div>

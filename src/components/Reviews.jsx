@@ -49,7 +49,7 @@ const reviews = [
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="relative py-20 md:py-28 lg:py-36 px-4 md:px-6">
+    <section id="reviews" className="relative py-12 md:py-28 lg:py-36 px-4 md:px-6">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -66,13 +66,13 @@ export default function Reviews() {
           <div className="mt-4 md:mt-6 flex items-center justify-center gap-3">
             <div className="flex -space-x-1">
               {[1,2,3,4].map((i) => (
-                <div key={i} className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center text-[8px] md:text-[10px] font-medium text-foreground">
+                <div key={i} className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center text-[9px] md:text-[10px] font-medium text-foreground">
                   {String.fromCharCode(64 + i)}
                 </div>
               ))}
-              <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center text-[8px] md:text-[10px] font-medium text-foreground">+</div>
+              <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center text-[9px] md:text-[10px] font-medium text-foreground">+</div>
             </div>
-            <p className="text-xs md:text-sm text-muted-foreground">
+            <p className="text-[13px] md:text-sm text-muted-foreground">
               <span className="text-foreground font-medium">4.8</span> avg from 9+ reviews
             </p>
           </div>
@@ -93,13 +93,13 @@ export default function Reviews() {
                   <Star key={j} size={12} className="fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <p className="text-xs md:text-sm text-foreground leading-relaxed flex-1 italic">
+              <p className="text-[13px] md:text-sm text-foreground leading-relaxed flex-1 italic">
                 &ldquo;{review.text}&rdquo;
               </p>
               <div className="mt-3 md:mt-4 flex items-center justify-between pt-3 md:pt-4 border-t border-primary/10">
                 <div>
-                  <p className="text-xs md:text-sm font-medium text-foreground">{review.name}</p>
-                  <p className="text-[10px] md:text-xs text-muted-foreground">{review.source} · {review.when}</p>
+                  <p className="text-[13px] md:text-sm font-medium text-foreground">{review.name}</p>
+                  <p className="text-[11px] md:text-xs text-muted-foreground">{review.source} · {review.when}</p>
                 </div>
               </div>
             </motion.div>

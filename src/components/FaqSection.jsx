@@ -73,7 +73,7 @@ export default function FaqSection() {
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i)
 
   return (
-    <section className="bg-background px-4 py-16 md:px-6 md:py-20">
+    <section className="bg-background px-4 py-10 md:px-6 md:py-20">
       <div className="mx-auto max-w-6xl">
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
@@ -95,7 +95,7 @@ export default function FaqSection() {
             >
               <button
                 onClick={() => toggle(i)}
-                className="flex w-full items-center gap-3 md:gap-5 border border-border bg-white p-3.5 md:p-4 text-left transition-all hover:border-primary/30 min-h-[56px] md:min-h-0"
+                className="flex w-full items-center gap-3 md:gap-5 border border-border bg-white p-3.5 md:p-4 text-left transition-all hover:border-primary/30 min-h-[56px] md:min-h-0 active:scale-[0.97]"
               >
                 <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full md:h-14 md:w-14">
                   <img
@@ -106,7 +106,7 @@ export default function FaqSection() {
                   />
                 </div>
 
-                <span className="flex-1 font-work text-[11px] md:text-sm font-bold uppercase tracking-[0.05em] text-foreground leading-snug">
+                <span className="flex-1 font-work text-[13px] md:text-sm font-bold uppercase tracking-[0.05em] text-foreground leading-snug">
                   {item.title}
                 </span>
 
