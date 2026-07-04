@@ -54,8 +54,7 @@ const items = [
 
 export default function SignatureItems() {
   return (
-    <section id="menu" className="relative py-8 md:py-28 lg:py-36 px-4 md:px-6 scroll-mt-24">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/10 to-transparent" />
+    <section id="menu" className="bg-primary py-8 md:py-28 lg:py-36 px-4 md:px-6 scroll-mt-24">
 
       <div className="mx-auto max-w-6xl relative z-10">
         <motion.div
