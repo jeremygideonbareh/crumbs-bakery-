@@ -171,8 +171,8 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-foreground/20 py-4 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-foreground/50 text-[11px] md:text-xs font-work">
+      <div className="bg-header py-4 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-white/70 text-[11px] md:text-xs font-work">
           <p>&copy; {new Date().getFullYear()} Crumbs Bakery &amp; Cafe. All rights reserved.</p>
           <p>Made with love in Shillong</p>
         </div>

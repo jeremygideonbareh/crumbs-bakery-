@@ -2,7 +2,7 @@
 
 ## What Was Built
 
-Full bakery website for Crumbs Bakery & Cafe, Shillong — matching reference site with pink/teal palette, Bebas Neue + Montserrat typography.
+Full bakery website for Crumbs Bakery & Cafe, Shillong — teal/ivory/green palette inspired by crumbsanddoilies.co.uk, Bebas Neue + Montserrat typography.
 
 ### Components (in render order)
 
@@ -48,19 +48,20 @@ Full bakery website for Crumbs Bakery & Cafe, Shillong — matching reference si
 
 ### Design Tokens
 
-- **Colors**: `bg-header` (#C2DAE8 Delicate Blue), `bg-footer` (#F8E0E8 Pink Marshmallow), `bg-background` (#fff5f0 warm white), `--primary` (hsl 340 63% 93% Pink Marshmallow), `--secondary` (hsl 202 45% 84% Delicate Blue), `--accent` (hsl 59 66% 82% Yellow Swatch), `--main` (#F8E0E8 Pink Marshmallow), all text `text-foreground` (#3d2b1f dark brown)
+- **Colors**: `bg-header` (#55babd Teal), `bg-footer` (#FFFFF0 Ivory), `bg-background` (#FFFFF0 Ivory), `--primary` (hsl 141 35% 84% Green #C8E4CA), `--secondary` (hsl 182 44% 54% Teal #55babd), `--accent` (hsl 59 66% 82% Yellow Swatch #F1F0B0), `--main` (#C8E4CA Green), all text `text-foreground` (#3d2b1f dark brown)
 - **Fonts**: `font-display` (Bebas Neue) for large headings, `font-work` (Montserrat/Work Sans) for body, `font-serif` (Fraunces) for decorative italic accents
 - **Images**: All from Unsplash
 
-### Palette Swap (Jul 1) — PANTONE Pastels
+### Palette Swap (Jul 4) — Reference-Inspired Teal/Ivory/Green
 
-Replaced the old teal/pink palette with PANTONE pastels:
-- **Pink Marshmallow #F8E0E8** → `--primary`, `--main`, `bg-footer` (brand accent + button bg + footer)
-- **Delicate Blue #C2DAE8** → `bg-header`, `bg-footer-bar`, `--secondary` (header/nav/marquee/announcement bg)
-- **Veiled Vista #C8E4CA** → available for future section backgrounds
-- **Yellow Swatch #F1F0B0** → `--accent`, `announcement` (highlight/announcement bg)
+Replaced PANTONE pastels with a teal/ivory/green palette inspired by crumbsanddoilies.co.uk:
+- **Teal #55babd** → `bg-header`, `--secondary` (header/nav/marquee bg, secondary CSS var)
+- **Ivory #FFFFF0** → `bg-footer`, `bg-background`, `--bg` (page bg, footer bg, hero gradient edge)
+- **Green #C8E4CA (Veiled Vista)** → `--primary`, `--main`, `bg-footer-bar` (AnnouncementBar, BrowseByBake, FaqSection, ProductCarousel hover, button bg)
+- **Yellow Swatch #F1F0B0** → `--accent`, `announcement` (PromoCards bg, accent accent)
+- **Ink Marshmallow #F8E0E8** → kept as accent color (not used in primary components)
 
-Key constraint: all four colors are light pastels — unusable as text on light backgrounds. Every `text-primary`, `text-header`, and `hover:text-header` replaced with `text-foreground` (dark brown #3d2b1f). Colors used exclusively for `bg-*`, `border-*`, and opacity tints.
+Key constraint: `--secondary` (teal) is medium-dark — white text used for `--secondary-foreground`. Green `--primary` is light — only usable as bg/border/tint. All body text is `text-foreground` (dark brown #3d2b1f).
 
 ### CharReveal Fix (Jul 1)
 
@@ -82,6 +83,25 @@ Spaces in `CharReveal` rendered as `\u00A0` (non-breaking space) to prevent whit
 | 8 | **Overflow fix** | `Contact.jsx` | Removed `whitespace-nowrap` from heading |
 | 9 | **Touch feedback** | All interactive elements | `active:scale-[0.97]` on buttons, links, nav items, gallery, OrderModal options |
 
+### Mobile Touch-ups (Jul 4) — Tighter spacing + scroll anchors
+
+| # | Change | Files | Details |
+|---|--------|-------|---------|
+| 1 | **Reduced mobile section padding** | 12 sections | `py-10`→`py-8`, `py-12`→`py-8` for tighter vertical rhythm on mobile |
+| 2 | **Added `scroll-mt-24`** | About, SignatureItems, Gallery, Reviews, Contact, InstagramSection | Fixed navbar no longer overlaps section content when navigating via anchor links |
+| 3 | **Footer mobile padding** | `Footer.jsx` | `py-16`→`py-12` on mobile |
+| 4 | **Touch feedback on remaining elements** | Footer, DeliverySection, InstagramSection, About | `active:scale-[0.97]` on footer links, delivery CTA, IG sidebar items, About links |
+| 5 | **SheetCakesMarquee mobile** | `SheetCakesMarquee.jsx` | `py-4`→`py-3` on mobile |
+
+### Palette Balance (Jul 4) — More teal + green
+
+| # | Change | Files | Details |
+|---|--------|-------|---------|
+| 1 | **Footer bar to teal** | `Footer.jsx` | Bottom bar bg changed from transparent to `bg-header` (teal) with white text, matching reference site |
+| 2 | **SignatureItems teal strip** | `SignatureItems.jsx` | Gradient overlay `via-secondary/5`→`via-secondary/10` for stronger teal hint |
+| 3 | **NewsSection to green** | `NewsSection.jsx` | Section bg `bg-background`→`bg-primary` (green). White cards contrast on green. |
+| 4 | **Instagram sidebar green** | `InstagramSection.jsx` | Sidebar `bg-primary/5`→`bg-primary/10` for more green saturation |
+
 ## Build
 
 ```bash
@@ -95,7 +115,7 @@ npm run dev    # Dev server at http://localhost:5173/crumbs-bakery-/
 - Some hover animations may differ slightly from reference due to framer-motion limitations
 - Product carousel uses static mock data — needs real product API
 - Contact section still uses old layout — not yet updated to match reference
-- All four PANTONE pastels are light — only usable as bg/border/tint, not text color (dark brown #3d2b1f used for all text)
+- `--secondary` (teal #55babd) is medium-dark — white `--secondary-foreground` ensures contrast, but light elements on teal bg need careful handling
 - No GitHub Pages deployment workflow set up — enable manually in repo Settings
 
 ## Git
@@ -103,4 +123,4 @@ npm run dev    # Dev server at http://localhost:5173/crumbs-bakery-/
 Remote: `https://github.com/jeremygideonbareh/crumbs-bakery-`
 Branch: `main`
 Pages URL: `https://jeremygideonbareh.github.io/crumbs-bakery-/`
-Latest: `107b01f` — feat: mobile comfort overhaul
+Latest: `43534b0` — feat: mobile optimization - tighter spacing, scroll-mt anchors, touch feedback, palette updates

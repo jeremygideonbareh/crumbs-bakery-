@@ -44,7 +44,7 @@ export default function InstagramSection() {
     <section className="bg-background scroll-mt-24">
       <div className="flex flex-col lg:flex-row">
         {/* Sidebar */}
-        <div className="lg:w-72 shrink-0 p-6 md:p-8 bg-primary/5">
+        <div className="lg:w-72 shrink-0 p-6 md:p-8 bg-primary/10">
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}

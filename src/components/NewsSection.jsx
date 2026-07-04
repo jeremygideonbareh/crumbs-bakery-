@@ -53,7 +53,7 @@ const articles = [
 
 export default function NewsSection() {
   return (
-    <section className="py-8 md:py-20 px-4 md:px-6 bg-background">
+    <section className="py-8 md:py-20 px-4 md:px-6 bg-primary">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
