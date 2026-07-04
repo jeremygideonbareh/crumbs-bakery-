@@ -35,7 +35,8 @@ export default function HomePage() {
           </>
         }
         subtitle="Handcrafted tiramisu, cream puffs, cheesecakes, and artisanal bakes — made fresh daily in the heart of Shillong."
-        callToAction={{ text: 'ORDER CUSTOM CAKE', onClick: onOrder }}
+        callToAction={{ text: 'ORDER CUSTOM CAKE' }}
+        onOrder={onOrder}
         backgroundImage={HERO_IMAGE}
         contactInfo={{
           website: 'crumbsbakery.in',

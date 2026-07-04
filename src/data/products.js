@@ -48,3 +48,18 @@ export const brownies = [
   { id: 'b6', name: 'EDIBLE IMAGE BROWNIES (BOX OF 6)', price: '₹900', image: `${base}/photo-1606313564200-e75d5e30476c?w=400&q=80`, desc: 'Personalised edible photos on fudgy brownies' },
   { id: 'b7', name: 'BROWNIE GIFT BOX', price: '₹1,000', image: `${base}/photo-1606313564200-e75d5e30476c?w=400&q=80`, desc: 'Assorted brownies in a beautiful gift box' },
 ]
+
+const extraDesserts = [
+  { id: 'd1', name: 'NEW YORK CHEESECAKE', price: '₹1,800', image: `${base}/photo-1533134242443-d4fd215305ad?w=400&q=80`, desc: 'Classic New York-style baked cheesecake with a buttery graham crust', badge: 'Best Seller' },
+  { id: 'd2', name: 'BLUEBERRY CHEESECAKE', price: '₹1,900', image: `${base}/photo-1533134242443-d4fd215305ad?w=400&q=80`, desc: 'Silky cheesecake topped with house-made blueberry compote' },
+  { id: 'd3', name: 'TIRAMISU', price: '₹1,500', image: `${base}/photo-1571877227200-a0d98ea607e9?w=400&q=80`, desc: 'Classic Italian tiramisu — espresso-soaked ladyfingers with mascarpone cream' },
+  { id: 'd4', name: 'CLASSIC CREAM PUFFS (BOX OF 4)', price: '₹600', image: `${base}/photo-1509365465985-25d11c17e812?w=400&q=80`, desc: 'Light choux pastry filled with silky vanilla pastry cream' },
+  { id: 'd5', name: 'CHOCOLATE ÉCLAIRS (BOX OF 4)', price: '₹700', image: `${base}/photo-1509365465985-25d11c17e812?w=400&q=80`, desc: 'Choux pastry filled with chocolate cream topped with ganache' },
+  { id: 'd6', name: 'FRENCH MACARONS (BOX OF 6)', price: '₹850', image: `${base}/photo-1563805042-7684c019e1cb?w=400&q=80`, desc: 'Almond macarons — assorted flavours in a beautiful box', badge: 'Artisanal' },
+  { id: 'd7', name: 'BANANA BREAD (LOAF)', price: '₹500', image: `${base}/photo-1608198093002-ad4e0054840b?w=400&q=80`, desc: 'Moist, buttery banana bread. Perfect with your morning coffee.' },
+  { id: 'd8', name: 'LEMON BARS (BOX OF 4)', price: '₹450', image: `${base}/photo-1488477181946-6428a0291777?w=400&q=80`, desc: 'Tangy lemon curd on a buttery shortbread base, dusted with sugar' },
+  { id: 'd9', name: 'BLUEBERRY MUFFINS (BOX OF 4)', price: '₹500', image: `${base}/photo-1558403194-7453087d5623?w=400&q=80`, desc: 'Light, fluffy muffins bursting with fresh blueberries' },
+  { id: 'd10', name: 'CHOCOLATE CHIP MUFFINS (BOX OF 4)', price: '₹500', image: `${base}/photo-1558403194-7453087d5623?w=400&q=80`, desc: 'Classic muffins loaded with dark chocolate chips' },
+]
+
+export const desserts = [...cookies, ...brownies, ...extraDesserts]

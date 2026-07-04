@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { MapPin, Phone, Clock, MessageCircle, Mail, Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
+import { supabase } from '@/lib/supabase'
 
 const contactInfo = [
   { icon: MapPin, label: 'Location', value: 'Jaiaw Chapel Rd, opposite Jaiaw Presbyterian, Shillong, Meghalaya 793002', href: 'https://maps.google.com/?q=Crumbs+Bakery+%26+Cafe+Shillong' },
@@ -31,7 +32,14 @@ export default function ContactPage() {
       return
     }
     setSending(true)
-    await new Promise((r) => setTimeout(r, 1000))
+    const { error } = await supabase.from('contact_messages').insert({
+      name: form.name, email: form.email, phone: form.phone, message: form.message,
+    })
+    if (error) {
+      toast.error('Something went wrong. Please try again.')
+      setSending(false)
+      return
+    }
     toast.success('Message sent! We\'ll get back to you within an hour.')
     setForm({ name: '', email: '', phone: '', message: '' })
     setSending(false)

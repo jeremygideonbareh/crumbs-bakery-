@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 const categories = [
   {
@@ -19,20 +20,12 @@ const categories = [
       'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=800&q=80',
   },
   {
-    name: 'NEW YORK COOKIES',
-    desc: 'Gooey, chunky cookies baked fresh daily',
-    cta: 'SHOP COOKIES',
-    href: '#menu',
+    name: 'DECADENT DESSERTS',
+    desc: 'Cookies, brownies, cheesecakes & more sweet treats',
+    cta: 'SHOP DESSERTS',
+    href: '/desserts',
     image:
-      'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800&q=80',
-  },
-  {
-    name: 'GOOEY BROWNIES',
-    desc: 'Rich, indulgent brownies — pure chocolate bliss',
-    cta: 'SHOP BROWNIES',
-    href: '#menu',
-    image:
-      'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&q=80',
+      'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80',
   },
   {
     name: 'CUSTOM ORDERS',
@@ -55,6 +48,7 @@ const categories = [
 export default function CategoryGrid() {
   const [hoveredIndex, setHoveredIndex] = useState(null)
   const [activeIndex, setActiveIndex] = useState(null)
+  const navigate = useNavigate()
 
   const isExpanded = (i) => i === hoveredIndex || i === activeIndex
 
@@ -67,13 +61,20 @@ export default function CategoryGrid() {
           return (
             <motion.a
               key={cat.name}
-              href={cat.href}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              href={cat.href.startsWith('/') ? undefined : cat.href}
               onClick={(e) => {
                 if (window.innerWidth < 768) {
                   e.preventDefault()
-                  setActiveIndex(activeIndex === index ? null : index)
+                  if (activeIndex === index) {
+                    if (cat.href.startsWith('/')) navigate(cat.href)
+                  } else {
+                    setActiveIndex(index)
+                  }
+                  return
+                }
+                if (cat.href.startsWith('/')) {
+                  e.preventDefault()
+                  navigate(cat.href)
                 }
               }}
               animate={{ flex: expanded ? 3 : 1 }}

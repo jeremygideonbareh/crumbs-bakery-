@@ -1,6 +1,7 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { Globe, Phone, MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
@@ -145,11 +146,11 @@ const HeroSection = React.forwardRef(
                 <Button onClick={onOrder} size="lg" className="min-h-[44px] text-sm w-full sm:w-auto">
                   {callToAction.text}
                 </Button>
-                <a href="#menu" className="w-full sm:w-auto">
+                <Link to="/cakes" className="w-full sm:w-auto">
                   <Button variant="neutral" size="lg" className="min-h-[44px] text-sm w-full">
                     Explore Menu
                   </Button>
-                </a>
+                </Link>
               </motion.div>
             </motion.main>
           </div>

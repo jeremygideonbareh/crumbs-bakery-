@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronRight, ChevronLeft, Check, ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
+import { supabase } from '@/lib/supabase'
 
 const STEPS = ['Pick Your Base', 'Choose Size', 'Filling & Frosting', 'Customize', 'Review & Order']
 
@@ -56,6 +57,7 @@ export default function OrderModal({ open, onClose }) {
   const [selectedExtras, setSelectedExtras] = useState([])
   const [message, setMessage] = useState('')
   const [date, setDate] = useState('')
+  const [customer, setCustomer] = useState({ name: '', email: '', phone: '' })
 
   const total =
     (base?.price || 0) +
@@ -81,31 +83,47 @@ export default function OrderModal({ open, onClose }) {
 
   const handleBack = () => setStep((s) => Math.max(s - 1, 0))
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    if (!customer.name || !customer.email) {
+      toast.error('Please fill in your name and email.')
+      return
+    }
+    const items = {
+      base: { id: base?.id, name: base?.name, price: base?.price },
+      size: { id: size?.id, name: size?.name, price: size?.price },
+      filling: { id: filling?.id, name: filling?.name, price: filling?.price },
+      frosting: { id: frosting?.id, name: frosting?.name, price: frosting?.price },
+      extras: selectedExtras.map((e) => ({ id: e.id, name: e.name, price: e.price })),
+      message,
+      date,
+    }
+    const { error } = await supabase.from('orders').insert({
+      items,
+      customer,
+      total,
+      message,
+      date,
+    })
+    if (error) {
+      toast.error('Something went wrong. Please try again.')
+      return
+    }
     toast.success('Order placed! We\'ll contact you shortly.', {
       description: `Total: ₹${total} · ${size?.name || ''} ${base?.name || ''} cake`,
       duration: 5000,
     })
     setStep(0)
-    setBase(null)
-    setSize(null)
-    setFilling(null)
-    setFrosting(null)
-    setSelectedExtras([])
-    setMessage('')
-    setDate('')
+    setBase(null); setSize(null); setFilling(null); setFrosting(null)
+    setSelectedExtras([]); setMessage(''); setDate('')
+    setCustomer({ name: '', email: '', phone: '' })
     onClose()
   }
 
   const resetAndClose = () => {
     setStep(0)
-    setBase(null)
-    setSize(null)
-    setFilling(null)
-    setFrosting(null)
-    setSelectedExtras([])
-    setMessage('')
-    setDate('')
+    setBase(null); setSize(null); setFilling(null); setFrosting(null)
+    setSelectedExtras([]); setMessage(''); setDate('')
+    setCustomer({ name: '', email: '', phone: '' })
     onClose()
   }
 
@@ -287,6 +305,13 @@ export default function OrderModal({ open, onClose }) {
                     onChange={(e) => setDate(e.target.value)}
                     className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none"
                   />
+
+                  <p className="text-[11px] md:text-xs font-medium text-foreground uppercase tracking-wider mb-2 mt-4">Your Details</p>
+                  <div className="space-y-2">
+                    <input type="text" placeholder="Your Name *" value={customer.name} onChange={(e) => setCustomer((p) => ({ ...p, name: e.target.value }))} className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none" />
+                    <input type="email" placeholder="Email Address *" value={customer.email} onChange={(e) => setCustomer((p) => ({ ...p, email: e.target.value }))} className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none" />
+                    <input type="tel" placeholder="Phone Number" value={customer.phone} onChange={(e) => setCustomer((p) => ({ ...p, phone: e.target.value }))} className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none" />
+                  </div>
                 </div>
               )}
 
