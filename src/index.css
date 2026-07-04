@@ -16,8 +16,8 @@
     --popover-foreground: 30 30% 20%;
     --primary: 141 35% 84%;
     --primary-foreground: 30 30% 20%;
-    --secondary: 202 45% 84%;
-    --secondary-foreground: 30 30% 20%;
+    --secondary: 182 44% 54%;
+    --secondary-foreground: 0 0% 100%;
     --muted: 30 15% 50%;
     --muted-foreground: 30 10% 40%;
     --accent: 59 66% 82%;
@@ -32,12 +32,12 @@
     --ink-marshmallow: #F8E0E8;
     --main: #C8E4CA;
     --overlay: rgba(0, 0, 0, 0.6);
-    --bg: #fff5f0;
+    --bg: #FFFFF0;
     --bw: #ffffff;
     --blank: #000000;
     --text: #3d2b1f;
     --mtext: #3d2b1f;
-    --ring-offset: #fff5f0;
+    --ring-offset: #FFFFF0;
     --box-shadow-x: 4px;
     --box-shadow-y: 4px;
     --reverse-box-shadow-x: -4px;

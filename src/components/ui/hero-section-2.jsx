@@ -174,7 +174,7 @@ const HeroSection = React.forwardRef(
 
         {/* Right Side: Image with clip-path animation + gradient fade */}
         <div className="relative w-full min-h-[40vh] md:w-[55%] md:min-h-screen">
-          <div className="hidden md:block absolute inset-0 z-10 bg-gradient-to-r from-[#FFF5F0] via-[#FFF5F0]/50 via-20% to-transparent to-35% pointer-events-none" />
+          <div className="hidden md:block absolute inset-0 z-10 bg-gradient-to-r from-[#FFFFF0] via-[#FFFFF0]/50 via-20% to-transparent to-35% pointer-events-none" />
 
           {/* Mobile: simple fade-in */}
           <motion.div
