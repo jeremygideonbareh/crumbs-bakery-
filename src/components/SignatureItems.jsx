@@ -16,7 +16,7 @@ const items = [
     highlight: 'Best Seller',
     price: '₹180',
     image: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=600&q=80',
-    badge: 'bg-pink-100 text-pink-700',
+    badge: 'bg-green-100 text-green-700',
   },
   {
     name: 'Cheesecake',
@@ -55,7 +55,7 @@ const items = [
 export default function SignatureItems() {
   return (
     <section id="menu" className="relative py-12 md:py-28 lg:py-36 px-4 md:px-6">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent" />
 
       <div className="mx-auto max-w-6xl relative z-10">
         <motion.div
@@ -82,7 +82,7 @@ export default function SignatureItems() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group relative rounded-xl border border-primary/10 bg-white overflow-hidden hover:border-primary/30 hover:shadow-lg transition-all"
+              className="group relative rounded-xl border border-secondary/10 bg-white overflow-hidden hover:border-secondary/30 hover:shadow-lg transition-all"
             >
               <div className="relative h-36 md:h-44 overflow-hidden">
                 <img

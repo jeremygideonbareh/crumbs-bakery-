@@ -66,11 +66,27 @@ Key constraint: all four colors are light pastels — unusable as text on light 
 
 Spaces in `CharReveal` rendered as `\u00A0` (non-breaking space) to prevent whitespace collapse inside `inline-block` spans — fixes headings like "A taste of what we bake" rendering as "Atasteofwhatwebake".
 
+### Mobile Comfort Overhaul (Jul 2) — /webdev plan + critique loop
+
+**Goal:** Prioritize user comfort and ease on mobile — instant content, readable text, easy tapping, polished visuals.
+
+| # | Change | Files | Details |
+|---|--------|-------|---------|
+| 1 | **Removed forced 3s loader** | `App.jsx`, deleted `Loader.jsx` | Content visible immediately; page fade-in reduced to 0.3s |
+| 2 | **Bumped mobile text sizes** | All 18+ components | Interactive → min 14px, Body → min 13px, Labels → min 11px. Bumped dozens of `text-[10px]`, `text-[11px]`, `text-xs` instances |
+| 3 | **Fixed 14+ touch targets to ≥44px** | Navbar, Footer, InstagramSection, About, NewsSection, OrderModal, DeliverySection | Nav ham 22→44px, OrderModal close 26→44px, About CTAs ~16→44px, footer social circles 36→44px, and more |
+| 4 | **Hero clip-path on mobile** | `hero-section-2.jsx` | Mobile: simple fade-in. Desktop: diagonal clip-patch reveal kept |
+| 5 | **Emoji → styled bullet** | `AnnouncementBar.jsx` | Consistent bullet on all breakpoints |
+| 6 | **Tightened mobile padding** | 11 sections | `py-20`→`py-12`, `py-16`→`py-10`, `py-14`→`py-10` |
+| 7 | **CategoryGrid height** | `CategoryGrid.jsx` | 280px→320px for larger expanded text |
+| 8 | **Overflow fix** | `Contact.jsx` | Removed `whitespace-nowrap` from heading |
+| 9 | **Touch feedback** | All interactive elements | `active:scale-[0.97]` on buttons, links, nav items, gallery, OrderModal options |
+
 ## Build
 
 ```bash
 npm run build  # Vite — builds to dist/
-npm run dev    # Dev server
+npm run dev    # Dev server at http://localhost:5173/crumbs-bakery-/
 ```
 
 ## Known Issues
@@ -80,8 +96,11 @@ npm run dev    # Dev server
 - Product carousel uses static mock data — needs real product API
 - Contact section still uses old layout — not yet updated to match reference
 - All four PANTONE pastels are light — only usable as bg/border/tint, not text color (dark brown #3d2b1f used for all text)
+- No GitHub Pages deployment workflow set up — enable manually in repo Settings
 
 ## Git
 
 Remote: `https://github.com/jeremygideonbareh/crumbs-bakery-`
-Branch: `main` (first push)
+Branch: `main`
+Pages URL: `https://jeremygideonbareh.github.io/crumbs-bakery-/`
+Latest: `107b01f` — feat: mobile comfort overhaul

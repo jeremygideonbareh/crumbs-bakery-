@@ -100,9 +100,9 @@ export default function About() {
               <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-5 flex-1">
                 <col.body />
               </p>
-              <a
+<a
                 href={col.href}
-                className="inline-block py-3 text-sm uppercase tracking-[0.15em] font-bold text-foreground underline underline-offset-4 decoration-2 decoration-primary/50 hover:decoration-primary transition-all"
+                className="inline-block py-3 text-sm uppercase tracking-[0.15em] font-bold text-foreground underline underline-offset-4 decoration-2 decoration-secondary/50 hover:decoration-secondary transition-all"
               >
                 {col.cta}
               </a>

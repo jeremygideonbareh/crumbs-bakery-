@@ -14,7 +14,7 @@
     --card-foreground: 30 30% 20%;
     --popover: 0 0% 100%;
     --popover-foreground: 30 30% 20%;
-    --primary: 340 63% 93%;
+    --primary: 141 35% 84%;
     --primary-foreground: 30 30% 20%;
     --secondary: 202 45% 84%;
     --secondary-foreground: 30 30% 20%;
@@ -26,10 +26,11 @@
     --destructive-foreground: 0 0% 100%;
     --border: 30 20% 88%;
     --input: 30 20% 88%;
-    --ring: 340 63% 93%;
+    --ring: 141 35% 84%;
     --radius: 0.75rem;
 
-    --main: #F8E0E8;
+    --ink-marshmallow: #F8E0E8;
+    --main: #C8E4CA;
     --overlay: rgba(0, 0, 0, 0.6);
     --bg: #fff5f0;
     --bw: #ffffff;

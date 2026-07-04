@@ -129,7 +129,7 @@ const HeroSection = React.forwardRef(
                 {title}
               </motion.h1>
               <motion.div
-                className="my-4 md:my-6 h-1 w-16 md:w-20 bg-primary"
+                className="my-4 md:my-6 h-1 w-16 md:w-20 bg-accent"
                 variants={itemVariants}
               />
               <motion.p
