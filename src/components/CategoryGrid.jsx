@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useOrderContext } from '@/components/Layout'
 
 const categories = [
   {
     name: 'AMAZING CAKES',
     desc: "Shillong's best cakes — freshly baked, expertly decorated",
     cta: 'SHOP CAKES',
-    href: '#menu',
+    href: '/cakes',
+    isRoute: true,
     image:
       'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80',
   },
@@ -15,7 +17,8 @@ const categories = [
     name: 'PERFECT CUPCAKES',
     desc: "Cupcake perfection from Shillong's finest bakery",
     cta: 'SHOP CUPCAKES',
-    href: '#menu',
+    href: '/cupcakes',
+    isRoute: true,
     image:
       'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=800&q=80',
   },
@@ -24,6 +27,7 @@ const categories = [
     desc: 'Cookies, brownies, cheesecakes & more sweet treats',
     cta: 'SHOP DESSERTS',
     href: '/desserts',
+    isRoute: true,
     image:
       'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80',
   },
@@ -32,6 +36,7 @@ const categories = [
     desc: 'Design your dream cake for any celebration',
     cta: 'ORDER NOW',
     href: '#order',
+    isRoute: false,
     image:
       'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=800&q=80',
   },
@@ -39,7 +44,8 @@ const categories = [
     name: 'CAFE EXPERIENCE',
     desc: 'Visit our Jaiaw cafe for a cozy treat',
     cta: 'FIND US',
-    href: '#contact',
+    href: '/contact',
+    isRoute: true,
     image:
       'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&q=80',
   },
@@ -49,6 +55,7 @@ export default function CategoryGrid() {
   const [hoveredIndex, setHoveredIndex] = useState(null)
   const [activeIndex, setActiveIndex] = useState(null)
   const navigate = useNavigate()
+  const { onOrder } = useOrderContext()
 
   const isExpanded = (i) => i === hoveredIndex || i === activeIndex
 
@@ -62,7 +69,14 @@ export default function CategoryGrid() {
             <motion.a
               key={cat.name}
               href={cat.href.startsWith('/') ? undefined : cat.href}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
               onClick={(e) => {
+                if (cat.name === 'CUSTOM ORDERS') {
+                  e.preventDefault()
+                  if (onOrder) onOrder()
+                  return
+                }
                 if (window.innerWidth < 768) {
                   e.preventDefault()
                   if (activeIndex === index) {
