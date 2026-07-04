@@ -113,14 +113,44 @@ npm run dev    # Dev server at http://localhost:5173/crumbs-bakery-/
 
 - Reference site's emoji-only bullets ("CAKES 🍰", "CUPCAKES 🧁") not implemented — text-only labels instead
 - Some hover animations may differ slightly from reference due to framer-motion limitations
-- Product carousel uses static mock data — needs real product API
-- Contact section still uses old layout — not yet updated to match reference
+- Product data is static arrays — needs real API/backend integration for dynamic management
 - `--secondary` (teal #55babd) is medium-dark — white `--secondary-foreground` ensures contrast, but light elements on teal bg need careful handling
-- No GitHub Pages deployment workflow set up — enable manually in repo Settings
+- No GitHub Pages deployment workflow set up — enable manually in repo Settings (HashRouter means no 404 fallback workaround needed)
 
 ## Git
 
 Remote: `https://github.com/jeremygideonbareh/crumbs-bakery-`
 Branch: `main`
 Pages URL: `https://jeremygideonbareh.github.io/crumbs-bakery-/`
-Latest: `43534b0` — feat: mobile optimization - tighter spacing, scroll-mt anchors, touch feedback, palette updates
+Latest: `818b010` — feat: multi-page architecture with HashRouter, product pages, ContactPage, and code review fixes
+
+---
+
+### Session Summary (Jul 4) — Multi-Page Architecture & Code Review Cleanup
+
+**What was built:**
+- **HashRouter routing** — 8 pages (Home, Cakes, Cupcakes, Cookies, Brownies, About, Reviews, Contact) via `<Routes>`/`<Route>` inside Layout with `<Outlet />`
+- **Product data** (`src/data/products.js`) — 12 cakes, 8 cupcakes, 10 cookies, 7 brownies with real names, INR pricing, descriptions, variant arrays
+- **Shared components** — `ProductGrid` (responsive 2/3-column cards with variant tags, badge, Add to Order), `CategoryHero` (full-width hero with breadcrumb), `ImageCarousel` (auto-advance slideshow)
+- **Page components** — `HomePage` (condensed previews linking to full pages), `CakesPage`, `CupcakesPage`, `CookiesPage`, `BrowniesPage`, `AboutPage` (story + timeline + values + team), `ReviewsPage` (12-review grid with Google/Zomato filter), `ContactPage` (form + info cards + map + FAQ)
+- **Navbar** — Updated to `<NavLink>` with active state highlighting, mobile drawer auto-closes on route change
+- **Footer** — Updated to `<Link>` for quick links, social links point to real URLs
+- **ContactPage form** — State management, `htmlFor`/`id` for accessibility, validation, toast feedback
+
+**Fixes applied after code review:**
+- **CRITICAL** — Wired `onOrder` from Layout → HomePage via `useOutletContext` → HeroSection CTA button now opens OrderModal
+- Removed unused imports (`SectionHeading` from 4 files, `Reviews` + `Contact` from HomePage)
+- Fixed duplicate `transition-colors`/`transition-transform` clash on Navbar mobile button (now `transition-all`)
+- Moved `framer-motion` from `devDependencies` to `dependencies`
+- Deleted 4 dead files: `Hero-old.jsx`, `demo.jsx`, `interactive-image-accordion.jsx`, `api.js`
+- Replaced `href="#"` placeholders with real URLs on InstagramSection, ReviewsPage, NewsSection, Footer social links
+
+**Key decisions:**
+- `Outlet` context (`useOutletContext`) chosen over prop drilling or global state — cleanest fit for Layout → page communication
+- Product data as static arrays (no API dependency for MVP)
+- HashRouter for zero-config GitHub Pages deployment
+
+**Obsolete known issues removed:**
+- Contact section no longer "old layout" — fully rewritten as ContactPage
+- No loader delay (removed in prior session)
+- Pages URL route handling solved by HashRouter (no 404 fallback needed)
