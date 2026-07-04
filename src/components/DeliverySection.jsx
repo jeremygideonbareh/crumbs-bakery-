@@ -25,7 +25,7 @@ const areas = [
 
 export default function DeliverySection() {
   return (
-    <section className="bg-background px-4 py-10 md:px-6 md:py-20">
+    <section className="bg-background px-4 py-8 md:px-6 md:py-20">
       <div className="mx-auto max-w-6xl">
         <motion.h3
           initial={{ opacity: 0, y: 15 }}
@@ -81,7 +81,7 @@ export default function DeliverySection() {
           </p>
           <a
             href="#contact"
-            className="inline-block border-2 border-foreground/20 px-8 py-3.5 text-sm font-bold uppercase tracking-[0.2em] text-foreground transition-all hover:border-primary hover:text-foreground"
+            className="inline-block border-2 border-foreground/20 px-8 py-3.5 text-sm font-bold uppercase tracking-[0.2em] text-foreground transition-all hover:border-primary hover:text-foreground active:scale-[0.97]"
           >
             SHILLONG CAKE DELIVERY
           </a>

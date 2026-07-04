@@ -11,7 +11,7 @@ const items = Array.from({ length: 10 }, (_, i) => ({
 
 export default function SheetCakesMarquee() {
   return (
-    <section className="overflow-hidden bg-header py-4">
+    <section className="overflow-hidden bg-header py-3 md:py-4">
       <motion.div
         animate={{ x: ['0%', '-50%'] }}
         transition={{ duration: 30, ease: 'linear', repeat: Infinity }}

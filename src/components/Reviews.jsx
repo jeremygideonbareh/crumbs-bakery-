@@ -49,7 +49,7 @@ const reviews = [
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="relative py-12 md:py-28 lg:py-36 px-4 md:px-6">
+    <section id="reviews" className="relative py-8 md:py-28 lg:py-36 px-4 md:px-6 scroll-mt-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

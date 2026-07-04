@@ -29,7 +29,7 @@ const cards = [
 
 export default function PromoCards() {
   return (
-    <section className="py-10 md:py-18 px-4 md:px-6 bg-accent">
+    <section className="py-8 md:py-18 px-4 md:px-6 bg-accent">
       <div className="mx-auto max-w-5xl">
         {/* Section heading */}
         <motion.div

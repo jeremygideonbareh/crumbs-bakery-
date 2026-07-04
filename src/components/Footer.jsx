@@ -64,7 +64,7 @@ const itemVariants = {
 export default function Footer() {
   return (
     <footer className="bg-footer text-foreground">
-      <div className="max-w-6xl mx-auto px-6 py-16">
+      <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
         <motion.div
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12"
           variants={containerVariants}
@@ -105,7 +105,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-foreground/70 text-sm font-work hover:text-foreground transition-colors"
+                    className="text-foreground/70 text-sm font-work hover:text-foreground transition-colors active:scale-[0.97] inline-block"
                   >
                     {link.label}
                   </a>
@@ -127,13 +127,13 @@ export default function Footer() {
               </li>
               <li>
                 <span className="block text-foreground/50 text-[10px] uppercase tracking-[0.15em] mb-0.5">Phone</span>
-                <a href="tel:+919999999999" className="hover:text-foreground transition-colors">
+                <a href="tel:+919999999999" className="hover:text-foreground transition-colors active:scale-[0.97] inline-block">
                   +91 99999 99999
                 </a>
               </li>
               <li>
                 <span className="block text-foreground/50 text-[10px] uppercase tracking-[0.15em] mb-0.5">Email</span>
-                <a href="mailto:hello@crumbs.in" className="hover:text-foreground transition-colors">
+                <a href="mailto:hello@crumbs.in" className="hover:text-foreground transition-colors active:scale-[0.97] inline-block">
                   hello@crumbs.in
                 </a>
               </li>

@@ -80,7 +80,7 @@ export default function ProductCarousel() {
   const carouselRef = useRef(null);
 
   return (
-    <section className="py-10 md:py-18 px-4 bg-background">
+    <section className="py-8 md:py-18 px-4 bg-background">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="flex items-end justify-between mb-6 md:mb-10">

@@ -71,7 +71,7 @@ const cardVariants = {
 
 export default function About() {
   return (
-    <section id="about" className="py-10 md:py-20 px-4 md:px-6 bg-background">
+    <section id="about" className="py-8 md:py-20 px-4 md:px-6 bg-background scroll-mt-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           className="grid md:grid-cols-3 gap-8 md:gap-10"

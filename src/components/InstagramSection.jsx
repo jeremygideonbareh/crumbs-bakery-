@@ -41,7 +41,7 @@ const postStats = [
 
 export default function InstagramSection() {
   return (
-    <section className="bg-background">
+    <section className="bg-background scroll-mt-24">
       <div className="flex flex-col lg:flex-row">
         {/* Sidebar */}
         <div className="lg:w-72 shrink-0 p-6 md:p-8 bg-primary/5">
@@ -63,7 +63,7 @@ export default function InstagramSection() {
               <a
                 key={item.label}
                 href="#"
-                className="flex items-center gap-3 px-3 py-3.5 text-sm text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all"
+                className="flex items-center gap-3 px-3 py-3.5 text-sm text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all active:scale-[0.97]"
               >
                 <span className="text-base">{item.icon}</span>
                 <span className="font-medium text-[13px] uppercase tracking-[0.1em]">
