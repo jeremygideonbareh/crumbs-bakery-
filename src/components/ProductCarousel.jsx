@@ -1,83 +1,25 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useOrderContext } from './Layout';
 
 const products = [
-  {
-    name: 'VINTAGE HEART CAKE',
-    price: '₹1,200',
-    image:
-      'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&q=80',
-  },
-  {
-    name: 'DESIGN YOUR OWN BESPOKE CAKE',
-    price: '₹2,500',
-    image:
-      'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400&q=80',
-  },
-  {
-    name: 'VINTAGE CAKE - SINGLE COLOUR',
-    price: '₹1,500',
-    image:
-      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80',
-  },
-  {
-    name: 'EDIBLE IMAGE PHOTO CAKE',
-    price: '₹1,800',
-    image:
-      'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?w=400&q=80',
-  },
-  {
-    name: 'CLASSIC CHOCOLATE CAKE',
-    price: '₹1,000',
-    image:
-      'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a01?w=400&q=80',
-  },
-  {
-    name: 'FUNFETTI SPRINKLE CAKE',
-    price: '₹1,400',
-    image:
-      'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&q=80',
-  },
-  {
-    name: 'RASPBERRY RIPPLE CAKE',
-    price: '₹1,600',
-    image:
-      'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80',
-  },
-  {
-    name: 'BIRTHDAY CAKE',
-    price: '₹1,200',
-    image:
-      'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400&q=80',
-  },
-  {
-    name: 'CHOCOLATE BIRTHDAY CAKE',
-    price: '₹1,300',
-    image:
-      'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&q=80',
-  },
-  {
-    name: 'CUSTOM CUPCAKES (DOZEN)',
-    price: '₹900',
-    image:
-      'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&q=80',
-  },
-  {
-    name: 'COOKIE BOX (6 PACK)',
-    price: '₹600',
-    image:
-      'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&q=80',
-  },
-  {
-    name: 'BROWNIE BOX (6 PACK)',
-    price: '₹700',
-    image:
-      'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&q=80',
-  },
+  { name: 'VINTAGE HEART CAKE', price: '₹1,200', image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&q=80' },
+  { name: 'DESIGN YOUR OWN BESPOKE CAKE', price: '₹2,500', image: 'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400&q=80' },
+  { name: 'VINTAGE CAKE - SINGLE COLOUR', price: '₹1,500', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80' },
+  { name: 'EDIBLE IMAGE PHOTO CAKE', price: '₹1,800', image: 'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?w=400&q=80' },
+  { name: 'CLASSIC CHOCOLATE CAKE', price: '₹1,000', image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a01?w=400&q=80' },
+  { name: 'FUNFETTI SPRINKLE CAKE', price: '₹1,400', image: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&q=80' },
+  { name: 'RASPBERRY RIPPLE CAKE', price: '₹1,600', image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80' },
+  { name: 'BIRTHDAY CAKE', price: '₹1,200', image: 'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400&q=80' },
+  { name: 'CHOCOLATE BIRTHDAY CAKE', price: '₹1,300', image: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&q=80' },
+  { name: 'CUSTOM CUPCAKES (DOZEN)', price: '₹900', image: 'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&q=80' },
+  { name: 'COOKIE BOX (6 PACK)', price: '₹600', image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&q=80' },
+  { name: 'BROWNIE BOX (6 PACK)', price: '₹700', image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&q=80' },
 ];
 
 export default function ProductCarousel() {
   const carouselRef = useRef(null);
+  const { onOrder } = useOrderContext();
 
   return (
     <section className="py-8 md:py-18 px-4 bg-background">
@@ -147,7 +89,7 @@ export default function ProductCarousel() {
                 <p className="font-work text-sm md:text-base font-bold text-foreground mb-2 md:mb-3">
                   {product.price}
                 </p>
-                <button className="w-full font-work text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-4 py-3 md:py-2.5 transition-all duration-200 rounded-sm min-h-[44px] md:min-h-0">
+                <button onClick={onOrder} className="w-full font-work text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-4 py-3 md:py-2.5 transition-all duration-200 rounded-sm min-h-[44px] md:min-h-0 active:scale-[0.97]">
                   Add to Order
                 </button>
               </div>

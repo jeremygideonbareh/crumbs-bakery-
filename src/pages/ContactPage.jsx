@@ -25,10 +25,20 @@ export default function ContactPage() {
 
   const handleChange = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!form.name || !form.email || !form.message) {
-      toast.error('Please fill in name, email, and message.')
+    if (!form.name || !form.name.trim()) {
+      toast.error('Please enter your name.')
+      return
+    }
+    if (!form.email || !isValidEmail(form.email)) {
+      toast.error('Please enter a valid email address.')
+      return
+    }
+    if (!form.message || !form.message.trim()) {
+      toast.error('Please enter a message.')
       return
     }
     setSending(true)

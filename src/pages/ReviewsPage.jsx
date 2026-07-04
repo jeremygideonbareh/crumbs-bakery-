@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
 
@@ -17,6 +18,12 @@ const reviews = [
 ]
 
 export default function ReviewsPage() {
+  const [activeFilter, setActiveFilter] = useState('All')
+
+  const filteredReviews = activeFilter === 'All'
+    ? reviews
+    : reviews.filter((r) => r.source === activeFilter)
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.3 } }}>
       {/* Hero */}
@@ -61,8 +68,9 @@ export default function ReviewsPage() {
           {['All', 'Google', 'Zomato'].map((filter) => (
             <button
               key={filter}
+              onClick={() => setActiveFilter(filter)}
               className={`shrink-0 text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] px-3 py-2 rounded-sm transition-all active:scale-[0.97] ${
-                filter === 'All'
+                activeFilter === filter
                   ? 'bg-header text-white'
                   : 'text-foreground/60 border border-foreground/20 hover:border-foreground/40'
               }`}
@@ -77,13 +85,13 @@ export default function ReviewsPage() {
       <section className="py-8 md:py-14 px-4 md:px-6 bg-background">
         <div className="mx-auto max-w-6xl">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
-            {reviews.map((review, i) => (
+            {filteredReviews.map((review, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-30px' }}
-                transition={{ duration: 0.4, delay: (i % 12) * 0.04 }}
+                transition={{ duration: 0.4, delay: (i % filteredReviews.length) * 0.04 }}
                 className="rounded-xl border border-primary/10 bg-white p-4 md:p-5 flex flex-col shadow-sm"
               >
                 <div className="flex items-center gap-0.5 mb-2">

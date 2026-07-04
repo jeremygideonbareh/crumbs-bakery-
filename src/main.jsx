@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { HashRouter, useLocation } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
+import ErrorBoundary from '@/lib/ErrorBoundary'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -12,9 +13,11 @@ function ScrollToTop() {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HashRouter>
-      <ScrollToTop />
-      <App />
-    </HashRouter>
+    <ErrorBoundary>
+      <HashRouter>
+        <ScrollToTop />
+        <App />
+      </HashRouter>
+    </ErrorBoundary>
   </StrictMode>,
 )

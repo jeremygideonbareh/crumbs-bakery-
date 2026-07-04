@@ -24,6 +24,7 @@ const slides = [
 export default function ImageCarousel() {
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(1)
+  const [paused, setPaused] = useState(false)
 
   const goTo = useCallback((i) => {
     setDirection(i > current ? 1 : -1)
@@ -41,9 +42,10 @@ export default function ImageCarousel() {
   }, [])
 
   useEffect(() => {
+    if (paused) return
     const timer = setInterval(next, 5000)
     return () => clearInterval(timer)
-  }, [next])
+  }, [next, paused])
 
   const variants = {
     enter: (d) => ({ x: d > 0 ? 300 : -300, opacity: 0 }),
@@ -68,7 +70,13 @@ export default function ImageCarousel() {
           </h2>
         </motion.div>
 
-        <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl group">
+        <div
+          className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl group"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+        >
           <AnimatePresence custom={direction} mode="wait">
             <motion.img
               key={current}

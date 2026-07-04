@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { Outlet, useOutletContext } from 'react-router-dom'
-
-export function useOrderContext() {
-  return useOutletContext()
-}
 import { Toaster } from 'sonner'
 import AnnouncementBar from './AnnouncementBar'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import OrderModal from './OrderModal'
+
+export function useOrderContext() {
+  return useOutletContext()
+}
 
 export default function Layout() {
   const [orderOpen, setOrderOpen] = useState(false)

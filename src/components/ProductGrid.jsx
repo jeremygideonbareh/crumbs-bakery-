@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
+import { useOrderContext } from './Layout'
 
 export default function ProductGrid({ products }) {
+  const { onOrder } = useOrderContext()
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
       {products.map((product, i) => (
@@ -54,7 +56,7 @@ export default function ProductGrid({ products }) {
                 )}
               </div>
             )}
-            <button className="mt-auto w-full font-work text-[10px] md:text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-3 py-2.5 md:py-2 transition-all duration-200 rounded-sm min-h-[36px] md:min-h-0 active:scale-[0.97]">
+            <button onClick={onOrder} className="mt-auto w-full font-work text-[10px] md:text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-3 py-2.5 md:py-2 transition-all duration-200 rounded-sm min-h-[36px] md:min-h-0 active:scale-[0.97]">
               Add to Order
             </button>
           </div>

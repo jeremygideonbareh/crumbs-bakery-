@@ -1,11 +1,20 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import CategoryHero from '@/components/CategoryHero'
 import ProductGrid from '@/components/ProductGrid'
 import { cakes } from '@/data/products'
 
+const CATEGORIES = ['ALL', 'BIRTHDAY', 'CELEBRATION', 'SHEET', 'BESPOKE', 'CLASSIC', 'VINTAGE', 'KIDS', 'CORPORATE']
+
 const HERO = 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1200&q=80'
 
 export default function CakesPage() {
+  const [activeCategory, setActiveCategory] = useState('ALL')
+
+  const filteredCakes = activeCategory === 'ALL'
+    ? cakes
+    : cakes.filter((c) => c.name.includes(activeCategory))
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.3 } }}>
       <CategoryHero
@@ -18,17 +27,22 @@ export default function CakesPage() {
       <section className="py-6 md:py-10 px-4 md:px-6 bg-background">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8 pb-4 overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
-            {['BIRTHDAY', 'CELEBRATION', 'SHEET', 'BESPOKE', 'CLASSIC', 'VINTAGE', 'KIDS', 'CORPORATE'].map((cat) => (
+            {CATEGORIES.map((cat) => (
               <button
                 key={cat}
-                className="shrink-0 text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-foreground/60 hover:text-foreground border border-foreground/20 hover:border-foreground/40 px-3 py-2 rounded-sm transition-all active:scale-[0.97]"
+                onClick={() => setActiveCategory(cat)}
+                className={`shrink-0 text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] px-3 py-2 rounded-sm transition-all active:scale-[0.97] ${
+                  activeCategory === cat
+                    ? 'bg-header text-white'
+                    : 'text-foreground/60 border border-foreground/20 hover:border-foreground/40'
+                }`}
               >
-                {cat} CAKES
+                {cat === 'ALL' ? 'ALL CAKES' : `${cat} CAKES`}
               </button>
             ))}
           </div>
 
-          <ProductGrid products={cakes} />
+          <ProductGrid products={filteredCakes} />
         </div>
       </section>
 

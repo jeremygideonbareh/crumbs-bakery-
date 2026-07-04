@@ -83,9 +83,19 @@ export default function OrderModal({ open, onClose }) {
 
   const handleBack = () => setStep((s) => Math.max(s - 1, 0))
 
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+
   const handleSubmit = async () => {
-    if (!customer.name || !customer.email) {
-      toast.error('Please fill in your name and email.')
+    if (!customer.name || !customer.name.trim()) {
+      toast.error('Please enter your name.')
+      return
+    }
+    if (!customer.email || !isValidEmail(customer.email)) {
+      toast.error('Please enter a valid email address.')
+      return
+    }
+    if (customer.phone && customer.phone.length > 0 && !/^[\d\s+\-()]{6,20}$/.test(customer.phone)) {
+      toast.error('Please enter a valid phone number (6-20 digits).')
       return
     }
     const items = {
