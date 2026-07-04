@@ -14,6 +14,7 @@ import AnnouncementBar from './components/AnnouncementBar'
 import CategoryGrid from './components/CategoryGrid'
 import SheetCakesMarquee from './components/SheetCakesMarquee'
 import BrowseByBake from './components/BrowseByBake'
+import ImageCarousel from './components/ImageCarousel'
 import ProductCarousel from './components/ProductCarousel'
 import DeliverySection from './components/DeliverySection'
 import InstagramSection from './components/InstagramSection'
@@ -61,6 +62,7 @@ function App() {
         <SheetCakesMarquee />
         <BrowseByBake />
         <SignatureItems />
+        <ImageCarousel />
         <ProductCarousel />
         <DeliverySection />
         <Gallery />
