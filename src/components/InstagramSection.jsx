@@ -62,7 +62,8 @@ export default function InstagramSection() {
             {menuItems.map((item) => (
               <a
                 key={item.label}
-                href="#"
+                href="https://instagram.com/crumbsbakery/"
+                target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-3 px-3 py-3.5 text-sm text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all active:scale-[0.97]"
               >
                 <span className="text-base">{item.icon}</span>
@@ -88,7 +89,8 @@ export default function InstagramSection() {
           {images.map((src, i) => (
             <motion.a
               key={i}
-              href="#"
+              href="https://instagram.com/crumbsbakery/"
+              target="_blank" rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}

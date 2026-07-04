@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { SectionEyebrow, SectionHeading, CharReveal } from './RevealText'
+import { SectionEyebrow, CharReveal } from './RevealText'
 
 const items = [
   {

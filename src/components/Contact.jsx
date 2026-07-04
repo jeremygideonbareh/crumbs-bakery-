@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { SectionEyebrow, SectionHeading, CharReveal } from './RevealText'
+import { SectionEyebrow, CharReveal } from './RevealText'
 
 const contactInfo = [
   {

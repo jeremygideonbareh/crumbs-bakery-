@@ -120,7 +120,8 @@ export default function NewsSection() {
                   {article.excerpt}
                 </p>
                 <a
-                  href="#"
+                  href="https://instagram.com/crumbsbakery/"
+                  target="_blank" rel="noopener noreferrer"
                   className="font-work text-sm uppercase tracking-[0.15em] text-foreground hover:text-foreground transition-colors mt-4 inline-flex items-center gap-1.5 py-3"
                 >
                   Read More
@@ -150,7 +151,8 @@ export default function NewsSection() {
           className="text-center mt-10"
         >
           <a
-            href="#"
+            href="https://instagram.com/crumbsbakery/"
+            target="_blank" rel="noopener noreferrer"
             className="font-work text-sm uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 py-3"
           >
             View All Posts

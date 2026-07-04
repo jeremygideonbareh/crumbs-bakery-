@@ -1,26 +1,33 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { label: 'CAKES', href: '#cakes' },
-  { label: 'CUPCAKES', href: '#cupcakes' },
-  { label: 'COOKIES', href: '#cookies' },
-  { label: 'BROWNIES', href: '#brownies' },
-  { label: 'ABOUT', href: '#about' },
-  { label: 'REVIEWS', href: '#reviews' },
-  { label: 'CONTACT', href: '#contact' },
+  { label: 'HOME', href: '/' },
+  { label: 'CAKES', href: '/cakes' },
+  { label: 'CUPCAKES', href: '/cupcakes' },
+  { label: 'COOKIES', href: '/cookies' },
+  { label: 'BROWNIES', href: '/brownies' },
+  { label: 'ABOUT', href: '/about' },
+  { label: 'REVIEWS', href: '/reviews' },
+  { label: 'CONTACT', href: '/contact' },
 ]
 
 export default function Navbar({ onOrder }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    setOpen(false)
+  }, [location])
 
   return (
     <motion.header
@@ -31,19 +38,23 @@ export default function Navbar({ onOrder }) {
       }`}
     >
       <div className="mx-auto max-w-6xl flex items-center justify-between px-6 py-3.5">
-          <a href="#" className="font-serif text-xl md:text-2xl text-foreground font-bold tracking-wide py-3">
+        <Link to="/" className="font-serif text-xl md:text-2xl text-foreground font-bold tracking-wide py-3">
           Crumbs Bakery &amp; Cafe
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-6 lg:gap-7">
           {navLinks.map((link) => (
-            <a
+            <NavLink
               key={link.href}
-              href={link.href}
-              className="text-[11px] uppercase tracking-[0.15em] font-semibold text-foreground/80 hover:text-foreground transition-colors"
+              to={link.href}
+              className={({ isActive }) =>
+                `text-[11px] uppercase tracking-[0.15em] font-semibold transition-colors ${
+                  isActive ? 'text-foreground' : 'text-foreground/80 hover:text-foreground'
+                }`
+              }
             >
               {link.label}
-            </a>
+            </NavLink>
           ))}
           <button
             onClick={onOrder}
@@ -82,18 +93,22 @@ export default function Navbar({ onOrder }) {
             >
               <div className="flex flex-col items-center gap-1 pb-6 px-4">
                 {navLinks.map((link) => (
-                  <a
+                  <NavLink
                     key={link.href}
-                    href={link.href}
+                    to={link.href}
                     onClick={() => setOpen(false)}
-                    className="w-full text-center text-[13px] uppercase tracking-[0.15em] font-semibold text-foreground/80 hover:text-foreground hover:bg-foreground/10 transition-colors rounded-sm py-4 active:scale-[0.97]"
+                    className={({ isActive }) =>
+                      `w-full text-center text-[13px] uppercase tracking-[0.15em] font-semibold transition-colors rounded-sm py-4 active:scale-[0.97] ${
+                        isActive ? 'text-foreground bg-foreground/10' : 'text-foreground/80 hover:text-foreground hover:bg-foreground/10'
+                      }`
+                    }
                   >
                     {link.label}
-                  </a>
+                  </NavLink>
                 ))}
                 <button
                   onClick={() => { setOpen(false); if (onOrder) onOrder() }}
-                  className="w-full bg-white text-foreground font-bold text-xs uppercase tracking-[0.15em] px-5 py-4 rounded-sm hover:bg-foreground hover:text-white transition-colors mt-3 active:scale-[0.97] transition-transform"
+                  className="w-full bg-white text-foreground font-bold text-xs uppercase tracking-[0.15em] px-5 py-4 rounded-sm hover:bg-foreground hover:text-white transition-all mt-3 active:scale-[0.97]"
                 >
                   ORDER NOW
                 </button>

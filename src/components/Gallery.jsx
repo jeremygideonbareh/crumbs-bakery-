@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import { SectionEyebrow, SectionHeading, CharReveal } from './RevealText'
+import { SectionEyebrow, CharReveal } from './RevealText'
 
 const images = [
   {

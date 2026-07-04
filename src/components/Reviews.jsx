@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
-import { SectionEyebrow, SectionHeading, CharReveal } from './RevealText'
+import { SectionEyebrow, CharReveal } from './RevealText'
 
 const reviews = [
   {

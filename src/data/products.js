@@ -1,0 +1,50 @@
+const base = 'https://images.unsplash.com'
+
+export const cakes = [
+  { id: 'c1', name: 'VINTAGE HEART CAKE', price: '₹1,200', image: `${base}/photo-1558636508-e0db3814bd1d?w=400&q=80`, desc: 'Layered sponge with pink piped Swiss Meringue buttercream', variants: ['Ivory', 'Pink', 'Lilac', 'Green', 'Peach', 'Yellow', 'Blue'] },
+  { id: 'c2', name: 'BESPOKE CAKE', price: '₹2,500', image: `${base}/photo-1558301211-0d8c8ddee6ec?w=400&q=80`, desc: 'Design your own — choose flavours, fillings, and decorations' },
+  { id: 'c3', name: 'VINTAGE CAKE — SINGLE COLOUR', price: '₹1,500', image: `${base}/photo-1578985545062-69928b1d9587?w=400&q=80`, desc: 'Classic vintage style in your choice of colour', variants: ['Ivory', 'Blue', 'Peach', 'Lilac', 'Green', 'Pink', 'Yellow'] },
+  { id: 'c4', name: 'EDIBLE IMAGE PHOTO CAKE', price: '₹1,800', image: `${base}/photo-1528975604071-b4dc52a2d18c?w=400&q=80`, desc: 'Personalised edible photo printed on your cake', variants: ['Pink', 'Ivory', 'Yellow', 'Blue', 'Green', 'Peach', 'Lilac'] },
+  { id: 'c5', name: 'CLASSIC CHOCOLATE CAKE', price: '₹1,000', image: `${base}/photo-1588195538326-c5b1e9f80a01?w=400&q=80`, desc: 'Four rich layers with smooth chocolate buttercream' },
+  { id: 'c6', name: 'FUNFETTI SPRINKLE SHEET CAKE', price: '₹1,400', image: `${base}/photo-1464349095431-e9a21285b5f3?w=400&q=80`, desc: 'White frosting with colourful sprinkles — perfect for parties' },
+  { id: 'c7', name: 'RASPBERRY RIPPLE CAKE', price: '₹1,600', image: `${base}/photo-1565958011703-44f9829ba187?w=400&q=80`, desc: 'Vanilla sponge swirled with raspberry and creamy frosting' },
+  { id: 'c8', name: 'BIRTHDAY CAKE', price: '₹1,200', image: `${base}/photo-1558301211-0d8c8ddee6ec?w=400&q=80`, desc: 'Classic birthday cake with confetti sponge and buttercream', variants: ['Pink Skirt', 'Turquoise Skirt', 'Yellow Skirt'] },
+  { id: 'c9', name: 'CHOCOLATE BIRTHDAY CAKE', price: '₹1,300', image: `${base}/photo-1606890737304-57a1ca8a5b62?w=400&q=80`, desc: 'Chocolate drip cake with piped icing and sprinkles' },
+  { id: 'c10', name: 'CLASSIC LEMON DRIZZLE CAKE', price: '₹1,100', image: `${base}/photo-1488477181946-6428a0291777?w=400&q=80`, desc: 'Four layers with lemon meringue buttercream' },
+  { id: 'c11', name: 'CLASSIC RED VELVET CAKE', price: '₹1,200', image: `${base}/photo-1775210603506-201ed7bec326?w=400&q=80`, desc: 'Smooth cream cheese frosting on moist red velvet layers' },
+  { id: 'c12', name: 'CLASSIC CARROT CAKE', price: '₹1,100', image: `${base}/photo-1509365465985-25d11c17e812?w=400&q=80`, desc: 'Moist carrot cake with cream cheese icing and walnuts' },
+]
+
+export const cupcakes = [
+  { id: 'cp1', name: 'VANILLA CUPCAKES (DOZEN)', price: '₹600', image: `${base}/photo-1614707267537-b85aaf00c4b7?w=400&q=80`, desc: 'Classic vanilla sponge with silky vanilla buttercream' },
+  { id: 'cp2', name: 'CHOCOLATE CUPCAKES (DOZEN)', price: '₹650', image: `${base}/photo-1614707267537-b85aaf00c4b7?w=400&q=80`, desc: 'Rich chocolate sponge with chocolate ganache frosting' },
+  { id: 'cp3', name: 'RED VELVET CUPCAKES (DOZEN)', price: '₹700', image: `${base}/photo-1614707267537-b85aaf00c4b7?w=400&q=80`, desc: 'Red velvet with cream cheese frosting' },
+  { id: 'cp4', name: 'CORPORATE LOGO CUPCAKES (DOZEN)', price: '₹900', image: `${base}/photo-1614707267537-b85aaf00c4b7?w=400&q=80`, desc: 'Edible logo printed on each cupcake — perfect for events', badge: 'Corporate' },
+  { id: 'cp5', name: 'EDIBLE PHOTO CUPCAKES (DOZEN)', price: '₹800', image: `${base}/photo-1614707267537-b85aaf00c4b7?w=400&q=80`, desc: 'Personalised edible photo toppers on vanilla cupcakes' },
+  { id: 'cp6', name: 'PRIDE CUPCAKES (DOZEN)', price: '₹750', image: `${base}/photo-1614707267537-b85aaf00c4b7?w=400&q=80`, desc: 'Rainbow-frosted cupcakes celebrating Pride' },
+  { id: 'cp7', name: 'GLUTEN FREE VANILLA CUPCAKES', price: '₹850', image: `${base}/photo-1614707267537-b85aaf00c4b7?w=400&q=80`, desc: 'Gluten-free vanilla sponge with buttercream', badge: 'GF' },
+  { id: 'cp8', name: 'CUSTOM DESIGN CUPCAKES', price: '₹950', image: `${base}/photo-1614707267537-b85aaf00c4b7?w=400&q=80`, desc: 'Fully custom design — send us your theme!' },
+]
+
+export const cookies = [
+  { id: 'co1', name: 'PICK YOUR OWN COOKIES (6 PACK)', price: '₹500', image: `${base}/photo-1499636136210-6f4ee915583e?w=400&q=80`, desc: 'Mix and match any 6 cookies from our menu' },
+  { id: 'co2', name: 'CHOC CHIP NY COOKIE', price: '₹120', image: `${base}/photo-1499636136210-6f4ee915583e?w=400&q=80`, desc: 'Classic New York-style loaded with dark chocolate chunks' },
+  { id: 'co3', name: 'RED VELVET NY COOKIE', price: '₹130', image: `${base}/photo-1499636136210-6f4ee915583e?w=400&q=80`, desc: 'Red velvet cookie with white chocolate chips' },
+  { id: 'co4', name: 'BIRTHDAY CAKE NY COOKIE', price: '₹130', image: `${base}/photo-1499636136210-6f4ee915583e?w=400&q=80`, desc: 'Birthday cake flavoured with sprinkles' },
+  { id: 'co5', name: 'DOUBLE CHOC CHIP COOKIE', price: '₹140', image: `${base}/photo-1499636136210-6f4ee915583e?w=400&q=80`, desc: 'Double the chocolate, double the indulgence' },
+  { id: 'co6', name: 'BISCOFF NY COOKIE', price: '₹140', image: `${base}/photo-1499636136210-6f4ee915583e?w=400&q=80`, desc: 'Biscoff spread swirled into cookie dough' },
+  { id: 'co7', name: 'COOKIES & CREAM COOKIE', price: '₹130', image: `${base}/photo-1499636136210-6f4ee915583e?w=400&q=80`, desc: 'Oreo chunks in a vanilla cookie base' },
+  { id: 'co8', name: 'SALTED CARAMEL PECAN COOKIE', price: '₹150', image: `${base}/photo-1499636136210-6f4ee915583e?w=400&q=80`, desc: 'Salted caramel sauce, pecans, and dark chocolate' },
+  { id: 'co9', name: 'ULTIMATE FAVOURITES BOX', price: '₹750', image: `${base}/photo-1499636136210-6f4ee915583e?w=400&q=80`, desc: '6 assorted best-selling cookies in one box' },
+  { id: 'co10', name: 'BIG BIRTHDAY BOX', price: '₹900', image: `${base}/photo-1499636136210-6f4ee915583e?w=400&q=80`, desc: '12 cookies — the ultimate birthday treat' },
+]
+
+export const brownies = [
+  { id: 'b1', name: 'CLASSIC BROWNIE (BOX OF 6)', price: '₹600', image: `${base}/photo-1606313564200-e75d5e30476c?w=400&q=80`, desc: 'Rich, fudgy Belgian chocolate brownies' },
+  { id: 'b2', name: 'CARAMEL CORNFLAKE BROWNIE (BOX OF 6)', price: '₹700', image: `${base}/photo-1606313564200-e75d5e30476c?w=400&q=80`, desc: 'Crunchy cornflake topping with caramel drizzle' },
+  { id: 'b3', name: 'CORPORATE BROWNIES WITH LOGO (BOX OF 6)', price: '₹850', image: `${base}/photo-1606313564200-e75d5e30476c?w=400&q=80`, desc: 'Edible logo on every brownie — branded perfection', badge: 'Corporate' },
+  { id: 'b4', name: 'GLUTEN FREE ALMOND BROWNIE (BOX OF 6)', price: '₹800', image: `${base}/photo-1606313564200-e75d5e30476c?w=400&q=80`, desc: 'Gluten-free almond flour brownies, same fudgy taste', badge: 'GF' },
+  { id: 'b5', name: 'PRIDE BROWNIES (BOX OF 6)', price: '₹750', image: `${base}/photo-1606313564200-e75d5e30476c?w=400&q=80`, desc: 'Rainbow-topped brownies celebrating Pride' },
+  { id: 'b6', name: 'EDIBLE IMAGE BROWNIES (BOX OF 6)', price: '₹900', image: `${base}/photo-1606313564200-e75d5e30476c?w=400&q=80`, desc: 'Personalised edible photos on fudgy brownies' },
+  { id: 'b7', name: 'BROWNIE GIFT BOX', price: '₹1,000', image: `${base}/photo-1606313564200-e75d5e30476c?w=400&q=80`, desc: 'Assorted brownies in a beautiful gift box' },
+]
