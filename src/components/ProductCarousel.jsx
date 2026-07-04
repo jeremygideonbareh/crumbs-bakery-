@@ -147,7 +147,7 @@ export default function ProductCarousel() {
                 <p className="font-work text-sm md:text-base font-bold text-foreground mb-2 md:mb-3">
                   {product.price}
                 </p>
-                <button className="w-full font-work text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-4 py-3 md:py-2.5 transition-all duration-200 rounded-sm min-h-[44px] md:min-h-0">
+                <button className="w-full font-work text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-ink-marshmallow hover:text-foreground hover:border-ink-marshmallow px-4 py-3 md:py-2.5 transition-all duration-200 rounded-sm min-h-[44px] md:min-h-0">
                   Add to Order
                 </button>
               </div>
