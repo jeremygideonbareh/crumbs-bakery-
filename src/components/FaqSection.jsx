@@ -67,7 +67,7 @@ export default function FaqSection() {
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i)
 
   return (
-    <section className="bg-primary px-4 py-8 md:px-6 md:py-20">
+    <section className="bg-announcement px-4 py-8 md:px-6 md:py-20">
       <div className="mx-auto max-w-6xl">
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
