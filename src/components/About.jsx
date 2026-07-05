@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion'
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600&q=80&fit=crop`
+
 const columns = [
   {
-    image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=600&q=80',
+    image: PEXELS(263564),
     heading: 'CRUMBS BAKERY & CAFE, SHILLONG',
     body: () => (
       <>
@@ -18,7 +21,7 @@ const columns = [
     href: '#contact',
   },
   {
-    image: 'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=600&q=80',
+    image: PEXELS(3962290),
     heading: 'CAKES & BAKES IN SHILLONG',
     body: () => (
       <>
@@ -35,7 +38,7 @@ const columns = [
     href: '#order',
   },
   {
-    image: 'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?w=600&q=80',
+    image: PEXELS(65882),
     heading: 'DELIVERY ACROSS SHILLONG',
     body: () => (
       <>

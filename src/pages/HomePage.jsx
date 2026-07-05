@@ -17,7 +17,7 @@ import FaqSection from '@/components/FaqSection'
 import { Button } from '@/components/ui/button'
 import { useOrderContext } from '@/components/Layout'
 
-const HERO_IMAGE = 'https://images.unsplash.com/photo-1775210603506-201ed7bec326?w=1920&q=80'
+const HERO_IMAGE = 'https://images.pexels.com/photos/263564/pexels-photo-263564.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80&fit=crop'
 
 export default function HomePage() {
   const { onOrder } = useOrderContext()

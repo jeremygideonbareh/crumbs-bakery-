@@ -6,7 +6,7 @@ import { useProducts } from '@/hooks/useProducts'
 
 const CATEGORIES = ['ALL', 'BIRTHDAY', 'CELEBRATION', 'SHEET', 'BESPOKE', 'CLASSIC', 'VINTAGE', 'KIDS', 'CORPORATE']
 
-const HERO = 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1200&q=80'
+const HERO = 'https://images.pexels.com/photos/2144200/pexels-photo-2144200.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80&fit=crop'
 
 export default function CakesPage() {
   const [activeCategory, setActiveCategory] = useState('ALL')

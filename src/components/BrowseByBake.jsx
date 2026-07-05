@@ -1,30 +1,28 @@
 import { motion } from 'framer-motion'
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=400&q=80&fit=crop`
+
 const bakes = [
   {
     label: 'CAKES',
-    image:
-      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80',
+    image: PEXELS(140831),
   },
   {
     label: 'CUPCAKES',
-    image:
-      'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&q=80',
+    image: PEXELS(14105),
   },
   {
     label: 'COOKIES',
-    image:
-      'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&q=80',
+    image: PEXELS(37353913),
   },
   {
     label: 'BROWNIES',
-    image:
-      'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&q=80',
+    image: PEXELS(2067396),
   },
   {
     label: 'CORPORATE',
-    image:
-      'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400&q=80',
+    image: PEXELS(1793037),
   },
 ]
 

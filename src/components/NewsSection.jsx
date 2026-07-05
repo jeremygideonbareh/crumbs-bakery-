@@ -1,50 +1,47 @@
 import { motion } from 'framer-motion';
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600&q=80&fit=crop`
+
 const articles = [
   {
     title: 'New Menu Items Have Landed at Crumbs Bakery!',
-    image:
-      'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=600&q=80',
+    image: PEXELS(2144200),
     excerpt:
       'Coming to Crumbs Bakery this weekend — new cakes, fresh flavours, and exciting treats you won\'t want to miss!',
     date: 'June 24, 2026',
   },
   {
     title: 'Valrhona Chocolate Cookies Are Here!!',
-    image:
-      'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&q=80',
+    image: PEXELS(37353913),
     excerpt:
       'There\'s a brand new, limited edition cookie — the Valrhona Choc Chip cookie, packed with delicious dark chocolate.',
     date: 'June 20, 2026',
   },
   {
     title: 'What\'s Happening in Store This Week',
-    image:
-      'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=600&q=80',
+    image: PEXELS(14105),
     excerpt:
       'There\'s a lot of choice on the counter this week — Malteser Cupcakes, fresh bakes, and some old favourites are back!',
     date: 'June 18, 2026',
   },
   {
     title: 'A Little Look in the Bakery',
-    image:
-      'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?w=600&q=80',
+    image: PEXELS(5702761),
     excerpt:
       'A peek behind the scenes at our Jaiaw bakery — see the gorgeous cakes our team has been working on this week.',
     date: 'June 14, 2026',
   },
   {
     title: 'Recent Cakes from Our Bakery!',
-    image:
-      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80',
+    image: PEXELS(140831),
     excerpt:
       'There have been so many gorgeous cakes flying out of the bakery this week — here\'s a look at a few of our favourites.',
     date: 'June 10, 2026',
   },
   {
     title: 'The Cutest New Cakes on Our Menu!',
-    image:
-      'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=600&q=80',
+    image: PEXELS(1793037),
     excerpt:
       'We\'re obsessed with these new cakes and we think you will be too! Available to order now for pickup or delivery.',
     date: 'June 5, 2026',

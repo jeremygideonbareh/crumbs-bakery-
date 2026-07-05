@@ -2,11 +2,14 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 
+// Pexels curated food photography for team section
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=300&q=80&fit=crop`
+
 const team = [
-  { name: 'Jemma', role: 'Founder & Head Baker', image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=300&q=80' },
-  { name: 'Priya', role: 'Pastry Chef', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&q=80' },
-  { name: 'Arun', role: 'Operations Manager', image: 'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=300&q=80' },
-  { name: 'Maya', role: 'Customer Experience', image: 'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?w=300&q=80' },
+  { name: 'Jemma', role: 'Founder & Head Baker', image: PEXELS(5702761) },
+  { name: 'Priya', role: 'Pastry Chef', image: PEXELS(5702761) },
+  { name: 'Arun', role: 'Operations Manager', image: PEXELS(3962290) },
+  { name: 'Maya', role: 'Customer Experience', image: PEXELS(65882) },
 ]
 
 const values = [
@@ -56,7 +59,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="aspect-[4/3] overflow-hidden rounded-lg">
               <img
-                src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=600&q=80"
+                src="https://images.pexels.com/photos/263564/pexels-photo-263564.jpeg?auto=compress&cs=tinysrgb&w=600&q=80&fit=crop"
                 alt="Crumbs Bakery"
                 className="w-full h-full object-cover"
                 loading="lazy"

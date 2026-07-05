@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
 
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=200&q=80&fit=crop`
+
 const items = Array.from({ length: 10 }, (_, i) => ({
   label: 'SHEET CAKES',
   image: [
-    'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&q=80',
-    'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=200&q=80',
-    'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=200&q=80',
+    PEXELS(140831),
+    PEXELS(2144200),
+    PEXELS(1793037),
   ][i % 3],
 }))
 

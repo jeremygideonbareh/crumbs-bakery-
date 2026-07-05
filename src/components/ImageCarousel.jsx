@@ -2,21 +2,24 @@ import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800&q=80&fit=crop`
+
 const slides = [
   {
-    image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=800&q=80',
+    image: PEXELS(2144200),
     label: 'Artisanal Bakes',
   },
   {
-    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=80',
+    image: PEXELS(132694),
     label: 'Fresh Daily',
   },
   {
-    image: 'https://images.unsplash.com/photo-1486427944544-d2c246c4c5f5?w=800&q=80',
+    image: PEXELS(2067396),
     label: 'Crafted with Love',
   },
   {
-    image: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=800&q=80',
+    image: PEXELS(14766327),
     label: 'Shillong\'s Finest',
   },
 ]

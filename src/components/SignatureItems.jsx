@@ -1,13 +1,16 @@
 import { motion } from 'framer-motion'
 import { SectionEyebrow, CharReveal } from './RevealText'
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600&q=80&fit=crop`
+
 const items = [
   {
     name: 'Tiramisu',
     desc: 'Our signature — bittersweet coffee-soaked layers with silky mascarpone cream. The best in Shillong, hands down.',
     highlight: 'Customer Favorite',
     price: '₹250',
-    image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600&q=80',
+    image: PEXELS(14766327),
     badge: 'bg-amber-100 text-amber-700',
   },
   {
@@ -15,7 +18,7 @@ const items = [
     desc: 'Light, airy choux pastry filled with velvety vanilla cream. Perfectly portioned for a quick indulgence.',
     highlight: 'Best Seller',
     price: '₹180',
-    image: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=600&q=80',
+    image: PEXELS(16402099),
     badge: 'bg-green-100 text-green-700',
   },
   {
@@ -23,7 +26,7 @@ const items = [
     desc: 'New York-style baked cheesecake with a buttery graham crust. Available in multiple rotating flavours.',
     highlight: 'Must Try',
     price: '₹350',
-    image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=600&q=80',
+    image: PEXELS(38058461),
     badge: 'bg-purple-100 text-purple-700',
   },
   {
@@ -31,7 +34,7 @@ const items = [
     desc: 'Chewy, gooey, and loaded with chocolate chunks. Made with real butter and love in every batch.',
     highlight: 'Perfect Pair',
     price: '₹120',
-    image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&q=80',
+    image: PEXELS(37353913),
     badge: 'bg-orange-100 text-orange-700',
   },
   {
@@ -39,7 +42,7 @@ const items = [
     desc: 'From savoury puffs to warm sandwiches — everything served hot, fresh, and satisfying.',
     highlight: 'Quick Bite',
     price: '₹150',
-    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80',
+    image: PEXELS(65882),
     badge: 'bg-green-100 text-green-700',
   },
   {
@@ -47,7 +50,7 @@ const items = [
     desc: 'Birthday, anniversary, or just because. Order a custom-designed cake for your special occasion.',
     highlight: 'Celebrate',
     price: '₹500+',
-    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80',
+    image: PEXELS(1793037),
     badge: 'bg-rose-100 text-rose-700',
   },
 ]

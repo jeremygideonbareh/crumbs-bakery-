@@ -1,25 +1,24 @@
 import { motion } from 'framer-motion'
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=400&q=80&fit=crop`
+
 const areas = [
   {
     name: 'CENTRAL SHILLONG',
-    image:
-      'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=80',
+    image: PEXELS(65882),
   },
   {
     name: "JAIAW & LAITUMKHRAH",
-    image:
-      'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&q=80',
+    image: PEXELS(263564),
   },
   {
     name: "POLICE BAZAR & WARD'S LAKE",
-    image:
-      'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400&q=80',
+    image: PEXELS(3962290),
   },
   {
     name: 'GREATER SHILLONG AREA',
-    image:
-      'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?w=400&q=80',
+    image: PEXELS(5702761),
   },
 ]
 

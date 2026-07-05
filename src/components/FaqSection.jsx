@@ -2,67 +2,61 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=400&q=80&fit=crop`
+
 const faqItems = [
   {
     title: "OVER 10 YEARS AS SHILLONG'S BEST BAKERY",
-    image:
-      'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&q=80',
+    image: PEXELS(263564),
     content:
       "Crumbs Bakery began life in the heart of Jaiaw way back in 2014 and we've dedicated ourselves to making incredible Cakes, Cupcakes, Cookies and Brownies ever since. We're known as one of the best bakeries in Shillong and every member of our team works tirelessly every day to ensure all our bakes are perfect.",
   },
   {
     title: 'CUSTOMER SERVICE THAT GOES ABOVE & BEYOND',
-    image:
-      'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400&q=80',
+    image: PEXELS(2144200),
     content:
       'Our team is passionate about cake, and even more passionate about offering exceptional customer service. We understand every order is special and will always go above and beyond to ensure your experience is perfect.',
   },
   {
     title: 'EVERYTHING FRESHLY BAKED IN SMALL BATCHES',
-    image:
-      'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?w=400&q=80',
+    image: PEXELS(140831),
     content:
       "We only ever bake to order and we always work in small batches — it takes longer but it means we can keep a fastidious eye on the quality of everything that goes into our cakes and bakes.",
   },
   {
     title: 'USING THE FINEST INGREDIENTS AVAILABLE',
-    image:
-      'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80',
+    image: PEXELS(2067396),
     content:
       'All our Cakes, Cupcakes, Cookies and Brownies are made using the best ingredients we can get — from free-range eggs to the finest chocolate, the quality of ingredients has always been at the forefront of what we do.',
   },
   {
     title: 'TRUSTED BY THOUSANDS OF HAPPY CUSTOMERS',
-    image:
-      'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=400&q=80',
+    image: PEXELS(14105),
     content:
       "With hundreds of five-star reviews, we take pride in delivering exceptional treats every time. Whether it's a custom cake, a box of cookies, or a cupcake from our cafe, you can be sure the quality will be unmatched.",
   },
   {
     title: 'DESIGN YOUR OWN CAKE ONLINE',
-    image:
-      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80',
+    image: PEXELS(1793037),
     content:
       "You can use our custom cake builder to design your dream cake. Choose flavours, fillings, frosting, and decorations — make it uniquely yours and our bakers will bring your creation to life.",
   },
   {
     title: 'SAFE & SPEEDY DELIVERY IN SHILLONG',
-    image:
-      'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=80',
+    image: PEXELS(65882),
     content:
       'We offer guaranteed safe delivery anywhere in Shillong, so you can be sure your cake will arrive looking just as perfect as when it left the bakery.',
   },
   {
     title: 'INDEPENDENTLY OWNED & OPERATED',
-    image:
-      'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&q=80',
+    image: PEXELS(38058461),
     content:
       "Since we started out, Crumbs Bakery has been independently owned and operated. We're a local Shillong business, and every order supports local families and the community.",
   },
   {
     title: 'BESPOKE CAKE OPTIONS AVAILABLE',
-    image:
-      'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400&q=80',
+    image: PEXELS(132694),
     content:
       'From fully custom cakes to edible printed images and piped messages, we offer the widest range of customisations to ensure your cake is perfect for you. Contact us — we love to talk cake!',
   },

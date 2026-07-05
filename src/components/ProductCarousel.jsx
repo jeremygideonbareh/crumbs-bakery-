@@ -2,19 +2,22 @@ import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useOrderContext } from './Layout';
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=400&q=80&fit=crop`
+
 const products = [
-  { name: 'VINTAGE HEART CAKE', price: '₹1,200', image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&q=80' },
-  { name: 'DESIGN YOUR OWN BESPOKE CAKE', price: '₹2,500', image: 'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400&q=80' },
-  { name: 'VINTAGE CAKE - SINGLE COLOUR', price: '₹1,500', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80' },
-  { name: 'EDIBLE IMAGE PHOTO CAKE', price: '₹1,800', image: 'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?w=400&q=80' },
-  { name: 'CLASSIC CHOCOLATE CAKE', price: '₹1,000', image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a01?w=400&q=80' },
-  { name: 'FUNFETTI SPRINKLE CAKE', price: '₹1,400', image: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&q=80' },
-  { name: 'RASPBERRY RIPPLE CAKE', price: '₹1,600', image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80' },
-  { name: 'BIRTHDAY CAKE', price: '₹1,200', image: 'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400&q=80' },
-  { name: 'CHOCOLATE BIRTHDAY CAKE', price: '₹1,300', image: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&q=80' },
-  { name: 'CUSTOM CUPCAKES (DOZEN)', price: '₹900', image: 'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&q=80' },
-  { name: 'COOKIE BOX (6 PACK)', price: '₹600', image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&q=80' },
-  { name: 'BROWNIE BOX (6 PACK)', price: '₹700', image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&q=80' },
+  { name: 'VINTAGE HEART CAKE', price: '₹1,200', image: PEXELS(140831) },
+  { name: 'DESIGN YOUR OWN BESPOKE CAKE', price: '₹2,500', image: PEXELS(2144200) },
+  { name: 'VINTAGE CAKE - SINGLE COLOUR', price: '₹1,500', image: PEXELS(1793037) },
+  { name: 'EDIBLE IMAGE PHOTO CAKE', price: '₹1,800', image: PEXELS(37110821) },
+  { name: 'CLASSIC CHOCOLATE CAKE', price: '₹1,000', image: PEXELS(132694) },
+  { name: 'FUNFETTI SPRINKLE CAKE', price: '₹1,400', image: PEXELS(34155188) },
+  { name: 'RASPBERRY RIPPLE CAKE', price: '₹1,600', image: PEXELS(29230134) },
+  { name: 'BIRTHDAY CAKE', price: '₹1,200', image: PEXELS(7328340) },
+  { name: 'CHOCOLATE BIRTHDAY CAKE', price: '₹1,300', image: PEXELS(34155188) },
+  { name: 'CUSTOM CUPCAKES (DOZEN)', price: '₹900', image: PEXELS(14105) },
+  { name: 'COOKIE BOX (6 PACK)', price: '₹600', image: PEXELS(37353913) },
+  { name: 'BROWNIE BOX (6 PACK)', price: '₹700', image: PEXELS(2067396) },
 ];
 
 export default function ProductCarousel() {

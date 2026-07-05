@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useOrderContext } from '@/components/Layout'
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800&q=80&fit=crop`
+
 const categories = [
   {
     name: 'AMAZING CAKES',
@@ -10,8 +13,7 @@ const categories = [
     cta: 'SHOP CAKES',
     href: '/cakes',
     isRoute: true,
-    image:
-      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80',
+    image: PEXELS(140831),
   },
   {
     name: 'PERFECT CUPCAKES',
@@ -19,8 +21,7 @@ const categories = [
     cta: 'SHOP CUPCAKES',
     href: '/cupcakes',
     isRoute: true,
-    image:
-      'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=800&q=80',
+    image: PEXELS(14105),
   },
   {
     name: 'DECADENT DESSERTS',
@@ -28,8 +29,7 @@ const categories = [
     cta: 'SHOP DESSERTS',
     href: '/desserts',
     isRoute: true,
-    image:
-      'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80',
+    image: PEXELS(2067396),
   },
   {
     name: 'CUSTOM ORDERS',
@@ -37,8 +37,7 @@ const categories = [
     cta: 'ORDER NOW',
     href: '#order',
     isRoute: false,
-    image:
-      'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=800&q=80',
+    image: PEXELS(1793037),
   },
   {
     name: 'CAFE EXPERIENCE',
@@ -46,8 +45,7 @@ const categories = [
     cta: 'FIND US',
     href: '/contact',
     isRoute: true,
-    image:
-      'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&q=80',
+    image: PEXELS(3962290),
   },
 ]
 

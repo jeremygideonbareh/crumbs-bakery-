@@ -1,18 +1,21 @@
 import { motion } from 'framer-motion';
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=300&q=80&fit=crop`
+
 const images = [
-  'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=300&q=80',
-  'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&q=80',
-  'https://images.unsplash.com/photo-1486427944544-d2c246c4c5f5?w=300&q=80',
-  'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?w=300&q=80',
-  'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=300&q=80',
-  'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=300&q=80',
-  'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=300&q=80',
-  'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=300&q=80',
-  'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=300&q=80',
-  'https://images.unsplash.com/photo-1588195538326-c5b1e1b48098?w=300&q=80',
-  'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=300&q=80',
-  'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=300&q=80',
+  PEXELS(140831),
+  PEXELS(2144200),
+  PEXELS(1793037),
+  PEXELS(132694),
+  PEXELS(14105),
+  PEXELS(2067396),
+  PEXELS(2989701),
+  PEXELS(1895377),
+  PEXELS(37353913),
+  PEXELS(32421567),
+  PEXELS(14766327),
+  PEXELS(38058461),
 ];
 
 const menuItems = [

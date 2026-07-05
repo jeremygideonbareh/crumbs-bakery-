@@ -1,29 +1,29 @@
 import { motion } from 'framer-motion';
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600&q=80&fit=crop`
+
 const cards = [
   {
     title: 'BAKE CLUB',
     desc: 'PDF Recipes, Behind-the-Scenes content, site-wide discounts.',
     cta: 'SIGN UP NOW',
     href: '#',
-    image:
-      'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=600&q=80',
+    image: PEXELS(140831),
   },
   {
     title: 'YOUTUBE',
     desc: 'New Recipe videos uploaded every week on our channel.',
     cta: 'CHECK IT OUT',
     href: '#',
-    image:
-      'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=600&q=80',
+    image: PEXELS(2144200),
   },
   {
     title: 'COOKIE CLUB',
     desc: 'Everything in Bake Club plus a box of Cookies delivered every month!',
     cta: 'GET THOSE COOKIES',
     href: '#',
-    image:
-      'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&q=80',
+    image: PEXELS(37353913),
   },
 ];
 

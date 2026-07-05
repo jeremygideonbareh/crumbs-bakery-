@@ -3,7 +3,7 @@ import CategoryHero from '@/components/CategoryHero'
 import ProductGrid from '@/components/ProductGrid'
 import { useProducts } from '@/hooks/useProducts'
 
-const HERO = 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=1200&q=80'
+const HERO = 'https://images.pexels.com/photos/14766327/pexels-photo-14766327.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80&fit=crop'
 
 export default function DessertsPage() {
   const { products } = useProducts('desserts')

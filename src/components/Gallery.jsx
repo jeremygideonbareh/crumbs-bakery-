@@ -3,34 +3,37 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { SectionEyebrow, CharReveal } from './RevealText'
 
+// Pexels curated cinematic food photography
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800&q=80&fit=crop`
+
 const images = [
   {
-    src: 'https://images.unsplash.com/photo-1770158981584-2cfc14d75609?w=800&q=80',
+    src: PEXELS(140831),
     alt: 'Assortment of cakes and pastries on a platter',
     caption: 'Artisanal Cakes',
   },
   {
-    src: 'https://images.unsplash.com/photo-1769615020962-1e5e2f6ec361?w=800&q=80',
+    src: PEXELS(32916204),
     alt: 'Fresh pastries displayed in a bakery case',
     caption: 'Fresh Pastries',
   },
   {
-    src: 'https://images.unsplash.com/photo-1775210603506-201ed7bec326?w=800&q=80',
+    src: PEXELS(32706248),
     alt: 'Cakes and macarons in a display case',
     caption: 'Cakes & Macarons',
   },
   {
-    src: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80',
+    src: PEXELS(14766327),
     alt: 'Tiramisu dessert',
     caption: 'Signature Tiramisu',
   },
   {
-    src: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80',
+    src: PEXELS(16402099),
     alt: 'Cream puffs and eclairs',
     caption: 'Cream Puffs',
   },
   {
-    src: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=800&q=80',
+    src: PEXELS(38058461),
     alt: 'Cheesecake with berries',
     caption: 'Cheesecakes',
   },
