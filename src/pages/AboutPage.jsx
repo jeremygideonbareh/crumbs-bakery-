@@ -8,7 +8,7 @@ const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id
 const team = [
   { name: 'Jemma', role: 'Founder & Head Baker', image: PEXELS(5702761) },
   { name: 'Priya', role: 'Pastry Chef', image: PEXELS(5702761) },
-  { name: 'Arun', role: 'Operations Manager', image: PEXELS(65882) },
+  { name: 'Arun', role: 'Operations Manager', image: PEXELS(5702761) },
   { name: 'Maya', role: 'Customer Experience', image: PEXELS(32916204) },
 ]
 

@@ -38,7 +38,7 @@ const columns = [
     href: '#order',
   },
   {
-    image: PEXELS(65882),
+    image: PEXELS(5702761),
     heading: 'DELIVERY ACROSS SHILLONG',
     body: () => (
       <>

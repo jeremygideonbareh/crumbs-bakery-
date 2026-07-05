@@ -44,7 +44,7 @@ const faqItems = [
   },
   {
     title: 'SAFE & SPEEDY DELIVERY IN SHILLONG',
-    image: PEXELS(65882),
+    image: PEXELS(5702761),
     content:
       'We offer guaranteed safe delivery anywhere in Shillong, so you can be sure your cake will arrive looking just as perfect as when it left the bakery.',
   },
