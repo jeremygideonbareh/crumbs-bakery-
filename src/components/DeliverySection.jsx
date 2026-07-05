@@ -10,11 +10,11 @@ const areas = [
   },
   {
     name: "JAIAW & LAITUMKHRAH",
-    image: PEXELS(263564),
+    image: PEXELS(32916204),
   },
   {
     name: "POLICE BAZAR & WARD'S LAKE",
-    image: PEXELS(3962290),
+    image: PEXELS(65882),
   },
   {
     name: 'GREATER SHILLONG AREA',

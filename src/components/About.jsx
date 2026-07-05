@@ -5,7 +5,7 @@ const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id
 
 const columns = [
   {
-    image: PEXELS(263564),
+    image: PEXELS(140831),
     heading: 'CRUMBS BAKERY & CAFE, SHILLONG',
     body: () => (
       <>
@@ -21,7 +21,7 @@ const columns = [
     href: '#contact',
   },
   {
-    image: PEXELS(3962290),
+    image: PEXELS(1793037),
     heading: 'CAKES & BAKES IN SHILLONG',
     body: () => (
       <>

@@ -8,7 +8,7 @@ const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id
 const team = [
   { name: 'Jemma', role: 'Founder & Head Baker', image: PEXELS(5702761) },
   { name: 'Priya', role: 'Pastry Chef', image: PEXELS(5702761) },
-  { name: 'Arun', role: 'Operations Manager', image: PEXELS(3962290) },
+  { name: 'Arun', role: 'Operations Manager', image: PEXELS(65882) },
   { name: 'Maya', role: 'Customer Experience', image: PEXELS(65882) },
 ]
 
@@ -59,7 +59,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="aspect-[4/3] overflow-hidden rounded-lg">
               <img
-                src="https://images.pexels.com/photos/263564/pexels-photo-263564.jpeg?auto=compress&cs=tinysrgb&w=600&q=80&fit=crop"
+                src="https://images.pexels.com/photos/2144200/pexels-photo-2144200.jpeg?auto=compress&cs=tinysrgb&w=600&q=80&fit=crop"
                 alt="Crumbs Bakery"
                 className="w-full h-full object-cover"
                 loading="lazy"

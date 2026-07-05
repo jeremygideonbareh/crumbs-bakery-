@@ -45,7 +45,7 @@ const categories = [
     cta: 'FIND US',
     href: '/contact',
     isRoute: true,
-    image: PEXELS(3962290),
+    image: PEXELS(132694),
   },
 ]
 

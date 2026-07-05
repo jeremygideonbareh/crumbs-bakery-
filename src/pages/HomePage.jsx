@@ -17,7 +17,7 @@ import FaqSection from '@/components/FaqSection'
 import { Button } from '@/components/ui/button'
 import { useOrderContext } from '@/components/Layout'
 
-const HERO_IMAGE = 'https://images.pexels.com/photos/263564/pexels-photo-263564.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80&fit=crop'
+const HERO_IMAGE = 'https://images.pexels.com/photos/2144200/pexels-photo-2144200.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80&fit=crop'
 
 export default function HomePage() {
   const { onOrder } = useOrderContext()
@@ -79,7 +79,7 @@ export default function HomePage() {
 
       <NewsSection />
 
-      <section className="bg-background py-4">
+      <section className="bg-primary py-4">
         <div className="mx-auto max-w-6xl px-4">
           <div className="border-t border-primary/10 pt-6 pb-2 text-center">
             <p className="text-xs text-muted-foreground font-work mb-3">

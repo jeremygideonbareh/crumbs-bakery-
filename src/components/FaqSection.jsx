@@ -8,7 +8,7 @@ const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id
 const faqItems = [
   {
     title: "OVER 10 YEARS AS SHILLONG'S BEST BAKERY",
-    image: PEXELS(263564),
+    image: PEXELS(2144200),
     content:
       "Crumbs Bakery began life in the heart of Jaiaw way back in 2014 and we've dedicated ourselves to making incredible Cakes, Cupcakes, Cookies and Brownies ever since. We're known as one of the best bakeries in Shillong and every member of our team works tirelessly every day to ensure all our bakes are perfect.",
   },
