@@ -94,7 +94,7 @@ export default function OrderModal({ open, onClose }) {
       toast.error('Please enter a valid email address.')
       return
     }
-    if (customer.phone && customer.phone.length > 0 && !/^[\d\s+\-()]{6,20}$/.test(customer.phone)) {
+    if (!customer.phone || !customer.phone.trim() || !/^[\d\s+\-()]{6,20}$/.test(customer.phone.trim())) {
       toast.error('Please enter a valid phone number (6-20 digits).')
       return
     }
@@ -320,7 +320,7 @@ export default function OrderModal({ open, onClose }) {
                   <div className="space-y-2">
                     <input type="text" placeholder="Your Name *" value={customer.name} onChange={(e) => setCustomer((p) => ({ ...p, name: e.target.value }))} className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none" />
                     <input type="email" placeholder="Email Address *" value={customer.email} onChange={(e) => setCustomer((p) => ({ ...p, email: e.target.value }))} className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none" />
-                    <input type="tel" placeholder="Phone Number" value={customer.phone} onChange={(e) => setCustomer((p) => ({ ...p, phone: e.target.value }))} className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none" />
+                    <input type="tel" placeholder="Phone Number *" required value={customer.phone} onChange={(e) => setCustomer((p) => ({ ...p, phone: e.target.value }))} className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none" />
                   </div>
                 </div>
               )}

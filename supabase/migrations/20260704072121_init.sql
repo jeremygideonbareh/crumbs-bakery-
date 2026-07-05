@@ -72,7 +72,9 @@ CREATE TABLE orders (
 
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Anyone can create orders" ON orders FOR INSERT WITH CHECK (true);
-CREATE POLICY "Admins can read orders" ON orders FOR SELECT USING (false);
+-- SELECT is NOT allowed via direct table access.
+-- Admin panel uses SECURITY DEFINER RPC functions (admin_read_orders, etc.)
+-- Run supabase/migrations/20260705000001_admin_rpc_security.sql to set up RPCs.
 
 -- 4. CONTACT MESSAGES
 CREATE TABLE contact_messages (
@@ -87,7 +89,9 @@ CREATE TABLE contact_messages (
 
 ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Anyone can submit contact messages" ON contact_messages FOR INSERT WITH CHECK (true);
-CREATE POLICY "Admins can read messages" ON contact_messages FOR SELECT USING (false);
+-- SELECT is NOT allowed via direct table access.
+-- Admin panel uses SECURITY DEFINER RPC functions (admin_read_messages, etc.)
+-- Run supabase/migrations/20260705000001_admin_rpc_security.sql to set up RPCs.
 
 -- 5. REVIEWS
 CREATE TABLE reviews (

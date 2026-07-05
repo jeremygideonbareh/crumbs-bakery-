@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import CategoryHero from '@/components/CategoryHero'
 import ProductGrid from '@/components/ProductGrid'
-import { cakes } from '@/data/products'
+import { useProducts } from '@/hooks/useProducts'
 
 const CATEGORIES = ['ALL', 'BIRTHDAY', 'CELEBRATION', 'SHEET', 'BESPOKE', 'CLASSIC', 'VINTAGE', 'KIDS', 'CORPORATE']
 
@@ -10,10 +10,11 @@ const HERO = 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=120
 
 export default function CakesPage() {
   const [activeCategory, setActiveCategory] = useState('ALL')
+  const { products } = useProducts('cakes')
 
   const filteredCakes = activeCategory === 'ALL'
-    ? cakes
-    : cakes.filter((c) => c.name.includes(activeCategory))
+    ? products
+    : products.filter((c) => c.name.includes(activeCategory))
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.3 } }}>
@@ -21,7 +22,7 @@ export default function CakesPage() {
         title="CAKES"
         subtitle="Amazing cakes for any occasion. Freshly baked, expertly decorated and hand delivered in Shillong."
         image={HERO}
-        count={cakes.length}
+        count={products.length}
       />
 
       <section className="py-6 md:py-10 px-4 md:px-6 bg-background">

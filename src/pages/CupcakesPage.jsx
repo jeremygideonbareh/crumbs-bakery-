@@ -1,18 +1,19 @@
 import { motion } from 'framer-motion'
 import CategoryHero from '@/components/CategoryHero'
 import ProductGrid from '@/components/ProductGrid'
-import { cupcakes } from '@/data/products'
+import { useProducts } from '@/hooks/useProducts'
 
 const HERO = 'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=1200&q=80'
 
 export default function CupcakesPage() {
+  const { products } = useProducts('cupcakes')
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.3 } }}>
       <CategoryHero
         title="CUPCAKES"
         subtitle="Shillong's best cupcakes, baked fresh every day. Order online for pickup or delivery."
         image={HERO}
-        count={cupcakes.length}
+        count={products.length}
       />
 
       <section className="py-6 md:py-10 px-4 md:px-6 bg-background">
@@ -20,7 +21,7 @@ export default function CupcakesPage() {
           <p className="text-center text-sm text-muted-foreground font-work mb-6 md:mb-8 max-w-2xl mx-auto">
             All our cupcakes are baked &amp; decorated by hand in small batches using the finest ingredients — Lescure Butter, free-range eggs, Belgian chocolate, and real vanilla.
           </p>
-          <ProductGrid products={cupcakes} />
+          <ProductGrid products={products} />
         </div>
       </section>
 

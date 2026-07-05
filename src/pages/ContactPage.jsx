@@ -37,6 +37,10 @@ export default function ContactPage() {
       toast.error('Please enter a valid email address.')
       return
     }
+    if (!form.phone || !form.phone.trim() || !/^[\d\s+\-()]{6,20}$/.test(form.phone.trim())) {
+      toast.error('Please enter a valid phone number.')
+      return
+    }
     if (!form.message || !form.message.trim()) {
       toast.error('Please enter a message.')
       return
@@ -113,7 +117,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <label htmlFor="contact-phone" className="block text-[11px] uppercase tracking-[0.15em] text-muted-foreground font-work font-semibold mb-1">Phone</label>
-                  <input id="contact-phone" name="phone" type="tel" value={form.phone} onChange={handleChange} className="w-full border border-primary/20 bg-white px-3 py-2.5 text-sm text-foreground rounded-sm focus:outline-none focus:border-header transition-colors" placeholder="+91 9XXXX XXXXX" />
+                  <input id="contact-phone" name="phone" type="tel" value={form.phone} onChange={handleChange} required className="w-full border border-primary/20 bg-white px-3 py-2.5 text-sm text-foreground rounded-sm focus:outline-none focus:border-header transition-colors" placeholder="+91 9XXXX XXXXX *" />
                 </div>
                 <div>
                   <label htmlFor="contact-message" className="block text-[11px] uppercase tracking-[0.15em] text-muted-foreground font-work font-semibold mb-1">Message</label>

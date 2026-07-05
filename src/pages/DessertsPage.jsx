@@ -1,18 +1,19 @@
 import { motion } from 'framer-motion'
 import CategoryHero from '@/components/CategoryHero'
 import ProductGrid from '@/components/ProductGrid'
-import { desserts } from '@/data/products'
+import { useProducts } from '@/hooks/useProducts'
 
 const HERO = 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=1200&q=80'
 
 export default function DessertsPage() {
+  const { products } = useProducts('desserts')
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.3 } }}>
       <CategoryHero
         title="DESSERTS"
         subtitle="From gooey cookies and fudgy brownies to cheesecakes, tiramisu, and more — every craving covered."
         image={HERO}
-        count={desserts.length}
+        count={products.length}
       />
 
       <section className="py-6 md:py-10 px-4 md:px-6 bg-background">
@@ -20,7 +21,7 @@ export default function DessertsPage() {
           <p className="text-center text-sm text-muted-foreground font-work mb-6 md:mb-8 max-w-2xl mx-auto">
             All our desserts are baked &amp; prepared by hand in small batches using the finest ingredients — Lescure Butter, free-range eggs, Belgian chocolate, and real vanilla.
           </p>
-          <ProductGrid products={desserts} />
+          <ProductGrid products={products} />
         </div>
       </section>
 
