@@ -6,7 +6,7 @@ const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id
 const areas = [
   {
     name: 'CENTRAL SHILLONG',
-    image: PEXELS(65882),
+    image: PEXELS(5702761),
   },
   {
     name: "JAIAW & LAITUMKHRAH",
@@ -14,7 +14,7 @@ const areas = [
   },
   {
     name: "POLICE BAZAR & WARD'S LAKE",
-    image: PEXELS(65882),
+    image: PEXELS(5702761),
   },
   {
     name: 'GREATER SHILLONG AREA',

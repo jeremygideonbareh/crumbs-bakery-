@@ -112,7 +112,7 @@ export default function ImageCarousel() {
 
           <button
             onClick={prev}
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all opacity-0 md:group-hover:opacity-100 active:scale-[0.97]"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 shadow-xl flex items-center justify-center text-white hover:bg-white/30 transition-all active:scale-[0.97]"
             aria-label="Previous"
           >
             <ChevronLeft size={20} />
@@ -120,7 +120,7 @@ export default function ImageCarousel() {
 
           <button
             onClick={next}
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all opacity-0 md:group-hover:opacity-100 active:scale-[0.97]"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 shadow-xl flex items-center justify-center text-white hover:bg-white/30 transition-all active:scale-[0.97]"
             aria-label="Next"
           >
             <ChevronRight size={20} />

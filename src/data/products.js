@@ -21,17 +21,17 @@ export const cakes = [
 export const cupcakes = [
   { id: 'cp1', name: 'VANILLA CUPCAKES (DOZEN)', price: '₹600', image: PEXELS(14105), desc: 'Classic vanilla sponge with silky vanilla buttercream' },
   { id: 'cp2', name: 'CHOCOLATE CUPCAKES (DOZEN)', price: '₹650', image: PEXELS(32421567), desc: 'Rich chocolate sponge with chocolate ganache frosting' },
-  { id: 'cp3', name: 'RED VELVET CUPCAKES (DOZEN)', price: '₹700', image: PEXELS(14105), desc: 'Red velvet with cream cheese frosting' },
-  { id: 'cp4', name: 'CORPORATE LOGO CUPCAKES (DOZEN)', price: '₹900', image: PEXELS(32421567), desc: 'Edible logo printed on each cupcake — perfect for events', badge: 'Corporate' },
-  { id: 'cp5', name: 'EDIBLE PHOTO CUPCAKES (DOZEN)', price: '₹800', image: PEXELS(14105), desc: 'Personalised edible photo toppers on vanilla cupcakes' },
-  { id: 'cp6', name: 'PRIDE CUPCAKES (DOZEN)', price: '₹750', image: PEXELS(32421567), desc: 'Rainbow-frosted cupcakes celebrating Pride' },
-  { id: 'cp7', name: 'GLUTEN FREE VANILLA CUPCAKES', price: '₹850', image: PEXELS(14105), desc: 'Gluten-free vanilla sponge with buttercream', badge: 'GF' },
-  { id: 'cp8', name: 'CUSTOM DESIGN CUPCAKES', price: '₹950', image: PEXELS(32421567), desc: 'Fully custom design — send us your theme!' },
+  { id: 'cp3', name: 'RED VELVET CUPCAKES (DOZEN)', price: '₹700', image: PEXELS(1055271), desc: 'Red velvet with cream cheese frosting' },
+  { id: 'cp4', name: 'CORPORATE LOGO CUPCAKES (DOZEN)', price: '₹900', image: PEXELS(35224342), desc: 'Edible logo printed on each cupcake — perfect for events', badge: 'Corporate' },
+  { id: 'cp5', name: 'EDIBLE PHOTO CUPCAKES (DOZEN)', price: '₹800', image: PEXELS(20677473), desc: 'Personalised edible photo toppers on vanilla cupcakes' },
+  { id: 'cp6', name: 'PRIDE CUPCAKES (DOZEN)', price: '₹750', image: PEXELS(7358362), desc: 'Rainbow-frosted cupcakes celebrating Pride' },
+  { id: 'cp7', name: 'GLUTEN FREE VANILLA CUPCAKES', price: '₹850', image: PEXELS(7358386), desc: 'Gluten-free vanilla sponge with buttercream', badge: 'GF' },
+  { id: 'cp8', name: 'CUSTOM DESIGN CUPCAKES', price: '₹950', image: PEXELS(1055271), desc: 'Fully custom design — send us your theme!' },
 ]
 
 export const cookies = [
   { id: 'co1', name: 'CHOC CHIP NY COOKIE', price: '₹120', image: PEXELS(37353913), desc: 'Classic New York-style loaded with dark chocolate chunks' },
-  { id: 'co2', name: 'RED VELVET NY COOKIE', price: '₹130', image: PEXELS(37262555), desc: 'Red velvet cookie with white chocolate chips' },
+  { id: 'co2', name: 'RED VELVET NY COOKIE', price: '₹130', image: PEXELS(34979324), desc: 'Red velvet cookie with white chocolate chips' },
   { id: 'co3', name: 'SALTED CARAMEL PECAN COOKIE', price: '₹150', image: PEXELS(20558713), desc: 'Salted caramel sauce, pecans, and dark chocolate' },
 ]
 

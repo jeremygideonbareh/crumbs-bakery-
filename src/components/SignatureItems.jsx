@@ -42,7 +42,7 @@ const items = [
     desc: 'From savoury puffs to warm sandwiches — everything served hot, fresh, and satisfying.',
     highlight: 'Quick Bite',
     price: '₹150',
-    image: PEXELS(65882),
+    image: PEXELS(32916204),
     badge: 'bg-green-100 text-green-700',
   },
   {
