@@ -28,8 +28,21 @@ function formatCurrency(amount: number): string {
 
 function renderOrderItems(items: unknown): string {
   try {
-    const parsed = typeof items === 'string' ? JSON.parse(items) : items
-    return '<pre>' + JSON.stringify(parsed, null, 2) + '</pre>'
+    const parsed = typeof items === 'string' ? JSON.parse(items) : items as Record<string, unknown>
+    const extras = Array.isArray(parsed.extras) ? parsed.extras : []
+    let html = '<table style="width: 100%; border-collapse: collapse;">'
+    if (parsed.base) html += `<tr><td style="padding: 4px 0; color: #666;">Base</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${(parsed.base as any).name}</td></tr>`
+    if (parsed.size) html += `<tr><td style="padding: 4px 0; color: #666;">Size</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${(parsed.size as any).name}</td></tr>`
+    if (parsed.filling) html += `<tr><td style="padding: 4px 0; color: #666;">Filling</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${(parsed.filling as any).name}</td></tr>`
+    if (parsed.frosting) html += `<tr><td style="padding: 4px 0; color: #666;">Frosting</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${(parsed.frosting as any).name}</td></tr>`
+    if (extras.length > 0) {
+      html += `<tr><td style="padding: 4px 0; color: #666; vertical-align: top;">Extras</td><td style="padding: 4px 0; text-align: right;">`
+      html += extras.map((e: any) => `<div style="font-weight: 600;">${e.name}${e.price > 0 ? ` <span style="color: #999; font-weight: 400;">+₹${e.price}</span>` : ''}</div>`).join('')
+      html += '</td></tr>'
+    }
+    if (parsed.message) html += `<tr><td style="padding: 4px 0; color: #666; vertical-align: top;">Message</td><td style="padding: 4px 0; text-align: right; font-style: italic; color: #555;">"${parsed.message}"</td></tr>`
+    html += '</table>'
+    return html
   } catch {
     return '<p>Could not render items</p>'
   }
@@ -124,6 +137,8 @@ serve(async (req) => {
                 <tr><td style="padding: 6px 0; color: #666;">Total</td><td style="padding: 6px 0;"><strong>${formatCurrency(order.total)}</strong></td></tr>
                 <tr><td style="padding: 6px 0; color: #666;">Contact</td><td style="padding: 6px 0;"><a href="tel:${customerPhone}">${customerPhone}</a></td></tr>
               </table>
+              <h3 style="color: #3d2b1f; margin-top: 16px;">Cake Details</h3>
+              ${renderOrderItems(order.items)}
               <hr style="border: none; border-top: 1px solid #C8E4CA; margin: 20px 0;">
               <p style="color: #666; font-size: 12px;">— Crumbs Bakery & Cafe, Shillong</p>
             </div>
