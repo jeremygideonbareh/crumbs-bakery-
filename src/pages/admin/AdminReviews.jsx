@@ -1,33 +1,34 @@
 import { useState, useEffect } from 'react'
 import { Check, X, Star, Trash2 } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { useAdminApi } from '@/hooks/useAdminApi'
 
 export default function AdminReviews() {
   const [reviews, setReviews] = useState([])
   const [loading, setLoading] = useState(true)
+  const api = useAdminApi()
 
   useEffect(() => { loadReviews() }, [])
 
   async function loadReviews() {
     setLoading(true)
     try {
-      const { data } = await supabase.from('reviews').select('*').order('created_at', { ascending: false })
+      const { data } = await api.reviews.list()
       setReviews(data ?? [])
     } catch (err) { console.error(err) }
     finally { setLoading(false) }
   }
 
-  const toggleApproval = async (id, current) => {
+  const toggleApproval = async (id) => {
     try {
-      await supabase.from('reviews').update({ approved: !current }).eq('id', id)
-      setReviews((prev) => prev.map((r) => r.id === id ? { ...r, approved: !current } : r))
+      await api.reviews.toggleApproval(id)
+      setReviews((prev) => prev.map((r) => r.id === id ? { ...r, approved: !r.approved } : r))
     } catch (err) { console.error(err) }
   }
 
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this review?')) return
     try {
-      await supabase.from('reviews').delete().eq('id', id)
+      await api.reviews.delete(id)
       setReviews((prev) => prev.filter((r) => r.id !== id))
     } catch (err) { console.error(err) }
   }
@@ -90,7 +91,7 @@ export default function AdminReviews() {
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-1">
-                        <button onClick={() => toggleApproval(review.id, review.approved)}
+                        <button onClick={() => toggleApproval(review.id)}
                           className={`p-1.5 rounded transition-colors ${
                             review.approved ? 'text-amber-500 hover:bg-amber-50' : 'text-green-500 hover:bg-green-50'
                           }`}>

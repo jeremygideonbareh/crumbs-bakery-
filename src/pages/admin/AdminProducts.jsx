@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Plus, Pencil, Trash2, X, Check, Image, Package } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
+import { useAdminApi } from '@/hooks/useAdminApi'
 
 const emptyProduct = {
   name: '',
@@ -21,9 +21,10 @@ export default function AdminProducts() {
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
-  const [editing, setEditing] = useState(null) // null = closed, 'new' = create, object = edit
+  const [editing, setEditing] = useState(null)
   const [form, setForm] = useState(emptyProduct)
   const [saving, setSaving] = useState(false)
+  const api = useAdminApi()
 
   useEffect(() => {
     loadData()
@@ -33,8 +34,8 @@ export default function AdminProducts() {
     setLoading(true)
     try {
       const [productsRes, categoriesRes] = await Promise.all([
-        supabase.from('products').select('*').order('sort_order'),
-        supabase.from('categories').select('*'),
+        api.products.list(),
+        api.categories.list(),
       ])
       setProducts(productsRes.data ?? [])
       setCategories(categoriesRes.data ?? [])
@@ -91,16 +92,23 @@ export default function AdminProducts() {
     setSaving(true)
     try {
       const payload = {
-        ...form,
+        name: form.name,
+        slug: form.slug,
+        price: form.price,
+        image: form.image,
+        description: form.description,
         variants: form.variants ? JSON.parse(form.variants) : [],
+        badge: form.badge,
+        category_slug: form.category_slug,
+        active: form.active,
+        sort_order: form.sort_order,
       }
-      delete payload.id
 
       if (editing === 'new') {
-        const { error } = await supabase.from('products').insert(payload)
+        const { error } = await api.products.create(payload)
         if (error) throw error
       } else {
-        const { error } = await supabase.from('products').update(payload).eq('id', editing)
+        const { error } = await api.products.update(editing, payload)
         if (error) throw error
       }
       closeEditor()
@@ -115,7 +123,7 @@ export default function AdminProducts() {
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this product?')) return
     try {
-      await supabase.from('products').delete().eq('id', id)
+      await api.products.delete(id)
       await loadData()
     } catch (err) {
       console.error('Failed to delete product:', err)

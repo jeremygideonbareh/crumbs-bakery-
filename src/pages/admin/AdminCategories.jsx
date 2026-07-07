@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Pencil, Trash2, X, Check, Plus } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
+import { useAdminApi } from '@/hooks/useAdminApi'
 
 const emptyCategory = { slug: '', name: '', description: '', hero_image: '' }
 
@@ -10,13 +10,14 @@ export default function AdminCategories() {
   const [loading, setLoading] = useState(true)
   const [editing, setEditing] = useState(null)
   const [form, setForm] = useState(emptyCategory)
+  const api = useAdminApi()
 
   useEffect(() => { loadCategories() }, [])
 
   async function loadCategories() {
     setLoading(true)
     try {
-      const { data } = await supabase.from('categories').select('*')
+      const { data } = await api.categories.list()
       setCategories(data ?? [])
     } catch (err) { console.error(err) }
     finally { setLoading(false) }
@@ -34,9 +35,9 @@ export default function AdminCategories() {
       const payload = { ...form }
       delete payload.id
       if (editing === 'new') {
-        await supabase.from('categories').insert(payload)
+        await api.categories.create(payload)
       } else {
-        await supabase.from('categories').update(payload).eq('id', editing)
+        await api.categories.update(editing, payload)
       }
       close(); await loadCategories()
     } catch (err) { console.error(err) }
@@ -44,7 +45,7 @@ export default function AdminCategories() {
 
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this category?')) return
-    try { await supabase.from('categories').delete().eq('id', id); await loadCategories() }
+    try { await api.categories.delete(id); await loadCategories() }
     catch (err) { console.error(err) }
   }
 

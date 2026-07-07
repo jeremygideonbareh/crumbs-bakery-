@@ -73,7 +73,7 @@ export default function AdminLayout() {
             Logout
           </button>
           <a
-            href="/#/"
+            href="/crumbs-bakery-/"
             className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-100 w-full transition-all mt-1"
           >
             ← View Site

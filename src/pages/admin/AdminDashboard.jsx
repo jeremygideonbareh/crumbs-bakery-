@@ -23,20 +23,20 @@ export default function AdminDashboard() {
         const [
           { data: ordersCount },
           { data: messagesCount },
-          { count: reviews },
+          { data: reviewsCount },
           { count: products },
           { data: ordersData },
         ] = await Promise.all([
           api.orders.count(),
           api.messages.unreadCount(),
-          supabase.from('reviews').select('*', { count: 'exact', head: true }).eq('approved', false),
+          api.reviews.unapprovedCount(),
           supabase.from('products').select('*', { count: 'exact', head: true }),
           api.orders.recent(5),
         ])
         setStats({
           orders: ordersCount ?? 0,
           messages: messagesCount ?? 0,
-          reviews: reviews ?? 0,
+          reviews: reviewsCount ?? 0,
           products: products ?? 0,
         })
         setRecentOrders(ordersData ?? [])

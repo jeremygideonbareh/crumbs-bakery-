@@ -24,6 +24,29 @@ export function useAdminApi() {
       toggleRead: (msgId) => rpc('admin_toggle_message_read', { msg_id: msgId }),
       delete: (msgId) => rpc('admin_delete_message', { msg_id: msgId }),
     },
+    // Reviews
+    reviews: {
+      list: () => rpc('admin_read_reviews'),
+      unapprovedCount: () => rpc('admin_count_unapproved_reviews'),
+      toggleApproval: (reviewId) => rpc('admin_toggle_review_approval', { review_id: reviewId }),
+      delete: (reviewId) => rpc('admin_delete_review', { review_id: reviewId }),
+    },
+    // Products
+    products: {
+      list: () => rpc('admin_read_products'),
+      create: (productData) => rpc('admin_create_product', { product_data: productData }),
+      update: (productId, productData) =>
+        rpc('admin_update_product', { product_id: productId, product_data: productData }),
+      delete: (productId) => rpc('admin_delete_product', { product_id: productId }),
+    },
+    // Categories
+    categories: {
+      list: () => rpc('admin_read_categories'),
+      create: (categoryData) => rpc('admin_create_category', { category_data: categoryData }),
+      update: (categoryId, categoryData) =>
+        rpc('admin_update_category', { category_id: categoryId, category_data: categoryData }),
+      delete: (categoryId) => rpc('admin_delete_category', { category_id: categoryId }),
+    },
     // Settings
     settings: {
       saveBatch: (updates) =>
