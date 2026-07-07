@@ -4,6 +4,8 @@ import { X, ChevronRight, ChevronLeft, Check, ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import { supabase } from '@/lib/supabase'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 const STEPS = ['Pick Your Base', 'Choose Size', 'Filling & Frosting', 'Customize', 'Review & Order']
 
@@ -309,11 +311,14 @@ export default function OrderModal({ open, onClose }) {
                   />
 
                   <p className="text-[11px] md:text-xs font-medium text-foreground uppercase tracking-wider mb-2">Pickup/Delivery Date</p>
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
+                  <DatePicker
+                    selected={date ? new Date(date) : null}
+                    onChange={(d) => setDate(d ? d.toISOString().split('T')[0] : '')}
+                    minDate={new Date()}
+                    dateFormat="dd/MM/yyyy"
+                    placeholderText="Select a date"
                     className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none"
+                    wrapperClassName="w-full"
                   />
 
                   <p className="text-[11px] md:text-xs font-medium text-foreground uppercase tracking-wider mb-2 mt-4">Your Details</p>
