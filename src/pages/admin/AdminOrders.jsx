@@ -169,12 +169,54 @@ export default function AdminOrders() {
                         <p className="text-sm text-gray-700 bg-gray-50 rounded-lg p-3">{order.message}</p>
                       </div>
                     )}
-                    <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Order Details</p>
-                      <pre className="text-xs bg-gray-50 rounded-lg p-3 overflow-x-auto text-gray-700">
-                        {JSON.stringify(items, null, 2)}
-                      </pre>
-                    </div>
+                      <div>
+                        <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Cake Details</p>
+                        <div className="bg-gray-50 rounded-lg p-3 space-y-2 text-sm">
+                          {items.base && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-500">Base</span>
+                              <span className="font-medium text-gray-800">{items.base.name}</span>
+                            </div>
+                          )}
+                          {items.size && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-500">Size</span>
+                              <span className="font-medium text-gray-800">{items.size.name}</span>
+                            </div>
+                          )}
+                          {items.filling && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-500">Filling</span>
+                              <span className="font-medium text-gray-800">{items.filling.name}</span>
+                            </div>
+                          )}
+                          {items.frosting && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-500">Frosting</span>
+                              <span className="font-medium text-gray-800">{items.frosting.name}</span>
+                            </div>
+                          )}
+                          {items.extras && items.extras.length > 0 && (
+                            <div>
+                              <span className="text-gray-500">Extras</span>
+                              <ul className="mt-1 space-y-0.5">
+                                {items.extras.map((extra, i) => (
+                                  <li key={i} className="flex justify-between pl-3">
+                                    <span className="text-gray-700">{extra.name}</span>
+                                    {extra.price > 0 && <span className="text-gray-500 text-xs">+₹{extra.price}</span>}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {items.message && (
+                            <div className="pt-2 border-t border-gray-200">
+                              <span className="text-gray-500 text-xs block mb-1">Cake Message</span>
+                              <span className="text-gray-800 italic">"{items.message}"</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
                   </div>
                 </>
               )
