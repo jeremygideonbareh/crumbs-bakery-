@@ -13,6 +13,9 @@
 --   2. Adds rate limiting hints to the INSERT policies
 --   3. Enhances the admin RPCs to raise exceptions on auth failure
 --      (so callers can distinguish "no data" from "not authorized")
+-- v2.1: Fixed auth check to use DECLARE + local variable pattern instead of
+--       IF EXISTS (subquery with column reference) which fails inside SECURITY DEFINER.
+--       Added RETURN after RETURN QUERY for SETOF functions.
 -- Paste in Supabase Dashboard → SQL Editor
 
 -- ── 1. Remove the dangerous wide-open SELECT policies ─────────────────
@@ -26,6 +29,12 @@ DROP POLICY IF EXISTS "Admins can read messages" ON contact_messages;
 -- ── 3. Enhance admin RPCs with proper auth error handling ────────────
 -- Replace all admin_* RPCs to RAISE EXCEPTION on auth failure
 -- instead of silently returning empty sets.
+--
+-- NOTE: The auth check uses a DECLARE variable pattern because
+-- IF EXISTS (SELECT ... WHERE value = extensions.crypt(admin_token, value))
+-- fails inside SECURITY DEFINER functions on Supabase — the inline column
+-- reference doesn't resolve correctly. Using DECLARE stored_hash text;
+-- SELECT value INTO stored_hash ... works reliably.
 
 -- admin_read_orders: raise on auth failure
 CREATE OR REPLACE FUNCTION admin_read_orders(admin_token text)
@@ -33,9 +42,13 @@ RETURNS SETOF orders
 SECURITY DEFINER
 LANGUAGE plpgsql
 AS $$
+DECLARE
+  stored_hash text;
 BEGIN
-  IF EXISTS (SELECT 1 FROM admin_config WHERE key = 'password_hash' AND value = extensions.crypt(admin_token, value)) THEN
+  SELECT value INTO stored_hash FROM admin_config WHERE key = 'password_hash';
+  IF stored_hash IS NOT NULL AND extensions.crypt(admin_token, stored_hash) = stored_hash THEN
     RETURN QUERY SELECT * FROM orders ORDER BY created_at DESC;
+    RETURN;
   END IF;
   RAISE EXCEPTION 'Invalid admin token' USING HINT = 'Check your admin password';
 END;
@@ -47,8 +60,11 @@ RETURNS integer
 SECURITY DEFINER
 LANGUAGE plpgsql
 AS $$
+DECLARE
+  stored_hash text;
 BEGIN
-  IF EXISTS (SELECT 1 FROM admin_config WHERE key = 'password_hash' AND value = extensions.crypt(admin_token, value)) THEN
+  SELECT value INTO stored_hash FROM admin_config WHERE key = 'password_hash';
+  IF stored_hash IS NOT NULL AND extensions.crypt(admin_token, stored_hash) = stored_hash THEN
     RETURN (SELECT count(*) FROM orders);
   END IF;
   RAISE EXCEPTION 'Invalid admin token' USING HINT = 'Check your admin password';
@@ -61,9 +77,13 @@ RETURNS SETOF orders
 SECURITY DEFINER
 LANGUAGE plpgsql
 AS $$
+DECLARE
+  stored_hash text;
 BEGIN
-  IF EXISTS (SELECT 1 FROM admin_config WHERE key = 'password_hash' AND value = extensions.crypt(admin_token, value)) THEN
+  SELECT value INTO stored_hash FROM admin_config WHERE key = 'password_hash';
+  IF stored_hash IS NOT NULL AND extensions.crypt(admin_token, stored_hash) = stored_hash THEN
     RETURN QUERY SELECT * FROM orders ORDER BY created_at DESC LIMIT max_count;
+    RETURN;
   END IF;
   RAISE EXCEPTION 'Invalid admin token' USING HINT = 'Check your admin password';
 END;
@@ -75,8 +95,11 @@ RETURNS void
 SECURITY DEFINER
 LANGUAGE plpgsql
 AS $$
+DECLARE
+  stored_hash text;
 BEGIN
-  IF EXISTS (SELECT 1 FROM admin_config WHERE key = 'password_hash' AND value = extensions.crypt(admin_token, value)) THEN
+  SELECT value INTO stored_hash FROM admin_config WHERE key = 'password_hash';
+  IF stored_hash IS NOT NULL AND extensions.crypt(admin_token, stored_hash) = stored_hash THEN
     UPDATE orders SET status = new_status WHERE id = order_id;
     RETURN;
   END IF;
@@ -90,9 +113,13 @@ RETURNS SETOF contact_messages
 SECURITY DEFINER
 LANGUAGE plpgsql
 AS $$
+DECLARE
+  stored_hash text;
 BEGIN
-  IF EXISTS (SELECT 1 FROM admin_config WHERE key = 'password_hash' AND value = extensions.crypt(admin_token, value)) THEN
+  SELECT value INTO stored_hash FROM admin_config WHERE key = 'password_hash';
+  IF stored_hash IS NOT NULL AND extensions.crypt(admin_token, stored_hash) = stored_hash THEN
     RETURN QUERY SELECT * FROM contact_messages ORDER BY created_at DESC;
+    RETURN;
   END IF;
   RAISE EXCEPTION 'Invalid admin token' USING HINT = 'Check your admin password';
 END;
@@ -104,8 +131,11 @@ RETURNS integer
 SECURITY DEFINER
 LANGUAGE plpgsql
 AS $$
+DECLARE
+  stored_hash text;
 BEGIN
-  IF EXISTS (SELECT 1 FROM admin_config WHERE key = 'password_hash' AND value = extensions.crypt(admin_token, value)) THEN
+  SELECT value INTO stored_hash FROM admin_config WHERE key = 'password_hash';
+  IF stored_hash IS NOT NULL AND extensions.crypt(admin_token, stored_hash) = stored_hash THEN
     RETURN (SELECT count(*) FROM contact_messages WHERE read = false);
   END IF;
   RAISE EXCEPTION 'Invalid admin token' USING HINT = 'Check your admin password';
@@ -118,8 +148,11 @@ RETURNS void
 SECURITY DEFINER
 LANGUAGE plpgsql
 AS $$
+DECLARE
+  stored_hash text;
 BEGIN
-  IF EXISTS (SELECT 1 FROM admin_config WHERE key = 'password_hash' AND value = extensions.crypt(admin_token, value)) THEN
+  SELECT value INTO stored_hash FROM admin_config WHERE key = 'password_hash';
+  IF stored_hash IS NOT NULL AND extensions.crypt(admin_token, stored_hash) = stored_hash THEN
     UPDATE contact_messages SET read = NOT read WHERE id = msg_id;
     RETURN;
   END IF;
@@ -133,8 +166,11 @@ RETURNS void
 SECURITY DEFINER
 LANGUAGE plpgsql
 AS $$
+DECLARE
+  stored_hash text;
 BEGIN
-  IF EXISTS (SELECT 1 FROM admin_config WHERE key = 'password_hash' AND value = extensions.crypt(admin_token, value)) THEN
+  SELECT value INTO stored_hash FROM admin_config WHERE key = 'password_hash';
+  IF stored_hash IS NOT NULL AND extensions.crypt(admin_token, stored_hash) = stored_hash THEN
     DELETE FROM contact_messages WHERE id = msg_id;
     RETURN;
   END IF;
