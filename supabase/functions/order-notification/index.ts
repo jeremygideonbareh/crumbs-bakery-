@@ -101,31 +101,31 @@ serve(async (req) => {
       console.error('Failed to send owner notification:', ownerError)
     }
 
-    // ── Send confirmation to customer ──
+    // ── Send confirmation to customer (routed to owner until domain is verified) ──
     if (customerEmail && customerEmail.includes('@')) {
       const { error: customerError } = await resend.emails.send({
         from: `Crumbs Bakery <${FROM_EMAIL}>`,
-        to: [customerEmail],
-        subject: `Your Crumbs Bakery Order #${order.id} — Confirmed! 🎉`,
+        to: [OWNER_EMAIL],
+        subject: `🎉 Order #${order.id} Confirmation for ${customerName}`,
         html: `
           <!DOCTYPE html>
           <html>
           <head><meta charset="utf-8"></head>
           <body style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
             <div style="background: #C8E4CA; padding: 20px; border-radius: 8px 8px 0 0;">
-              <h1 style="margin: 0; color: #3d2b1f;">Thank you, ${customerName}! 🎉</h1>
+              <h1 style="margin: 0; color: #3d2b1f;">Confirmation for ${customerName} 🎉</h1>
+              <p style="margin: 4px 0 0; opacity: 0.9;">Customer email: <a href="mailto:${customerEmail}" style="color: white;">${customerEmail}</a></p>
             </div>
             <div style="background: #FFFFF0; padding: 20px; border: 1px solid #C8E4CA;">
-              <p>We've received your custom cake order and will get back to you <strong>within an hour</strong>.</p>
+              <p>📨 <strong>Forward this to the customer or call them directly.</strong></p>
               <h3 style="color: #3d2b1f;">Order Summary</h3>
               <table style="width: 100%; border-collapse: collapse;">
                 <tr><td style="padding: 6px 0; color: #666;">Order #</td><td style="padding: 6px 0;"><strong>${order.id}</strong></td></tr>
                 <tr><td style="padding: 6px 0; color: #666;">Total</td><td style="padding: 6px 0;"><strong>${formatCurrency(order.total)}</strong></td></tr>
-                <tr><td style="padding: 6px 0; color: #666;">Contact</td><td style="padding: 6px 0;">We'll call you on <strong>${customerPhone}</strong></td></tr>
+                <tr><td style="padding: 6px 0; color: #666;">Contact</td><td style="padding: 6px 0;"><a href="tel:${customerPhone}">${customerPhone}</a></td></tr>
               </table>
               <hr style="border: none; border-top: 1px solid #C8E4CA; margin: 20px 0;">
               <p style="color: #666; font-size: 12px;">— Crumbs Bakery & Cafe, Shillong</p>
-              <p style="color: #666; font-size: 12px;">📞 <a href="tel:+919612772089" style="color: #55babd;">+91 96127 72089</a></p>
             </div>
           </body>
           </html>
