@@ -1,32 +1,9 @@
 import { motion } from 'framer-motion'
+import { BROWSE_BY_BAKE_DEFAULTS } from '@/data/contentDefaults'
 
-// Pexels curated cinematic food photography
-const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=400&q=80&fit=crop`
+export default function BrowseByBake({ data: propData }) {
+  const bakes = propData || BROWSE_BY_BAKE_DEFAULTS
 
-const bakes = [
-  {
-    label: 'CAKES',
-    image: PEXELS(140831),
-  },
-  {
-    label: 'CUPCAKES',
-    image: PEXELS(14105),
-  },
-  {
-    label: 'COOKIES',
-    image: PEXELS(37353913),
-  },
-  {
-    label: 'BROWNIES',
-    image: PEXELS(2067396),
-  },
-  {
-    label: 'CORPORATE',
-    image: PEXELS(1793037),
-  },
-]
-
-export default function BrowseByBake() {
   return (
     <section className="bg-primary px-4 py-8 md:py-18">
       <div className="mx-auto max-w-5xl">
@@ -39,7 +16,7 @@ export default function BrowseByBake() {
         <div className="flex flex-wrap justify-center gap-4 md:gap-5">
           {bakes.map((bake, i) => (
             <motion.a
-              key={bake.label}
+              key={bake.label || i}
               href="#menu"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}

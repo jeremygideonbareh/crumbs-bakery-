@@ -1,30 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { IMAGE_CAROUSEL_DEFAULTS } from '@/data/contentDefaults'
 
-// Pexels curated cinematic food photography
-const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800&q=80&fit=crop`
-
-const slides = [
-  {
-    image: PEXELS(2144200),
-    label: 'Artisanal Bakes',
-  },
-  {
-    image: PEXELS(132694),
-    label: 'Fresh Daily',
-  },
-  {
-    image: PEXELS(2067396),
-    label: 'Crafted with Love',
-  },
-  {
-    image: PEXELS(14766327),
-    label: 'Shillong\'s Finest',
-  },
-]
-
-export default function ImageCarousel() {
+export default function ImageCarousel({ data: propData }) {
+  const slides = propData || IMAGE_CAROUSEL_DEFAULTS
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(1)
   const [paused, setPaused] = useState(false)
@@ -37,12 +17,12 @@ export default function ImageCarousel() {
   const next = useCallback(() => {
     setDirection(1)
     setCurrent((c) => (c + 1) % slides.length)
-  }, [])
+  }, [slides.length])
 
   const prev = useCallback(() => {
     setDirection(-1)
     setCurrent((c) => (c - 1 + slides.length) % slides.length)
-  }, [])
+  }, [slides.length])
 
   useEffect(() => {
     if (paused) return

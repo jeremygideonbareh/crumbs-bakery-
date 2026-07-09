@@ -8,6 +8,7 @@ import {
   MessageSquare,
   Star,
   Settings,
+  FileText,
   LogOut,
   Menu,
   X,
@@ -22,6 +23,7 @@ const sidebarLinks = [
   { to: '/admin/orders', icon: ShoppingBag, label: 'Orders' },
   { to: '/admin/messages', icon: MessageSquare, label: 'Messages' },
   { to: '/admin/reviews', icon: Star, label: 'Reviews' },
+  { to: '/admin/content', icon: FileText, label: 'Content' },
   { to: '/admin/settings', icon: Settings, label: 'Site Settings' },
 ]
 

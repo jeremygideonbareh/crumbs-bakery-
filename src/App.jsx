@@ -20,6 +20,7 @@ import AdminOrders from './pages/admin/AdminOrders'
 import AdminMessages from './pages/admin/AdminMessages'
 import AdminReviews from './pages/admin/AdminReviews'
 import AdminSettings from './pages/admin/AdminSettings'
+import AdminContent from './pages/admin/AdminContent'
 
 export default function App() {
   return (
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="orders" element={<AdminOrders />} />
           <Route path="messages" element={<AdminMessages />} />
           <Route path="reviews" element={<AdminReviews />} />
+          <Route path="content" element={<AdminContent />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
       </Routes>

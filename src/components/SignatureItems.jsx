@@ -1,61 +1,10 @@
 import { motion } from 'framer-motion'
 import { SectionEyebrow, CharReveal } from './RevealText'
+import { SIGNATURE_ITEMS_DEFAULTS } from '@/data/contentDefaults'
 
-// Pexels curated cinematic food photography
-const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600&q=80&fit=crop`
+export default function SignatureItems({ data: propData }) {
+  const items = propData || SIGNATURE_ITEMS_DEFAULTS
 
-const items = [
-  {
-    name: 'Tiramisu',
-    desc: 'Our signature — bittersweet coffee-soaked layers with silky mascarpone cream. The best in Shillong, hands down.',
-    highlight: 'Customer Favorite',
-    price: '₹250',
-    image: PEXELS(14766327),
-    badge: 'bg-amber-100 text-amber-700',
-  },
-  {
-    name: 'Cream Puffs',
-    desc: 'Light, airy choux pastry filled with velvety vanilla cream. Perfectly portioned for a quick indulgence.',
-    highlight: 'Best Seller',
-    price: '₹180',
-    image: PEXELS(16402099),
-    badge: 'bg-green-100 text-green-700',
-  },
-  {
-    name: 'Cheesecake',
-    desc: 'New York-style baked cheesecake with a buttery graham crust. Available in multiple rotating flavours.',
-    highlight: 'Must Try',
-    price: '₹350',
-    image: PEXELS(38058461),
-    badge: 'bg-purple-100 text-purple-700',
-  },
-  {
-    name: 'Cookies',
-    desc: 'Chewy, gooey, and loaded with chocolate chunks. Made with real butter and love in every batch.',
-    highlight: 'Perfect Pair',
-    price: '₹120',
-    image: PEXELS(37353913),
-    badge: 'bg-orange-100 text-orange-700',
-  },
-  {
-    name: 'Hot Snacks',
-    desc: 'From savoury puffs to warm sandwiches — everything served hot, fresh, and satisfying.',
-    highlight: 'Quick Bite',
-    price: '₹150',
-    image: PEXELS(32916204),
-    badge: 'bg-green-100 text-green-700',
-  },
-  {
-    name: 'Custom Cakes',
-    desc: 'Birthday, anniversary, or just because. Order a custom-designed cake for your special occasion.',
-    highlight: 'Celebrate',
-    price: '₹500+',
-    image: PEXELS(1793037),
-    badge: 'bg-rose-100 text-rose-700',
-  },
-]
-
-export default function SignatureItems() {
   return (
     <section id="menu" className="bg-primary py-8 md:py-28 lg:py-36 px-4 md:px-6 scroll-mt-24">
 
@@ -79,7 +28,7 @@ export default function SignatureItems() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {items.map((item, i) => (
             <motion.div
-              key={item.name}
+              key={item.name || i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
@@ -94,7 +43,7 @@ export default function SignatureItems() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-                <span className={`absolute top-2.5 right-2.5 text-[11px] font-medium uppercase tracking-wider px-2 py-1 rounded-full shadow-sm ${item.badge}`}>
+                <span className={`absolute top-2.5 right-2.5 text-[11px] font-medium uppercase tracking-wider px-2 py-1 rounded-full shadow-sm ${item.badge || 'bg-gray-100 text-gray-700'}`}>
                   {item.highlight}
                 </span>
                 <span className="absolute bottom-2.5 left-2.5 text-white font-serif text-base md:text-lg font-medium drop-shadow-sm">

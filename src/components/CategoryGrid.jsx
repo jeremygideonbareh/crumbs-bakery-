@@ -2,59 +2,15 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useOrderContext } from '@/components/Layout'
+import { CATEGORY_GRID_DEFAULTS } from '@/data/contentDefaults'
 
-// Pexels curated cinematic food photography
-const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800&q=80&fit=crop`
-
-const categories = [
-  {
-    name: 'AMAZING CAKES',
-    desc: "Shillong's best cakes — freshly baked, expertly decorated",
-    cta: 'SHOP CAKES',
-    href: '/cakes',
-    isRoute: true,
-    image: PEXELS(140831),
-  },
-  {
-    name: 'PERFECT CUPCAKES',
-    desc: "Cupcake perfection from Shillong's finest bakery",
-    cta: 'SHOP CUPCAKES',
-    href: '/cupcakes',
-    isRoute: true,
-    image: PEXELS(14105),
-  },
-  {
-    name: 'DECADENT DESSERTS',
-    desc: 'Cookies, brownies, cheesecakes & more sweet treats',
-    cta: 'SHOP DESSERTS',
-    href: '/desserts',
-    isRoute: true,
-    image: PEXELS(2067396),
-  },
-  {
-    name: 'CUSTOM ORDERS',
-    desc: 'Design your dream cake for any celebration',
-    cta: 'ORDER NOW',
-    href: '#order',
-    isRoute: false,
-    image: PEXELS(1793037),
-  },
-  {
-    name: 'CAFE EXPERIENCE',
-    desc: 'Visit our Jaiaw cafe for a cozy treat',
-    cta: 'FIND US',
-    href: '/contact',
-    isRoute: true,
-    image: PEXELS(132694),
-  },
-]
-
-export default function CategoryGrid() {
+export default function CategoryGrid({ data: propData }) {
   const [hoveredIndex, setHoveredIndex] = useState(null)
   const [activeIndex, setActiveIndex] = useState(null)
   const navigate = useNavigate()
   const { onOrder } = useOrderContext()
 
+  const categories = propData || CATEGORY_GRID_DEFAULTS
   const isExpanded = (i) => i === hoveredIndex || i === activeIndex
 
   return (
@@ -65,12 +21,12 @@ export default function CategoryGrid() {
 
           return (
             <motion.a
-              key={cat.name}
-              href={cat.href.startsWith('/') ? undefined : cat.href}
+              key={cat.name || index}
+              href={cat.href?.startsWith('/') ? undefined : cat.href}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               onClick={(e) => {
-                if (cat.name === 'CUSTOM ORDERS') {
+                if (cat.name === 'CUSTOM ORDERS' || cat.href === '#order') {
                   e.preventDefault()
                   if (onOrder) onOrder()
                   return
@@ -78,13 +34,13 @@ export default function CategoryGrid() {
                 if (window.innerWidth < 768) {
                   e.preventDefault()
                   if (activeIndex === index) {
-                    if (cat.href.startsWith('/')) navigate(cat.href)
+                    if (cat.href?.startsWith('/')) navigate(cat.href)
                   } else {
                     setActiveIndex(index)
                   }
                   return
                 }
-                if (cat.href.startsWith('/')) {
+                if (cat.href?.startsWith('/')) {
                   e.preventDefault()
                   navigate(cat.href)
                 }

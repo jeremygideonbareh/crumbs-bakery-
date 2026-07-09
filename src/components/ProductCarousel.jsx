@@ -1,28 +1,12 @@
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
-import { useOrderContext } from './Layout';
+import { useRef } from 'react'
+import { motion } from 'framer-motion'
+import { useOrderContext } from './Layout'
+import { PRODUCT_CAROUSEL_DEFAULTS } from '@/data/contentDefaults'
 
-// Pexels curated cinematic food photography
-const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=400&q=80&fit=crop`
-
-const products = [
-  { name: 'VINTAGE HEART CAKE', price: '₹1,200', image: PEXELS(140831) },
-  { name: 'DESIGN YOUR OWN BESPOKE CAKE', price: '₹2,500', image: PEXELS(2144200) },
-  { name: 'VINTAGE CAKE - SINGLE COLOUR', price: '₹1,500', image: PEXELS(1793037) },
-  { name: 'EDIBLE IMAGE PHOTO CAKE', price: '₹1,800', image: PEXELS(37110821) },
-  { name: 'CLASSIC CHOCOLATE CAKE', price: '₹1,000', image: PEXELS(132694) },
-  { name: 'FUNFETTI SPRINKLE CAKE', price: '₹1,400', image: PEXELS(34155188) },
-  { name: 'RASPBERRY RIPPLE CAKE', price: '₹1,600', image: PEXELS(29230134) },
-  { name: 'BIRTHDAY CAKE', price: '₹1,200', image: PEXELS(7328340) },
-  { name: 'CHOCOLATE BIRTHDAY CAKE', price: '₹1,300', image: PEXELS(34155188) },
-  { name: 'CUSTOM CUPCAKES (DOZEN)', price: '₹900', image: PEXELS(14105) },
-  { name: 'COOKIE BOX (6 PACK)', price: '₹600', image: PEXELS(37353913) },
-  { name: 'BROWNIE BOX (6 PACK)', price: '₹700', image: PEXELS(2067396) },
-];
-
-export default function ProductCarousel() {
-  const carouselRef = useRef(null);
-  const { onOrder } = useOrderContext();
+export default function ProductCarousel({ data: propData }) {
+  const products = propData || PRODUCT_CAROUSEL_DEFAULTS
+  const carouselRef = useRef(null)
+  const { onOrder } = useOrderContext()
 
   return (
     <section className="py-8 md:py-18 px-4 bg-background">
@@ -68,7 +52,7 @@ export default function ProductCarousel() {
         >
           {products.map((product, i) => (
             <motion.div
-              key={product.name}
+              key={product.name || i}
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -111,5 +95,5 @@ export default function ProductCarousel() {
         </motion.p>
       </div>
     </section>
-  );
+  )
 }

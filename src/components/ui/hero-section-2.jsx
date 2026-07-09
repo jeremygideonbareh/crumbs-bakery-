@@ -47,7 +47,7 @@ const SOCIAL_PROOF_STATS = [
 ]
 
 const HeroSection = React.forwardRef(
-  ({ className, logo, slogan, title, subtitle, callToAction, backgroundImage, contactInfo, onOrder, ...props }, ref) => {
+  ({ className, logo, slogan, title, subtitle, callToAction, backgroundImage, contactInfo, onOrder, stats, ...props }, ref) => {
     const containerVariants = {
       hidden: { opacity: 0 },
       visible: {
@@ -113,7 +113,7 @@ const HeroSection = React.forwardRef(
               initial="hidden"
               animate="visible"
             >
-              {SOCIAL_PROOF_STATS.map((stat) => (
+              {(stats || SOCIAL_PROOF_STATS).map((stat) => (
                 <motion.div key={stat.label} variants={statItemVariants}>
                   <p className="text-lg md:text-3xl font-bold text-foreground">{stat.number}</p>
                   <p className="text-[11px] md:text-xs text-muted-foreground tracking-wide">{stat.label}</p>

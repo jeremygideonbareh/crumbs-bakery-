@@ -1,33 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
+import { PROMO_CARDS_DEFAULTS } from '@/data/contentDefaults'
 
-// Pexels curated cinematic food photography
-const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600&q=80&fit=crop`
+export default function PromoCards({ data: propData }) {
+  const cards = propData || PROMO_CARDS_DEFAULTS
 
-const cards = [
-  {
-    title: 'BAKE CLUB',
-    desc: 'PDF Recipes, Behind-the-Scenes content, site-wide discounts.',
-    cta: 'SIGN UP NOW',
-    href: '#',
-    image: PEXELS(140831),
-  },
-  {
-    title: 'YOUTUBE',
-    desc: 'New Recipe videos uploaded every week on our channel.',
-    cta: 'CHECK IT OUT',
-    href: '#',
-    image: PEXELS(2144200),
-  },
-  {
-    title: 'COOKIE CLUB',
-    desc: 'Everything in Bake Club plus a box of Cookies delivered every month!',
-    cta: 'GET THOSE COOKIES',
-    href: '#',
-    image: PEXELS(37353913),
-  },
-];
-
-export default function PromoCards() {
   return (
     <section className="py-8 md:py-18 px-4 md:px-6 bg-accent">
       <div className="mx-auto max-w-5xl">
@@ -38,8 +14,8 @@ export default function PromoCards() {
           viewport={{ once: true }}
           className="text-center mb-10"
         >
-           <span className="font-work text-[13px] uppercase tracking-[0.2em] text-muted-foreground font-medium">
-             Join the Community
+          <span className="font-work text-[13px] uppercase tracking-[0.2em] text-muted-foreground font-medium">
+            Join the Community
           </span>
           <h2 className="font-display text-3xl md:text-4xl text-foreground mt-1 tracking-tight">
             CRUMBS PERKS
@@ -50,8 +26,8 @@ export default function PromoCards() {
         <div className="grid md:grid-cols-3 gap-4 md:gap-5">
           {cards.map((card, i) => (
             <motion.a
-              key={card.title}
-              href={card.href}
+              key={card.title || i}
+              href={card.href || '#'}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -80,5 +56,5 @@ export default function PromoCards() {
         </div>
       </div>
     </section>
-  );
+  )
 }

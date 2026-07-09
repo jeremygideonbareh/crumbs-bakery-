@@ -1,48 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
+import { INSTAGRAM_DEFAULTS } from '@/data/contentDefaults'
 
-// Pexels curated cinematic food photography
-const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=300&q=80&fit=crop`
+export default function InstagramSection({ data: propData }) {
+  const d = propData || INSTAGRAM_DEFAULTS
 
-const images = [
-  PEXELS(140831),
-  PEXELS(2144200),
-  PEXELS(1793037),
-  PEXELS(132694),
-  PEXELS(14105),
-  PEXELS(2067396),
-  PEXELS(32421567),
-  PEXELS(32916204),
-  PEXELS(37353913),
-  PEXELS(32421567),
-  PEXELS(14766327),
-  PEXELS(38058461),
-];
-
-const menuItems = [
-  { label: 'OUR MENU', icon: '🍰' },
-  { label: 'FRESH BAKES', icon: '🧁' },
-  { label: 'F.A.Q.', icon: '❓' },
-  { label: 'BAKING TIPS!', icon: '👩‍🍳' },
-  { label: 'CUSTOM CAKES', icon: '🎂' },
-  { label: 'FIND US!', icon: '📍' },
-];
-
-const postStats = [
-  { likes: 124, comments: 8 },
-  { likes: 89, comments: 12 },
-  { likes: 234, comments: 21 },
-  { likes: 56, comments: 3 },
-  { likes: 178, comments: 15 },
-  { likes: 312, comments: 42 },
-  { likes: 97, comments: 6 },
-  { likes: 145, comments: 11 },
-  { likes: 203, comments: 18 },
-  { likes: 67, comments: 5 },
-  { likes: 189, comments: 14 },
-  { likes: 88, comments: 7 },
-];
-
-export default function InstagramSection() {
   return (
     <section className="bg-background scroll-mt-24">
       <div className="flex flex-col lg:flex-row">
@@ -54,18 +15,18 @@ export default function InstagramSection() {
             viewport={{ once: true }}
             className="font-work text-lg md:text-xl font-bold text-foreground mb-5"
           >
-            INSTAGRAM
+            {d.heading}
           </motion.h2>
 
           <p className="font-work text-[13px] text-muted-foreground mb-6 leading-relaxed">
-            Tag us in your photos for a chance to be featured on our page!
+            {d.description}
           </p>
 
           <div className="space-y-1">
-            {menuItems.map((item) => (
+            {(d.menu_links || []).map((item) => (
               <a
                 key={item.label}
-                href="https://instagram.com/crumbsbakery/"
+                href={item.href || 'https://instagram.com/crumbsbakery/'}
                 target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-3 px-3 py-3.5 text-sm text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all active:scale-[0.97]"
               >
@@ -82,14 +43,14 @@ export default function InstagramSection() {
               FOLLOW US
             </p>
             <p className="font-display text-xl text-foreground">
-              @CRUMBSBAKERY
+              {d.handle}
             </p>
           </div>
         </div>
 
         {/* Grid */}
         <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {images.map((src, i) => (
+          {(d.images || []).map((src, i) => (
             <motion.a
               key={i}
               href="https://instagram.com/crumbsbakery/"
@@ -106,7 +67,7 @@ export default function InstagramSection() {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
-              {/* Hover overlay with stats */}
+              {/* Hover overlay */}
               <div className="absolute inset-0 bg-black/60 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-5">
                 <span className="flex items-center gap-1.5 text-white text-xs font-work">
                   <svg
@@ -117,7 +78,6 @@ export default function InstagramSection() {
                   >
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                   </svg>
-                  {postStats[i % postStats.length].likes}
                 </span>
                 <span className="flex items-center gap-1.5 text-white text-xs font-work">
                   <svg
@@ -128,7 +88,6 @@ export default function InstagramSection() {
                   >
                     <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z" />
                   </svg>
-                  {postStats[i % postStats.length].comments}
                 </span>
               </div>
             </motion.a>
@@ -136,5 +95,5 @@ export default function InstagramSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

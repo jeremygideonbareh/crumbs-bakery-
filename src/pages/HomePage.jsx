@@ -16,46 +16,62 @@ import NewsSection from '@/components/NewsSection'
 import FaqSection from '@/components/FaqSection'
 import { Button } from '@/components/ui/button'
 import { useOrderContext } from '@/components/Layout'
-
-const HERO_IMAGE = 'https://images.pexels.com/photos/2144200/pexels-photo-2144200.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80&fit=crop'
+import usePageSection from '@/hooks/usePageSection'
+import * as DEFAULTS from '@/data/contentDefaults'
 
 export default function HomePage() {
   const { onOrder } = useOrderContext()
+
+  const hero = usePageSection('home_hero', DEFAULTS.HOME_HERO_DEFAULTS)
+  const stats = usePageSection('hero_stats', DEFAULTS.HERO_STATS_DEFAULTS)
+  const categories = usePageSection('category_grid', DEFAULTS.CATEGORY_GRID_DEFAULTS)
+  const about = usePageSection('about', DEFAULTS.ABOUT_DEFAULTS)
+  const browseByBake = usePageSection('browse_by_bake', DEFAULTS.BROWSE_BY_BAKE_DEFAULTS)
+  const signatureItems = usePageSection('signature_items', DEFAULTS.SIGNATURE_ITEMS_DEFAULTS)
+  const imageCarousel = usePageSection('image_carousel', DEFAULTS.IMAGE_CAROUSEL_DEFAULTS)
+  const productCarousel = usePageSection('product_carousel', DEFAULTS.PRODUCT_CAROUSEL_DEFAULTS)
+  const delivery = usePageSection('delivery', DEFAULTS.DELIVERY_DEFAULTS)
+  const gallery = usePageSection('gallery', DEFAULTS.GALLERY_DEFAULTS)
+  const instagram = usePageSection('instagram', DEFAULTS.INSTAGRAM_DEFAULTS)
+  const promoCards = usePageSection('promo_cards', DEFAULTS.PROMO_CARDS_DEFAULTS)
+  const news = usePageSection('news', DEFAULTS.NEWS_DEFAULTS)
+  const faq = usePageSection('faq_section', DEFAULTS.FAQ_DEFAULTS)
+
+  const h = hero.data || DEFAULTS.HOME_HERO_DEFAULTS
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.3 } }}
     >
       <HeroSection
-        slogan="SHILLONG'S BEST-KEPT SECRET"
+        slogan={h.slogan}
         title={
-          <>
-            Where every <br />
-            <span className="text-foreground italic">crumb</span> tells a story
-          </>
+          <span dangerouslySetInnerHTML={{ __html: h.title || '' }} />
         }
-        subtitle="Handcrafted tiramisu, cream puffs, cheesecakes, and artisanal bakes — made fresh daily in the heart of Shillong."
-        callToAction={{ text: 'ORDER CUSTOM CAKE' }}
+        subtitle={h.subtitle}
+        callToAction={{ text: h.cta_text || 'ORDER CUSTOM CAKE' }}
         onOrder={onOrder}
-        backgroundImage={HERO_IMAGE}
+        backgroundImage={h.background_image}
         contactInfo={{
-          website: 'crumbsbakery.in',
-          phone: '+91 96127 72089',
-          address: 'Jaiaw, Shillong, Meghalaya',
+          website: h.contact_website || '',
+          phone: h.contact_phone || '',
+          address: h.contact_address || '',
         }}
+        stats={stats.data}
       />
 
-      <CategoryGrid />
-      <About />
+      <CategoryGrid data={categories.data} />
+      <About data={about.data} />
       <SheetCakesMarquee />
-      <BrowseByBake />
-      <SignatureItems />
-      <ImageCarousel />
-      <ProductCarousel />
-      <DeliverySection />
-      <Gallery />
-      <InstagramSection />
-      <PromoCards />
+      <BrowseByBake data={browseByBake.data} />
+      <SignatureItems data={signatureItems.data} />
+      <ImageCarousel data={imageCarousel.data} />
+      <ProductCarousel data={productCarousel.data} />
+      <DeliverySection data={delivery.data} />
+      <Gallery data={gallery.data} />
+      <InstagramSection data={instagram.data} />
+      <PromoCards data={promoCards.data} />
 
       {/* Condensed Reviews preview */}
       <section className="py-8 md:py-16 px-4 md:px-6 bg-background">
@@ -77,7 +93,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <NewsSection />
+      <NewsSection data={news.data} />
 
       <section className="bg-primary py-4">
         <div className="mx-auto max-w-6xl px-4">
@@ -94,7 +110,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <FaqSection />
+      <FaqSection data={faq.data} />
 
       {/* Condensed Contact preview */}
       <section className="py-8 md:py-12 px-4 md:px-6 bg-background">

@@ -1,28 +1,9 @@
 import { motion } from 'framer-motion'
+import { DELIVERY_DEFAULTS } from '@/data/contentDefaults'
 
-// Pexels curated cinematic food photography
-const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=400&q=80&fit=crop`
+export default function DeliverySection({ data: propData }) {
+  const d = propData || DELIVERY_DEFAULTS
 
-const areas = [
-  {
-    name: 'CENTRAL SHILLONG',
-    image: PEXELS(5702761),
-  },
-  {
-    name: "JAIAW & LAITUMKHRAH",
-    image: PEXELS(32916204),
-  },
-  {
-    name: "POLICE BAZAR & WARD'S LAKE",
-    image: PEXELS(5702761),
-  },
-  {
-    name: 'GREATER SHILLONG AREA',
-    image: PEXELS(5702761),
-  },
-]
-
-export default function DeliverySection() {
   return (
     <section className="bg-background px-4 py-8 md:px-6 md:py-20">
       <div className="mx-auto max-w-6xl">
@@ -32,7 +13,7 @@ export default function DeliverySection() {
           viewport={{ once: true }}
           className="mb-3 text-center font-display text-2xl font-bold tracking-wider text-foreground md:text-3xl lg:text-4xl"
         >
-          WE OFFER CAKE DELIVERY IN SHILLONG
+          {d.heading}
         </motion.h3>
 
         <motion.p
@@ -42,15 +23,13 @@ export default function DeliverySection() {
           transition={{ delay: 0.1 }}
           className="mx-auto mb-8 max-w-2xl text-center text-sm text-muted-foreground md:mb-10"
         >
-          Whether you need cake delivery in Shillong or nearby areas we deliver
-          our incredible Cakes and Cupcakes to all parts of the city. Safe
-          delivery of your cake is guaranteed.
+          {d.description}
         </motion.p>
 
         <div className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-          {areas.map((area, i) => (
+          {(d.areas || []).map((area, i) => (
             <motion.div
-              key={area.name}
+              key={area.name || i}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -74,15 +53,13 @@ export default function DeliverySection() {
 
         <div className="text-center">
           <p className="mb-4 text-sm text-muted-foreground">
-            <strong>Can&apos;t see your area?</strong> We deliver to almost all
-            areas within Shillong. Use our location selector at checkout or
-            visit us for pickup at our Jaiaw cafe.
+            {d.footer_text}
           </p>
           <a
-            href="#contact"
+            href={d.cta_href || '#contact'}
             className="inline-block border-2 border-foreground/20 px-8 py-3.5 text-sm font-bold uppercase tracking-[0.2em] text-foreground transition-all hover:border-primary hover:text-foreground active:scale-[0.97]"
           >
-            SHILLONG CAKE DELIVERY
+            {d.cta_text}
           </a>
         </div>
       </div>

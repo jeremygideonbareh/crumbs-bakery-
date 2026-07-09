@@ -1,54 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
+import { NEWS_DEFAULTS } from '@/data/contentDefaults'
 
-// Pexels curated cinematic food photography
-const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600&q=80&fit=crop`
+export default function NewsSection({ data: propData }) {
+  const articles = propData || NEWS_DEFAULTS
 
-const articles = [
-  {
-    title: 'New Menu Items Have Landed at Crumbs Bakery!',
-    image: PEXELS(2144200),
-    excerpt:
-      'Coming to Crumbs Bakery this weekend — new cakes, fresh flavours, and exciting treats you won\'t want to miss!',
-    date: 'June 24, 2026',
-  },
-  {
-    title: 'Valrhona Chocolate Cookies Are Here!!',
-    image: PEXELS(37353913),
-    excerpt:
-      'There\'s a brand new, limited edition cookie — the Valrhona Choc Chip cookie, packed with delicious dark chocolate.',
-    date: 'June 20, 2026',
-  },
-  {
-    title: 'What\'s Happening in Store This Week',
-    image: PEXELS(14105),
-    excerpt:
-      'There\'s a lot of choice on the counter this week — Malteser Cupcakes, fresh bakes, and some old favourites are back!',
-    date: 'June 18, 2026',
-  },
-  {
-    title: 'A Little Look in the Bakery',
-    image: PEXELS(5702761),
-    excerpt:
-      'A peek behind the scenes at our Jaiaw bakery — see the gorgeous cakes our team has been working on this week.',
-    date: 'June 14, 2026',
-  },
-  {
-    title: 'Recent Cakes from Our Bakery!',
-    image: PEXELS(140831),
-    excerpt:
-      'There have been so many gorgeous cakes flying out of the bakery this week — here\'s a look at a few of our favourites.',
-    date: 'June 10, 2026',
-  },
-  {
-    title: 'The Cutest New Cakes on Our Menu!',
-    image: PEXELS(1793037),
-    excerpt:
-      'We\'re obsessed with these new cakes and we think you will be too! Available to order now for pickup or delivery.',
-    date: 'June 5, 2026',
-  },
-];
-
-export default function NewsSection() {
   return (
     <section className="py-8 md:py-20 px-4 md:px-6 bg-primary">
       <div className="mx-auto max-w-6xl">
@@ -87,12 +42,12 @@ export default function NewsSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {articles.map((article, i) => (
             <motion.article
-              key={article.title}
+              key={article.title || i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-               className="group flex flex-col bg-white/50 dark:bg-primary/10 rounded-sm overflow-hidden border border-primary/10 hover:border-primary/20 transition-all"
+              className="group flex flex-col bg-white/50 dark:bg-primary/10 rounded-sm overflow-hidden border border-primary/10 hover:border-primary/20 transition-all"
             >
               {/* Image */}
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -169,5 +124,5 @@ export default function NewsSection() {
         </motion.div>
       </div>
     </section>
-  );
+  )
 }

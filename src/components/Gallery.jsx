@@ -2,44 +2,10 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { SectionEyebrow, CharReveal } from './RevealText'
+import { GALLERY_DEFAULTS } from '@/data/contentDefaults'
 
-// Pexels curated cinematic food photography
-const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800&q=80&fit=crop`
-
-const images = [
-  {
-    src: PEXELS(140831),
-    alt: 'Assortment of cakes and pastries on a platter',
-    caption: 'Artisanal Cakes',
-  },
-  {
-    src: PEXELS(32916204),
-    alt: 'Fresh pastries displayed in a bakery case',
-    caption: 'Fresh Pastries',
-  },
-  {
-    src: PEXELS(32706248),
-    alt: 'Cakes and macarons in a display case',
-    caption: 'Cakes & Macarons',
-  },
-  {
-    src: PEXELS(14766327),
-    alt: 'Tiramisu dessert',
-    caption: 'Signature Tiramisu',
-  },
-  {
-    src: PEXELS(16402099),
-    alt: 'Cream puffs and eclairs',
-    caption: 'Cream Puffs',
-  },
-  {
-    src: PEXELS(38058461),
-    alt: 'Cheesecake with berries',
-    caption: 'Cheesecakes',
-  },
-]
-
-export default function Gallery() {
+export default function Gallery({ data: propData }) {
+  const images = propData || GALLERY_DEFAULTS
   const [selected, setSelected] = useState(null)
 
   const currentIndex = selected !== null ? images.findIndex((img) => img.src === selected.src) : -1
@@ -78,7 +44,7 @@ export default function Gallery() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {images.map((img, i) => (
             <motion.button
-              key={img.src}
+              key={img.src || i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
