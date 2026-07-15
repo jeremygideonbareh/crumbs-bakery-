@@ -22,6 +22,7 @@ function normalizeAdminData(adminData) {
           highlight: item.highlight || '',
           subcategory: item.subcategory || '',
           options: Array.isArray(item.options) ? item.options : undefined,
+          image: item.image || '',
         }))
       : [],
   }))

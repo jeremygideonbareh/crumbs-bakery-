@@ -223,6 +223,7 @@ const SECTION_FIELDS = {
             { key: 'name', label: 'Item Name', type: 'text' },
             { key: 'price', label: 'Price', type: 'text' },
             { key: 'desc', label: 'Description', type: 'textarea' },
+            { key: 'image', label: 'Image URL (optional)', type: 'text' },
             { key: 'subcategory', label: 'Subcategory (e.g. Classic Cakes)', type: 'text' },
             { key: 'options', label: 'Color Options (comma-separated)', type: 'text' },
           ],

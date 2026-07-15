@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
 import {
   Search,
@@ -20,6 +20,22 @@ const accentMap = {
     dot: 'bg-rose-400',
     badge: 'bg-rose-100 text-rose-600',
     light: 'bg-rose-50/50',
+  },
+  amber: {
+    bg: 'bg-amber-50',
+    text: 'text-amber-700',
+    border: 'border-amber-200',
+    dot: 'bg-amber-400',
+    badge: 'bg-amber-100 text-amber-600',
+    light: 'bg-amber-50/50',
+  },
+  purple: {
+    bg: 'bg-purple-50',
+    text: 'text-purple-700',
+    border: 'border-purple-200',
+    dot: 'bg-purple-400',
+    badge: 'bg-purple-100 text-purple-600',
+    light: 'bg-purple-50/50',
   },
 }
 
@@ -102,6 +118,61 @@ function MenuHeader({ header }) {
         />
       </div>
     </motion.div>
+  )
+}
+
+function CategoryTabs({ categories, activeId, onSelect }) {
+  const scrollRef = useRef(null)
+  const activeRef = useRef(null)
+
+  useEffect(() => {
+    if (activeRef.current && scrollRef.current) {
+      const container = scrollRef.current
+      const el = activeRef.current
+      const scrollLeft = el.offsetLeft - container.offsetWidth / 2 + el.offsetWidth / 2
+      container.scrollTo({ left: scrollLeft, behavior: 'smooth' })
+    }
+  }, [activeId])
+
+  return (
+    <div
+      ref={scrollRef}
+      className="flex gap-2 overflow-x-auto scrollbar-none pb-2 -mx-4 px-4 md:mx-0 md:px-0 md:pb-0 md:overflow-visible md:flex-wrap md:justify-center"
+      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+    >
+      <LayoutGroup>
+        {categories.map((cat) => {
+          const isActive = cat.id === activeId
+          const accent = accentMap[cat.accent] || accentMap.rose
+          return (
+            <motion.button
+              key={cat.id}
+              ref={isActive ? activeRef : null}
+              layout
+              onClick={() => onSelect(cat.id)}
+              className={`relative flex items-center gap-2 px-4 py-2.5 md:px-5 md:py-3 rounded-full font-work text-sm font-medium whitespace-nowrap transition-colors ${
+                isActive
+                  ? 'text-foreground shadow-sm'
+                  : 'text-foreground/60 hover:text-foreground/80 hover:bg-foreground/5'
+              }`}
+            >
+              {isActive && (
+                <motion.div
+                  layoutId="activeTab"
+                  className={`absolute inset-0 rounded-full ${accent.bg} border ${accent.border}`}
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10 text-lg leading-none">{cat.emoji}</span>
+              <span className="relative z-10">
+                {cat.name}
+                <span className="ml-1.5 text-xs opacity-60">({cat.items.length})</span>
+              </span>
+            </motion.button>
+          )
+        })}
+      </LayoutGroup>
+    </div>
   )
 }
 
@@ -215,6 +286,16 @@ function OrderPopover({ phone, social, onClose }) {
   )
 }
 
+const colorSwatches = {
+  Ivory: 'bg-stone-100 border-stone-300',
+  Pink: 'bg-pink-200 border-pink-300',
+  Lilac: 'bg-purple-200 border-purple-300',
+  Green: 'bg-green-200 border-green-300',
+  Peach: 'bg-orange-200 border-orange-300',
+  Yellow: 'bg-yellow-200 border-yellow-300',
+  Blue: 'bg-blue-200 border-blue-300',
+}
+
 function ItemCard({ item, index, phone, social }) {
   const [expanded, setExpanded] = useState(false)
   const [showOrder, setShowOrder] = useState(false)
@@ -227,30 +308,33 @@ function ItemCard({ item, index, phone, social }) {
       transition={{ duration: 0.35, delay: index * 0.04, ease: [0.25, 0.4, 0.25, 1] }}
       layout
     >
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full text-left"
-      >
+      <button onClick={() => setExpanded(!expanded)} className="w-full text-left">
         <div
           className={`relative rounded-xl border border-foreground/10 bg-white/80 backdrop-blur-sm p-4 md:p-5 transition-all duration-300 hover:border-foreground/20 hover:shadow-md ${
             expanded ? 'shadow-md border-foreground/20' : ''
           }`}
         >
-          {/* Subcategory badge + name */}
-          <div className="flex items-start justify-between gap-3">
+          <div className="flex items-start gap-3">
+            {!!item.image && (
+              <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 rounded-lg overflow-hidden bg-foreground/5">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => { e.target.style.display = 'none' }}
+                />
+              </div>
+            )}
             <div className="flex-1 min-w-0">
-              {item.subcategory && (
+              {!!item.subcategory && (
                 <span className="inline-block text-[10px] font-work text-foreground/40 uppercase tracking-wider mb-1">
                   {item.subcategory}
                 </span>
               )}
-              <div className="flex items-center gap-2 flex-wrap">
-                <h3 className="font-serif text-base md:text-lg font-medium text-foreground leading-snug">
-                  {item.name}
-                </h3>
-              </div>
+              <h3 className="font-serif text-base md:text-lg font-medium text-foreground leading-snug">
+                {item.name}
+              </h3>
 
-              {/* Description */}
               <AnimatePresence>
                 {expanded && (
                   <motion.p
@@ -265,28 +349,17 @@ function ItemCard({ item, index, phone, social }) {
                 )}
               </AnimatePresence>
 
-              {/* Price */}
               <p className="mt-2 font-work text-sm md:text-base font-semibold text-foreground">
                 {item.price}
               </p>
 
-              {/* Color options */}
-              {item.options && expanded && (
+              {!!(item.options && item.options.length > 0) && expanded && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="mt-3 flex flex-wrap gap-1.5"
                 >
                   {item.options.map((opt) => {
-                    const colorMap = {
-                      Ivory: 'bg-stone-100 border-stone-300',
-                      Pink: 'bg-pink-200 border-pink-300',
-                      Lilac: 'bg-purple-200 border-purple-300',
-                      Green: 'bg-green-200 border-green-300',
-                      Peach: 'bg-orange-200 border-orange-300',
-                      Yellow: 'bg-yellow-200 border-yellow-300',
-                      Blue: 'bg-blue-200 border-blue-300',
-                    }
                     const isSelected = selectedOption === opt
                     return (
                       <button
@@ -296,7 +369,7 @@ function ItemCard({ item, index, phone, social }) {
                           setSelectedOption(opt === selectedOption ? null : opt)
                         }}
                         className={`px-2.5 py-1 rounded-full text-[10px] font-work font-medium border transition-all ${
-                          colorMap[opt] || 'bg-foreground/5 border-foreground/10'
+                          colorSwatches[opt] || 'bg-foreground/5 border-foreground/10'
                         } ${
                           isSelected
                             ? 'ring-2 ring-foreground/40 scale-105'
@@ -310,7 +383,6 @@ function ItemCard({ item, index, phone, social }) {
                 </motion.div>
               )}
 
-              {/* Expand hint */}
               {!expanded && (
                 <p className="mt-1.5 text-[10px] font-work text-foreground/30 flex items-center gap-1">
                   Tap for details
@@ -320,7 +392,6 @@ function ItemCard({ item, index, phone, social }) {
             </div>
           </div>
 
-          {/* Add to Order button */}
           <div className="mt-3 flex items-center justify-end relative">
             <button
               onClick={(e) => {
@@ -387,14 +458,16 @@ export default function MenuInteractive({
 }) {
   const categories = propCategories || FALLBACK_CATEGORIES
   const header = propHeader || FALLBACK_HEADER
-  const category = categories[0]
 
+  const [activeId, setActiveId] = useState(categories[0]?.id)
   const [activeSub, setActiveSub] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
 
+  const activeCategory = categories.find((c) => c.id === activeId)
+
   const filteredItems = useMemo(() => {
-    if (!category) return []
-    let items = category.items
+    if (!activeCategory) return []
+    let items = activeCategory.items
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim()
       items = items.filter(
@@ -404,13 +477,13 @@ export default function MenuInteractive({
           (item.subcategory && item.subcategory.toLowerCase().includes(q))
       )
     }
-    if (activeSub !== 'All') {
+    if (activeSub && activeSub !== 'All') {
       items = items.filter((item) => item.subcategory === activeSub)
     }
     return items
-  }, [searchQuery, activeSub, category])
+  }, [searchQuery, activeSub, activeCategory])
 
-  if (!category) {
+  if (!activeCategory) {
     return (
       <div className="max-w-3xl mx-auto text-center py-12">
         <p className="font-serif text-lg text-foreground/60">Menu coming soon</p>
@@ -422,35 +495,65 @@ export default function MenuInteractive({
     <div className="max-w-3xl mx-auto">
       <MenuHeader header={header} />
 
-      {/* Search */}
+      {categories.length > 1 && (
+        <div className="mb-5">
+          <CategoryTabs
+            categories={categories}
+            activeId={activeId}
+            onSelect={(id) => {
+              setActiveId(id)
+              setActiveSub('All')
+            }}
+          />
+        </div>
+      )}
+
+      <motion.div
+        key={activeId}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center mb-4"
+      >
+        <p className="font-display text-2xl text-foreground">
+          {activeCategory.emoji} {activeCategory.name}
+        </p>
+        {activeCategory.subtitle && (
+          <p className="text-xs font-work text-foreground/40 mt-0.5">
+            {activeCategory.subtitle}
+          </p>
+        )}
+      </motion.div>
+
       <SearchBar
         query={searchQuery}
         onChange={setSearchQuery}
-        totalItems={category.items.length}
+        totalItems={activeCategory.items.length}
         filteredCount={filteredItems.length}
       />
 
-      {/* Subcategory filter */}
-      {!searchQuery.trim() && category.subcategories && (
+      {!searchQuery.trim() && activeCategory.subcategories && (
         <div className="mb-4">
           <SubcategoryChips
-            subcategories={category.subcategories}
+            subcategories={activeCategory.subcategories}
             activeSub={activeSub}
             onSelect={setActiveSub}
           />
         </div>
       )}
 
-      {/* Items */}
       {filteredItems.length === 0 ? (
-        <div className="text-center py-12">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center py-12"
+        >
           <span className="text-4xl block mb-3">🔍</span>
           <p className="font-serif text-lg text-foreground/60">
             {searchQuery
-              ? `No items found for &ldquo;${searchQuery}&rdquo;`
+              ? `No items found for "${searchQuery}"`
               : 'No items in this category'}
           </p>
-        </div>
+        </motion.div>
       ) : (
         <div className="space-y-2.5 md:space-y-3 pb-4">
           {filteredItems.map((item, i) => (
@@ -465,7 +568,6 @@ export default function MenuInteractive({
         </div>
       )}
 
-      {/* Delivery Info */}
       <DeliveryInfo />
     </div>
   )
