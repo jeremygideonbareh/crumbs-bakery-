@@ -5,6 +5,8 @@
 const PEXELS = (id, w = 800) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}&q=80&fit=crop`
 
+const LOCAL = (name) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(name)}`
+
 export const HOME_HERO_DEFAULTS = {
   slogan: "SHILLONG'S BEST-KEPT SECRET",
   title: 'Where every <br> <span class="text-foreground italic">crumb</span> tells a story',
@@ -385,6 +387,12 @@ export const FOOTER_DEFAULTS = {
   },
   bottom_text: 'Made with love in Shillong',
 }
+
+export const MENUS_DEFAULTS = [
+  { label: 'Cakes Menu', image: LOCAL('cakes menu.jpeg') },
+  { label: 'Cheesecake Menu', image: LOCAL('cheese cakes menu.jpeg') },
+  { label: 'Fruit Cake Menu', image: LOCAL('fruit cakes menu.jpeg') },
+]
 
 export const PRODUCT_CAROUSEL_DEFAULTS = [
   { name: 'VINTAGE HEART CAKE', price: '₹1,200', image: PEXELS(140831) },

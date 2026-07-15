@@ -11,10 +11,12 @@ const containerVariants = {
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 30, scale: 0.95, filter: 'blur(4px)' },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
+    filter: 'blur(0px)',
     transition: { duration: 0.6, ease: 'easeOut' },
   },
 }

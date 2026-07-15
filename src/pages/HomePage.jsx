@@ -8,12 +8,14 @@ import BrowseByBake from '@/components/BrowseByBake'
 import SignatureItems from '@/components/SignatureItems'
 import ImageCarousel from '@/components/ImageCarousel'
 import ProductCarousel from '@/components/ProductCarousel'
+import MenusGallery from '@/components/MenusGallery'
 import DeliverySection from '@/components/DeliverySection'
 import Gallery from '@/components/Gallery'
 import InstagramSection from '@/components/InstagramSection'
 import PromoCards from '@/components/PromoCards'
 import NewsSection from '@/components/NewsSection'
 import FaqSection from '@/components/FaqSection'
+import ScrambleText from '@/components/ScrambleText'
 import { Button } from '@/components/ui/button'
 import { useOrderContext } from '@/components/Layout'
 import usePageSection from '@/hooks/usePageSection'
@@ -30,6 +32,7 @@ export default function HomePage() {
   const signatureItems = usePageSection('signature_items', DEFAULTS.SIGNATURE_ITEMS_DEFAULTS)
   const imageCarousel = usePageSection('image_carousel', DEFAULTS.IMAGE_CAROUSEL_DEFAULTS)
   const productCarousel = usePageSection('product_carousel', DEFAULTS.PRODUCT_CAROUSEL_DEFAULTS)
+  const menus = usePageSection('menus', DEFAULTS.MENUS_DEFAULTS)
   const delivery = usePageSection('delivery', DEFAULTS.DELIVERY_DEFAULTS)
   const gallery = usePageSection('gallery', DEFAULTS.GALLERY_DEFAULTS)
   const instagram = usePageSection('instagram', DEFAULTS.INSTAGRAM_DEFAULTS)
@@ -45,7 +48,7 @@ export default function HomePage() {
       animate={{ opacity: 1, transition: { duration: 0.3 } }}
     >
       <HeroSection
-        slogan={h.slogan}
+        slogan={<ScrambleText text={h.slogan} delay={0.8} speed={40} />}
         title={
           <span dangerouslySetInnerHTML={{ __html: h.title || '' }} />
         }
@@ -68,6 +71,7 @@ export default function HomePage() {
       <SignatureItems data={signatureItems.data} />
       <ImageCarousel data={imageCarousel.data} />
       <ProductCarousel data={productCarousel.data} />
+      <MenusGallery data={menus.data} />
       <DeliverySection data={delivery.data} />
       <Gallery data={gallery.data} />
       <InstagramSection data={instagram.data} />
@@ -77,10 +81,10 @@ export default function HomePage() {
       <section className="py-8 md:py-16 px-4 md:px-6 bg-background">
         <div className="mx-auto max-w-6xl text-center">
           <span className="font-work text-[13px] uppercase tracking-[0.2em] text-muted-foreground font-medium">
-            Testimonials
+            <ScrambleText text="Testimonials" delay={0.3} speed={30} />
           </span>
           <h2 className="font-serif text-xl sm:text-2xl md:text-4xl font-medium leading-[1.2] text-foreground mt-2">
-            What our community says
+            <ScrambleText text="What our community says" delay={0.6} speed={25} />
           </h2>
           <p className="text-muted-foreground text-sm mt-2 max-w-lg mx-auto">
             Rated <strong>4.8</strong> from 9+ reviews on Google &amp; Zomato

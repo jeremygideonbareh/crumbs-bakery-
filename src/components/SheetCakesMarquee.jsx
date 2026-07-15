@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import { animate, useMotionValue } from 'framer-motion'
 
 const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=200&q=80&fit=crop`
 
@@ -11,13 +12,37 @@ const items = Array.from({ length: 10 }, (_, i) => ({
   ][i % 3],
 }))
 
+const DURATION = 30000
+const DISTANCE = '-50%'
+
+function useMarqueeAnimation(ref) {
+  const x = useMotionValue('0%')
+
+  useEffect(() => {
+    if (!ref.current) return
+    const controls = animate(x, DISTANCE, {
+      duration: DURATION / 1000,
+      ease: 'linear',
+      repeat: Infinity,
+      repeatType: 'loop',
+    })
+
+    return () => controls.stop()
+  }, [x])
+
+  return { x }
+}
+
 export default function SheetCakesMarquee() {
+  const containerRef = useRef(null)
+  const { x } = useMarqueeAnimation(containerRef)
+
   return (
     <section className="overflow-hidden bg-header py-3 md:py-4">
-      <motion.div
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: 30, ease: 'linear', repeat: Infinity }}
+      <div
+        ref={containerRef}
         className="flex gap-6 whitespace-nowrap"
+        style={{ x }}
       >
         {[...items, ...items].map((item, i) => (
           <div key={i} className="flex shrink-0 items-center gap-6">
@@ -31,7 +56,7 @@ export default function SheetCakesMarquee() {
             </span>
           </div>
         ))}
-      </motion.div>
+      </div>
     </section>
   )
 }

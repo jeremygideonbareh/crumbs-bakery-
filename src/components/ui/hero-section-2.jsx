@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { cn } from '@/lib/utils'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Globe, Phone, MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -48,6 +48,13 @@ const SOCIAL_PROOF_STATS = [
 
 const HeroSection = React.forwardRef(
   ({ className, logo, slogan, title, subtitle, callToAction, backgroundImage, contactInfo, onOrder, stats, ...props }, ref) => {
+    const parallaxRef = useRef(null)
+    const { scrollYProgress } = useScroll({
+      target: parallaxRef,
+      offset: ['start end', 'end start'],
+    })
+    const imageY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%'])
+
     const containerVariants = {
       hidden: { opacity: 0 },
       visible: {
@@ -174,7 +181,7 @@ const HeroSection = React.forwardRef(
         </div>
 
         {/* Right Side: Image with clip-path animation + gradient fade */}
-        <div className="relative w-full min-h-[40vh] md:w-[55%] md:min-h-screen">
+        <div ref={parallaxRef} className="relative w-full min-h-[40vh] md:w-[55%] md:min-h-screen">
           <div className="hidden md:block absolute inset-0 z-10 bg-gradient-to-r from-[#FFFFF0] via-[#FFFFF0]/50 via-20% to-transparent to-35% pointer-events-none" />
 
           {/* Mobile: simple fade-in */}
@@ -192,7 +199,7 @@ const HeroSection = React.forwardRef(
             />
           </motion.div>
 
-          {/* Desktop: clip-path reveal */}
+          {/* Desktop: clip-path reveal with parallax */}
           <motion.div
             className="hidden md:block absolute inset-0 overflow-hidden"
             initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
@@ -200,6 +207,7 @@ const HeroSection = React.forwardRef(
               clipPath: 'polygon(3% 0, 100% 0, 100% 100%, 0% 100%)',
             }}
             transition={{ duration: 1.2, ease: 'circOut' }}
+            style={{ y: imageY }}
           >
             <img
               src={backgroundImage}

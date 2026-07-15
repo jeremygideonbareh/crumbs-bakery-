@@ -189,6 +189,18 @@ const SECTION_FIELDS = {
       itemFields: [{ key: '__value__', label: 'Image URL', type: 'image' }],
     },
   ],
+  menus: [
+    {
+      key: '__array__',
+      label: 'Menu Images',
+      type: 'array',
+      itemFields: [
+        { key: 'label', label: 'Menu Title', type: 'text' },
+        { key: 'image', label: 'Image URL', type: 'image' },
+      ],
+    },
+  ],
+
   footer: [
     { key: 'brand_name', label: 'Brand Name', type: 'text' },
     { key: 'brand_description', label: 'Brand Description', type: 'textarea' },

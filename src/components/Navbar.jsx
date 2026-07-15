@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
@@ -8,6 +8,7 @@ const navLinks = [
   { label: 'CAKES', href: '/cakes' },
   { label: 'CUPCAKES', href: '/cupcakes' },
   { label: 'DESSERTS', href: '/desserts' },
+  { label: 'MENUS', href: '/menus' },
   { label: 'ABOUT', href: '/about' },
   { label: 'REVIEWS', href: '/reviews' },
   { label: 'CONTACT', href: '/contact' },
@@ -17,6 +18,9 @@ export default function Navbar({ onOrder }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const location = useLocation()
+
+  const { scrollYProgress } = useScroll()
+  const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -71,6 +75,11 @@ export default function Navbar({ onOrder }) {
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
+
+      <motion.div
+        style={{ scaleX: progressScale }}
+        className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent origin-left"
+      />
 
       <AnimatePresence>
         {open && (

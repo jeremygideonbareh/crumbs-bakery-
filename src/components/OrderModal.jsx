@@ -163,8 +163,8 @@ export default function OrderModal({ open, onClose }) {
                 <ShoppingCart size={16} className="text-foreground" />
                 <h2 className="font-serif text-base md:text-xl text-foreground">Custom Cake Order</h2>
               </div>
-              <button onClick={resetAndClose} className="text-muted-foreground hover:text-foreground transition-colors p-3">
-                <X size={18} />
+<button onClick={resetAndClose} className="text-muted-foreground hover:text-foreground transition-colors p-3.5 min-h-[44px] min-w-[44px] flex items-center justify-center">
+<X size={20} />
               </button>
             </div>
 

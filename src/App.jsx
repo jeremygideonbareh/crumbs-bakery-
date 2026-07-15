@@ -7,6 +7,7 @@ import DessertsPage from './pages/DessertsPage'
 import AboutPage from './pages/AboutPage'
 import ReviewsPage from './pages/ReviewsPage'
 import ContactPage from './pages/ContactPage'
+import MenusPage from './pages/MenusPage'
 
 // Admin imports
 import { AdminAuthProvider } from './pages/admin/AdminLogin'
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/cakes" element={<CakesPage />} />
           <Route path="/cupcakes" element={<CupcakesPage />} />
           <Route path="/desserts" element={<DessertsPage />} />
+          <Route path="/menus" element={<MenusPage />} />
           <Route path="/cookies" element={<Navigate to="/desserts" replace />} />
           <Route path="/brownies" element={<Navigate to="/desserts" replace />} />
           <Route path="/about" element={<AboutPage />} />
