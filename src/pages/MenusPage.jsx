@@ -5,27 +5,41 @@ import usePageSection from '@/hooks/usePageSection'
 import { MENU_CATEGORIES_DEFAULTS } from '@/data/contentDefaults'
 import { MENU_HEADER } from '@/data/menuData'
 
+function mergeImagesFromDefaults(items, defaultItems) {
+  return items.map((item) => {
+    if (item.image) return item
+    const match = defaultItems.find((d) => d.name === item.name)
+    return { ...item, image: match?.image || '' }
+  })
+}
+
 function normalizeAdminData(adminData) {
   if (!adminData || !Array.isArray(adminData) || adminData.length === 0) return null
-  return adminData.map((cat, i) => ({
-    id: cat.id || `cat-${i}`,
-    name: cat.name || 'Category',
-    subtitle: cat.subtitle || '',
-    emoji: cat.emoji || '🍰',
-    accent: cat.accent || 'rose',
-    subcategories: Array.isArray(cat.subcategories) ? cat.subcategories : undefined,
-    items: Array.isArray(cat.items)
-      ? cat.items.map((item) => ({
-          name: item.name || '',
-          price: item.price || '',
-          desc: item.desc || '',
-          highlight: item.highlight || '',
-          subcategory: item.subcategory || '',
-          options: Array.isArray(item.options) ? item.options : undefined,
-          image: item.image || '',
-        }))
-      : [],
-  }))
+  return adminData.map((cat, i) => {
+    const defaults = MENU_CATEGORIES_DEFAULTS[i]
+    return {
+      id: cat.id || `cat-${i}`,
+      name: cat.name || 'Category',
+      subtitle: cat.subtitle || '',
+      emoji: cat.emoji || '🍰',
+      accent: cat.accent || 'rose',
+      subcategories: Array.isArray(cat.subcategories) ? cat.subcategories : undefined,
+      items: Array.isArray(cat.items)
+        ? mergeImagesFromDefaults(
+            cat.items.map((item) => ({
+              name: item.name || '',
+              price: item.price || '',
+              desc: item.desc || '',
+              highlight: item.highlight || '',
+              subcategory: item.subcategory || '',
+              options: Array.isArray(item.options) ? item.options : undefined,
+              image: item.image || '',
+            })),
+            defaults?.items || []
+          )
+        : [],
+    }
+  })
 }
 
 export default function MenusPage() {

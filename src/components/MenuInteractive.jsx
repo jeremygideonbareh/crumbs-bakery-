@@ -261,13 +261,20 @@ function ItemCard({ item, index, phone, social }) {
         >
           <div className="flex items-start gap-3">
             {!!item.image && (
-              <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 rounded-lg overflow-hidden bg-foreground/5">
+              <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 rounded-lg overflow-hidden bg-foreground/5 relative">
                 <img
-                  src={item.image}
+                  src={encodeURI(item.image)}
                   alt={item.name}
                   className="w-full h-full object-cover"
-                  onError={(e) => { e.target.style.display = 'none' }}
+                  onError={(e) => {
+                    e.target.style.display = 'none'
+                    const placeholder = e.target.parentElement?.querySelector('.img-placeholder')
+                    if (placeholder) placeholder.classList.remove('hidden')
+                  }}
                 />
+                <div className="img-placeholder hidden absolute inset-0 flex items-center justify-center text-lg text-foreground/30 select-none">
+                  🍰
+                </div>
               </div>
             )}
             <div className="flex-1 min-w-0">
