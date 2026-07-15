@@ -224,7 +224,18 @@ function ItemCard({ item, index, accentKey }) {
             expanded ? 'shadow-md border-foreground/20' : ''
           }`}
         >
-          <div className="flex items-start justify-between gap-3">
+          <div className="flex items-start gap-3">
+            {/* Image thumbnail */}
+            {item.image && (
+              <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 rounded-lg overflow-hidden bg-foreground/5">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => { e.target.style.display = 'none' }}
+                />
+              </div>
+            )}
             {/* Left: Name + Badge */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">

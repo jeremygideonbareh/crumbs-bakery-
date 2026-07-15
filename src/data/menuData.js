@@ -107,6 +107,7 @@ export const MENU_CATEGORIES = [
         price: '₹ 1100/-',
         desc: 'The classic jiggly Japanese cheesecake, so soft and airy it melts in your mouth',
         highlight: 'Must Try',
+        image: '/images/Japanese cheesecake.jpeg',
       },
     ],
   },
@@ -137,6 +138,7 @@ export const MENU_CATEGORIES = [
         name: 'Lemon and blueberry',
         price: '₹ 1100/-',
         desc: 'A light and moist lemon sponge with blueberries filled with creamcheese frosting',
+        image: '/images/Lemon and blueberry muffins.jpeg',
       },
       {
         name: 'Strawberry and cream',
