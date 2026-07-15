@@ -200,6 +200,30 @@ const SECTION_FIELDS = {
       ],
     },
   ],
+  menu_categories: [
+    {
+      key: '__array__',
+      label: 'Menu Categories',
+      type: 'array',
+      itemFields: [
+        { key: 'name', label: 'Category Name', type: 'text' },
+        { key: 'emoji', label: 'Emoji Icon', type: 'text' },
+        { key: 'subtitle', label: 'Subtitle (e.g. "Price Per 500g")', type: 'text' },
+        { key: 'accent', label: 'Accent Color (rose / amber / purple)', type: 'text' },
+        {
+          key: 'items',
+          label: 'Menu Items',
+          type: 'array',
+          itemFields: [
+            { key: 'name', label: 'Item Name', type: 'text' },
+            { key: 'price', label: 'Price', type: 'text' },
+            { key: 'desc', label: 'Description', type: 'textarea' },
+            { key: 'highlight', label: 'Highlight Badge (optional)', type: 'text' },
+          ],
+        },
+      ],
+    },
+  ],
 
   footer: [
     { key: 'brand_name', label: 'Brand Name', type: 'text' },

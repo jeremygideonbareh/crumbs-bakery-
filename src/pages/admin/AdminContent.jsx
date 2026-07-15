@@ -31,6 +31,7 @@ const typeIcons = {
   faq: MessageSquare,
   image_grid: Image,
   social: Star,
+  menu_categories: List,
   footer: Settings,
 }
 
@@ -48,6 +49,7 @@ const typeColors = {
   faq: 'bg-purple-50 text-purple-600',
   image_grid: 'bg-rose-50 text-rose-600',
   social: 'bg-fuchsia-50 text-fuchsia-600',
+  menu_categories: 'bg-orange-50 text-orange-600',
   footer: 'bg-gray-50 text-gray-600',
 }
 
