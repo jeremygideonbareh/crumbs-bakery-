@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useMemo } from 'react'
-import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search,
   MapPin,
@@ -118,61 +118,6 @@ function MenuHeader({ header }) {
         />
       </div>
     </motion.div>
-  )
-}
-
-function CategoryTabs({ categories, activeId, onSelect }) {
-  const scrollRef = useRef(null)
-  const activeRef = useRef(null)
-
-  useEffect(() => {
-    if (activeRef.current && scrollRef.current) {
-      const container = scrollRef.current
-      const el = activeRef.current
-      const scrollLeft = el.offsetLeft - container.offsetWidth / 2 + el.offsetWidth / 2
-      container.scrollTo({ left: scrollLeft, behavior: 'smooth' })
-    }
-  }, [activeId])
-
-  return (
-    <div
-      ref={scrollRef}
-      className="flex gap-2 overflow-x-auto scrollbar-none pb-2 -mx-4 px-4 md:mx-0 md:px-0 md:pb-0 md:overflow-visible md:flex-wrap md:justify-center"
-      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-    >
-      <LayoutGroup>
-        {categories.map((cat) => {
-          const isActive = cat.id === activeId
-          const accent = accentMap[cat.accent] || accentMap.rose
-          return (
-            <motion.button
-              key={cat.id}
-              ref={isActive ? activeRef : null}
-              layout
-              onClick={() => onSelect(cat.id)}
-              className={`relative flex items-center gap-2 px-4 py-2.5 md:px-5 md:py-3 rounded-full font-work text-sm font-medium whitespace-nowrap transition-colors ${
-                isActive
-                  ? 'text-foreground shadow-sm'
-                  : 'text-foreground/60 hover:text-foreground/80 hover:bg-foreground/5'
-              }`}
-            >
-              {isActive && (
-                <motion.div
-                  layoutId="activeTab"
-                  className={`absolute inset-0 rounded-full ${accent.bg} border ${accent.border}`}
-                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10 text-lg leading-none">{cat.emoji}</span>
-              <span className="relative z-10">
-                {cat.name}
-                <span className="ml-1.5 text-xs opacity-60">({cat.items.length})</span>
-              </span>
-            </motion.button>
-          )
-        })}
-      </LayoutGroup>
-    </div>
   )
 }
 
@@ -458,16 +403,14 @@ export default function MenuInteractive({
 }) {
   const categories = propCategories || FALLBACK_CATEGORIES
   const header = propHeader || FALLBACK_HEADER
+  const category = categories[0]
 
-  const [activeId, setActiveId] = useState(categories[0]?.id)
   const [activeSub, setActiveSub] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
 
-  const activeCategory = categories.find((c) => c.id === activeId)
-
   const filteredItems = useMemo(() => {
-    if (!activeCategory) return []
-    let items = activeCategory.items
+    if (!category) return []
+    let items = category.items
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim()
       items = items.filter(
@@ -481,9 +424,9 @@ export default function MenuInteractive({
       items = items.filter((item) => item.subcategory === activeSub)
     }
     return items
-  }, [searchQuery, activeSub, activeCategory])
+  }, [searchQuery, activeSub, category])
 
-  if (!activeCategory) {
+  if (!category) {
     return (
       <div className="max-w-3xl mx-auto text-center py-12">
         <p className="font-serif text-lg text-foreground/60">Menu coming soon</p>
@@ -495,31 +438,17 @@ export default function MenuInteractive({
     <div className="max-w-3xl mx-auto">
       <MenuHeader header={header} />
 
-      {categories.length > 1 && (
-        <div className="mb-5">
-          <CategoryTabs
-            categories={categories}
-            activeId={activeId}
-            onSelect={(id) => {
-              setActiveId(id)
-              setActiveSub('All')
-            }}
-          />
-        </div>
-      )}
-
       <motion.div
-        key={activeId}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-4"
       >
         <p className="font-display text-2xl text-foreground">
-          {activeCategory.emoji} {activeCategory.name}
+          {category.emoji} {category.name}
         </p>
-        {activeCategory.subtitle && (
+        {category.subtitle && (
           <p className="text-xs font-work text-foreground/40 mt-0.5">
-            {activeCategory.subtitle}
+            {category.subtitle}
           </p>
         )}
       </motion.div>
@@ -527,14 +456,14 @@ export default function MenuInteractive({
       <SearchBar
         query={searchQuery}
         onChange={setSearchQuery}
-        totalItems={activeCategory.items.length}
+        totalItems={category.items.length}
         filteredCount={filteredItems.length}
       />
 
-      {!searchQuery.trim() && activeCategory.subcategories && (
+      {!searchQuery.trim() && category.subcategories && (
         <div className="mb-4">
           <SubcategoryChips
-            subcategories={activeCategory.subcategories}
+            subcategories={category.subcategories}
             activeSub={activeSub}
             onSelect={setActiveSub}
           />

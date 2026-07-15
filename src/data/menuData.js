@@ -10,7 +10,7 @@ export const MENU_CATEGORIES = [
   {
     id: 'all-cakes',
     name: 'All Cakes',
-    subtitle: 'Handcrafted celebration cakes',
+    subtitle: 'Handcrafted celebration cakes & bakes',
     emoji: '🎂',
     accent: 'rose',
     subcategories: [
@@ -24,6 +24,36 @@ export const MENU_CATEGORIES = [
       'Corporate Cakes',
     ],
     items: [
+      {
+        name: 'Japanese cheesecake',
+        price: '₹1,100',
+        desc: 'The classic jiggly Japanese cheesecake, soft and airy',
+        image: '/images/Japanese cheesecake.jpeg',
+      },
+      {
+        name: 'Lemon and blueberry muffins',
+        price: '₹450',
+        desc: 'Freshly baked muffins bursting with lemon and blueberries',
+        image: '/images/Lemon and blueberry muffins.jpeg',
+      },
+      {
+        name: 'Banana pudding brioche',
+        price: '₹350',
+        desc: 'Soft brioche filled with creamy banana pudding',
+        image: '/images/Banana pudding brioche.jpeg',
+      },
+      {
+        name: 'Cream puffs',
+        price: '₹300',
+        desc: 'Light choux pastry filled with smooth vanilla cream',
+        image: '/images/Cream puffs.jpeg',
+      },
+      {
+        name: 'Quiche',
+        price: '₹400',
+        desc: 'Savory egg custard baked in a buttery, flaky crust',
+        image: '/images/Quiche.jpeg',
+      },
       {
         name: 'Vintage Heart Cake',
         price: '₹1,200',
@@ -67,45 +97,6 @@ export const MENU_CATEGORIES = [
         price: '₹1,100',
         desc: 'Moist carrot cake with cream cheese icing and walnuts',
         subcategory: 'Classic Cakes',
-      },
-    ],
-  },
-  {
-    id: 'bakes',
-    name: 'Bakes & Bites',
-    subtitle: 'Freshly baked treats & savouries',
-    emoji: '🥐',
-    accent: 'amber',
-    items: [
-      {
-        name: 'Japanese cheesecake',
-        price: '₹1,100',
-        desc: 'The classic jiggly Japanese cheesecake, soft and airy',
-        image: '/images/Japanese cheesecake.jpeg',
-      },
-      {
-        name: 'Lemon and blueberry muffins',
-        price: '₹450',
-        desc: 'Freshly baked muffins bursting with lemon and blueberries',
-        image: '/images/Lemon and blueberry muffins.jpeg',
-      },
-      {
-        name: 'Banana pudding brioche',
-        price: '₹350',
-        desc: 'Soft brioche filled with creamy banana pudding',
-        image: '/images/Banana pudding brioche.jpeg',
-      },
-      {
-        name: 'Cream puffs',
-        price: '₹300',
-        desc: 'Light choux pastry filled with smooth vanilla cream',
-        image: '/images/Cream puffs.jpeg',
-      },
-      {
-        name: 'Quiche',
-        price: '₹400',
-        desc: 'Savory egg custard baked in a buttery, flaky crust',
-        image: '/images/Quiche.jpeg',
       },
     ],
   },
