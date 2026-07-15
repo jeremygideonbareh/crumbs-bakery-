@@ -208,8 +208,13 @@ const SECTION_FIELDS = {
       itemFields: [
         { key: 'name', label: 'Category Name', type: 'text' },
         { key: 'emoji', label: 'Emoji Icon', type: 'text' },
-        { key: 'subtitle', label: 'Subtitle (e.g. "Price Per 500g")', type: 'text' },
+        { key: 'subtitle', label: 'Subtitle', type: 'text' },
         { key: 'accent', label: 'Accent Color (rose / amber / purple)', type: 'text' },
+        {
+          key: 'subcategories',
+          label: 'Subcategories (comma-separated)',
+          type: 'text',
+        },
         {
           key: 'items',
           label: 'Menu Items',
@@ -218,7 +223,8 @@ const SECTION_FIELDS = {
             { key: 'name', label: 'Item Name', type: 'text' },
             { key: 'price', label: 'Price', type: 'text' },
             { key: 'desc', label: 'Description', type: 'textarea' },
-            { key: 'highlight', label: 'Highlight Badge (optional)', type: 'text' },
+            { key: 'subcategory', label: 'Subcategory (e.g. Classic Cakes)', type: 'text' },
+            { key: 'options', label: 'Color Options (comma-separated)', type: 'text' },
           ],
         },
       ],

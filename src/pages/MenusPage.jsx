@@ -13,12 +13,15 @@ function normalizeAdminData(adminData) {
     subtitle: cat.subtitle || '',
     emoji: cat.emoji || '🍰',
     accent: cat.accent || 'rose',
+    subcategories: Array.isArray(cat.subcategories) ? cat.subcategories : undefined,
     items: Array.isArray(cat.items)
       ? cat.items.map((item) => ({
           name: item.name || '',
           price: item.price || '',
           desc: item.desc || '',
           highlight: item.highlight || '',
+          subcategory: item.subcategory || '',
+          options: Array.isArray(item.options) ? item.options : undefined,
         }))
       : [],
   }))
