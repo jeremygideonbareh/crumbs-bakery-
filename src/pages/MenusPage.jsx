@@ -4,7 +4,7 @@ import MenusGallery from '@/components/MenusGallery'
 import usePageSection from '@/hooks/usePageSection'
 import * as DEFAULTS from '@/data/contentDefaults'
 
-const HERO = `${import.meta.env.BASE_URL}images/cakes%20menu.jpeg`
+const HERO = `${import.meta.env.BASE_URL}images/Cream%20puffs.jpeg`
 
 export default function MenusPage() {
   const menus = usePageSection('menus', DEFAULTS.MENUS_DEFAULTS)

@@ -153,7 +153,7 @@ const HeroSection = React.forwardRef(
                 <Button onClick={onOrder} size="lg" className="min-h-[44px] text-sm w-full sm:w-auto">
                   {callToAction.text}
                 </Button>
-                <Link to="/cakes" className="w-full sm:w-auto">
+                <Link to="/menus" className="w-full sm:w-auto">
                   <Button variant="neutral" size="lg" className="min-h-[44px] text-sm w-full">
                     Explore Menu
                   </Button>

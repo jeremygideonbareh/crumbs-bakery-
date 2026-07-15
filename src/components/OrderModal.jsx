@@ -87,6 +87,32 @@ export default function OrderModal({ open, onClose }) {
 
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
+  const loadRazorpay = () => {
+    return new Promise((resolve) => {
+      if (window.Razorpay) { resolve(true); return }
+      const s = document.createElement('script')
+      s.src = 'https://checkout.razorpay.com/v1/checkout.js'
+      s.onload = () => resolve(true)
+      s.onerror = () => resolve(false)
+      document.body.appendChild(s)
+    })
+  }
+
+  const submitOrder = async (paymentId) => {
+    const items = {
+      base: { id: base?.id, name: base?.name, price: base?.price },
+      size: { id: size?.id, name: size?.name, price: size?.price },
+      filling: { id: filling?.id, name: filling?.name, price: filling?.price },
+      frosting: { id: frosting?.id, name: frosting?.name, price: frosting?.price },
+      extras: selectedExtras.map((e) => ({ id: e.id, name: e.name, price: e.price })),
+      message,
+      date,
+      payment_id: paymentId,
+    }
+    const { error } = await supabase.from('orders').insert({ items, customer, total, message, date })
+    if (error) throw error
+  }
+
   const handleSubmit = async () => {
     if (!customer.name || !customer.name.trim()) {
       toast.error('Please enter your name.')
@@ -100,35 +126,42 @@ export default function OrderModal({ open, onClose }) {
       toast.error('Please enter a valid phone number (6-20 digits).')
       return
     }
-    const items = {
-      base: { id: base?.id, name: base?.name, price: base?.price },
-      size: { id: size?.id, name: size?.name, price: size?.price },
-      filling: { id: filling?.id, name: filling?.name, price: filling?.price },
-      frosting: { id: frosting?.id, name: frosting?.name, price: frosting?.price },
-      extras: selectedExtras.map((e) => ({ id: e.id, name: e.name, price: e.price })),
-      message,
-      date,
-    }
-    const { error } = await supabase.from('orders').insert({
-      items,
-      customer,
-      total,
-      message,
-      date,
-    })
-    if (error) {
-      toast.error('Something went wrong. Please try again.')
+
+    const ready = await loadRazorpay()
+    if (!ready) {
+      toast.error('Payment system unavailable. Please try again.')
       return
     }
-    toast.success('Order placed! We\'ll contact you shortly.', {
-      description: `Total: ₹${total} · ${size?.name || ''} ${base?.name || ''} cake`,
-      duration: 5000,
+
+    const rzp = new window.Razorpay({
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+      amount: total * 100,
+      currency: 'INR',
+      name: 'Crumbs Bakery & Cafe',
+      description: `${size?.name || ''} ${base?.name || ''} Cake`,
+      prefill: { name: customer.name, email: customer.email, contact: customer.phone },
+      theme: { color: '#55babd' },
+      handler: async (response) => {
+        try {
+          await submitOrder(response.razorpay_payment_id)
+          toast.success('Order placed! We\'ll contact you shortly.', {
+            description: `Total: ₹${total} · Payment: ${response.razorpay_payment_id}`,
+            duration: 5000,
+          })
+          setStep(0)
+          setBase(null); setSize(null); setFilling(null); setFrosting(null)
+          setSelectedExtras([]); setMessage(''); setDate('')
+          setCustomer({ name: '', email: '', phone: '' })
+          onClose()
+        } catch {
+          toast.error('Payment received but order failed to save. Please contact us.')
+        }
+      },
+      modal: {
+        ondismiss: () => toast.error('Payment cancelled.'),
+      },
     })
-    setStep(0)
-    setBase(null); setSize(null); setFilling(null); setFrosting(null)
-    setSelectedExtras([]); setMessage(''); setDate('')
-    setCustomer({ name: '', email: '', phone: '' })
-    onClose()
+    rzp.open()
   }
 
   const resetAndClose = () => {
