@@ -19,6 +19,24 @@ export const MENU_CATEGORIES = [
     accent: 'rose',
     items: [
       {
+        name: 'Banana pudding brioche',
+        price: '₹ 950/-',
+        desc: 'A soft and fluffy brioche loaf filled with banana pudding',
+        image: '/images/Banana pudding brioche.jpeg',
+      },
+      {
+        name: 'Cream puffs',
+        price: '₹ 850/-',
+        desc: 'Light and airy choux pastry filled with vanilla cream',
+        image: '/images/Cream puffs.jpeg',
+      },
+      {
+        name: 'Quiche',
+        price: '₹ 900/-',
+        desc: 'A savory egg custard tart with a buttery, flaky crust',
+        image: '/images/Quiche.jpeg',
+      },
+      {
         name: 'Chocolate truffle',
         price: '₹ 950/-',
         desc: 'Moist chocolate sponge filled with dark chocolate ganache',
@@ -82,6 +100,13 @@ export const MENU_CATEGORIES = [
     accent: 'amber',
     items: [
       {
+        name: 'Japanese cheesecake',
+        price: '₹ 1100/-',
+        desc: 'The classic jiggly Japanese cheesecake, so soft and airy it melts in your mouth',
+        highlight: 'Must Try',
+        image: '/images/Japanese cheesecake.jpeg',
+      },
+      {
         name: 'A New York Cheesecake',
         price: '₹ 1000/-',
         desc: 'A classic baked cheesecake',
@@ -102,13 +127,6 @@ export const MENU_CATEGORIES = [
         price: '₹ 1200/-',
         desc: 'A baked cheesecake topped with some tangy lemon curd',
       },
-      {
-        name: 'Japanese cheesecake',
-        price: '₹ 1100/-',
-        desc: 'The classic jiggly Japanese cheesecake, so soft and airy it melts in your mouth',
-        highlight: 'Must Try',
-        image: '/images/Japanese cheesecake.jpeg',
-      },
     ],
   },
   {
@@ -119,6 +137,12 @@ export const MENU_CATEGORIES = [
     color: 'from-purple-100 to-pink-100',
     accent: 'purple',
     items: [
+      {
+        name: 'Lemon and blueberry',
+        price: '₹ 1100/-',
+        desc: 'A light and moist lemon sponge with blueberries filled with creamcheese frosting',
+        image: '/images/Lemon and blueberry muffins.jpeg',
+      },
       {
         name: 'Apple spiced cake',
         price: '₹ 1000/-',
@@ -133,12 +157,6 @@ export const MENU_CATEGORIES = [
         name: 'Pina Colada cake',
         price: '₹ 1100/-',
         desc: 'Moist coconut sponge filled with pineapple filling with a touch of rum (available in alcoholic / non alcoholic version)',
-      },
-      {
-        name: 'Lemon and blueberry',
-        price: '₹ 1100/-',
-        desc: 'A light and moist lemon sponge with blueberries filled with creamcheese frosting',
-        image: '/images/Lemon and blueberry muffins.jpeg',
       },
       {
         name: 'Strawberry and cream',
