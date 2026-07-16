@@ -22,6 +22,10 @@ interface Order {
   created_at: string
 }
 
+function escapeHtml(str: string): string {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;')
+}
+
 function formatCurrency(amount: number): string {
   return `₹${amount.toLocaleString('en-IN')}`
 }
@@ -29,18 +33,32 @@ function formatCurrency(amount: number): string {
 function renderOrderItems(items: unknown): string {
   try {
     const parsed = typeof items === 'string' ? JSON.parse(items) : items as Record<string, unknown>
+
+    if (Array.isArray(parsed) || Array.isArray(parsed.items)) {
+      const itemArr = Array.isArray(parsed) ? parsed : parsed.items
+      if (itemArr.length > 0) {
+        let html = '<table style="width:100%;border-collapse:collapse;">'
+        for (const item of itemArr) {
+          html += `<tr><td style="padding:4px 0;color:#666;">${escapeHtml(String(item.name ?? ''))} × ${item.qty || 1}</td>`
+          html += `<td style="padding:4px 0;text-align:right;font-weight:600;">₹${item.price}</td></tr>`
+        }
+        html += '</table>'
+        return html
+      }
+    }
+
     const extras = Array.isArray(parsed.extras) ? parsed.extras : []
     let html = '<table style="width: 100%; border-collapse: collapse;">'
-    if (parsed.base) html += `<tr><td style="padding: 4px 0; color: #666;">Base</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${(parsed.base as any).name}</td></tr>`
-    if (parsed.size) html += `<tr><td style="padding: 4px 0; color: #666;">Size</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${(parsed.size as any).name}</td></tr>`
-    if (parsed.filling) html += `<tr><td style="padding: 4px 0; color: #666;">Filling</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${(parsed.filling as any).name}</td></tr>`
-    if (parsed.frosting) html += `<tr><td style="padding: 4px 0; color: #666;">Frosting</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${(parsed.frosting as any).name}</td></tr>`
+    if (parsed.base) html += `<tr><td style="padding: 4px 0; color: #666;">Base</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${escapeHtml(String((parsed.base as any).name ?? ''))}</td></tr>`
+    if (parsed.size) html += `<tr><td style="padding: 4px 0; color: #666;">Size</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${escapeHtml(String((parsed.size as any).name ?? ''))}</td></tr>`
+    if (parsed.filling) html += `<tr><td style="padding: 4px 0; color: #666;">Filling</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${escapeHtml(String((parsed.filling as any).name ?? ''))}</td></tr>`
+    if (parsed.frosting) html += `<tr><td style="padding: 4px 0; color: #666;">Frosting</td><td style="padding: 4px 0; text-align: right; font-weight: 600;">${escapeHtml(String((parsed.frosting as any).name ?? ''))}</td></tr>`
     if (extras.length > 0) {
       html += `<tr><td style="padding: 4px 0; color: #666; vertical-align: top;">Extras</td><td style="padding: 4px 0; text-align: right;">`
-      html += extras.map((e: any) => `<div style="font-weight: 600;">${e.name}${e.price > 0 ? ` <span style="color: #999; font-weight: 400;">+₹${e.price}</span>` : ''}</div>`).join('')
+      html += extras.map((e: any) => `<div style="font-weight: 600;">${escapeHtml(String(e.name ?? ''))}${e.price > 0 ? ` <span style="color: #999; font-weight: 400;">+₹${e.price}</span>` : ''}</div>`).join('')
       html += '</td></tr>'
     }
-    if (parsed.message) html += `<tr><td style="padding: 4px 0; color: #666; vertical-align: top;">Message</td><td style="padding: 4px 0; text-align: right; font-style: italic; color: #555;">"${parsed.message}"</td></tr>`
+    if (parsed.message) html += `<tr><td style="padding: 4px 0; color: #666; vertical-align: top;">Message</td><td style="padding: 4px 0; text-align: right; font-style: italic; color: #555;">"${escapeHtml(String(parsed.message))}"</td></tr>`
     html += '</table>'
     return html
   } catch {
@@ -69,11 +87,11 @@ serve(async (req) => {
         ? JSON.parse(order.customer)
         : order.customer
 
-    const customerName = customer.name ?? 'Customer'
-    const customerPhone = customer.phone ?? 'Not provided'
-    const customerEmail = customer.email ?? ''
-    const orderMessage = order.message ?? 'None'
-    const orderDate = order.date ?? 'Not specified'
+    const customerName = escapeHtml(customer.name ?? 'Customer')
+    const customerPhone = escapeHtml(customer.phone ?? 'Not provided')
+    const customerEmail = escapeHtml(customer.email ?? '')
+    const orderMessage = escapeHtml(order.message ?? 'None')
+    const orderDate = escapeHtml(order.date ?? 'Not specified')
 
     // ── Send notification to owner ──
     const { error: ownerError } = await resend.emails.send({

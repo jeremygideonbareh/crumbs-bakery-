@@ -11,6 +11,10 @@ const FROM_EMAIL = Deno.env.get('FROM_EMAIL') ?? 'orders@crumbs.in'
 
 const resend = new Resend(RESEND_API_KEY)
 
+function escapeHtml(str: string): string {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;')
+}
+
 interface ContactMessage {
   id: number
   name: string
@@ -40,7 +44,7 @@ serve(async (req) => {
     const { error } = await resend.emails.send({
       from: `Crumbs Bakery Contact <${FROM_EMAIL}>`,
       to: [OWNER_EMAIL],
-      subject: `✉️ New Contact Message from ${msg.name}`,
+      subject: `✉️ New Contact Message from ${escapeHtml(msg.name)}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -51,13 +55,13 @@ serve(async (req) => {
           </div>
           <div style="background: #FFFFF0; padding: 20px; border: 1px solid #C8E4CA; border-radius: 0 0 8px 8px;">
             <table style="width: 100%; border-collapse: collapse;">
-              <tr><td style="padding: 6px 0; color: #666;">Name</td><td style="padding: 6px 0;"><strong>${msg.name}</strong></td></tr>
-              <tr><td style="padding: 6px 0; color: #666;">Email</td><td style="padding: 6px 0;"><strong><a href="mailto:${msg.email}" style="color: #55babd;">${msg.email}</a></strong></td></tr>
-              <tr><td style="padding: 6px 0; color: #666;">Phone</td><td style="padding: 6px 0;"><strong>${msg.phone ? `<a href="tel:${msg.phone}" style="color: #55babd;">${msg.phone}</a>` : 'Not provided'}</strong></td></tr>
+              <tr><td style="padding: 6px 0; color: #666;">Name</td><td style="padding: 6px 0;"><strong>${escapeHtml(msg.name)}</strong></td></tr>
+              <tr><td style="padding: 6px 0; color: #666;">Email</td><td style="padding: 6px 0;"><strong><a href="mailto:${escapeHtml(msg.email)}" style="color: #55babd;">${escapeHtml(msg.email)}</a></strong></td></tr>
+              <tr><td style="padding: 6px 0; color: #666;">Phone</td><td style="padding: 6px 0;"><strong>${msg.phone ? `<a href="tel:${escapeHtml(msg.phone)}" style="color: #55babd;">${escapeHtml(msg.phone)}</a>` : 'Not provided'}</strong></td></tr>
             </table>
             <hr style="border: none; border-top: 1px solid #C8E4CA; margin: 16px 0;">
             <h3 style="color: #3d2b1f;">Message</h3>
-            <p style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #C8E4CA; line-height: 1.5;">${msg.message.replace(/\n/g, '<br>')}</p>
+            <p style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #C8E4CA; line-height: 1.5;">${escapeHtml(msg.message).replace(/\n/g, '<br>')}</p>
             <hr style="border: none; border-top: 1px solid #C8E4CA; margin: 16px 0;">
             <p style="color: #666; font-size: 12px;">Received on ${new Date(msg.created_at).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</p>
           </div>
