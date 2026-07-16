@@ -123,9 +123,26 @@ export const GALLERY_DEFAULTS = [
     alt: 'Cheesecake with berries',
     caption: 'Cheesecakes',
   },
+  {
+    src: LOCAL('Japanese cheesecake (2).jpeg'),
+    alt: 'Japanese cheesecake slice',
+    caption: 'Japanese Cheesecake',
+  },
+  {
+    src: LOCAL('WhatsApp Image 2026-07-15 at 3.21.53 PM (1).jpeg'),
+    alt: 'Fresh bakes from Crumbs Bakery',
+    caption: 'Fresh from the Bakery',
+  },
 ]
 
 export const NEWS_DEFAULTS = [
+  {
+    title: 'Fresh Bakes Just Out of the Oven!',
+    image: LOCAL('WhatsApp Image 2026-07-15 at 3.21.53 PM (1).jpeg'),
+    excerpt:
+      "There's something special fresh out of the bakery today! Visit our Jaiaw cafe or order online for delivery across Shillong.",
+    date: 'July 15, 2026',
+  },
   {
     title: 'New Menu Items Have Landed at Crumbs Bakery!',
     image: PEXELS(2144200),
@@ -250,6 +267,8 @@ export const IMAGE_CAROUSEL_DEFAULTS = [
   { image: PEXELS(132694), label: 'Fresh Daily' },
   { image: PEXELS(2067396), label: 'Crafted with Love' },
   { image: PEXELS(14766327), label: "Shillong's Finest" },
+  { image: LOCAL('Japanese cheesecake (2).jpeg'), label: 'Japanese Cheesecake' },
+  { image: LOCAL('WhatsApp Image 2026-07-15 at 3.21.53 PM (1).jpeg'), label: 'Fresh Bakes' },
 ]
 
 export const DELIVERY_DEFAULTS = {
@@ -358,6 +377,11 @@ export const INSTAGRAM_DEFAULTS = {
     PEXELS(32421567),
     PEXELS(14766327),
     PEXELS(38058461),
+    LOCAL('Japanese cheesecake (2).jpeg'),
+    LOCAL('WhatsApp Image 2026-07-15 at 3.21.53 PM (1).jpeg'),
+    LOCAL('Banana pudding brioche.jpeg'),
+    LOCAL('Cream puffs.jpeg'),
+    LOCAL('Quiche.jpeg'),
   ],
 }
 
@@ -392,6 +416,7 @@ export const MENUS_DEFAULTS = [
   { label: 'Cakes Menu', image: LOCAL('cakes menu.jpeg') },
   { label: 'Cheesecake Menu', image: LOCAL('cheese cakes menu.jpeg') },
   { label: 'Fruit Cake Menu', image: LOCAL('fruit cakes menu.jpeg') },
+  { label: 'New Arrivals', image: LOCAL('WhatsApp Image 2026-07-15 at 3.21.53 PM (1).jpeg') },
 ]
 
 // Structured menu data for the interactive menu component
