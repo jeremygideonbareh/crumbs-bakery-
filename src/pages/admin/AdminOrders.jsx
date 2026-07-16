@@ -111,9 +111,27 @@ export default function AdminOrders() {
                             </>
                           )}
                           {order.status === 'confirmed' && (
-                            <button onClick={() => updateStatus(order.id, 'completed')}
-                              className="p-1.5 hover:bg-green-50 rounded text-green-500">
-                              <CheckCircle size={14} />
+                            <>
+                              <button onClick={() => updateStatus(order.id, 'completed')}
+                                className="p-1.5 hover:bg-green-50 rounded text-green-500">
+                                <CheckCircle size={14} />
+                              </button>
+                              <button onClick={() => updateStatus(order.id, 'cancelled')}
+                                className="p-1.5 hover:bg-red-50 rounded text-red-500">
+                                <XCircle size={14} />
+                              </button>
+                            </>
+                          )}
+                          {order.status === 'cancelled' && (
+                            <button onClick={() => updateStatus(order.id, 'pending')}
+                              className="p-1.5 hover:bg-amber-50 rounded text-amber-500" title="Reopen">
+                              <RotateCcw size={14} />
+                            </button>
+                          )}
+                          {order.status === 'completed' && (
+                            <button onClick={() => updateStatus(order.id, 'pending')}
+                              className="p-1.5 hover:bg-amber-50 rounded text-amber-500" title="Reopen">
+                              <RotateCcw size={14} />
                             </button>
                           )}
                         </div>
