@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight, Download } from 'lucide-react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { getImageUrl } from '@/lib/image'
+import { MENUS_DEFAULTS } from '@/data/contentDefaults'
 
 function Lightbox({ images, index, onClose }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ startIndex: index, loop: true })
@@ -104,7 +105,7 @@ function Lightbox({ images, index, onClose }) {
 export default function MenusGallery({ data }) {
   const [lightboxIndex, setLightboxIndex] = useState(null)
 
-  const items = data || []
+  const items = data || MENUS_DEFAULTS
 
   if (items.length === 0) return null
 
