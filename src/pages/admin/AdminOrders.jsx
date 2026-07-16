@@ -34,8 +34,13 @@ export default function AdminOrders() {
     } catch (err) { console.error(err); toast.error('Failed to update order status') }
   }
 
-  const parseCustomer = (customer) =>
-    typeof customer === 'string' ? JSON.parse(customer) : customer || {}
+  const parseCustomer = (customer) => {
+    try {
+      return typeof customer === 'string' ? JSON.parse(customer) : customer || {}
+    } catch {
+      return { name: 'Unknown', phone: '', email: '' }
+    }
+  }
 
   const parseItems = (items) => {
     try { return typeof items === 'string' ? JSON.parse(items) : items }
