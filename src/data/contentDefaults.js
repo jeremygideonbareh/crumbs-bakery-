@@ -455,7 +455,7 @@ export const MENU_CATEGORIES_DEFAULTS = [
 ]
 
 export const PRODUCT_CAROUSEL_DEFAULTS = [
-  { name: 'VINTAGE HEART CAKE', price: '₹1,200', image: PEXELS(140831) },
+  { name: 'Japanese cheesecake', price: '₹1,100', image: LOCAL('Japanese cheesecake.jpeg') },
   {
     name: 'DESIGN YOUR OWN BESPOKE CAKE',
     price: '₹2,500',

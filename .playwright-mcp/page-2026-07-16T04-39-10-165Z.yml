@@ -1,0 +1,666 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - text: FREE DELIVERY ON ORDERS ₹500+ORDER BY 2PM FOR SAME DAY
+    - generic [ref=e8]: DELIVERY
+  - banner [ref=e9]:
+    - generic [ref=e10]:
+      - link "Crumbs Bakery & Cafe" [ref=e11] [cursor=pointer]:
+        - /url: "#/"
+      - navigation [ref=e12]:
+        - link "HOME" [ref=e13] [cursor=pointer]:
+          - /url: "#/"
+        - link "CAKES" [ref=e14] [cursor=pointer]:
+          - /url: "#/cakes"
+        - link "CUPCAKES" [ref=e15] [cursor=pointer]:
+          - /url: "#/cupcakes"
+        - link "DESSERTS" [ref=e16] [cursor=pointer]:
+          - /url: "#/desserts"
+        - link "MENUS" [ref=e17] [cursor=pointer]:
+          - /url: "#/menus"
+        - link "ABOUT" [ref=e18] [cursor=pointer]:
+          - /url: "#/about"
+        - link "REVIEWS" [ref=e19] [cursor=pointer]:
+          - /url: "#/reviews"
+        - link "CONTACT" [ref=e20] [cursor=pointer]:
+          - /url: "#/contact"
+        - button "ORDER NOW" [ref=e21] [cursor=pointer]
+  - main [ref=e22]:
+    - generic [ref=e23]:
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - paragraph [ref=e29]: 4.9 ★
+              - paragraph [ref=e30]: Google Reviews
+            - generic [ref=e31]:
+              - paragraph [ref=e32]: 500+
+              - paragraph [ref=e33]: Happy Customers
+            - generic [ref=e34]:
+              - paragraph [ref=e35]: 7+ Years
+              - paragraph [ref=e36]: Serving Shillong
+          - main [ref=e37]:
+            - heading [level=1] [ref=e38]
+            - paragraph [ref=e41]: Handcrafted tiramisu, cream puffs, cheesecakes, and artisanal bakes — made fresh daily in the heart of Shillong.
+            - generic [ref=e42]:
+              - button "ORDER CUSTOM CAKE" [ref=e43] [cursor=pointer]
+              - link [ref=e44] [cursor=pointer]:
+                - /url: "#/menus"
+                - button "Explore Menu" [ref=e45]
+        - generic [ref=e47]:
+          - generic [ref=e48]: crumbsbakery.in
+          - generic [ref=e54]: +91 96127 72089
+          - generic [ref=e59]: Jaiaw, Shillong, Meghalaya
+      - generic [ref=e68]:
+        - generic [ref=e69] [cursor=pointer]:
+          - img "AMAZING CAKES" [ref=e70]
+          - generic [ref=e72]: AMAZING CAKES
+        - generic [ref=e74] [cursor=pointer]:
+          - img "PERFECT CUPCAKES" [ref=e75]
+          - generic [ref=e77]: PERFECT CUPCAKES
+        - generic [ref=e79] [cursor=pointer]:
+          - img "DECADENT DESSERTS" [ref=e80]
+          - generic [ref=e82]: DECADENT DESSERTS
+        - link "CUSTOM ORDERS CUSTOM ORDERS" [ref=e84] [cursor=pointer]:
+          - /url: "#order"
+          - img "CUSTOM ORDERS" [ref=e85]
+          - generic [ref=e87]: CUSTOM ORDERS
+        - generic [ref=e89] [cursor=pointer]:
+          - img "CAFE EXPERIENCE" [ref=e90]
+          - generic [ref=e92]: CAFE EXPERIENCE
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - img "CRUMBS BAKERY & CAFE, SHILLONG" [ref=e99]
+          - heading "CRUMBS BAKERY & CAFE, SHILLONG" [level=3] [ref=e100]
+          - paragraph [ref=e101]: Founded in the heart of Jaiaw, we make amazing Cakes, Cupcakes, Cookies and Brownies. You can find us in Shillong every day of the week, serving fresh treats made from scratch.
+          - link "VISIT OUR CAFE" [ref=e102] [cursor=pointer]:
+            - /url: "#contact"
+        - generic [ref=e103]:
+          - img "CAKES & BAKES IN SHILLONG" [ref=e105]
+          - heading "CAKES & BAKES IN SHILLONG" [level=3] [ref=e106]
+          - paragraph [ref=e107]: You can order our exceptional Cakes and Cupcakes, as well as our famous New York Cookies and Brownies, for pickup in Shillong or hand delivery within the city. Custom orders welcome.
+          - link "ORDER NOW" [ref=e108] [cursor=pointer]:
+            - /url: "#order"
+        - generic [ref=e109]:
+          - img "DELIVERY ACROSS SHILLONG" [ref=e111]
+          - heading "DELIVERY ACROSS SHILLONG" [level=3] [ref=e112]
+          - paragraph [ref=e113]: Enjoy fresh delivery on our Cakes, Cookies, and Brownies anywhere in Shillong with safe, contact-free delivery. Order online and treat yourself or someone special.
+          - link "ORDER DELIVERY" [ref=e114] [cursor=pointer]:
+            - /url: "#order"
+      - generic [ref=e116]:
+        - generic [ref=e117]: SHEET CAKES
+        - generic [ref=e119]: SHEET CAKES
+        - generic [ref=e121]: SHEET CAKES
+        - generic [ref=e123]: SHEET CAKES
+        - generic [ref=e125]: SHEET CAKES
+        - generic [ref=e127]: SHEET CAKES
+        - generic [ref=e129]: SHEET CAKES
+        - generic [ref=e131]: SHEET CAKES
+        - generic [ref=e133]: SHEET CAKES
+        - generic [ref=e135]: SHEET CAKES
+        - generic [ref=e137]: SHEET CAKES
+        - generic [ref=e139]: SHEET CAKES
+        - generic [ref=e141]: SHEET CAKES
+        - generic [ref=e143]: SHEET CAKES
+        - generic [ref=e145]: SHEET CAKES
+        - generic [ref=e147]: SHEET CAKES
+        - generic [ref=e149]: SHEET CAKES
+        - generic [ref=e151]: SHEET CAKES
+        - generic [ref=e153]: SHEET CAKES
+        - generic [ref=e155]: SHEET CAKES
+      - generic [ref=e158]:
+        - heading "BROWSE BY BAKE" [level=2] [ref=e159]
+        - paragraph [ref=e160]: From classic cakes to custom creations — find your perfect bake below.
+        - generic [ref=e161]:
+          - link "CAKES CAKES" [ref=e162] [cursor=pointer]:
+            - /url: "#menu"
+            - img "CAKES" [ref=e163]
+            - generic [ref=e164]: CAKES
+          - link "CUPCAKES CUPCAKES" [ref=e166] [cursor=pointer]:
+            - /url: "#menu"
+            - img "CUPCAKES" [ref=e167]
+            - generic [ref=e168]: CUPCAKES
+          - link "COOKIES COOKIES" [ref=e170] [cursor=pointer]:
+            - /url: "#menu"
+            - img "COOKIES" [ref=e171]
+            - generic [ref=e172]: COOKIES
+          - link "BROWNIES BROWNIES" [ref=e174] [cursor=pointer]:
+            - /url: "#menu"
+            - img "BROWNIES" [ref=e175]
+            - generic [ref=e176]: BROWNIES
+          - link "CORPORATE CORPORATE" [ref=e178] [cursor=pointer]:
+            - /url: "#menu"
+            - img "CORPORATE" [ref=e179]
+            - generic [ref=e180]: CORPORATE
+      - generic [ref=e183]:
+        - generic [ref=e184]:
+          - paragraph [ref=e185]: Our Menu
+          - heading "S i g n a t u r e b a k e s" [level=2] [ref=e187]:
+            - generic [ref=e188]:
+              - generic [ref=e189]: S
+              - generic [ref=e190]: i
+              - generic [ref=e191]: g
+              - generic [ref=e192]: "n"
+              - generic [ref=e193]: a
+              - generic [ref=e194]: t
+              - generic [ref=e195]: u
+              - generic [ref=e196]: r
+              - generic [ref=e197]: e
+            - generic [ref=e200]:
+              - generic [ref=e201]: b
+              - generic [ref=e202]: a
+              - generic [ref=e203]: k
+              - generic [ref=e204]: e
+              - generic [ref=e205]: s
+          - paragraph [ref=e206]: Every item crafted with care, using traditional recipes and the freshest ingredients.
+        - generic [ref=e207]:
+          - generic [ref=e208]:
+            - generic [ref=e209]:
+              - img "Tiramisu" [ref=e210]
+              - generic [ref=e212]: Customer Favorite
+              - generic [ref=e213]: ₹250
+            - generic [ref=e214]:
+              - heading "Tiramisu" [level=3] [ref=e215]
+              - paragraph [ref=e216]: Our signature — bittersweet coffee-soaked layers with silky mascarpone cream. The best in Shillong, hands down.
+          - generic [ref=e217]:
+            - generic [ref=e218]:
+              - img "Cream Puffs" [ref=e219]
+              - generic [ref=e221]: Best Seller
+              - generic [ref=e222]: ₹180
+            - generic [ref=e223]:
+              - heading "Cream Puffs" [level=3] [ref=e224]
+              - paragraph [ref=e225]: Light, airy choux pastry filled with velvety vanilla cream. Perfectly portioned for a quick indulgence.
+          - generic [ref=e226]:
+            - generic [ref=e227]:
+              - img "Cheesecake" [ref=e228]
+              - generic [ref=e230]: Must Try
+              - generic [ref=e231]: ₹350
+            - generic [ref=e232]:
+              - heading "Cheesecake" [level=3] [ref=e233]
+              - paragraph [ref=e234]: New York-style baked cheesecake with a buttery graham crust. Available in multiple rotating flavours.
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - img "Cookies" [ref=e237]
+              - generic [ref=e239]: Perfect Pair
+              - generic [ref=e240]: ₹120
+            - generic [ref=e241]:
+              - heading "Cookies" [level=3] [ref=e242]
+              - paragraph [ref=e243]: Chewy, gooey, and loaded with chocolate chunks. Made with real butter and love in every batch.
+          - generic [ref=e244]:
+            - generic [ref=e245]:
+              - img "Hot Snacks" [ref=e246]
+              - generic [ref=e248]: Quick Bite
+              - generic [ref=e249]: ₹150
+            - generic [ref=e250]:
+              - heading "Hot Snacks" [level=3] [ref=e251]
+              - paragraph [ref=e252]: From savoury puffs to warm sandwiches — everything served hot, fresh, and satisfying.
+          - generic [ref=e253]:
+            - generic [ref=e254]:
+              - img "Custom Cakes" [ref=e255]
+              - generic [ref=e257]: Celebrate
+              - generic [ref=e258]: ₹500+
+            - generic [ref=e259]:
+              - heading "Custom Cakes" [level=3] [ref=e260]
+              - paragraph [ref=e261]: Birthday, anniversary, or just because. Order a custom-designed cake for your special occasion.
+        - paragraph [ref=e263]: "Price range: ₹200–₹400 · Dine-in · Takeaway · Delivery"
+      - generic [ref=e265]:
+        - generic [ref=e266]:
+          - text: Behind the Bakery
+          - heading "OUR CREATIONS" [level=2] [ref=e267]
+        - generic [ref=e268]:
+          - generic [ref=e270]:
+            - generic [ref=e271]:
+              - img "Artisanal Bakes" [ref=e272]
+              - generic [ref=e274]: Artisanal Bakes
+            - generic [ref=e276]:
+              - img "Fresh Daily" [ref=e277]
+              - generic [ref=e279]: Fresh Daily
+            - generic [ref=e281]:
+              - img "Crafted with Love" [ref=e282]
+              - generic [ref=e284]: Crafted with Love
+            - generic [ref=e286]:
+              - img "Shillong's Finest" [ref=e287]
+              - generic [ref=e289]: Shillong's Finest
+            - generic [ref=e291]:
+              - img "Japanese Cheesecake" [ref=e292]
+              - generic [ref=e294]: Japanese Cheesecake
+            - generic [ref=e296]:
+              - img "Fresh Bakes" [ref=e297]
+              - generic [ref=e299]: Fresh Bakes
+          - button "Previous" [ref=e301] [cursor=pointer]
+          - button "Next" [ref=e304] [cursor=pointer]
+          - generic [ref=e307]:
+            - button "Slide 1" [ref=e308] [cursor=pointer]
+            - button "Slide 2" [ref=e309] [cursor=pointer]
+            - button "Slide 3" [ref=e310] [cursor=pointer]
+            - button "Slide 4" [ref=e311] [cursor=pointer]
+            - button "Slide 5" [ref=e312] [cursor=pointer]
+            - button "Slide 6" [ref=e313] [cursor=pointer]
+      - generic [ref=e315]:
+        - generic [ref=e316]:
+          - generic [ref=e317]:
+            - text: Featured Bakes
+            - heading "OUR COLLECTION" [level=2] [ref=e318]
+          - paragraph [ref=e319]: ← Drag to scroll →
+        - generic [ref=e320]:
+          - generic [ref=e321]:
+            - img "VINTAGE HEART CAKE" [ref=e323]
+            - generic [ref=e325]:
+              - heading "VINTAGE HEART CAKE" [level=3] [ref=e326]
+              - paragraph [ref=e327]: ₹1,200
+              - button "Add to Order" [ref=e328] [cursor=pointer]
+          - generic [ref=e329]:
+            - img "DESIGN YOUR OWN BESPOKE CAKE" [ref=e331]
+            - generic [ref=e333]:
+              - heading "DESIGN YOUR OWN BESPOKE CAKE" [level=3] [ref=e334]
+              - paragraph [ref=e335]: ₹2,500
+              - button "Add to Order" [ref=e336] [cursor=pointer]
+          - generic [ref=e337]:
+            - img "VINTAGE CAKE - SINGLE COLOUR" [ref=e339]
+            - generic [ref=e341]:
+              - heading "VINTAGE CAKE - SINGLE COLOUR" [level=3] [ref=e342]
+              - paragraph [ref=e343]: ₹1,500
+              - button "Add to Order" [ref=e344] [cursor=pointer]
+          - generic [ref=e345]:
+            - img "EDIBLE IMAGE PHOTO CAKE" [ref=e347]
+            - generic [ref=e349]:
+              - heading "EDIBLE IMAGE PHOTO CAKE" [level=3] [ref=e350]
+              - paragraph [ref=e351]: ₹1,800
+              - button "Add to Order" [ref=e352] [cursor=pointer]
+          - generic [ref=e353]:
+            - img "CLASSIC CHOCOLATE CAKE" [ref=e355]
+            - generic [ref=e357]:
+              - heading "CLASSIC CHOCOLATE CAKE" [level=3] [ref=e358]
+              - paragraph [ref=e359]: ₹1,000
+              - button "Add to Order" [ref=e360] [cursor=pointer]
+          - generic [ref=e361]:
+            - img "FUNFETTI SPRINKLE CAKE" [ref=e363]
+            - generic [ref=e365]:
+              - heading "FUNFETTI SPRINKLE CAKE" [level=3] [ref=e366]
+              - paragraph [ref=e367]: ₹1,400
+              - button "Add to Order" [ref=e368] [cursor=pointer]
+          - generic [ref=e369]:
+            - img "RASPBERRY RIPPLE CAKE" [ref=e371]
+            - generic [ref=e373]:
+              - heading "RASPBERRY RIPPLE CAKE" [level=3] [ref=e374]
+              - paragraph [ref=e375]: ₹1,600
+              - button "Add to Order" [ref=e376] [cursor=pointer]
+          - generic [ref=e377]:
+            - img "BIRTHDAY CAKE" [ref=e379]
+            - generic [ref=e381]:
+              - heading "BIRTHDAY CAKE" [level=3] [ref=e382]
+              - paragraph [ref=e383]: ₹1,200
+              - button "Add to Order" [ref=e384] [cursor=pointer]
+          - generic [ref=e385]:
+            - img "CHOCOLATE BIRTHDAY CAKE" [ref=e387]
+            - generic [ref=e389]:
+              - heading "CHOCOLATE BIRTHDAY CAKE" [level=3] [ref=e390]
+              - paragraph [ref=e391]: ₹1,300
+              - button "Add to Order" [ref=e392] [cursor=pointer]
+          - generic [ref=e393]:
+            - img "CUSTOM CUPCAKES (DOZEN)" [ref=e395]
+            - generic [ref=e397]:
+              - heading "CUSTOM CUPCAKES (DOZEN)" [level=3] [ref=e398]
+              - paragraph [ref=e399]: ₹900
+              - button "Add to Order" [ref=e400] [cursor=pointer]
+          - generic [ref=e401]:
+            - img "COOKIE BOX (6 PACK)" [ref=e403]
+            - generic [ref=e405]:
+              - heading "COOKIE BOX (6 PACK)" [level=3] [ref=e406]
+              - paragraph [ref=e407]: ₹600
+              - button "Add to Order" [ref=e408] [cursor=pointer]
+          - generic [ref=e409]:
+            - img "BROWNIE BOX (6 PACK)" [ref=e411]
+            - generic [ref=e413]:
+              - heading "BROWNIE BOX (6 PACK)" [level=3] [ref=e414]
+              - paragraph [ref=e415]: ₹700
+              - button "Add to Order" [ref=e416] [cursor=pointer]
+      - generic [ref=e418]:
+        - generic [ref=e419]:
+          - text: Our Menus
+          - heading "Browse our menu boards" [level=2] [ref=e420]
+        - generic [ref=e421]:
+          - button "Cakes Menu Cakes Menu" [ref=e422] [cursor=pointer]:
+            - img "Cakes Menu" [ref=e423]
+            - generic [ref=e424]: Cakes Menu
+          - button "Cheesecake Menu Cheesecake Menu" [ref=e425] [cursor=pointer]:
+            - img "Cheesecake Menu" [ref=e426]
+            - generic [ref=e427]: Cheesecake Menu
+          - button "Fruit Cake Menu Fruit Cake Menu" [ref=e428] [cursor=pointer]:
+            - img "Fruit Cake Menu" [ref=e429]
+            - generic [ref=e430]: Fruit Cake Menu
+          - button "New Arrivals New Arrivals" [ref=e431] [cursor=pointer]:
+            - img "New Arrivals" [ref=e432]
+            - generic [ref=e433]: New Arrivals
+      - generic [ref=e435]:
+        - heading "WE OFFER CAKE DELIVERY IN SHILLONG" [level=3] [ref=e436]
+        - paragraph [ref=e437]: Whether you need cake delivery in Shillong or nearby areas we deliver our incredible Cakes and Cupcakes to all parts of the city. Safe delivery of your cake is guaranteed.
+        - generic [ref=e438]:
+          - generic [ref=e439] [cursor=pointer]:
+            - img "CENTRAL SHILLONG" [ref=e440]
+            - generic [ref=e441]: CENTRAL SHILLONG
+          - generic [ref=e443] [cursor=pointer]:
+            - img "JAIAW & LAITUMKHRAH" [ref=e444]
+            - generic [ref=e445]: JAIAW & LAITUMKHRAH
+          - generic [ref=e447] [cursor=pointer]:
+            - img "POLICE BAZAR & WARD'S LAKE" [ref=e448]
+            - generic [ref=e449]: POLICE BAZAR & WARD'S LAKE
+          - generic [ref=e451] [cursor=pointer]:
+            - img "GREATER SHILLONG AREA" [ref=e452]
+            - generic [ref=e453]: GREATER SHILLONG AREA
+        - generic [ref=e455]:
+          - paragraph [ref=e456]: Can't see your area? We deliver to almost all areas within Shillong. Use our location selector at checkout or visit us for pickup at our Jaiaw cafe.
+          - link "SHILLONG CAKE DELIVERY" [ref=e457] [cursor=pointer]:
+            - /url: "#contact"
+      - generic [ref=e460]:
+        - generic [ref=e461]:
+          - paragraph [ref=e462]: Our Gallery
+          - heading "A t a s t e o f w h a t w e b a k e" [level=2] [ref=e464]:
+            - generic [ref=e465]:
+              - generic [ref=e466]: A
+              - generic [ref=e468]: t
+              - generic [ref=e469]: a
+              - generic [ref=e470]: s
+              - generic [ref=e471]: t
+              - generic [ref=e472]: e
+              - generic [ref=e474]: o
+              - generic [ref=e475]: f
+              - generic [ref=e477]: w
+              - generic [ref=e478]: h
+              - generic [ref=e479]: a
+              - generic [ref=e480]: t
+              - generic [ref=e482]: w
+              - generic [ref=e483]: e
+            - generic [ref=e486]:
+              - generic [ref=e487]: b
+              - generic [ref=e488]: a
+              - generic [ref=e489]: k
+              - generic [ref=e490]: e
+          - paragraph [ref=e491]: Every creation is a work of art — made fresh, with love, in our Shillong bakery.
+        - generic [ref=e492]:
+          - button [ref=e493] [cursor=pointer]:
+            - img "Assortment of cakes and pastries on a platter" [ref=e494]
+            - paragraph [ref=e496]: Artisanal Cakes
+          - button [ref=e497] [cursor=pointer]:
+            - img "Fresh pastries displayed in a bakery case" [ref=e498]
+            - paragraph [ref=e500]: Fresh Pastries
+          - button [ref=e501] [cursor=pointer]:
+            - img "Cakes and macarons in a display case" [ref=e502]
+            - paragraph [ref=e504]: Cakes & Macarons
+          - button [ref=e505] [cursor=pointer]:
+            - img "Tiramisu dessert" [ref=e506]
+            - paragraph [ref=e508]: Signature Tiramisu
+          - button [ref=e509] [cursor=pointer]:
+            - img "Cream puffs and eclairs" [ref=e510]
+            - paragraph [ref=e512]: Cream Puffs
+          - button [ref=e513] [cursor=pointer]:
+            - img "Cheesecake with berries" [ref=e514]
+            - paragraph [ref=e516]: Cheesecakes
+          - button [ref=e517] [cursor=pointer]:
+            - img "Japanese cheesecake slice" [ref=e518]
+            - paragraph [ref=e520]: Japanese Cheesecake
+          - button [ref=e521] [cursor=pointer]:
+            - img "Fresh bakes from Crumbs Bakery" [ref=e522]
+            - paragraph [ref=e524]: Fresh from the Bakery
+      - generic [ref=e526]:
+        - generic [ref=e527]:
+          - heading "INSTAGRAM" [level=2] [ref=e528]
+          - paragraph [ref=e529]: Tag us in your photos for a chance to be featured on our page!
+          - generic [ref=e530]:
+            - link "🍰 OUR MENU" [ref=e531] [cursor=pointer]:
+              - /url: https://instagram.com/crumbsbakery/
+              - generic [ref=e532]: 🍰
+              - generic [ref=e533]: OUR MENU
+            - link "🧁 FRESH BAKES" [ref=e534] [cursor=pointer]:
+              - /url: https://instagram.com/crumbsbakery/
+              - generic [ref=e535]: 🧁
+              - generic [ref=e536]: FRESH BAKES
+            - link "❓ F.A.Q." [ref=e537] [cursor=pointer]:
+              - /url: https://instagram.com/crumbsbakery/
+              - generic [ref=e538]: ❓
+              - generic [ref=e539]: F.A.Q.
+            - link "👩‍🍳 BAKING TIPS!" [ref=e540] [cursor=pointer]:
+              - /url: https://instagram.com/crumbsbakery/
+              - generic [ref=e541]: 👩‍🍳
+              - generic [ref=e542]: BAKING TIPS!
+            - link "🎂 CUSTOM CAKES" [ref=e543] [cursor=pointer]:
+              - /url: https://instagram.com/crumbsbakery/
+              - generic [ref=e544]: 🎂
+              - generic [ref=e545]: CUSTOM CAKES
+            - link "📍 FIND US!" [ref=e546] [cursor=pointer]:
+              - /url: https://instagram.com/crumbsbakery/
+              - generic [ref=e547]: 📍
+              - generic [ref=e548]: FIND US!
+          - generic [ref=e549]:
+            - paragraph [ref=e550]: FOLLOW US
+            - paragraph [ref=e551]: "@CRUMBSBAKERY"
+        - generic [ref=e552]:
+          - link [ref=e553] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e561] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e569] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e577] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e585] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e593] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e601] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e609] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e617] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e625] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e633] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e641] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e649] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e657] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e665] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e673] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link [ref=e681] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+      - generic [ref=e690]:
+        - generic [ref=e691]:
+          - text: Join the Community
+          - heading "CRUMBS PERKS" [level=2] [ref=e692]
+        - generic [ref=e693]:
+          - link "BAKE CLUB BAKE CLUB PDF Recipes, Behind-the-Scenes content, site-wide discounts. SIGN UP NOW" [ref=e694] [cursor=pointer]:
+            - /url: "#"
+            - img "BAKE CLUB" [ref=e695]
+            - generic [ref=e696]:
+              - heading "BAKE CLUB" [level=3] [ref=e697]
+              - paragraph [ref=e698]: PDF Recipes, Behind-the-Scenes content, site-wide discounts.
+              - generic [ref=e699]: SIGN UP NOW
+          - link "YOUTUBE YOUTUBE New Recipe videos uploaded every week on our channel. CHECK IT OUT" [ref=e700] [cursor=pointer]:
+            - /url: "#"
+            - img "YOUTUBE" [ref=e701]
+            - generic [ref=e702]:
+              - heading "YOUTUBE" [level=3] [ref=e703]
+              - paragraph [ref=e704]: New Recipe videos uploaded every week on our channel.
+              - generic [ref=e705]: CHECK IT OUT
+          - link "COOKIE CLUB COOKIE CLUB Everything in Bake Club plus a box of Cookies delivered every month! GET THOSE COOKIES" [ref=e706] [cursor=pointer]:
+            - /url: "#"
+            - img "COOKIE CLUB" [ref=e707]
+            - generic [ref=e708]:
+              - heading "COOKIE CLUB" [level=3] [ref=e709]
+              - paragraph [ref=e710]: Everything in Bake Club plus a box of Cookies delivered every month!
+              - generic [ref=e711]: GET THOSE COOKIES
+      - generic [ref=e713]:
+        - generic [ref=e714]: Testimonials
+        - heading "What our community says" [level=2] [ref=e715]
+        - paragraph [ref=e716]:
+          - text: Rated
+          - strong [ref=e717]: "4.8"
+          - text: from 9+ reviews on Google & Zomato
+        - link [ref=e718] [cursor=pointer]:
+          - /url: "#/reviews"
+          - button "Read All Reviews" [ref=e719]
+      - generic [ref=e721]:
+        - generic [ref=e722]:
+          - text: What's New
+          - heading "LATEST FROM CRUMBS" [level=2] [ref=e723]
+          - paragraph [ref=e724]: Stay up to date with our newest creations, events, and bakery happenings.
+        - generic [ref=e725]:
+          - article [ref=e726]:
+            - img "Fresh Bakes Just Out of the Oven!" [ref=e728]
+            - generic [ref=e730]:
+              - generic [ref=e731]: July 15, 2026
+              - heading "Fresh Bakes Just Out of the Oven!" [level=3] [ref=e732]
+              - paragraph [ref=e733]: There's something special fresh out of the bakery today! Visit our Jaiaw cafe or order online for delivery across Shillong.
+              - link "Read More" [ref=e734] [cursor=pointer]:
+                - /url: https://instagram.com/crumbsbakery/
+          - article [ref=e737]:
+            - img "New Menu Items Have Landed at Crumbs Bakery!" [ref=e739]
+            - generic [ref=e741]:
+              - generic [ref=e742]: June 24, 2026
+              - heading "New Menu Items Have Landed at Crumbs Bakery!" [level=3] [ref=e743]
+              - paragraph [ref=e744]: Coming to Crumbs Bakery this weekend — new cakes, fresh flavours, and exciting treats you won't want to miss!
+              - link "Read More" [ref=e745] [cursor=pointer]:
+                - /url: https://instagram.com/crumbsbakery/
+          - article [ref=e748]:
+            - img "Valrhona Chocolate Cookies Are Here!!" [ref=e750]
+            - generic [ref=e752]:
+              - generic [ref=e753]: June 20, 2026
+              - heading "Valrhona Chocolate Cookies Are Here!!" [level=3] [ref=e754]
+              - paragraph [ref=e755]: There's a brand new, limited edition cookie — the Valrhona Choc Chip cookie, packed with delicious dark chocolate.
+              - link "Read More" [ref=e756] [cursor=pointer]:
+                - /url: https://instagram.com/crumbsbakery/
+          - article [ref=e759]:
+            - img "What's Happening in Store This Week" [ref=e761]
+            - generic [ref=e763]:
+              - generic [ref=e764]: June 18, 2026
+              - heading "What's Happening in Store This Week" [level=3] [ref=e765]
+              - paragraph [ref=e766]: There's a lot of choice on the counter this week — Malteser Cupcakes, fresh bakes, and some old favourites are back!
+              - link "Read More" [ref=e767] [cursor=pointer]:
+                - /url: https://instagram.com/crumbsbakery/
+          - article [ref=e770]:
+            - img "A Little Look in the Bakery" [ref=e772]
+            - generic [ref=e774]:
+              - generic [ref=e775]: June 14, 2026
+              - heading "A Little Look in the Bakery" [level=3] [ref=e776]
+              - paragraph [ref=e777]: A peek behind the scenes at our Jaiaw bakery — see the gorgeous cakes our team has been working on this week.
+              - link "Read More" [ref=e778] [cursor=pointer]:
+                - /url: https://instagram.com/crumbsbakery/
+          - article [ref=e781]:
+            - img "Recent Cakes from Our Bakery!" [ref=e783]
+            - generic [ref=e785]:
+              - generic [ref=e786]: June 10, 2026
+              - heading "Recent Cakes from Our Bakery!" [level=3] [ref=e787]
+              - paragraph [ref=e788]: There have been so many gorgeous cakes flying out of the bakery this week — here's a look at a few of our favourites.
+              - link "Read More" [ref=e789] [cursor=pointer]:
+                - /url: https://instagram.com/crumbsbakery/
+          - article [ref=e792]:
+            - img "The Cutest New Cakes on Our Menu!" [ref=e794]
+            - generic [ref=e796]:
+              - generic [ref=e797]: June 5, 2026
+              - heading "The Cutest New Cakes on Our Menu!" [level=3] [ref=e798]
+              - paragraph [ref=e799]: We're obsessed with these new cakes and we think you will be too! Available to order now for pickup or delivery.
+              - link "Read More" [ref=e800] [cursor=pointer]:
+                - /url: https://instagram.com/crumbsbakery/
+        - link "View All Posts" [ref=e804] [cursor=pointer]:
+          - /url: https://instagram.com/crumbsbakery/
+      - generic [ref=e809]:
+        - paragraph [ref=e810]: Have a question? Need a custom order?
+        - link [ref=e811] [cursor=pointer]:
+          - /url: "#/contact"
+          - button "Get in Touch" [ref=e812]
+      - generic [ref=e814]:
+        - heading "WHAT MAKES CRUMBS SPECIAL?" [level=2] [ref=e815]
+        - generic [ref=e816]:
+          - button "OVER 10 YEARS AS SHILLONG'S BEST BAKERY" [ref=e818] [cursor=pointer]
+          - button "CUSTOMER SERVICE THAT GOES ABOVE & BEYOND" [ref=e824] [cursor=pointer]
+          - button "EVERYTHING FRESHLY BAKED IN SMALL BATCHES" [ref=e830] [cursor=pointer]
+          - button "USING THE FINEST INGREDIENTS AVAILABLE" [ref=e836] [cursor=pointer]
+          - button "TRUSTED BY THOUSANDS OF HAPPY CUSTOMERS" [ref=e842] [cursor=pointer]
+          - button "DESIGN YOUR OWN CAKE ONLINE" [ref=e848] [cursor=pointer]
+          - button "SAFE & SPEEDY DELIVERY IN SHILLONG" [ref=e854] [cursor=pointer]
+          - button "INDEPENDENTLY OWNED & OPERATED" [ref=e860] [cursor=pointer]
+          - button "BESPOKE CAKE OPTIONS AVAILABLE" [ref=e866] [cursor=pointer]
+      - generic [ref=e872]:
+        - text: Visit Us
+        - heading "Find us in Shillong" [level=2] [ref=e873]
+        - paragraph [ref=e874]: Jaiaw, Shillong, Meghalaya — dine in, takeaway, or order delivery.
+        - generic [ref=e875]:
+          - link [ref=e876] [cursor=pointer]:
+            - /url: "#/contact"
+            - button "Contact Us" [ref=e877]
+          - link [ref=e878] [cursor=pointer]:
+            - /url: https://maps.google.com/?q=Crumbs+Bakery+%26+Cafe+Shillong
+            - button "Directions" [ref=e879]
+  - contentinfo [ref=e880]:
+    - generic [ref=e882]:
+      - generic [ref=e883]:
+        - heading "Crumbs Bakery & Cafe" [level=3] [ref=e884]
+        - paragraph [ref=e885]: Handcrafted treats made from scratch daily in the heart of Jaiaw, Shillong. Bringing warmth and sweetness to your table since day one.
+        - generic [ref=e886]:
+          - link "Facebook" [ref=e887] [cursor=pointer]:
+            - /url: https://facebook.com/crumbsbakery/
+          - link "Instagram" [ref=e890] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link "YouTube" [ref=e894] [cursor=pointer]:
+            - /url: https://youtube.com/@crumbsbakery
+      - generic [ref=e898]:
+        - heading "QUICK LINKS" [level=4] [ref=e899]
+        - list [ref=e900]:
+          - listitem [ref=e901]:
+            - link "HOME" [ref=e902] [cursor=pointer]:
+              - /url: "#/"
+          - listitem [ref=e903]:
+            - link "CAKES" [ref=e904] [cursor=pointer]:
+              - /url: "#/cakes"
+          - listitem [ref=e905]:
+            - link "CUPCAKES" [ref=e906] [cursor=pointer]:
+              - /url: "#/cupcakes"
+          - listitem [ref=e907]:
+            - link "DESSERTS" [ref=e908] [cursor=pointer]:
+              - /url: "#/desserts"
+          - listitem [ref=e909]:
+            - link "ABOUT" [ref=e910] [cursor=pointer]:
+              - /url: "#/about"
+          - listitem [ref=e911]:
+            - link "REVIEWS" [ref=e912] [cursor=pointer]:
+              - /url: "#/reviews"
+          - listitem [ref=e913]:
+            - link "CONTACT" [ref=e914] [cursor=pointer]:
+              - /url: "#/contact"
+      - generic [ref=e915]:
+        - heading "CONTACT" [level=4] [ref=e916]
+        - list [ref=e917]:
+          - listitem [ref=e918]:
+            - generic [ref=e919]: Address
+            - text: Jaiaw, Shillong, Meghalaya, India
+          - listitem [ref=e920]:
+            - generic [ref=e921]: Phone
+            - link "+91 99999 99999" [ref=e922] [cursor=pointer]:
+              - /url: tel:+91 99999 99999
+          - listitem [ref=e923]:
+            - generic [ref=e924]: Email
+            - link "hello@crumbs.in" [ref=e925] [cursor=pointer]:
+              - /url: mailto:hello@crumbs.in
+          - listitem [ref=e926]:
+            - generic [ref=e927]: Hours
+            - generic [ref=e928]: "Mon – Sat: 9 AM – 8 PM"
+            - generic [ref=e929]: "Sun: 10 AM – 6 PM"
+      - generic [ref=e930]:
+        - heading "FOLLOW US" [level=4] [ref=e931]
+        - paragraph [ref=e932]: Stay connected for daily treats, behind-the-scenes, and special offers.
+        - generic [ref=e933]:
+          - link "Facebook" [ref=e934] [cursor=pointer]:
+            - /url: https://facebook.com/crumbsbakery/
+          - link "Instagram" [ref=e938] [cursor=pointer]:
+            - /url: https://instagram.com/crumbsbakery/
+          - link "YouTube" [ref=e943] [cursor=pointer]:
+            - /url: https://youtube.com/@crumbsbakery
+    - generic [ref=e949]:
+      - paragraph [ref=e950]: © 2026 Crumbs Bakery & Cafe. All rights reserved.
+      - paragraph [ref=e951]: Made with love in Shillong
+  - region "Notifications alt+T"
