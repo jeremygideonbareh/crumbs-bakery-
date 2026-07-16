@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight, Download } from 'lucide-react'
 import useEmblaCarousel from 'embla-carousel-react'
+import { getImageUrl } from '@/lib/image'
 
 function Lightbox({ images, index, onClose }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ startIndex: index, loop: true })
@@ -131,7 +132,7 @@ export default function MenusGallery({ data }) {
               className="group relative aspect-[3/4] overflow-hidden rounded-sm bg-primary/5 border border-primary/10 hover:border-primary/20 transition-all text-left"
             >
               <img
-                src={item.image || item}
+                src={getImageUrl(item.image || item)}
                 alt={item.label || `Menu ${i + 1}`}
                 className="size-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"

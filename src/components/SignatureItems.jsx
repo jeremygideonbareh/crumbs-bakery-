@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { SectionEyebrow, CharReveal } from './RevealText'
+import { getImageUrl } from '@/lib/image'
 import { SIGNATURE_ITEMS_DEFAULTS } from '@/data/contentDefaults'
 
 export default function SignatureItems({ data: propData }) {
@@ -37,7 +38,7 @@ export default function SignatureItems({ data: propData }) {
             >
               <div className="relative h-36 md:h-44 overflow-hidden">
                 <img
-                  src={item.image}
+                  src={getImageUrl(item.image)}
                   alt={item.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"

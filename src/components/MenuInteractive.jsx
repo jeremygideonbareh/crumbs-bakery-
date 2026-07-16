@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { getImageUrl } from '@/lib/image'
 import {
   Search,
   MapPin,
@@ -263,7 +264,7 @@ function ItemCard({ item, index, phone, social }) {
             {!!item.image && (
               <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 rounded-lg overflow-hidden bg-foreground/5 relative">
                 <img
-                  src={encodeURI(item.image)}
+                  src={getImageUrl(item.image)}
                   alt={item.name}
                   className="w-full h-full object-cover"
                   onError={(e) => {

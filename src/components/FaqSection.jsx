@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { FAQ_DEFAULTS } from '@/data/contentDefaults'
+import { getImageUrl } from '@/lib/image'
 
 export default function FaqSection({ data: propData }) {
   const faqItems = propData || FAQ_DEFAULTS
@@ -35,7 +36,7 @@ export default function FaqSection({ data: propData }) {
               >
                 <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full md:h-14 md:w-14">
                   <img
-                    src={item.image}
+                    src={getImageUrl(item.image)}
                     alt=""
                     className="h-full w-full object-cover"
                     loading="lazy"
