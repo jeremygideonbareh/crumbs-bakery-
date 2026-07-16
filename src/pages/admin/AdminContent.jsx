@@ -32,6 +32,7 @@ const typeIcons = {
   image_grid: Image,
   social: Star,
   menu_categories: List,
+  menus: Image,
   footer: Settings,
 }
 
@@ -50,6 +51,7 @@ const typeColors = {
   image_grid: 'bg-rose-50 text-rose-600',
   social: 'bg-fuchsia-50 text-fuchsia-600',
   menu_categories: 'bg-orange-50 text-orange-600',
+  menus: 'bg-amber-50 text-amber-600',
   footer: 'bg-gray-50 text-gray-600',
 }
 
