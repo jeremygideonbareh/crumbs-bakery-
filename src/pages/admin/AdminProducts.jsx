@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Plus, Pencil, Trash2, X, Check, Image, Package } from 'lucide-react'
+import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { useAdminApi } from '@/hooks/useAdminApi'
 
@@ -41,6 +42,7 @@ export default function AdminProducts() {
       setCategories(categoriesRes.data ?? [])
     } catch (err) {
       console.error('Failed to load products:', err)
+      toast.error('Failed to load products')
     } finally {
       setLoading(false)
     }
@@ -115,6 +117,7 @@ export default function AdminProducts() {
       await loadData()
     } catch (err) {
       console.error('Failed to save product:', err)
+      toast.error('Failed to save product')
     } finally {
       setSaving(false)
     }
@@ -127,6 +130,7 @@ export default function AdminProducts() {
       await loadData()
     } catch (err) {
       console.error('Failed to delete product:', err)
+      toast.error('Failed to delete product')
     }
   }
 

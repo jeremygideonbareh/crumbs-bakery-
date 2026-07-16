@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Pencil, Trash2, X, Check, Plus } from 'lucide-react'
+import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { useAdminApi } from '@/hooks/useAdminApi'
 
@@ -19,7 +20,7 @@ export default function AdminCategories() {
     try {
       const { data } = await api.categories.list()
       setCategories(data ?? [])
-    } catch (err) { console.error(err) }
+    } catch (err) { console.error(err); toast.error('Failed to load categories') }
     finally { setLoading(false) }
   }
 
@@ -40,13 +41,13 @@ export default function AdminCategories() {
         await api.categories.update(editing, payload)
       }
       close(); await loadCategories()
-    } catch (err) { console.error(err) }
+    } catch (err) { console.error(err); toast.error('Failed to save category') }
   }
 
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this category?')) return
     try { await api.categories.delete(id); await loadCategories() }
-    catch (err) { console.error(err) }
+    catch (err) { console.error(err); toast.error('Failed to delete category') }
   }
 
   return (

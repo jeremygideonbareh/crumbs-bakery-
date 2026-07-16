@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ShoppingBag, MessageSquare, Star, Package, TrendingUp, Clock } from 'lucide-react'
+import { toast } from 'sonner'
 import { supabase } from '@/lib/supabase'
 import { useAdminApi } from '@/hooks/useAdminApi'
 
@@ -42,6 +43,7 @@ export default function AdminDashboard() {
         setRecentOrders(ordersData ?? [])
       } catch (err) {
         console.error('Failed to load dashboard stats:', err)
+        toast.error('Failed to load dashboard stats')
       } finally {
         setLoading(false)
       }

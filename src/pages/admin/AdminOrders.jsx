@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { CheckCircle, XCircle, Eye, Clock } from 'lucide-react'
+import { CheckCircle, XCircle, Eye, RotateCcw } from 'lucide-react'
+import { toast } from 'sonner'
 import { useAdminApi } from '@/hooks/useAdminApi'
 
 const statusColors = {
@@ -22,7 +23,7 @@ export default function AdminOrders() {
     try {
       const { data } = await api.orders.list()
       setOrders(data ?? [])
-    } catch (err) { console.error(err) }
+    } catch (err) { console.error(err); toast.error('Failed to load orders') }
     finally { setLoading(false) }
   }
 
@@ -30,7 +31,7 @@ export default function AdminOrders() {
     try {
       await api.orders.updateStatus(id, status)
       await loadOrders()
-    } catch (err) { console.error(err) }
+    } catch (err) { console.error(err); toast.error('Failed to update order status') }
   }
 
   const parseCustomer = (customer) =>

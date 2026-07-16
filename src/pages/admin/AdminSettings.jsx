@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Save, RefreshCw } from 'lucide-react'
+import { toast } from 'sonner'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { useAdminApi } from '@/hooks/useAdminApi'
@@ -43,7 +44,7 @@ export default function AdminSettings() {
       const vals = {}
       items.forEach((item) => { vals[item.key] = item.value })
       setValues(vals)
-    } catch (err) { console.error('Failed to load settings:', err) }
+    } catch (err) { console.error('Failed to load settings:', err); toast.error('Failed to load settings') }
     finally { setLoading(false) }
   }
 
@@ -69,6 +70,7 @@ export default function AdminSettings() {
       setTimeout(() => setSaved(false), 3000)
     } catch (err) {
       console.error('Failed to save settings:', err)
+      toast.error('Failed to save settings')
     } finally {
       setSaving(false)
     }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Check, X, Star, Trash2 } from 'lucide-react'
+import { toast } from 'sonner'
 import { useAdminApi } from '@/hooks/useAdminApi'
 
 export default function AdminReviews() {
@@ -14,7 +15,7 @@ export default function AdminReviews() {
     try {
       const { data } = await api.reviews.list()
       setReviews(data ?? [])
-    } catch (err) { console.error(err) }
+    } catch (err) { console.error(err); toast.error('Failed to load reviews') }
     finally { setLoading(false) }
   }
 
@@ -22,7 +23,7 @@ export default function AdminReviews() {
     try {
       await api.reviews.toggleApproval(id)
       setReviews((prev) => prev.map((r) => r.id === id ? { ...r, approved: !r.approved } : r))
-    } catch (err) { console.error(err) }
+    } catch (err) { console.error(err); toast.error('Failed to toggle review approval') }
   }
 
   const handleDelete = async (id) => {
@@ -30,7 +31,7 @@ export default function AdminReviews() {
     try {
       await api.reviews.delete(id)
       setReviews((prev) => prev.filter((r) => r.id !== id))
-    } catch (err) { console.error(err) }
+    } catch (err) { console.error(err); toast.error('Failed to delete review') }
   }
 
   return (

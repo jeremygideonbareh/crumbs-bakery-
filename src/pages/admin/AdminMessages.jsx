@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Mail, MailOpen, Trash2 } from 'lucide-react'
+import { toast } from 'sonner'
 import { useAdminApi } from '@/hooks/useAdminApi'
 
 export default function AdminMessages() {
@@ -15,7 +16,7 @@ export default function AdminMessages() {
     try {
       const { data } = await api.messages.list()
       setMessages(data ?? [])
-    } catch (err) { console.error(err) }
+    } catch (err) { console.error(err); toast.error('Failed to load messages') }
     finally { setLoading(false) }
   }
 
@@ -23,7 +24,7 @@ export default function AdminMessages() {
     try {
       await api.messages.toggleRead(id)
       setMessages((prev) => prev.map((m) => m.id === id ? { ...m, read: !m.read } : m))
-    } catch (err) { console.error(err) }
+    } catch (err) { console.error(err); toast.error('Failed to toggle message read status') }
   }
 
   const handleDelete = async (id) => {
@@ -32,7 +33,7 @@ export default function AdminMessages() {
       await api.messages.delete(id)
       setMessages((prev) => prev.filter((m) => m.id !== id))
       if (selected === id) setSelected(null)
-    } catch (err) { console.error(err) }
+    } catch (err) { console.error(err); toast.error('Failed to delete message') }
   }
 
   return (
