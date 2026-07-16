@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useOrderContext } from './Layout'
+import { getImageUrl } from '@/lib/image'
 
 export default function ProductGrid({ products }) {
   const { onOrder } = useOrderContext()
@@ -16,7 +17,7 @@ export default function ProductGrid({ products }) {
         >
           <div className="relative aspect-square overflow-hidden bg-primary/5">
             <img
-              src={product.image}
+              src={getImageUrl(product.image)}
               alt={product.name}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
