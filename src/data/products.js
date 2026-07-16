@@ -4,7 +4,7 @@ const PEXELS = (id, w = 400) =>
 const LOCAL = (name) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(name)}`
 
 export const cakes = [
-  { id: 'c1', name: 'VINTAGE HEART CAKE', price: '₹1,200', image: PEXELS(140831), desc: 'Layered sponge with pink piped Swiss Meringue buttercream', variants: ['Ivory', 'Pink', 'Lilac', 'Green', 'Peach', 'Yellow', 'Blue'] },
+  { id: 'c1', name: 'Japanese cheesecake', price: '₹1,100', image: LOCAL('Japanese cheesecake.jpeg'), desc: 'The classic jiggly Japanese cheesecake, soft and airy' },
   { id: 'c2', name: 'BESPOKE CAKE', price: '₹2,500', image: PEXELS(2144200), desc: 'Design your own — choose flavours, fillings, and decorations' },
   { id: 'c3', name: 'VINTAGE CAKE — SINGLE COLOUR', price: '₹1,500', image: PEXELS(1793037), desc: 'Classic vintage style in your choice of colour', variants: ['Ivory', 'Blue', 'Peach', 'Lilac', 'Green', 'Pink', 'Yellow'] },
   { id: 'c4', name: 'EDIBLE IMAGE PHOTO CAKE', price: '₹1,800', image: PEXELS(37110821), desc: 'Personalised edible photo printed on your cake', variants: ['Pink', 'Ivory', 'Yellow', 'Blue', 'Green', 'Peach', 'Lilac'] },
