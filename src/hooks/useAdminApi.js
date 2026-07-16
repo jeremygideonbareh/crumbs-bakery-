@@ -52,6 +52,7 @@ export function useAdminApi() {
       saveBatch: (updates) =>
         rpc('admin_save_settings', { setting_data: updates }),
     },
+    rpc: (name, params = {}) => rpc(name, params),
     // Content sections (page-level structured data)
     sections: {
       list: () => rpc('admin_read_page_sections'),

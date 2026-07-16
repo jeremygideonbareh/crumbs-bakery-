@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Save, RefreshCw } from 'lucide-react'
 import { toast } from 'sonner'
-import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { useAdminApi } from '@/hooks/useAdminApi'
 
@@ -38,7 +37,7 @@ export default function AdminSettings() {
   async function loadSettings() {
     setLoading(true)
     try {
-      const { data } = await supabase.from('site_settings').select('*').order('sort_order')
+      const { data } = await api.rpc('admin_read_settings')
       const items = data ?? []
       setSettings(items)
       const vals = {}
