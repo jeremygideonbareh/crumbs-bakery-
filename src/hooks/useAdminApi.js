@@ -53,7 +53,7 @@ export function useAdminApi() {
         rpc('admin_save_settings', { setting_data: updates }),
     },
     // Content sections (page-level structured data)
-    content: {
+    sections: {
       list: () => rpc('admin_read_page_sections'),
       update: (key, label, type, data) =>
         rpc('admin_upsert_page_section', {
