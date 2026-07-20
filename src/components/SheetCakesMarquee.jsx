@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { animate, useMotionValue } from 'framer-motion'
 
 const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=200&q=80&fit=crop`
+const LOCAL = (name) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(name)}`
 
 const items = Array.from({ length: 10 }, (_, i) => ({
   label: 'SHEET CAKES',

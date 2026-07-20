@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 
 // Pexels curated food photography for team section
 const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=300&q=80&fit=crop`
+const LOCAL = (name) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(name)}`
 
 const team = [
   { name: 'Jemma', role: 'Founder & Head Baker', image: LOCAL('delivery-bakery.jpeg') },
