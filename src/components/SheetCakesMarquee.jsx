@@ -6,9 +6,9 @@ const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id
 const items = Array.from({ length: 10 }, (_, i) => ({
   label: 'SHEET CAKES',
   image: [
-    PEXELS(140831),
-    PEXELS(2144200),
-    PEXELS(1793037),
+    LOCAL('cinnamon-rolls.jpeg'),
+    LOCAL('bespoke-cake.jpeg'),
+    LOCAL('vintage-custom.jpeg'),
   ][i % 3],
 }))
 

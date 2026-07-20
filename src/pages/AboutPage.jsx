@@ -6,10 +6,10 @@ import { Button } from '@/components/ui/button'
 const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=300&q=80&fit=crop`
 
 const team = [
-  { name: 'Jemma', role: 'Founder & Head Baker', image: PEXELS(5702761) },
-  { name: 'Priya', role: 'Pastry Chef', image: PEXELS(5702761) },
-  { name: 'Arun', role: 'Operations Manager', image: PEXELS(5702761) },
-  { name: 'Maya', role: 'Customer Experience', image: PEXELS(32916204) },
+  { name: 'Jemma', role: 'Founder & Head Baker', image: LOCAL('delivery-bakery.jpeg') },
+  { name: 'Priya', role: 'Pastry Chef', image: LOCAL('delivery-bakery.jpeg') },
+  { name: 'Arun', role: 'Operations Manager', image: LOCAL('delivery-bakery.jpeg') },
+  { name: 'Maya', role: 'Customer Experience', image: LOCAL('muffin.jpeg') },
 ]
 
 const values = [
@@ -59,7 +59,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="aspect-[4/3] overflow-hidden rounded-lg">
               <img
-                src="https://images.pexels.com/photos/2144200/pexels-photo-2144200.jpeg?auto=compress&cs=tinysrgb&w=600&q=80&fit=crop"
+                src={LOCAL('bespoke-cake-800.jpeg')}
                 alt="Crumbs Bakery"
                 className="w-full h-full object-cover"
                 loading="lazy"

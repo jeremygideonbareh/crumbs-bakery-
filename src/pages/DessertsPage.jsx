@@ -3,7 +3,8 @@ import CategoryHero from '@/components/CategoryHero'
 import ProductGrid from '@/components/ProductGrid'
 import { useProducts } from '@/hooks/useProducts'
 
-const HERO = 'https://images.pexels.com/photos/14766327/pexels-photo-14766327.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80&fit=crop'
+const LOCAL = (name) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(name)}`
+const HERO = LOCAL('tiramisu-1200.jpeg')
 
 export default function DessertsPage() {
   const { products } = useProducts('desserts')
