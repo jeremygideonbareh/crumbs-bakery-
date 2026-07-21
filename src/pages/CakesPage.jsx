@@ -7,7 +7,7 @@ import { useProducts } from '@/hooks/useProducts'
 const CATEGORIES = ['ALL', 'BIRTHDAY', 'CELEBRATION', 'SHEET', 'BESPOKE', 'CLASSIC', 'VINTAGE', 'KIDS', 'CORPORATE']
 
 const LOCAL = (name) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(name)}`
-const HERO = LOCAL('bespoke-cake-1200.jpeg')
+const HERO = LOCAL('bespoke-cake.jpeg')
 
 export default function CakesPage() {
   const [activeCategory, setActiveCategory] = useState('ALL')
