@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Plus, Pencil, Trash2, X, Check, Image, Package } from 'lucide-react'
+import { Plus, Pencil, Trash2, X, Check, Package } from 'lucide-react'
+import ImageUploader from '@/components/admin/ImageUploader'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { useAdminApi } from '@/hooks/useAdminApi'
@@ -177,13 +178,11 @@ export default function AdminProducts() {
                   <input name="price" value={form.price} onChange={handleChange} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="₹1,200" />
                 </div>
               </div>
-              <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1">Image URL</label>
-                <div className="flex gap-2">
-                  <input name="image" value={form.image} onChange={handleChange} className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="https://images.unsplash.com/..." />
-                  <Image size={18} className="text-gray-400 self-center" />
-                </div>
-              </div>
+              <ImageUploader
+                value={form.image}
+                onChange={(url) => setForm((prev) => ({ ...prev, image: url }))}
+                label="Product Image"
+              />
               <div>
                 <label className="block text-xs font-medium text-gray-600 mb-1">Description</label>
                 <textarea name="description" value={form.description} onChange={handleChange} rows={2} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" />

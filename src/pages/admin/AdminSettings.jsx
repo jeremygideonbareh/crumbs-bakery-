@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Save, RefreshCw } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
+import ImageUploader from '@/components/admin/ImageUploader'
 import { useAdminApi } from '@/hooks/useAdminApi'
 
 const sectionLabels = {
@@ -153,6 +154,12 @@ export default function AdminSettings() {
                       rows={3}
                       className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 font-mono text-xs"
                     />
+                  ) : item.type === 'image' ? (
+                    <ImageUploader
+                      value={values[item.key] || ''}
+                      onChange={(url) => handleChange(item.key, url)}
+                      label=""
+                    />
                   ) : (
                     <input
                       type={inputTypes[item.type] || 'text'}
@@ -160,9 +167,6 @@ export default function AdminSettings() {
                       onChange={(e) => handleChange(item.key, e.target.value)}
                       className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
-                  )}
-                  {item.type === 'image' && values[item.key] && (
-                    <img src={values[item.key]} alt="" className="mt-2 w-32 h-20 object-cover rounded-lg border border-gray-100" onError={(e) => { e.target.style.display = 'none' }} />
                   )}
                   <p className="text-[10px] text-gray-400 mt-0.5">Key: {item.key} · Section: {item.section}</p>
                 </div>

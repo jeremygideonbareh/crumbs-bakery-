@@ -13,6 +13,7 @@ import {
   Menu,
   X,
   Cake,
+  Image,
 } from 'lucide-react'
 import { useAdminAuth } from '@/pages/admin/AdminLogin'
 
@@ -24,6 +25,7 @@ const sidebarLinks = [
   { to: '/admin/messages', icon: MessageSquare, label: 'Messages' },
   { to: '/admin/reviews', icon: Star, label: 'Reviews' },
   { to: '/admin/content', icon: FileText, label: 'Content' },
+  { to: '/admin/images', icon: Image, label: 'Images' },
   { to: '/admin/settings', icon: Settings, label: 'Site Settings' },
 ]
 

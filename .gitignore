@@ -28,6 +28,10 @@ HANDOFF_*.md
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+
+# OpenCode session state
+.omo/run-continuation/
+.omo/drafts/
 .idea
 .DS_Store
 *.suo

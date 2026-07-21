@@ -10,6 +10,7 @@ import {
   Image as ImageIcon,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import ImageUploader from './ImageUploader'
 
 // ─── SECTION FIELD SCHEMAS ────────────────────────────────────────────
 // Each section type defines its editable fields.
@@ -292,32 +293,11 @@ function SimpleField({ field, value, onChange }) {
 
     case 'image':
       return (
-        <div>
-          <label htmlFor={id} className="block text-xs font-medium text-gray-600 mb-1">
-            {field.label}
-          </label>
-          <div className="flex gap-2">
-            <input
-              id={id}
-              type="text"
-              value={value ?? ''}
-              onChange={(e) => onChange(field.key, e.target.value)}
-              className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
-              placeholder="https://images.pexels.com/..."
-            />
-            <ImageIcon size={18} className="text-gray-400 self-center shrink-0" />
-          </div>
-          {value && (
-            <img
-              src={value}
-              alt="Preview"
-              className="mt-2 w-24 h-16 object-cover rounded-lg border border-gray-100"
-              onError={(e) => {
-                e.target.style.display = 'none'
-              }}
-            />
-          )}
-        </div>
+        <ImageUploader
+          value={value ?? ''}
+          onChange={(url) => onChange(field.key, url)}
+          label={field.label}
+        />
       )
 
     case 'text':

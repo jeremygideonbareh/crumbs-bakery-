@@ -22,6 +22,7 @@ import AdminMessages from './pages/admin/AdminMessages'
 import AdminReviews from './pages/admin/AdminReviews'
 import AdminSettings from './pages/admin/AdminSettings'
 import AdminContent from './pages/admin/AdminContent'
+import AdminImages from './pages/admin/AdminImages'
 
 export default function App() {
   return (
@@ -59,6 +60,7 @@ export default function App() {
           <Route path="messages" element={<AdminMessages />} />
           <Route path="reviews" element={<AdminReviews />} />
           <Route path="content" element={<AdminContent />} />
+          <Route path="images" element={<AdminImages />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
       </Routes>
