@@ -13,7 +13,7 @@ export const HOME_HERO_DEFAULTS = {
   subtitle:
     'Handcrafted tiramisu, cream puffs, cheesecakes, and artisanal bakes — made fresh daily in the heart of Shillong.',
   cta_text: 'ORDER CUSTOM CAKE',
-  background_image: LOCAL('bespoke-cake-1920.jpeg'),
+  background_image: LOCAL('bespoke-cake.jpeg'),
   contact_website: 'crumbsbakery.in',
   contact_phone: '+91 96127 72089',
   contact_address: 'Jaiaw, Shillong, Meghalaya',
@@ -32,7 +32,7 @@ export const CATEGORY_GRID_DEFAULTS = [
     cta: 'SHOP CAKES',
     href: '/cakes',
     isRoute: true,
-    image: LOCAL('cinnamon-rolls-800.jpeg'),
+    image: LOCAL('chocolate-cake-800.jpeg'),
   },
   {
     name: 'PERFECT CUPCAKES',
@@ -48,7 +48,7 @@ export const CATEGORY_GRID_DEFAULTS = [
     cta: 'SHOP DESSERTS',
     href: '/desserts',
     isRoute: true,
-    image: LOCAL('brownies-800.jpeg'),
+    image: LOCAL('brownies.jpeg'),
   },
   {
     name: 'CUSTOM ORDERS',
@@ -56,7 +56,7 @@ export const CATEGORY_GRID_DEFAULTS = [
     cta: 'ORDER NOW',
     href: '#order',
     isRoute: false,
-    image: LOCAL('vintage-custom-800.jpeg'),
+    image: LOCAL('bespoke-cake.jpeg'),
   },
   {
     name: 'CAFE EXPERIENCE',
@@ -64,13 +64,13 @@ export const CATEGORY_GRID_DEFAULTS = [
     cta: 'FIND US',
     href: '/contact',
     isRoute: true,
-    image: LOCAL('chocolate-cake-800.jpeg'),
+    image: LOCAL('delivery-bakery-800.jpeg'),
   },
 ]
 
 export const ABOUT_DEFAULTS = [
   {
-    image: LOCAL('cinnamon-rolls-800.jpeg'),
+    image: LOCAL('fresh-bakes-1.jpeg'),
     heading: 'CRUMBS BAKERY & CAFE, SHILLONG',
     body: 'Founded in the heart of Jaiaw, we make amazing Cakes, Cupcakes, Cookies and Brownies. You can find us in Shillong every day of the week, serving fresh treats made from scratch.',
     cta: 'VISIT OUR CAFE',
@@ -94,17 +94,17 @@ export const ABOUT_DEFAULTS = [
 
 export const GALLERY_DEFAULTS = [
   {
-    src: LOCAL('cinnamon-rolls-800.jpeg'),
+    src: LOCAL('fresh-bakes-1.jpeg'),
     alt: 'Assortment of cakes and pastries on a platter',
     caption: 'Artisanal Cakes',
   },
   {
-    src: LOCAL('muffin-800.jpeg'),
+    src: LOCAL('fresh-bakes-2.jpeg'),
     alt: 'Fresh pastries displayed in a bakery case',
     caption: 'Fresh Pastries',
   },
   {
-    src: LOCAL('french-macarons-800.jpeg'),
+    src: LOCAL('fresh-bakes-3.jpeg'),
     alt: 'Cakes and macarons in a display case',
     caption: 'Cakes & Macarons',
   },
@@ -114,24 +114,24 @@ export const GALLERY_DEFAULTS = [
     caption: 'Signature Tiramisu',
   },
   {
-    src: LOCAL('eclair-800.jpeg'),
+    src: LOCAL('cream-puffs.jpeg'),
     alt: 'Cream puffs and eclairs',
     caption: 'Cream Puffs',
   },
   {
-    src: LOCAL('blueberry-cheesecake-800.jpeg'),
+    src: LOCAL('ny-cheesecake.jpeg'),
     alt: 'Cheesecake with berries',
     caption: 'Cheesecakes',
   },
   {
-    src: LOCAL('Japanese cheesecake (2).jpeg'),
+    src: LOCAL('japanese-cheesecake-slice.jpeg'),
     alt: 'Japanese cheesecake slice',
     caption: 'Japanese Cheesecake',
   },
   {
-    src: LOCAL('WhatsApp Image 2026-07-15 at 3.21.53 PM (1).jpeg'),
+    src: LOCAL('chocolate-cake.jpeg'),
     alt: 'Fresh bakes from Crumbs Bakery',
-    caption: 'Fresh from the Bakery',
+    caption: 'Chocolate Cake',
   },
 ]
 
@@ -145,7 +145,7 @@ export const NEWS_DEFAULTS = [
   },
   {
     title: 'New Menu Items Have Landed at Crumbs Bakery!',
-    image: LOCAL('bespoke-cake-800.jpeg'),
+    image: LOCAL('bespoke-cake.jpeg'),
     excerpt:
       "Coming to Crumbs Bakery this weekend — new cakes, fresh flavours, and exciting treats you won't want to miss!",
     date: 'June 24, 2026',
@@ -201,7 +201,7 @@ export const SIGNATURE_ITEMS_DEFAULTS = [
     desc: 'Light, airy choux pastry filled with velvety vanilla cream. Perfectly portioned for a quick indulgence.',
     highlight: 'Best Seller',
     price: '₹180',
-    image: LOCAL('eclair-800.jpeg'),
+    image: LOCAL('cream-puffs.jpeg'),
     badge: 'bg-green-100 text-green-700',
   },
   {
@@ -209,7 +209,7 @@ export const SIGNATURE_ITEMS_DEFAULTS = [
     desc: 'New York-style baked cheesecake with a buttery graham crust. Available in multiple rotating flavours.',
     highlight: 'Must Try',
     price: '₹350',
-    image: LOCAL('blueberry-cheesecake-800.jpeg'),
+    image: LOCAL('ny-cheesecake.jpeg'),
     badge: 'bg-purple-100 text-purple-700',
   },
   {
@@ -217,7 +217,7 @@ export const SIGNATURE_ITEMS_DEFAULTS = [
     desc: 'Chewy, gooey, and loaded with chocolate chunks. Made with real butter and love in every batch.',
     highlight: 'Perfect Pair',
     price: '₹120',
-    image: LOCAL('choc-chip-cookie-800.jpeg'),
+    image: LOCAL('choc-chip-cookie.jpeg'),
     badge: 'bg-orange-100 text-orange-700',
   },
   {
@@ -225,7 +225,7 @@ export const SIGNATURE_ITEMS_DEFAULTS = [
     desc: 'From savoury puffs to warm sandwiches — everything served hot, fresh, and satisfying.',
     highlight: 'Quick Bite',
     price: '₹150',
-    image: LOCAL('muffin-800.jpeg'),
+    image: LOCAL('chicken-pizza.jpeg'),
     badge: 'bg-green-100 text-green-700',
   },
   {
@@ -233,7 +233,7 @@ export const SIGNATURE_ITEMS_DEFAULTS = [
     desc: 'Birthday, anniversary, or just because. Order a custom-designed cake for your special occasion.',
     highlight: 'Celebrate',
     price: '₹500+',
-    image: LOCAL('vintage-custom-800.jpeg'),
+    image: LOCAL('bespoke-cake.jpeg'),
     badge: 'bg-rose-100 text-rose-700',
   },
 ]
@@ -244,14 +244,14 @@ export const PROMO_CARDS_DEFAULTS = [
     desc: 'PDF Recipes, Behind-the-Scenes content, site-wide discounts.',
     cta: 'SIGN UP NOW',
     href: '#',
-    image: LOCAL('cinnamon-rolls-800.jpeg'),
+    image: LOCAL('fresh-bakes-1.jpeg'),
   },
   {
     title: 'YOUTUBE',
     desc: 'New Recipe videos uploaded every week on our channel.',
     cta: 'CHECK IT OUT',
     href: '#',
-    image: LOCAL('bespoke-cake-800.jpeg'),
+    image: LOCAL('bespoke-cake.jpeg'),
   },
   {
     title: 'COOKIE CLUB',
@@ -263,12 +263,12 @@ export const PROMO_CARDS_DEFAULTS = [
 ]
 
 export const IMAGE_CAROUSEL_DEFAULTS = [
-  { image: LOCAL('bespoke-cake-800.jpeg'), label: 'Artisanal Bakes' },
+  { image: LOCAL('bespoke-cake.jpeg'), label: 'Artisanal Bakes' },
   { image: LOCAL('chocolate-cake-800.jpeg'), label: 'Fresh Daily' },
-  { image: LOCAL('brownies-800.jpeg'), label: 'Crafted with Love' },
+  { image: LOCAL('fresh-bakes-2.jpeg'), label: 'Crafted with Love' },
   { image: LOCAL('tiramisu-800.jpeg'), label: "Shillong's Finest" },
-  { image: LOCAL('Japanese cheesecake (2).jpeg'), label: 'Japanese Cheesecake' },
-  { image: LOCAL('WhatsApp Image 2026-07-15 at 3.21.53 PM (1).jpeg'), label: 'Fresh Bakes' },
+  { image: LOCAL('japanese-cheesecake-slice.jpeg'), label: 'Japanese Cheesecake' },
+  { image: LOCAL('fresh-bakes-3.jpeg'), label: 'Fresh Bakes' },
 ]
 
 export const DELIVERY_DEFAULTS = {
@@ -290,25 +290,25 @@ export const DELIVERY_DEFAULTS = {
 export const FAQ_DEFAULTS = [
   {
     title: "OVER 10 YEARS AS SHILLONG'S BEST BAKERY",
-    image: LOCAL('bespoke-cake-800.jpeg'),
+    image: LOCAL('bespoke-cake.jpeg'),
     content:
       "Crumbs Bakery began life in the heart of Jaiaw way back in 2014 and we've dedicated ourselves to making incredible Cakes, Cupcakes, Cookies and Brownies ever since. We're known as one of the best bakeries in Shillong and every member of our team works tirelessly every day to ensure all our bakes are perfect.",
   },
   {
     title: 'CUSTOMER SERVICE THAT GOES ABOVE & BEYOND',
-    image: LOCAL('bespoke-cake-800.jpeg'),
+    image: LOCAL('chocolate-cake.jpeg'),
     content:
       'Our team is passionate about cake, and even more passionate about offering exceptional customer service. We understand every order is special and will always go above and beyond to ensure your experience is perfect.',
   },
   {
     title: 'EVERYTHING FRESHLY BAKED IN SMALL BATCHES',
-    image: LOCAL('cinnamon-rolls-800.jpeg'),
+    image: LOCAL('fresh-bakes-1.jpeg'),
     content:
       "We only ever bake to order and we always work in small batches — it takes longer but it means we can keep a fastidious eye on the quality of everything that goes into our cakes and bakes.",
   },
   {
     title: 'USING THE FINEST INGREDIENTS AVAILABLE',
-    image: LOCAL('brownies-800.jpeg'),
+    image: LOCAL('brownies.jpeg'),
     content:
       'All our Cakes, Cupcakes, Cookies and Brownies are made using the best ingredients we can get — from free-range eggs to the finest chocolate, the quality of ingredients has always been at the forefront of what we do.',
   },
@@ -320,7 +320,7 @@ export const FAQ_DEFAULTS = [
   },
   {
     title: 'DESIGN YOUR OWN CAKE ONLINE',
-    image: LOCAL('vintage-custom-800.jpeg'),
+    image: LOCAL('bespoke-cake.jpeg'),
     content:
       "You can use our custom cake builder to design your dream cake. Choose flavours, fillings, frosting, and decorations — make it uniquely yours and our bakers will bring your creation to life.",
   },
@@ -332,7 +332,7 @@ export const FAQ_DEFAULTS = [
   },
   {
     title: 'INDEPENDENTLY OWNED & OPERATED',
-    image: LOCAL('blueberry-cheesecake-800.jpeg'),
+    image: LOCAL('blueberry-cheesecake.jpeg'),
     content:
       "Since we started out, Crumbs Bakery has been independently owned and operated. We're a local Shillong business, and every order supports local families and the community.",
   },
@@ -345,11 +345,11 @@ export const FAQ_DEFAULTS = [
 ]
 
 export const BROWSE_BY_BAKE_DEFAULTS = [
-  { label: 'CAKES', image: LOCAL('cinnamon-rolls-800.jpeg') },
+  { label: 'CAKES', image: LOCAL('chocolate-cake-800.jpeg') },
   { label: 'CUPCAKES', image: LOCAL('vanilla-cupcake-800.jpeg') },
   { label: 'COOKIES', image: LOCAL('choc-chip-cookie-800.jpeg') },
-  { label: 'BROWNIES', image: LOCAL('brownies-800.jpeg') },
-  { label: 'CORPORATE', image: LOCAL('vintage-custom-800.jpeg') },
+  { label: 'BROWNIES', image: LOCAL('brownies.jpeg') },
+  { label: 'CORPORATE', image: LOCAL('bespoke-cake.jpeg') },
 ]
 
 export const INSTAGRAM_DEFAULTS = {
@@ -366,22 +366,22 @@ export const INSTAGRAM_DEFAULTS = {
   ],
   images: [
     LOCAL('cinnamon-rolls-800.jpeg'),
-    LOCAL('bespoke-cake-800.jpeg'),
+    LOCAL('bespoke-cake.jpeg'),
     LOCAL('vintage-custom-800.jpeg'),
     LOCAL('chocolate-cake-800.jpeg'),
     LOCAL('vanilla-cupcake-800.jpeg'),
-    LOCAL('brownies-800.jpeg'),
+    LOCAL('brownies.jpeg'),
     LOCAL('chocolate-cupcake-800.jpeg'),
-    LOCAL('muffin-800.jpeg'),
+    LOCAL('fresh-bakes-2.jpeg'),
     LOCAL('choc-chip-cookie-800.jpeg'),
-    LOCAL('chocolate-cupcake-800.jpeg'),
+    LOCAL('fresh-bakes-3.jpeg'),
     LOCAL('tiramisu-800.jpeg'),
-    LOCAL('blueberry-cheesecake-800.jpeg'),
-    LOCAL('Japanese cheesecake (2).jpeg'),
-    LOCAL('WhatsApp Image 2026-07-15 at 3.21.53 PM (1).jpeg'),
-    LOCAL('Banana pudding brioche.jpeg'),
-    LOCAL('Cream puffs.jpeg'),
-    LOCAL('Quiche.jpeg'),
+    LOCAL('blueberry-cheesecake.jpeg'),
+    LOCAL('japanese-cheesecake-slice.jpeg'),
+    LOCAL('fresh-bakes-1.jpeg'),
+    LOCAL('banana-choc-muffin.jpeg'),
+    LOCAL('cream-puffs.jpeg'),
+    LOCAL('quiche-2.jpeg'),
   ],
 }
 
@@ -413,10 +413,10 @@ export const FOOTER_DEFAULTS = {
 }
 
 export const MENUS_DEFAULTS = [
-  { label: 'Cakes Menu', image: LOCAL('cakes menu.jpeg') },
+  { label: 'Cakes Menu', image: LOCAL('cakes-menu.jpeg') },
   { label: 'Cheesecake Menu', image: LOCAL('cheese cakes menu.jpeg') },
   { label: 'Fruit Cake Menu', image: LOCAL('fruit cakes menu.jpeg') },
-  { label: 'New Arrivals', image: LOCAL('WhatsApp Image 2026-07-15 at 3.21.53 PM (1).jpeg') },
+  { label: 'New Arrivals', image: LOCAL('fresh-bakes-1.jpeg') },
 ]
 
 // Structured menu data for the interactive menu component
@@ -459,7 +459,7 @@ export const PRODUCT_CAROUSEL_DEFAULTS = [
   {
     name: 'DESIGN YOUR OWN BESPOKE CAKE',
     price: '₹2,500',
-    image: LOCAL('bespoke-cake-800.jpeg'),
+    image: LOCAL('bespoke-cake.jpeg'),
   },
   {
     name: 'VINTAGE CAKE - SINGLE COLOUR',
@@ -498,5 +498,5 @@ export const PRODUCT_CAROUSEL_DEFAULTS = [
     image: LOCAL('vanilla-cupcake-800.jpeg'),
   },
   { name: 'COOKIE BOX (6 PACK)', price: '₹600', image: LOCAL('choc-chip-cookie-800.jpeg') },
-  { name: 'BROWNIE BOX (6 PACK)', price: '₹700', image: LOCAL('brownies-800.jpeg') },
+  { name: 'BROWNIE BOX (6 PACK)', price: '₹700', image: LOCAL('brownies.jpeg') },
 ]
