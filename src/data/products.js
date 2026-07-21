@@ -15,7 +15,7 @@ export const cakes = [
   { id: 'c9', name: 'CHOCOLATE BIRTHDAY CAKE', price: '₹1,300', image: LOCAL('funfetti-sheet.jpeg'), desc: 'Chocolate drip cake with piped icing and sprinkles' },
   { id: 'c10', name: 'CLASSIC LEMON DRIZZLE CAKE', price: '₹1,100', image: LOCAL('lemon-drizzle.jpeg'), desc: 'Four layers with lemon meringue buttercream' },
   { id: 'c11', name: 'CLASSIC RED VELVET CAKE', price: '₹1,200', image: LOCAL('red-velvet-cake.jpeg'), desc: 'Smooth cream cheese frosting on moist red velvet layers' },
-  { id: 'c12', name: 'CLASSIC CARROT CAKE', price: '₹1,100', image: LOCAL('edible-photo-cake.jpeg'), desc: 'Moist carrot cake with cream cheese icing and walnuts' },
+  { id: 'c12', name: 'CLASSIC CARROT CAKE', price: '₹1,100', image: LOCAL('carrot-cake.jpeg'), desc: 'Moist carrot cake with cream cheese icing and walnuts' },
 ]
 
 export const cupcakes = [
