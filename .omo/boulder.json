@@ -1,0 +1,22 @@
+﻿{
+  "schema_version": 2,
+  "active_work_id": "realign-raw-image-refs",
+  "works": {
+    "swap-pexels-with-local-images": {
+      "work_id": "swap-pexels-with-local-images",
+      "active_plan": ".omo/plans/swap-pexels-with-local-images.md",
+      "plan_name": "swap-pexels-with-local-images",
+      "session_ids": ["opencode:ses_086b5bd87ffez1zt5xz31MLR0z"],
+      "status": "completed",
+      "worktree_path": null
+    },
+    "realign-raw-image-refs": {
+      "work_id": "realign-raw-image-refs",
+      "active_plan": ".omo/plans/realign-raw-image-refs.md",
+      "plan_name": "realign-raw-image-refs",
+      "session_ids": ["opencode:ses_086b5bd87ffez1zt5xz31MLR0z"],
+      "status": "completed",
+      "worktree_path": null
+    }
+  }
+}

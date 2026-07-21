@@ -8,9 +8,9 @@ const LOCAL = (name) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(
 
 const team = [
   { name: 'Jemma', role: 'Founder & Head Baker', image: LOCAL('delivery-bakery.jpeg') },
-  { name: 'Priya', role: 'Pastry Chef', image: LOCAL('delivery-bakery.jpeg') },
-  { name: 'Arun', role: 'Operations Manager', image: LOCAL('delivery-bakery.jpeg') },
-  { name: 'Maya', role: 'Customer Experience', image: LOCAL('muffin.jpeg') },
+  { name: 'Priya', role: 'Pastry Chef', image: LOCAL('cakes-menu.jpeg') },
+  { name: 'Arun', role: 'Operations Manager', image: LOCAL('blueberry-cheesecake.jpeg') },
+  { name: 'Maya', role: 'Customer Experience', image: LOCAL('fresh-bakes-4.jpeg') },
 ]
 
 const values = [

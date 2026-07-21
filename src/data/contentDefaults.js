@@ -486,7 +486,7 @@ export const PRODUCT_CAROUSEL_DEFAULTS = [
     price: '₹1,600',
     image: LOCAL('raspberry-ripple-800.jpeg'),
   },
-  { name: 'BIRTHDAY CAKE', price: '₹1,200', image: PEXELS(7328340) },
+  { name: 'BIRTHDAY CAKE', price: '₹1,200', image: LOCAL('cakes-menu.jpeg') },
   {
     name: 'CHOCOLATE BIRTHDAY CAKE',
     price: '₹1,300',
