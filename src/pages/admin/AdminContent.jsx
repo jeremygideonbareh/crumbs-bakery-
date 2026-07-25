@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
 import {
@@ -12,10 +12,22 @@ import {
   Star,
   Settings,
   LayoutDashboard,
+  Home,
+  CakeSlice,
+  Cake as Cupcake,
+  Cookie,
+  BookOpen,
+  Info,
+  Phone,
+  ShoppingCart,
+  ExternalLink,
+  MapPin,
+  Package,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import SectionEditorModal from '@/components/admin/SectionEditorModal'
 import { useAdminApi } from '@/hooks/useAdminApi'
+import { PAGE_SECTIONS, PAGE_ORDER, getSectionLocation } from '@/data/adminSectionMap'
 
 const typeIcons = {
   hero: Layout,
@@ -34,6 +46,8 @@ const typeIcons = {
   menu_categories: List,
   menus: Image,
   footer: Settings,
+  team: Star,
+  order_cta: LayoutDashboard,
 }
 
 const typeColors = {
@@ -53,13 +67,43 @@ const typeColors = {
   menu_categories: 'bg-orange-50 text-orange-600',
   menus: 'bg-amber-50 text-amber-600',
   footer: 'bg-gray-50 text-gray-600',
+  team: 'bg-sky-50 text-sky-600',
+  order_cta: 'bg-emerald-50 text-emerald-600',
 }
+
+const tabIcons = {
+  home: Home,
+  cakes: CakeSlice,
+  cupcakes: Cupcake,
+  desserts: Cookie,
+  menu: BookOpen,
+  about: Info,
+  reviews: Star,
+  contact: Phone,
+  'order-now': ShoppingCart,
+}
+
+// Build a Set of all known section keys from the mapping for O(1) lookup
+function buildKnownKeys() {
+  const keys = new Set()
+  for (const page of Object.values(PAGE_SECTIONS)) {
+    for (const s of page.sections) {
+      keys.add(s.key)
+    }
+  }
+  return keys
+}
+
+const KNOWN_SECTION_KEYS = buildKnownKeys()
 
 export default function AdminContent() {
   const [sections, setSections] = useState([])
   const [loading, setLoading] = useState(true)
-  const [editing, setEditing] = useState(null) // section object being edited
+  const [editing, setEditing] = useState(null)
   const [previewData, setPreviewData] = useState({})
+  const [activeTab, setActiveTab] = useState('home')
+  const [products, setProducts] = useState([])
+  const [reviewsData, setReviewsData] = useState({ list: [], unapprovedCount: 0 })
   const api = useAdminApi()
 
   const loadSections = async () => {
@@ -67,7 +111,6 @@ export default function AdminContent() {
     try {
       const { data } = await api.sections.list()
       setSections(data ?? [])
-      // Build a preview data map
       const previewMap = {}
       ;(data ?? []).forEach((s) => {
         previewMap[s.id] = s.data
@@ -83,6 +126,31 @@ export default function AdminContent() {
   useEffect(() => {
     loadSections()
   }, [])
+
+  // Load products when switching to a product category tab
+  useEffect(() => {
+    const page = PAGE_SECTIONS[activeTab]
+    if (page?.productCategory) {
+      api.products.list().then(({ data }) => {
+        setProducts(data?.filter((p) => p.category_slug === page.productCategory) ?? [])
+      }).catch(() => {})
+    }
+  }, [activeTab])
+
+  // Load reviews data when on reviews tab
+  useEffect(() => {
+    if (activeTab === 'reviews') {
+      Promise.all([
+        api.reviews.list(),
+        api.reviews.unapprovedCount(),
+      ]).then(([listRes, countRes]) => {
+        setReviewsData({
+          list: listRes.data ?? [],
+          unapprovedCount: countRes.data ?? 0,
+        })
+      }).catch(() => {})
+    }
+  }, [activeTab])
 
   const handleEdit = (section) => {
     setPreviewData((prev) => ({ ...prev, [section.id]: section.data }))
@@ -117,6 +185,31 @@ export default function AdminContent() {
     return preview || `${Object.keys(data).length} fields`
   }
 
+  // Filter sections by active tab
+  const filteredSections = useMemo(() => {
+    const page = PAGE_SECTIONS[activeTab]
+    if (!page || page.externalUrl) return []
+
+    const tabKeys = new Set(page.sections.map((s) => s.key))
+
+    // Known sections that belong to this tab go first (in the order defined in the mapping)
+    const orderedKnown = []
+    const rest = []
+
+    for (const section of sections) {
+      if (tabKeys.has(section.section_key)) {
+        orderedKnown.push(section)
+      } else if (!KNOWN_SECTION_KEYS.has(section.section_key)) {
+        rest.push(section)
+      }
+    }
+
+    // Return known sections in mapping order, then unmatched sections at bottom
+    return [...orderedKnown, ...rest]
+  }, [sections, activeTab])
+
+  const currentPage = PAGE_SECTIONS[activeTab]
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -140,73 +233,168 @@ export default function AdminContent() {
         />
       )}
 
-      {/* Section list */}
-      <div className="grid gap-3">
-        {loading ? (
-          <div className="text-center py-12 text-gray-400">Loading sections...</div>
-        ) : sections.length === 0 ? (
-          <div className="text-center py-12 text-gray-400">
-            No sections found. Run the SQL migration first.
-          </div>
-        ) : (
-          sections.map((section, i) => {
-            const Icon = typeIcons[section.section_type] || Settings
-            const colorClass = typeColors[section.section_type] || 'bg-gray-50 text-gray-600'
-            const hasData =
-              section.data &&
-              typeof section.data === 'object' &&
-              Object.keys(section.data).length > 0
+      {/* ── Page tabs ───────────────────────────────────────────── */}
+      <div className="flex flex-wrap gap-1.5 mb-4 border-b border-gray-100 pb-3">
+        {PAGE_ORDER.map((pageKey) => {
+          const page = PAGE_SECTIONS[pageKey]
+          const Icon = tabIcons[pageKey] || Layout
+          const isActive = activeTab === pageKey
+          return (
+            <button
+              key={pageKey}
+              onClick={() => setActiveTab(pageKey)}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                isActive
+                  ? 'bg-teal-50 text-teal-700 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              <Icon size={14} />
+              {page.label}
+            </button>
+          )
+        })}
+      </div>
 
-            return (
-              <motion.div
-                key={section.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.03 }}
-                className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 flex items-center justify-between hover:border-gray-200 transition-colors"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div
-                    className={`w-10 h-10 rounded-lg ${colorClass} flex items-center justify-center shrink-0`}
-                  >
-                    <Icon size={18} />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
-                      {section.section_label}
-                    </p>
-                    <div className="flex items-center gap-2 mt-0.5">
-                      <span className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded uppercase">
-                        {section.section_type}
-                      </span>
-                      <span
-                        className={`text-[10px] px-1.5 py-0.5 rounded ${
-                          hasData
-                            ? 'bg-green-50 text-green-600'
-                            : 'bg-amber-50 text-amber-600'
-                        }`}
-                      >
-                        {hasData ? 'Saved' : 'Using defaults'}
-                      </span>
-                      <span className="text-[10px] text-gray-400 truncate max-w-[200px]">
-                        {getPreviewSummary(section)}
-                      </span>
+      {/* ── Page description ────────────────────────────────────── */}
+      {currentPage && (
+        <p className="text-sm text-gray-500 mb-4">{currentPage.description}</p>
+      )}
+
+      {/* ── Product category summary ────────────────────────────── */}
+      {currentPage?.productCategory && products.length > 0 && (
+        <div className="bg-teal-50/50 border border-teal-100 rounded-lg p-3 mb-4 flex items-center justify-between">
+          <div className="flex items-center gap-2 text-sm text-teal-800">
+            <Package size={16} />
+            <span>
+              <strong>{products.length}</strong> product{products.length !== 1 ? 's' : ''} in{' '}
+              &lsquo;{currentPage.productCategory}&rsquo;
+            </span>
+          </div>
+          <a
+            href="/admin/products"
+            className="text-xs text-teal-600 hover:text-teal-800 font-medium flex items-center gap-1"
+          >
+            Manage Products <ExternalLink size={12} />
+          </a>
+        </div>
+      )}
+
+      {/* ── Reviews tab summary ─────────────────────────────────── */}
+      {activeTab === 'reviews' && (
+        <div className="bg-amber-50/50 border border-amber-100 rounded-lg p-3 mb-4 flex items-center justify-between">
+          <div className="flex items-center gap-2 text-sm text-amber-800">
+            <Star size={16} />
+            <span>
+              <strong>{reviewsData.list.length}</strong> review{reviewsData.list.length !== 1 ? 's' : ''}
+              {reviewsData.unapprovedCount > 0 && (
+                <span className="ml-1.5 text-amber-600">
+                  ({reviewsData.unapprovedCount} unapproved)
+                </span>
+              )}
+            </span>
+          </div>
+          <a
+            href="/admin/reviews"
+            className="text-xs text-amber-600 hover:text-amber-800 font-medium flex items-center gap-1"
+          >
+            Manage Reviews <ExternalLink size={12} />
+          </a>
+        </div>
+      )}
+
+      {/* ── External URL tab (e.g., reviews) ────────────────────── */}
+      {currentPage?.externalUrl && (
+        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 text-center">
+          <Star size={32} className="mx-auto mb-3 text-gray-300" />
+          <p className="text-sm text-gray-500 mb-3">
+            Reviews are managed on a separate page.
+          </p>
+          <a href={currentPage.externalUrl}>
+            <Button variant="neutral" size="sm" className="gap-1">
+              Go to Reviews <ExternalLink size={14} />
+            </Button>
+          </a>
+        </div>
+      )}
+
+      {/* ── Section list ────────────────────────────────────────── */}
+      {!currentPage?.externalUrl && (
+        <div className="grid gap-3">
+          {loading ? (
+            <div className="text-center py-12 text-gray-400">Loading sections...</div>
+          ) : filteredSections.length === 0 ? (
+            <div className="text-center py-12 text-gray-400">
+              No sections found for this page.
+            </div>
+          ) : (
+            filteredSections.map((section, i) => {
+              const Icon = typeIcons[section.section_type] || Settings
+              const colorClass = typeColors[section.section_type] || 'bg-gray-50 text-gray-600'
+              const hasData =
+                section.data &&
+                typeof section.data === 'object' &&
+                Object.keys(section.data).length > 0
+              const location = getSectionLocation(section.section_key)
+
+              return (
+                <motion.div
+                  key={section.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.03 }}
+                  className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 flex items-center justify-between hover:border-gray-200 transition-colors"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div
+                      className={`w-10 h-10 rounded-lg ${colorClass} flex items-center justify-center shrink-0`}
+                    >
+                      <Icon size={18} />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-gray-900 truncate">
+                        {section.section_label}
+                      </p>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <span className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded uppercase">
+                          {section.section_type}
+                        </span>
+                        <span
+                          className={`text-[10px] px-1.5 py-0.5 rounded ${
+                            hasData
+                              ? 'bg-green-50 text-green-600'
+                              : 'bg-amber-50 text-amber-600'
+                          }`}
+                        >
+                          {hasData ? 'Saved' : 'Using defaults'}
+                        </span>
+                        <span className="text-[10px] text-gray-400 truncate max-w-[160px]">
+                          {getPreviewSummary(section)}
+                        </span>
+                      </div>
+                      {/* Location badge */}
+                      <div className="flex items-center gap-1 mt-0.5">
+                        <MapPin size={10} className="text-teal-400" />
+                        <span className="text-[10px] text-teal-600/70 truncate max-w-[260px]">
+                          {location.page} → {location.section}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <Button
-                  onClick={() => handleEdit(section)}
-                  variant="neutral"
-                  size="sm"
-                  className="gap-1 shrink-0 ml-3"
-                >
-                  <Edit3 size={14} /> Edit
-                </Button>
-              </motion.div>
-            )
-          })
-        )}
-      </div>
+                  <Button
+                    onClick={() => handleEdit(section)}
+                    variant="neutral"
+                    size="sm"
+                    className="gap-1 shrink-0 ml-3"
+                  >
+                    <Edit3 size={14} /> Edit
+                  </Button>
+                </motion.div>
+              )
+            })
+          )}
+        </div>
+      )}
     </div>
   )
 }
