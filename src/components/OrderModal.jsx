@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronRight, ChevronLeft, Check, ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
-import { supabase } from '@/lib/supabase'
+import { useCart } from '@/context/CartContext'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-const STEPS = ['Pick Your Base', 'Choose Size', 'Filling & Frosting', 'Customize', 'Review & Order']
+const STEPS = ['Pick Your Base', 'Choose Size', 'Filling & Frosting', 'Customize', 'Review & Add to Cart']
 
 const cakeBases = [
   { id: 'chocolate', name: 'Chocolate', desc: 'Rich, moist chocolate sponge', price: 0, emoji: '🍫' },
@@ -59,14 +59,14 @@ export default function OrderModal({ open, onClose }) {
   const [selectedExtras, setSelectedExtras] = useState([])
   const [message, setMessage] = useState('')
   const [date, setDate] = useState('')
-  const [customer, setCustomer] = useState({ name: '', email: '', phone: '' })
-
   const total =
     (base?.price || 0) +
     (size?.price || 0) +
     (filling?.price || 0) +
     (frosting?.price || 0) +
     selectedExtras.reduce((sum, e) => sum + e.price, 0)
+
+  const { addToCart } = useCart()
 
   const toggleExtra = (extra) => {
     setSelectedExtras((prev) =>
@@ -85,90 +85,33 @@ export default function OrderModal({ open, onClose }) {
 
   const handleBack = () => setStep((s) => Math.max(s - 1, 0))
 
-  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-
-  const loadRazorpay = () => {
-    return new Promise((resolve) => {
-      if (window.Razorpay) { resolve(true); return }
-      const s = document.createElement('script')
-      s.src = 'https://checkout.razorpay.com/v1/checkout.js'
-      s.onload = () => resolve(true)
-      s.onerror = () => resolve(false)
-      document.body.appendChild(s)
-    })
-  }
-
-  const submitOrder = async (paymentId) => {
-    const items = {
-      base: { id: base?.id, name: base?.name, price: base?.price },
-      size: { id: size?.id, name: size?.name, price: size?.price },
-      filling: { id: filling?.id, name: filling?.name, price: filling?.price },
-      frosting: { id: frosting?.id, name: frosting?.name, price: frosting?.price },
-      extras: selectedExtras.map((e) => ({ id: e.id, name: e.name, price: e.price })),
-      message,
-      date,
-      payment_id: paymentId,
-    }
-    const { error } = await supabase.from('orders').insert({ items, customer, total, message, date })
-    if (error) throw error
-  }
-
-  const handleSubmit = async () => {
-    if (!customer.name || !customer.name.trim()) {
-      toast.error('Please enter your name.')
-      return
-    }
-    if (!customer.email || !isValidEmail(customer.email)) {
-      toast.error('Please enter a valid email address.')
-      return
-    }
-    if (!customer.phone || !customer.phone.trim() || !/^[\d\s+\-()]{6,20}$/.test(customer.phone.trim())) {
-      toast.error('Please enter a valid phone number (6-20 digits).')
-      return
-    }
-
-    const ready = await loadRazorpay()
-    if (!ready) {
-      toast.error('Payment system unavailable. Please try again.')
-      return
-    }
-
-    const rzp = new window.Razorpay({
-      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-      amount: total * 100,
-      currency: 'INR',
-      name: 'Crumbs Bakery & Cafe',
-      description: `${size?.name || ''} ${base?.name || ''} Cake`,
-      prefill: { name: customer.name, email: customer.email, contact: customer.phone },
-      theme: { color: '#55babd' },
-      handler: async (response) => {
-        try {
-          await submitOrder(response.razorpay_payment_id)
-          toast.success('Order placed! We\'ll contact you shortly.', {
-            description: `Total: ₹${total} · Payment: ${response.razorpay_payment_id}`,
-            duration: 5000,
-          })
-          setStep(0)
-          setBase(null); setSize(null); setFilling(null); setFrosting(null)
-          setSelectedExtras([]); setMessage(''); setDate('')
-          setCustomer({ name: '', email: '', phone: '' })
-          onClose()
-        } catch {
-          toast.error('Payment received but order failed to save. Please contact us.')
-        }
+  const handleAddToCart = () => {
+    const customCakeItem = {
+      id: 'custom-cake',
+      name: `Custom ${base?.name || ''} Cake`,
+      price: total,
+      image: null,
+      type: 'custom-cake',
+      customPrice: total,
+      customizations: {
+        base: base ? { id: base.id, name: base.name } : null,
+        size: size ? { id: size.id, name: size.name } : null,
+        filling: filling ? { id: filling.id, name: filling.name } : null,
+        frosting: frosting ? { id: frosting.id, name: frosting.name } : null,
+        extras: selectedExtras.map(e => ({ id: e.id, name: e.name, price: e.price })),
+        message,
+        date,
       },
-      modal: {
-        ondismiss: () => toast.error('Payment cancelled.'),
-      },
-    })
-    rzp.open()
+    }
+    addToCart(customCakeItem)
+    toast.success('Custom cake added to cart!')
+    resetAndClose()
   }
 
   const resetAndClose = () => {
     setStep(0)
     setBase(null); setSize(null); setFilling(null); setFrosting(null)
     setSelectedExtras([]); setMessage(''); setDate('')
-    setCustomer({ name: '', email: '', phone: '' })
     onClose()
   }
 
@@ -194,7 +137,7 @@ export default function OrderModal({ open, onClose }) {
             <div className="flex items-center justify-between px-4 md:px-6 py-4 border-b border-primary/10 shrink-0">
               <div className="flex items-center gap-2">
                 <ShoppingCart size={16} className="text-foreground" />
-                <h2 className="font-serif text-base md:text-xl text-foreground">Custom Cake Order</h2>
+                <h2 className="font-serif text-base md:text-xl text-foreground">Custom Cake Pre-Order</h2>
               </div>
 <button onClick={resetAndClose} className="text-muted-foreground hover:text-foreground transition-colors p-3.5 min-h-[44px] min-w-[44px] flex items-center justify-center">
 <X size={20} />
@@ -354,12 +297,6 @@ export default function OrderModal({ open, onClose }) {
                     wrapperClassName="w-full"
                   />
 
-                  <p className="text-[11px] md:text-xs font-medium text-foreground uppercase tracking-wider mb-2 mt-4">Your Details</p>
-                  <div className="space-y-2">
-                    <input type="text" placeholder="Your Name *" value={customer.name} onChange={(e) => setCustomer((p) => ({ ...p, name: e.target.value }))} className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none" />
-                    <input type="email" placeholder="Email Address *" value={customer.email} onChange={(e) => setCustomer((p) => ({ ...p, email: e.target.value }))} className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none" />
-                    <input type="tel" placeholder="Phone Number *" required value={customer.phone} onChange={(e) => setCustomer((p) => ({ ...p, phone: e.target.value }))} className="w-full rounded-xl border-2 border-primary/10 p-2.5 md:p-3 text-xs md:text-sm text-foreground bg-transparent focus:border-primary outline-none" />
-                  </div>
                 </div>
               )}
 
@@ -426,8 +363,8 @@ export default function OrderModal({ open, onClose }) {
                   Next <ChevronRight size={14} />
                 </Button>
               ) : (
-                <Button onClick={handleSubmit} size="sm" className="text-xs md:text-sm min-h-11">
-                  <Check size={14} /> Place — ₹{total}
+                <Button onClick={handleAddToCart} size="sm" className="text-xs md:text-sm min-h-11">
+                  <ShoppingCart size={14} /> Add to Cart — ₹{total}
                 </Button>
               )}
             </div>

@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useAdminApi } from '@/hooks/useAdminApi'
 
 const statCards = [
-  { key: 'orders', icon: ShoppingBag, label: 'Total Orders', color: 'bg-blue-50 text-blue-600' },
+  { key: 'orders', icon: ShoppingBag, label: 'Total Pre-Orders', color: 'bg-blue-50 text-blue-600' },
   { key: 'messages', icon: MessageSquare, label: 'New Messages', color: 'bg-amber-50 text-amber-600' },
   { key: 'reviews', icon: Star, label: 'Pending Reviews', color: 'bg-purple-50 text-purple-600' },
   { key: 'products', icon: Package, label: 'Products', color: 'bg-green-50 text-green-600' },
@@ -84,7 +84,7 @@ export default function AdminDashboard() {
         <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Clock size={16} className="text-gray-400" />
-            <h2 className="font-semibold text-gray-900 text-sm">Recent Orders</h2>
+            <h2 className="font-semibold text-gray-900 text-sm">Recent Pre-Orders</h2>
           </div>
           <span className="text-xs text-gray-400">Last 5</span>
         </div>
@@ -92,7 +92,7 @@ export default function AdminDashboard() {
           {loading ? (
             <div className="p-6 text-center text-sm text-gray-400">Loading...</div>
           ) : recentOrders.length === 0 ? (
-            <div className="p-6 text-center text-sm text-gray-400">No orders yet</div>
+            <div className="p-6 text-center text-sm text-gray-400">No pre-orders yet</div>
           ) : (
             recentOrders.map((order, i) => {
               const customer =

@@ -1,12 +1,22 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { useOrderContext } from './Layout'
+import { useCart } from '@/context/CartContext'
+import VariantModal from './VariantModal'
 import { PRODUCT_CAROUSEL_DEFAULTS } from '@/data/contentDefaults'
 
 export default function ProductCarousel({ data: propData }) {
   const products = propData || PRODUCT_CAROUSEL_DEFAULTS
   const carouselRef = useRef(null)
-  const { onOrder } = useOrderContext()
+  const [variantProduct, setVariantProduct] = useState(null)
+  const { addToCart } = useCart()
+
+  const handleAddToCart = (product) => {
+    if (product.variants && product.variants.length > 0) {
+      setVariantProduct(product)
+    } else {
+      addToCart(product)
+    }
+  }
 
   return (
     <section className="py-8 md:py-18 px-4 bg-background">
@@ -76,7 +86,7 @@ export default function ProductCarousel({ data: propData }) {
                 <p className="font-work text-sm md:text-base font-bold text-foreground mb-2 md:mb-3">
                   {product.price}
                 </p>
-                <button onClick={onOrder} className="w-full font-work text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-4 py-3 md:py-2.5 transition-all duration-200 rounded-sm min-h-[44px] md:min-h-0 active:scale-[0.97]">
+                <button onClick={() => handleAddToCart(product)} className="w-full font-work text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-4 py-3 md:py-2.5 transition-all duration-200 rounded-sm min-h-[44px] md:min-h-0 active:scale-[0.97]">
                   Add to Order
                 </button>
               </div>
@@ -93,6 +103,17 @@ export default function ProductCarousel({ data: propData }) {
         >
           Swipe to browse more &rarr;
         </motion.p>
+
+      {variantProduct && (
+        <VariantModal
+          product={variantProduct}
+          onSelect={(variant) => {
+            addToCart({ ...variantProduct, type: 'product' }, variant)
+            setVariantProduct(null)
+          }}
+          onClose={() => setVariantProduct(null)}
+        />
+      )}
       </div>
     </section>
   )

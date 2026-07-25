@@ -1,10 +1,23 @@
 import { motion } from 'framer-motion'
-import { useOrderContext } from './Layout'
+import { useState } from 'react'
+import { useCart } from '@/context/CartContext'
 import { getImageUrl } from '@/lib/image'
+import VariantModal from './VariantModal'
 
 export default function ProductGrid({ products }) {
-  const { onOrder } = useOrderContext()
+  const [variantProduct, setVariantProduct] = useState(null)
+  const { addToCart } = useCart()
+
+  const handleAddToCart = (product) => {
+    if (product.variants && product.variants.length > 0) {
+      setVariantProduct(product)
+    } else {
+      addToCart(product)
+    }
+  }
+
   return (
+    <>
     <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
       {products.map((product, i) => (
         <motion.div
@@ -57,12 +70,23 @@ export default function ProductGrid({ products }) {
                 )}
               </div>
             )}
-            <button onClick={onOrder} className="mt-auto w-full font-work text-[10px] md:text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-2.5 py-1.5 md:px-3 md:py-2 transition-all duration-200 rounded-sm min-h-[32px] md:min-h-0 active:scale-[0.97]">
+            <button onClick={() => handleAddToCart(product)} className="mt-auto w-full font-work text-[10px] md:text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-2.5 py-1.5 md:px-3 md:py-2 transition-all duration-200 rounded-sm min-h-[32px] md:min-h-0 active:scale-[0.97]">
               Add to Order
             </button>
           </div>
         </motion.div>
       ))}
     </div>
+    {variantProduct && (
+      <VariantModal
+        product={variantProduct}
+        onSelect={(variant) => {
+          addToCart({ ...variantProduct, type: 'product' }, variant)
+          setVariantProduct(null)
+        }}
+        onClose={() => setVariantProduct(null)}
+      />
+    )}
+  </>
   )
 }

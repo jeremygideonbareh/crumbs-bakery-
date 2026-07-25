@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ShoppingCart } from 'lucide-react'
+import { useCart } from '@/context/CartContext'
 
 const navLinks = [
   { label: 'HOME', href: '/' },
@@ -14,10 +15,11 @@ const navLinks = [
   { label: 'CONTACT', href: '/contact' },
 ]
 
-export default function Navbar({ onOrder }) {
+export default function Navbar({ onOrder, onCartClick }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const location = useLocation()
+  const { itemCount } = useCart()
 
   const { scrollYProgress } = useScroll()
   const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1])
@@ -64,6 +66,18 @@ export default function Navbar({ onOrder }) {
             className="bg-white text-foreground font-bold text-[11px] uppercase tracking-[0.15em] px-4 py-2 rounded-sm hover:bg-foreground hover:text-white transition-all active:scale-[0.97]"
           >
             ORDER NOW
+          </button>
+          <button
+            onClick={onCartClick}
+            className="relative text-foreground p-2 hover:text-foreground/80 transition-colors active:scale-[0.97]"
+            aria-label="Open cart"
+          >
+            <ShoppingCart size={18} />
+            {itemCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 bg-red-500 text-white text-[9px] font-bold rounded-full min-w-[16px] h-4 flex items-center justify-center px-1 leading-none">
+                {itemCount > 99 ? '99+' : itemCount}
+              </span>
+            )}
           </button>
         </nav>
 
@@ -119,6 +133,13 @@ export default function Navbar({ onOrder }) {
                   className="w-full bg-white text-foreground font-bold text-xs uppercase tracking-[0.15em] px-5 py-4 rounded-sm hover:bg-foreground hover:text-white transition-all mt-3 active:scale-[0.97]"
                 >
                   ORDER NOW
+                </button>
+                <button
+                  onClick={() => { setOpen(false); if (onCartClick) onCartClick() }}
+                  className="w-full bg-teal/10 text-foreground font-bold text-xs uppercase tracking-[0.15em] px-5 py-4 rounded-sm hover:bg-teal hover:text-white transition-all mt-1 active:scale-[0.97] flex items-center justify-center gap-2"
+                >
+                  <ShoppingCart size={16} />
+                  VIEW CART {itemCount > 0 && `(${itemCount})`}
                 </button>
               </div>
             </motion.div>
