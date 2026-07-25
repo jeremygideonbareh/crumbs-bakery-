@@ -13,9 +13,9 @@ export default function ProductGrid({ products }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-30px' }}
           transition={{ duration: 0.35, delay: i * 0.04 }}
-          className="group flex flex-col bg-white rounded-sm overflow-hidden border border-primary/10 hover:border-primary/20 transition-all"
+          className="group flex flex-col bg-white rounded-sm border border-primary/10 hover:border-primary/20 transition-all"
         >
-          <div className="relative aspect-square overflow-hidden bg-primary/5">
+          <div className="relative aspect-square overflow-hidden bg-primary/5 rounded-t-sm">
             <img
               src={getImageUrl(product.image)}
               alt={product.name}
@@ -30,7 +30,7 @@ export default function ProductGrid({ products }) {
             )}
           </div>
 
-          <div className="flex flex-col flex-1 p-2.5 md:p-3">
+          <div className="flex flex-col flex-1 p-2.5 md:p-3 rounded-b-sm">
             <h3 className="font-work text-[11px] md:text-xs font-bold uppercase tracking-[0.05em] text-foreground leading-tight">
               {product.name}
             </h3>
@@ -57,7 +57,7 @@ export default function ProductGrid({ products }) {
                 )}
               </div>
             )}
-            <button onClick={onOrder} className="mt-auto w-full font-work text-[10px] md:text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-3 py-2.5 md:py-2 transition-all duration-200 rounded-sm min-h-[36px] md:min-h-0 active:scale-[0.97]">
+            <button onClick={onOrder} className="mt-auto w-full font-work text-[10px] md:text-xs uppercase tracking-[0.15em] text-foreground border border-foreground/20 hover:bg-primary hover:text-foreground hover:border-primary px-2.5 py-1.5 md:px-3 md:py-2 transition-all duration-200 rounded-sm min-h-[32px] md:min-h-0 active:scale-[0.97]">
               Add to Order
             </button>
           </div>
