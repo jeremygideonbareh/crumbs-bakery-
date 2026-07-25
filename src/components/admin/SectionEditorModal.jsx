@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import ImageUploader from './ImageUploader'
+import { getSectionLocation } from '@/data/adminSectionMap'
 
 // ─── SECTION FIELD SCHEMAS ────────────────────────────────────────────
 // Each section type defines its editable fields.
@@ -266,6 +267,32 @@ const SECTION_FIELDS = {
       ],
     },
     { key: 'bottom_text', label: 'Bottom Bar Text', type: 'text' },
+  ],
+
+  team: [
+    {
+      key: '__array__',
+      label: 'Team Members',
+      type: 'array',
+      itemFields: [
+        { key: 'name', label: 'Name', type: 'text' },
+        { key: 'role', label: 'Role', type: 'text' },
+        { key: 'image', label: 'Photo', type: 'image' },
+      ],
+    },
+  ],
+
+  order_cta: [
+    { key: 'heading', label: 'Heading', type: 'text' },
+    { key: 'subtitle', label: 'Subtitle', type: 'text' },
+    { key: 'button_text', label: 'CTA Button Text', type: 'text' },
+    {
+      key: 'features',
+      label: 'Feature List',
+      type: 'array',
+      itemFields: [{ key: '__value__', label: 'Feature', type: 'text' }],
+    },
+    { key: 'background_image', label: 'Background Image', type: 'image' },
   ],
 }
 
@@ -601,6 +628,14 @@ export default function SectionEditorModal({ section, currentData, onSave, onClo
           <div>
             <h2 className="font-semibold text-gray-900">{section.section_label}</h2>
             <p className="text-xs text-gray-400 mt-0.5">Type: {section.section_type}</p>
+            <p className="text-xs text-teal-600 mt-0.5">
+              {getSectionLocation(section.section_key).page} → {getSectionLocation(section.section_key).section}
+              {getSectionLocation(section.section_key).route && (
+                <span className="ml-2 text-teal-400">
+                  | Preview on <span className="underline">{getSectionLocation(section.section_key).route}</span>
+                </span>
+              )}
+            </p>
           </div>
           <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded">
             <X size={16} />
