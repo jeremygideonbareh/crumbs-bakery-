@@ -1,6 +1,7 @@
 // Page → Sections mapping table for Admin Content Manager.
 // Defines which page route each section_key belongs to and how to display them.
-// Used by AdminContent.jsx for tab-based navigation and location badges.
+// Sections are listed in top-to-bottom render order matching the live page.
+// `hardcoded: true` = section exists on the page but is not CMS-editable yet.
 
 export const PAGE_SECTIONS = {
   // ── Home ──────────────────────────────────────────────────────────────
@@ -13,17 +14,22 @@ export const PAGE_SECTIONS = {
       { key: 'home_hero', label: 'Hero Section' },
       { key: 'hero_stats', label: 'Stats Bar' },
       { key: 'category_grid', label: 'Category Grid Cards' },
-      { key: 'about_section', label: 'About Columns' },
-      { key: 'gallery', label: 'Gallery Images' },
-      { key: 'news', label: 'News Articles' },
-      { key: 'signature_items', label: 'Signature Menu Items' },
-      { key: 'promo_cards', label: 'Promo Cards' },
-      { key: 'image_carousel', label: 'Image Carousel' },
-      { key: 'delivery', label: 'Delivery Section' },
-      { key: 'faq', label: 'FAQ Items' },
+      { key: 'about', label: 'About Story Columns' },
+      { label: 'SheetCakes Marquee', hardcoded: true },
       { key: 'browse_by_bake', label: 'Browse By Bake Grid' },
-      { key: 'instagram', label: 'Instagram Section' },
+      { key: 'signature_items', label: 'Signature Menu Items' },
+      { key: 'image_carousel', label: 'Image Carousel' },
       { key: 'product_carousel', label: 'Featured Products Carousel' },
+      { key: 'menus', label: 'Menu Gallery' },
+      { key: 'delivery', label: 'Delivery Section' },
+      { key: 'gallery', label: 'Gallery Images' },
+      { key: 'instagram', label: 'Instagram Section' },
+      { key: 'promo_cards', label: 'Promo Cards' },
+      { label: 'Reviews Preview', hardcoded: true },
+      { key: 'news', label: 'News Articles' },
+      { label: 'Contact CTA', hardcoded: true },
+      { key: 'faq_section', label: 'FAQ Items' },
+      { label: 'Visit Us Section', hardcoded: true },
       { key: 'footer', label: 'Footer / Contact Info' },
     ],
     productCategory: null,
@@ -34,8 +40,13 @@ export const PAGE_SECTIONS = {
     label: 'Cakes',
     route: '/cakes',
     icon: 'CakeSlice',
-    description: 'Cakes page hero image + product listings',
-    sections: [{ key: 'cakes_hero', label: 'Page Hero' }],
+    description: 'Cakes page — hero, category filters, product grid, delivery info',
+    sections: [
+      { label: 'Category Hero', hardcoded: true },
+      { label: 'Category Filter Tabs', hardcoded: true },
+      { label: 'Product Grid', hardcoded: true },
+      { label: 'Delivery Section', hardcoded: true },
+    ],
     productCategory: 'cakes',
   },
 
@@ -44,8 +55,12 @@ export const PAGE_SECTIONS = {
     label: 'Cupcakes',
     route: '/cupcakes',
     icon: 'Cupcake',
-    description: 'Cupcakes page hero image + product listings',
-    sections: [{ key: 'cupcakes_hero', label: 'Page Hero' }],
+    description: 'Cupcakes page — hero, product grid, delivery info',
+    sections: [
+      { label: 'Category Hero', hardcoded: true },
+      { label: 'Product Grid', hardcoded: true },
+      { label: 'Delivery Section', hardcoded: true },
+    ],
     productCategory: 'cupcakes',
   },
 
@@ -54,8 +69,12 @@ export const PAGE_SECTIONS = {
     label: 'Desserts',
     route: '/desserts',
     icon: 'Cookie',
-    description: 'Desserts page hero + product listings (cookies, brownies, treats)',
-    sections: [{ key: 'desserts_hero', label: 'Page Hero' }],
+    description: 'Desserts page — hero, product grid, delivery info (cookies, brownies, treats)',
+    sections: [
+      { label: 'Category Hero', hardcoded: true },
+      { label: 'Product Grid', hardcoded: true },
+      { label: 'Delivery Section', hardcoded: true },
+    ],
     productCategory: 'desserts',
   },
 
@@ -66,7 +85,7 @@ export const PAGE_SECTIONS = {
     icon: 'BookOpen',
     description: 'Menu board images + structured menu categories & items',
     sections: [
-      { key: 'menu_images', label: 'Menu Board Images' },
+      { label: 'Breadcrumb', hardcoded: true },
       { key: 'menu_categories', label: 'Menu Categories & Items' },
     ],
     productCategory: null,
@@ -79,8 +98,12 @@ export const PAGE_SECTIONS = {
     icon: 'Info',
     description: 'About story columns + team member photos',
     sections: [
-      { key: 'about_story', label: 'About Story Columns' },
-      { key: 'team', label: 'Team Members' },
+      { label: 'About Hero', hardcoded: true },
+      { label: 'Story Section', hardcoded: true },
+      { label: 'Timeline', hardcoded: true },
+      { label: 'Values Cards', hardcoded: true },
+      { label: 'Team Section', hardcoded: true },
+      { label: 'Visit Us CTA', hardcoded: true },
     ],
     productCategory: null,
   },
@@ -102,7 +125,12 @@ export const PAGE_SECTIONS = {
     route: '/contact',
     icon: 'Phone',
     description: 'Contact info, hours, address, social links in footer',
-    sections: [{ key: 'footer', label: 'Footer / Contact Info' }],
+    sections: [
+      { label: 'Contact Hero', hardcoded: true },
+      { label: 'Contact Info Cards', hardcoded: true },
+      { label: 'Map', hardcoded: true },
+      { label: 'FAQ', hardcoded: true },
+    ],
     productCategory: null,
   },
 
@@ -126,12 +154,13 @@ export const PAGE_ORDER = [
 // Look up which page and section label a section_key belongs to
 export function getSectionLocation(sectionKey) {
   for (const [, page] of Object.entries(PAGE_SECTIONS)) {
-    const match = page.sections.find(s => s.key === sectionKey)
-    if (match) {
-      return {
-        page: page.label,
-        section: match.label,
-        route: page.route,
+    for (const s of page.sections) {
+      if (s.key && s.key === sectionKey) {
+        return {
+          page: page.label,
+          section: s.label,
+          route: page.route,
+        }
       }
     }
   }

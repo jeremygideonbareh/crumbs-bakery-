@@ -185,27 +185,50 @@ export default function AdminContent() {
     return preview || `${Object.keys(data).length} fields`
   }
 
-  // Filter sections by active tab
-  const filteredSections = useMemo(() => {
+  // Build combined display list: real sections + hardcoded markers in page order
+  const displaySections = useMemo(() => {
     const page = PAGE_SECTIONS[activeTab]
     if (!page || page.externalUrl) return []
 
-    const tabKeys = new Set(page.sections.map((s) => s.key))
+    const result = []
 
-    // Known sections that belong to this tab go first (in the order defined in the mapping)
-    const orderedKnown = []
-    const rest = []
-
-    for (const section of sections) {
-      if (tabKeys.has(section.section_key)) {
-        orderedKnown.push(section)
-      } else if (!KNOWN_SECTION_KEYS.has(section.section_key)) {
-        rest.push(section)
+    for (const entry of page.sections) {
+      if (entry.hardcoded) {
+        // Hardcoded marker — show as non-editable placeholder
+        result.push({
+          id: `hardcoded-${entry.label.replace(/\s+/g, '-').toLowerCase()}`,
+          section_label: entry.label,
+          section_type: 'hardcoded',
+          hardcoded: true,
+        })
+      } else if (entry.key) {
+        // Real editable section — find matching data from API
+        const match = sections.find((s) => s.section_key === entry.key)
+        if (match) {
+          result.push(match)
+        } else {
+          // Section key defined in mapping but no data yet — show as placeholder
+          result.push({
+            id: `pending-${entry.key}`,
+            section_key: entry.key,
+            section_label: entry.label,
+            section_type: 'pending',
+            data: null,
+            pending: true,
+          })
+        }
       }
     }
 
-    // Return known sections in mapping order, then unmatched sections at bottom
-    return [...orderedKnown, ...rest]
+    // Also append any sections from API that don't match mapped entries
+    const mappedKeys = new Set(page.sections.filter((s) => s.key).map((s) => s.key))
+    for (const section of sections) {
+      if (!mappedKeys.has(section.section_key) && !KNOWN_SECTION_KEYS.has(section.section_key)) {
+        result.push(section)
+      }
+    }
+
+    return result
   }, [sections, activeTab])
 
   const currentPage = PAGE_SECTIONS[activeTab]
@@ -323,15 +346,22 @@ export default function AdminContent() {
         <div className="grid gap-3">
           {loading ? (
             <div className="text-center py-12 text-gray-400">Loading sections...</div>
-          ) : filteredSections.length === 0 ? (
+          ) : displaySections.length === 0 ? (
             <div className="text-center py-12 text-gray-400">
               No sections found for this page.
             </div>
           ) : (
-            filteredSections.map((section, i) => {
-              const Icon = typeIcons[section.section_type] || Settings
-              const colorClass = typeColors[section.section_type] || 'bg-gray-50 text-gray-600'
+            displaySections.map((section, i) => {
+              const isHardcoded = section.hardcoded
+              const isPending = section.pending
+              const Icon = isHardcoded ? Layout : isPending ? Settings : (typeIcons[section.section_type] || Settings)
+              const colorClass = isHardcoded
+                ? 'bg-gray-100 text-gray-400'
+                : isPending
+                  ? 'bg-gray-50 text-gray-300'
+                  : (typeColors[section.section_type] || 'bg-gray-50 text-gray-600')
               const hasData =
+                !isHardcoded &&
                 section.data &&
                 typeof section.data === 'object' &&
                 Object.keys(section.data).length > 0
@@ -343,7 +373,11 @@ export default function AdminContent() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.03 }}
-                  className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 flex items-center justify-between hover:border-gray-200 transition-colors"
+                  className={`rounded-xl border p-4 flex items-center justify-between transition-colors ${
+                    isHardcoded
+                      ? 'bg-gray-50/50 border-gray-100/70'
+                      : 'bg-white border-gray-100 shadow-sm hover:border-gray-200'
+                  }`}
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <div
@@ -352,25 +386,37 @@ export default function AdminContent() {
                       <Icon size={18} />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">
+                      <p className={`text-sm font-medium truncate ${isHardcoded ? 'text-gray-400' : 'text-gray-900'}`}>
                         {section.section_label}
                       </p>
                       <div className="flex items-center gap-2 mt-0.5">
-                        <span className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded uppercase">
-                          {section.section_type}
-                        </span>
-                        <span
-                          className={`text-[10px] px-1.5 py-0.5 rounded ${
-                            hasData
-                              ? 'bg-green-50 text-green-600'
-                              : 'bg-amber-50 text-amber-600'
-                          }`}
-                        >
-                          {hasData ? 'Saved' : 'Using defaults'}
-                        </span>
-                        <span className="text-[10px] text-gray-400 truncate max-w-[160px]">
-                          {getPreviewSummary(section)}
-                        </span>
+                        {isHardcoded ? (
+                          <span className="text-[10px] text-gray-400 bg-gray-200/60 px-1.5 py-0.5 rounded uppercase">
+                            Read-only
+                          </span>
+                        ) : isPending ? (
+                          <span className="text-[10px] text-gray-300 bg-gray-100 px-1.5 py-0.5 rounded uppercase">
+                            Pending
+                          </span>
+                        ) : (
+                          <>
+                            <span className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded uppercase">
+                              {section.section_type}
+                            </span>
+                            <span
+                              className={`text-[10px] px-1.5 py-0.5 rounded ${
+                                hasData
+                                  ? 'bg-green-50 text-green-600'
+                                  : 'bg-amber-50 text-amber-600'
+                              }`}
+                            >
+                              {hasData ? 'Saved' : 'Using defaults'}
+                            </span>
+                            <span className="text-[10px] text-gray-400 truncate max-w-[160px]">
+                              {getPreviewSummary(section)}
+                            </span>
+                          </>
+                        )}
                       </div>
                       {/* Location badge */}
                       <div className="flex items-center gap-1 mt-0.5">
@@ -381,14 +427,16 @@ export default function AdminContent() {
                       </div>
                     </div>
                   </div>
-                  <Button
-                    onClick={() => handleEdit(section)}
-                    variant="neutral"
-                    size="sm"
-                    className="gap-1 shrink-0 ml-3"
-                  >
-                    <Edit3 size={14} /> Edit
-                  </Button>
+                  {!isHardcoded && (
+                    <Button
+                      onClick={() => handleEdit(section)}
+                      variant="neutral"
+                      size="sm"
+                      className="gap-1 shrink-0 ml-3"
+                    >
+                      <Edit3 size={14} /> Edit
+                    </Button>
+                  )}
                 </motion.div>
               )
             })
