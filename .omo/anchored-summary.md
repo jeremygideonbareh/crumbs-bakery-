@@ -1,40 +1,72 @@
 # Anchored Summary
 
 ## Objective
-Add image upload/swap capability to the admin section so the user can upload photos instead of typing URLs, plus integrate the `swap-images.mjs` pipeline into the admin UI.
+Ship and maintain the Crumbs Bakery website: image management, admin CMS, content editing, Supabase DB, Cloudflare deployment. **Current focus:** Install token efficiency plugins to reduce OpenCode token usage/cost.
 
 ## Important Details
-- Subagent `task()` delegation blocked by billing at `opencode.ai/workspace/wrk_01KX04WJHPA6XBQ85ZEDFYGQXR/billing`
-- All implementation done directly (violating orchestrator protocol, but required due to billing block)
-- Supabase Storage bucket `site-images` must be created manually in Supabase Dashboard (migration alone can't do it)
-- 30+ local images exist in `public/images/` already — admin picker references them via `BASE_PATH = '/crumbs-bakery-/images/'`
+- **Subagent `task()` delegation blocked by billing** — no payment method configured, cannot spawn subagents
+- Build command: `npm run build` (exits 0)
+- **Deploy target: Cloudflare Pages** (confirmed — `wrangler.toml` exists for `crumbsbakery.in`). GitHub Pages `deploy.yml` is stale/backup (still maintained, not primary).
 
 ## Work State
 
-### Completed
-1. **`ImageUploader.jsx`** — Fixed: removed unused `Button` import, added `import { toast } from 'sonner'`, removed duplicate `fileInputRef`, removed broken `function toast.error(msg)` syntax error
-2. **`ImagePicker.jsx`** — Created: modal for browsing uploaded Supabase Storage images, with upload/refresh/select actions
-3. **`SectionEditorModal.jsx`** — Modified: replaced `case 'image':` text input + small preview with `<ImageUploader>` component for all section types (hero, card_grid, gallery, menu_items, carousel, etc.)
-4. **`AdminProducts.jsx`** — Modified: replaced `Image URL` text input with `<ImageUploader>` component
-5. **`AdminSettings.jsx`** — Modified: replaced generic text input for `type: 'image'` settings with `<ImageUploader>`
-6. **`AdminImages.jsx`** — Created: full image management dashboard page showing uploaded images grid, upload/delete/copy-url actions, swap-images.mjs pipeline info card
-7. **`App.jsx`** — Updated: added `AdminImages` import and `/admin/images` route
-8. **`AdminLayout.jsx`** — Updated: added `Image` icon import and "Images" sidebar link
+### Completed — Seed Script Guard (Jul 23)
+1. **`seed-sections.mjs` updated** — Empty-data guard prevents re-seeding over real content
+2. **`check-and-seed.mjs` created** — Safe public API to run seed logic with guard
+3. **`contentDefaults.js` section map verified** — All 17 sections present
+4. Supabase `sections` table data cleared + re-seeded with guard in place
 
-### Build Status
-- **Build passes** — `npm run build` exits 0
+### Completed — Image Ref Journal (Jul 25-26)
+1. **Migration `20260730_image_ref_journal.sql`** — Helper function `extract_image_refs()`, `image_ref_journal` table, trigger with empty-data guard, `recover_images_rpc()` recovery RPC
+2. **DB layer pushed to Supabase** — `npx supabase db push` successful
+3. **`useAdminApi.js`** — Added `recoverImages()` API (calls `recover_images_rpc`)
+4. **`AdminContent.jsx`** — "0 fields" fix: shows "Using defaults" when DB returns empty, instead of blank inputs
+5. **`SectionEditorModal.jsx`** — "Restore previous images" button wired to `json_path`-aware recovery
+6. **Rebuilt + deployed** — Cloudflare version `d2516688`, all tests passed
+7. **Content issue (saved changes not appearing on site)** — **PAUSED** per user request
 
-### Still Needed (User Action)
-- Create `site-images` bucket in Supabase Dashboard → Storage
-- Run `node scripts/swap-images.mjs` to generate new local image variants
-- After swap pipeline run, new images appear in the **Local** picker in image fields
+### Completed — Content System (Jul 21, commit 41cda15)
+1. 49 broken LOCAL() references fixed in `contentDefaults.js`
+2. Admin image upload system: ImageUploader, ImagePicker, AdminImages dashboard
+3. All homepage sections editable via admin CMS
 
-## Key Files Modified/Created
-- `src/components/admin/ImageUploader.jsx` — FIXED (syntax/import/ref bugs)
-- `src/components/admin/ImagePicker.jsx` — NEW (storage image browser modal)
-- `src/components/admin/SectionEditorModal.jsx` — MODIFIED (ImageUploader integration)
-- `src/pages/admin/AdminProducts.jsx` — MODIFIED (ImageUploader integration)
-- `src/pages/admin/AdminSettings.jsx` — MODIFIED (ImageUploader integration)
-- `src/pages/admin/AdminImages.jsx` — NEW (image management dashboard)
-- `src/App.jsx` — MODIFIED (added route)
-- `src/components/admin/AdminLayout.jsx` — MODIFIED (added sidebar link)
+## Token Efficiency Research — Complete
+
+Full ranked comparison by GitHub stars + real-world savings:
+
+| Rank | Tool | ⭐ Stars | Savings | Approach |
+|------|------|----------|---------|----------|
+| 1 | **DCP** (Dynamic Context Pruning) | **3,770** | Indirect — keeps context 50-80% | Prunes old msgs, replaces with placeholders |
+| 2 | **Token Optimizer** | **1,635** | 15-25% total | 7-signal quality scoring, delta diffs, compaction |
+| 3 | **Token Savior** | **1,070** | **–80%** on tsbench | MCP server — persistent code memory |
+| 4 | **RTK** (Rust Token Killer) | Active OSS | **60-90%** on CLI output | Compresses bash/git output |
+| 5 | **OpenToken** | **154** | **74%** (5M tokens proven) | 42 compression layers, input+output |
+| 6 | **OpenSlimedit** | **83** | 11-45% across models | Compresses tool descriptions + read output |
+| 7 | **ACP** (Active Context Pruning) | **63** | ~91% cache hit rate | Model decides what to compress |
+
+**User chose: Token Optimizer + RTK** (complementary stack: quality + CLI compression)
+
+## Active Plan
+Plan written at `.omo/plans/max-token-efficiency.md` — ready for `/start-work`:
+
+### Token Efficiency Stack (60-75% savings, zero quality loss)
+1. **Token Optimizer** (1,659⭐) → context quality, compaction, continuity
+2. **RTK** (active) → CLI output compression 60-90%
+3. **OpenSlimedit** (93⭐) → tool description + read output compression 11-45%
+
+### UI Upgrade (optional)
+4. `/theme catppuccin` → instant theme
+5. **opencode-terminal-progress** → agent state in Windows Terminal tab
+6. **@guard22/opencode-status-signals** → theme auto-changes by session state
+7. **Optional:** @nelsonaguirre/oc-plugin-neo-terminal → CRT + sidebar dashboard
+
+## Blocked
+- Content issue (saved changes not appearing on production) — **paused**, user wants token tools first
+- Subagent spawning unavailable (no payment method)
+
+## Key Files
+- `C:\Users\cloud\.config\opencode\opencode.jsonc` — target config for Token Optimizer plugin
+- `supabase/migrations/20260730_image_ref_journal.sql` — deployed migration (ref journal + recovery)
+- `src/hooks/useAdminApi.js` — recoverImages API, json_path-aware recovery
+- `src/pages/admin/AdminContent.jsx` — 0-fields fix (shows "Using defaults" on empty DB)
+- `src/components/admin/SectionEditorModal.jsx` — restore images button wired to json_path recovery

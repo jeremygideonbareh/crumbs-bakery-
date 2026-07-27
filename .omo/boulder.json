@@ -1,13 +1,23 @@
 ﻿{
   "schema_version": 2,
-  "active_work_id": "admin-content-cms-upgrade",
+  "active_work_id": null,
   "works": {
-    "admin-content-cms-upgrade": {
-      "work_id": "admin-content-cms-upgrade",
-      "active_plan": ".omo/plans/admin-content-cms-upgrade.md",
-      "plan_name": "admin-content-cms-upgrade",
+    "max-token-efficiency": {
+      "work_id": "max-token-efficiency",
+      "active_plan": ".omo/plans/max-token-efficiency.md",
+      "plan_name": "max-token-efficiency",
       "session_ids": ["opencode:ses_086b5bd87ffez1zt5xz31MLR0z"],
-      "status": "active",
+      "status": "completed",
+      "elapsed_ms": 0,
+      "worktree_path": null
+    },
+    "fix-content-pipeline": {
+      "work_id": "fix-content-pipeline",
+      "active_plan": ".omo/plans/fix-content-pipeline.md",
+      "plan_name": "fix-content-pipeline",
+      "session_ids": ["opencode:ses_086b5bd87ffez1zt5xz31MLR0z"],
+      "status": "completed",
+      "elapsed_ms": null,
       "worktree_path": null
     }
   }

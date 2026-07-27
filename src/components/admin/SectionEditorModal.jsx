@@ -8,10 +8,20 @@ import {
   ChevronUp,
   ChevronDown,
   Image as ImageIcon,
+  RotateCcw,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { toast } from 'sonner'
 import ImageUploader from './ImageUploader'
+import { useAdminApi } from '@/hooks/useAdminApi'
 import { getSectionLocation } from '@/data/adminSectionMap'
+import {
+  HOME_HERO_DEFAULTS, HERO_STATS_DEFAULTS, CATEGORY_GRID_DEFAULTS,
+  ABOUT_DEFAULTS, GALLERY_DEFAULTS, NEWS_DEFAULTS, SIGNATURE_ITEMS_DEFAULTS,
+  PROMO_CARDS_DEFAULTS, IMAGE_CAROUSEL_DEFAULTS, PRODUCT_CAROUSEL_DEFAULTS,
+  DELIVERY_DEFAULTS, FAQ_DEFAULTS, BROWSE_BY_BAKE_DEFAULTS, INSTAGRAM_DEFAULTS,
+  FOOTER_DEFAULTS, MENUS_DEFAULTS, MENU_CATEGORIES_DEFAULTS,
+} from '@/data/contentDefaults'
 
 // ─── SECTION FIELD SCHEMAS ────────────────────────────────────────────
 // Each section type defines its editable fields.
@@ -202,6 +212,22 @@ const SECTION_FIELDS = {
       ],
     },
   ],
+  product_grid: [
+    {
+      key: '__array__',
+      label: 'Products',
+      type: 'array',
+      itemFields: [
+        { key: 'name', label: 'Product Name', type: 'text' },
+        { key: 'price', label: 'Price', type: 'text' },
+        { key: 'image', label: 'Product Image', type: 'image' },
+        { key: 'desc', label: 'Description', type: 'textarea' },
+        { key: 'badge', label: 'Badge (e.g. Best Seller)', type: 'text' },
+        { key: 'variants', label: 'Variants (comma-separated)', type: 'text' },
+      ],
+    },
+  ],
+
   menu_categories: [
     {
       key: '__array__',
@@ -225,9 +251,12 @@ const SECTION_FIELDS = {
             { key: 'name', label: 'Item Name', type: 'text' },
             { key: 'price', label: 'Price', type: 'text' },
             { key: 'desc', label: 'Description', type: 'textarea' },
-            { key: 'image', label: 'Image URL (optional)', type: 'text' },
+            { key: 'image', label: 'Image URL (optional)', type: 'image' },
             { key: 'subcategory', label: 'Subcategory (e.g. Classic Cakes)', type: 'text' },
             { key: 'options', label: 'Color Options (comma-separated)', type: 'text' },
+            { key: 'highlight', label: 'Homepage badge text (e.g. "Best Seller")', type: 'text' },
+            { key: 'badge', label: 'Badge CSS color (e.g. bg-amber-100 text-amber-700)', type: 'text' },
+            { key: 'featured', label: 'Show on Homepage? (true/false)', type: 'text' },
           ],
         },
       ],
@@ -293,6 +322,89 @@ const SECTION_FIELDS = {
       itemFields: [{ key: '__value__', label: 'Feature', type: 'text' }],
     },
     { key: 'background_image', label: 'Background Image', type: 'image' },
+  ],
+
+  category_hero: [
+    { key: 'title', label: 'Title', type: 'text' },
+    { key: 'subtitle', label: 'Subtitle', type: 'textarea' },
+    { key: 'image', label: 'Background Image', type: 'image' },
+  ],
+
+  delivery_compact: [
+    { key: 'heading', label: 'Section Heading', type: 'text' },
+    { key: 'card1_heading', label: 'Card 1 Heading', type: 'text' },
+    { key: 'card1_desc', label: 'Card 1 Description', type: 'textarea' },
+    { key: 'card2_heading', label: 'Card 2 Heading', type: 'text' },
+    { key: 'card2_desc', label: 'Card 2 Description', type: 'textarea' },
+  ],
+
+  content_single: [
+    { key: 'subtitle', label: 'Subtitle', type: 'text' },
+    { key: 'title', label: 'Title (HTML allowed)', type: 'textarea' },
+    { key: 'body', label: 'Body Text', type: 'textarea' },
+    { key: 'button1_text', label: 'Button 1 Text', type: 'text' },
+    { key: 'button1_link', label: 'Button 1 Link', type: 'text' },
+    { key: 'button2_text', label: 'Button 2 Text', type: 'text' },
+    { key: 'button2_link', label: 'Button 2 Link', type: 'text' },
+  ],
+
+  content_with_image: [
+    { key: 'heading', label: 'Heading', type: 'text' },
+    { key: 'body', label: 'Body Text (paragraphs separated by blank line)', type: 'textarea' },
+    { key: 'image', label: 'Image', type: 'image' },
+  ],
+
+  about_timeline: [
+    {
+      key: '__array__',
+      label: 'Timeline Events',
+      type: 'array',
+      itemFields: [
+        { key: 'year', label: 'Year', type: 'text' },
+        { key: 'event', label: 'Event Description', type: 'textarea' },
+      ],
+    },
+  ],
+
+  card_grid_simple: [
+    {
+      key: '__array__',
+      label: 'Cards',
+      type: 'array',
+      itemFields: [
+        { key: 'title', label: 'Title', type: 'text' },
+        { key: 'desc', label: 'Description', type: 'textarea' },
+      ],
+    },
+  ],
+
+  contact_cards: [
+    {
+      key: '__array__',
+      label: 'Contact Info Cards',
+      type: 'array',
+      itemFields: [
+        { key: 'label', label: 'Label (Location / Phone / Email / Hours)', type: 'text' },
+        { key: 'value', label: 'Value', type: 'textarea' },
+        { key: 'href', label: 'Link URL (optional)', type: 'text' },
+      ],
+    },
+  ],
+
+  map_embed: [
+    { key: 'iframe_url', label: 'Google Maps Embed URL', type: 'textarea' },
+  ],
+
+  faq_simple: [
+    {
+      key: '__array__',
+      label: 'FAQ Items',
+      type: 'array',
+      itemFields: [
+        { key: 'q', label: 'Question', type: 'text' },
+        { key: 'a', label: 'Answer', type: 'textarea' },
+      ],
+    },
   ],
 }
 
@@ -457,16 +569,154 @@ function ArrayItemEditor({
   )
 }
 
+// ─── SECTION KEY → DEFAULTS MAPPING ──────────────────────────────────
+// Pre-populates empty editor fields with content from contentDefaults.js
+const SECTION_KEY_TO_DEFAULTS = {
+  home_hero: HOME_HERO_DEFAULTS,
+  hero_stats: HERO_STATS_DEFAULTS,
+  category_grid: CATEGORY_GRID_DEFAULTS,
+  about: ABOUT_DEFAULTS,
+  gallery: GALLERY_DEFAULTS,
+  news: NEWS_DEFAULTS,
+  signature_items: SIGNATURE_ITEMS_DEFAULTS,
+  promo_cards: PROMO_CARDS_DEFAULTS,
+  image_carousel: IMAGE_CAROUSEL_DEFAULTS,
+  product_carousel: PRODUCT_CAROUSEL_DEFAULTS,
+  delivery: DELIVERY_DEFAULTS,
+  faq_section: FAQ_DEFAULTS,
+  browse_by_bake: BROWSE_BY_BAKE_DEFAULTS,
+  instagram: INSTAGRAM_DEFAULTS,
+  footer: FOOTER_DEFAULTS,
+  menus: MENUS_DEFAULTS,
+  menu_categories: MENU_CATEGORIES_DEFAULTS,
+}
+
 // ─── MAIN EDITOR MODAL ────────────────────────────────────────────────
 
 export default function SectionEditorModal({ section, currentData, onSave, onClose }) {
-  const [formData, setFormData] = useState(() => JSON.parse(JSON.stringify(currentData || {})))
+  const [formData, setFormData] = useState(() => {
+    const raw = currentData || {}
+    // If DB data is empty (no saved content yet), pre-populate from defaults
+    const isEmpty = typeof raw === 'object' && !Array.isArray(raw) && Object.keys(raw).length === 0
+    if (isEmpty) {
+      const defaults = SECTION_KEY_TO_DEFAULTS[section?.section_key]
+      if (defaults) return JSON.parse(JSON.stringify(defaults))
+    }
+    return JSON.parse(JSON.stringify(raw))
+  })
   const [saving, setSaving] = useState(false)
+  const [recovering, setRecovering] = useState(false)
 
   const fields = SECTION_FIELDS[section.section_type] || []
+  const api = useAdminApi()
 
   // Check if the section's top-level data IS an array (__array__ at root)
   const isArrayRoot = fields.length === 1 && fields[0].key === '__array__'
+
+  // Check localStorage for unsaved backup (network failure recovery)
+  const [hasBackup, setHasBackup] = useState(false)
+  const [backupData, setBackupData] = useState(null)
+  useEffect(() => {
+    try {
+      const backup = localStorage.getItem(`section_backup_${section.section_key}`)
+      if (backup) {
+        const parsed = JSON.parse(backup)
+        if (Date.now() - parsed.timestamp < 3600000) { // 1hr TTL
+          setBackupData(parsed.data)
+          setHasBackup(true)
+        } else {
+          localStorage.removeItem(`section_backup_${section.section_key}`)
+        }
+      }
+    } catch (_) { /* ignore localStorage errors */ }
+  }, [section.section_key])
+
+  const handleRestoreBackup = () => {
+    if (backupData) {
+      setFormData(JSON.parse(JSON.stringify(backupData)))
+      setHasBackup(false)
+      localStorage.removeItem(`section_backup_${section.section_key}`)
+      toast.success('Restored unsaved changes')
+    }
+  }
+
+  // Check if formData already has any image values
+  function dataHasImages(data) {
+    if (!data || typeof data !== 'object') return false
+    if (Array.isArray(data)) {
+      if (data.length === 0) return false
+      const itemFields = fields[0]?.itemFields || []
+      return data.some((item) =>
+        itemFields.some((f) => f.type === 'image' && item[f.key])
+      )
+    }
+    if (Object.keys(data).length === 0) return false
+    for (const field of fields) {
+      if (field.type === 'image' && data[field.key]) return true
+      if (field.type === 'array' && field.key !== '__array__') {
+        const items = data[field.key] || []
+        if (items.some((item) => field.itemFields?.some((f) => f.type === 'image' && item[f.key]))) return true
+      }
+      if (field.type === 'object') {
+        const obj = data[field.key] || {}
+        if (field.objectFields?.some((f) => f.type === 'image' && obj[f.key])) return true
+      }
+    }
+    return false
+  }
+
+  // Restore previous image refs from the journal table
+  const handleRestoreImages = useCallback(async () => {
+    setRecovering(true)
+    try {
+      const { data, error } = await api.sections.recoverImages(section.section_key)
+      if (error) throw error
+      if (!data || data.length === 0) {
+        toast.error('No previous images found for this section')
+        return
+      }
+
+      setFormData((prev) => {
+        const next = JSON.parse(JSON.stringify(prev))
+        for (const ref of data) {
+          if (!ref.json_path) continue
+          // Simple top-level key: "background_image"
+          if (!ref.json_path.includes('[') && !ref.json_path.includes('.')) {
+            next[ref.json_path] = ref.image_url
+            continue
+          }
+          // Root array: "[0].image" — formData is an array
+          const rootArr = ref.json_path.match(/^\[(\d+)\]\.(.+)$/)
+          if (rootArr && isArrayRoot) {
+            const idx = parseInt(rootArr[1])
+            const key = rootArr[2]
+            if (!Array.isArray(next)) continue
+            if (!next[idx]) next[idx] = {}
+            next[idx][key] = ref.image_url
+            continue
+          }
+          // Nested array: "areas[0].image" or "items[2].name"
+          const nested = ref.json_path.match(/^(.+)\[(\d+)\]\.(.+)$/)
+          if (nested) {
+            const arrKey = nested[1]
+            const idx = parseInt(nested[2])
+            const key = nested[3]
+            if (!next[arrKey]) next[arrKey] = []
+            if (!next[arrKey][idx]) next[arrKey][idx] = {}
+            next[arrKey][idx][key] = ref.image_url
+          }
+        }
+        return next
+      })
+
+      toast.success(`Restored ${data.length} image reference${data.length > 1 ? 's' : ''}`)
+    } catch (err) {
+      console.error('Failed to restore images:', err)
+      toast.error('Failed to restore images')
+    } finally {
+      setRecovering(false)
+    }
+  }, [section.section_key, api, isArrayRoot])
 
   const handleFieldChange = (key, value) => {
     setFormData((prev) => ({ ...prev, [key]: value }))
@@ -532,8 +782,21 @@ export default function SectionEditorModal({ section, currentData, onSave, onClo
 
   const handleSave = async () => {
     setSaving(true)
+    // Backup to localStorage before save (network failure fallback)
+    try {
+      localStorage.setItem(`section_backup_${section.section_key}`, JSON.stringify({
+        data: formData,
+        timestamp: Date.now(),
+      }))
+    } catch (_) { /* localStorage might be full or unavailable — fail silently */ }
+
     try {
       await onSave(formData)
+      // On success: clear backup and notify website to refresh
+      localStorage.removeItem(`section_backup_${section.section_key}`)
+      window.dispatchEvent(new CustomEvent('section:saved', {
+        detail: { sectionKey: section.section_key },
+      }))
     } finally {
       setSaving(false)
     }
@@ -641,6 +904,47 @@ export default function SectionEditorModal({ section, currentData, onSave, onClo
             <X size={16} />
           </button>
         </div>
+
+        {/* Restore previous images banner — visible when data has no images */}
+        {!dataHasImages(formData) && (
+          <div className="px-5 py-3 bg-amber-50 border-b border-amber-100 shrink-0">
+            <div className="flex items-center justify-between">
+              <p className="text-xs text-amber-700">
+                This section has no images saved yet.
+              </p>
+              <Button
+                variant="neutral"
+                size="sm"
+                onClick={handleRestoreImages}
+                disabled={recovering}
+                className="gap-1.5 text-xs"
+              >
+                <RotateCcw size={12} className={recovering ? 'animate-spin' : ''} />
+                {recovering ? 'Restoring...' : 'Restore previous images'}
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {/* Restore unsaved backup banner — visible when localStorage has recent backup */}
+        {hasBackup && (
+          <div className="px-5 py-3 bg-orange-50 border-b border-orange-100 shrink-0">
+            <div className="flex items-center justify-between">
+              <p className="text-xs text-orange-700">
+                Unsaved changes found from a previous session.
+              </p>
+              <Button
+                variant="neutral"
+                size="sm"
+                onClick={handleRestoreBackup}
+                className="gap-1.5 text-xs"
+              >
+                <RotateCcw size={12} />
+                Restore unsaved changes
+              </Button>
+            </div>
+          </div>
+        )}
 
         {/* Body - scrollable */}
         <div className="flex-1 overflow-y-auto p-5 space-y-5">
