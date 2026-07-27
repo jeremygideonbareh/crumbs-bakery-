@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useOrderContext } from '@/components/Layout'
 import { CATEGORY_GRID_DEFAULTS } from '@/data/contentDefaults'
+import { getImageUrl } from '@/lib/image'
 
 export default function CategoryGrid({ data: propData }) {
   const [hoveredIndex, setHoveredIndex] = useState(null)
@@ -50,7 +51,7 @@ export default function CategoryGrid({ data: propData }) {
               className="relative block cursor-pointer overflow-hidden active:scale-[0.97]"
             >
               <img
-                src={cat.image}
+                src={getImageUrl(cat.image)}
                 alt={cat.name}
                 className="absolute inset-0 h-full w-full object-cover"
                 loading="lazy"

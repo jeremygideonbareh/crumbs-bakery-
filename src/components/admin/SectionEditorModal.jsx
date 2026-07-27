@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   X,
@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import ImageUploader from './ImageUploader'
 import { useAdminApi } from '@/hooks/useAdminApi'
+import { supabase } from '@/lib/supabase'
 import { getSectionLocation } from '@/data/adminSectionMap'
 import {
   HOME_HERO_DEFAULTS, HERO_STATS_DEFAULTS, CATEGORY_GRID_DEFAULTS,
@@ -593,12 +594,23 @@ const SECTION_KEY_TO_DEFAULTS = {
 
 // ─── MAIN EDITOR MODAL ────────────────────────────────────────────────
 
-export default function SectionEditorModal({ section, currentData, onSave, onClose }) {
+export default function SectionEditorModal({ section, currentData, onSave, onClose, productGridItems }) {
   const [formData, setFormData] = useState(() => {
     const raw = currentData || {}
     // If DB data is empty (no saved content yet), pre-populate from defaults
     const isEmpty = typeof raw === 'object' && !Array.isArray(raw) && Object.keys(raw).length === 0
     if (isEmpty) {
+      // product_grid sections: pre-populate from products table data
+      if (section?.section_type === 'product_grid' && Array.isArray(productGridItems) && productGridItems.length > 0) {
+        return productGridItems.map((p) => ({
+          name: p.name || '',
+          price: p.price || '',
+          image: p.image || '',
+          desc: p.description || p.desc || '',
+          badge: p.badge || '',
+          variants: Array.isArray(p.variants) ? p.variants.join(', ') : (p.variants || ''),
+        }))
+      }
       const defaults = SECTION_KEY_TO_DEFAULTS[section?.section_key]
       if (defaults) return JSON.parse(JSON.stringify(defaults))
     }
@@ -630,6 +642,43 @@ export default function SectionEditorModal({ section, currentData, onSave, onClo
       }
     } catch (_) { /* ignore localStorage errors */ }
   }, [section.section_key])
+
+  // Product grid sections: load products from the products table if formData is empty
+  const [loadedFromProducts, setLoadedFromProducts] = useState(false)
+  useEffect(() => {
+    if (section?.section_type !== 'product_grid') return
+    if (loadedFromProducts) return
+    // Check if formData is already populated (has items)
+    if (Array.isArray(formData) && formData.length > 0) {
+      setLoadedFromProducts(true)
+      return
+    }
+    // Derive category_slug from section_key: e.g. "cakes_product_grid" → "cakes"
+    const match = section.section_key.match(/^(.+)_product_grid$/)
+    if (!match) return
+    const category = match[1]
+
+    supabase
+      .from('products')
+      .select('*')
+      .eq('category_slug', category)
+      .eq('active', true)
+      .order('sort_order', { ascending: true, nullsFirst: false })
+      .then(({ data, error }) => {
+        if (error || !Array.isArray(data) || data.length === 0) return
+        const items = data.map((p) => ({
+          name: p.name || '',
+          price: p.price || '',
+          image: p.image || '',
+          desc: p.description || p.desc || '',
+          badge: p.badge || '',
+          variants: Array.isArray(p.variants) ? p.variants.join(', ') : (p.variants || ''),
+        }))
+        setFormData(items)
+        setLoadedFromProducts(true)
+      })
+      .catch(() => {/* silently fall through */})
+  }, [section?.section_key, section?.section_type, formData, loadedFromProducts])
 
   const handleRestoreBackup = () => {
     if (backupData) {
@@ -900,7 +949,7 @@ export default function SectionEditorModal({ section, currentData, onSave, onClo
               )}
             </p>
           </div>
-          <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded">
+          <button onClick={onClose} className="p-1 hover:bg-red-50 rounded text-red-400 hover:text-red-600">
             <X size={16} />
           </button>
         </div>

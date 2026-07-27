@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { INSTAGRAM_DEFAULTS } from '@/data/contentDefaults'
+import { getImageUrl } from '@/lib/image'
 
 export default function InstagramSection({ data: propData }) {
   const d = propData || INSTAGRAM_DEFAULTS
@@ -62,7 +63,7 @@ export default function InstagramSection({ data: propData }) {
               className="group relative aspect-square overflow-hidden bg-primary/5"
             >
               <img
-                src={src}
+                src={getImageUrl(src)}
                 alt=""
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"

@@ -5,6 +5,7 @@ import { SIGNATURE_ITEMS_DEFAULTS } from '@/data/contentDefaults'
 
 export default function SignatureItems({ data: propData }) {
   const items = propData || SIGNATURE_ITEMS_DEFAULTS
+  if (!items || items.length === 0) return null
 
   return (
     <section id="menu" className="bg-primary py-8 md:py-28 lg:py-36 px-4 md:px-6 scroll-mt-24">

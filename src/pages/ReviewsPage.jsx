@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
+import usePageSection from '@/hooks/usePageSection'
 
 const reviews = [
   { name: 'Merry', text: 'My favorites from this bakery is definitely the cream puffs and THE TIRAMISU! That tiramisu is proportionate for its price and the quality is on point.', rating: 5, source: 'Google', when: 'Nov 2025' },
@@ -20,6 +21,21 @@ const reviews = [
 export default function ReviewsPage() {
   const [activeFilter, setActiveFilter] = useState('All')
 
+  const { data: hero } = usePageSection('reviews_hero', {
+    subtitle: 'Testimonials',
+    title: 'What our community says',
+    body: '4.8 avg from 12+ reviews',
+  })
+
+  const { data: cta } = usePageSection('reviews_cta', {
+    title: 'LEAVE A REVIEW',
+    body: "Loved your experience at Crumbs? We'd love to hear about it! Leave us a review on Google or Zomato.",
+    button1_text: 'Google Review',
+    button1_link: 'https://search.google.com/local/writereview?placeid=PLACE_ID',
+    button2_text: 'Zomato Review',
+    button2_link: 'https://www.zomato.com/shillong/crumbs-bakery-and-cafe-jaiaw/review',
+  })
+
   const filteredReviews = activeFilter === 'All'
     ? reviews
     : reviews.filter((r) => r.source === activeFilter)
@@ -29,21 +45,25 @@ export default function ReviewsPage() {
       {/* Hero */}
       <section className="relative pt-16 md:pt-20 bg-primary/20">
         <div className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-20 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="font-work text-[13px] uppercase tracking-[0.2em] text-muted-foreground font-medium"
-          >
-            Testimonials
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground mt-3"
-          >
-            What our community says
-          </motion.h1>
+          {hero?.subtitle && (
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="font-work text-[13px] uppercase tracking-[0.2em] text-muted-foreground font-medium"
+            >
+              {hero.subtitle}
+            </motion.span>
+          )}
+          {hero?.title && (
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] text-foreground mt-3"
+            >
+              {hero.title}
+            </motion.h1>
+          )}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -55,9 +75,9 @@ export default function ReviewsPage() {
                 <Star key={s} size={16} className="fill-amber-400 text-amber-400" />
               ))}
             </div>
-            <span className="text-sm text-muted-foreground">
-              <strong className="text-foreground">4.8</strong> avg from 12+ reviews
-            </span>
+            {hero?.body && (
+              <span className="text-sm text-muted-foreground">{hero.body}</span>
+            )}
           </motion.div>
         </div>
       </section>
@@ -118,28 +138,34 @@ export default function ReviewsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-8 md:py-12 px-4 md:px-6 bg-primary/10 text-center">
-        <div className="mx-auto max-w-xl">
-          <h2 className="font-display text-2xl md:text-3xl text-foreground tracking-tight mb-3">
-            LEAVE A REVIEW
-          </h2>
-          <p className="text-sm text-muted-foreground mb-5">
-            Loved your experience at Crumbs? We'd love to hear about it! Leave us a review on Google or Zomato.
-          </p>
-          <div className="flex items-center justify-center gap-3">
-            <a href="https://search.google.com/local/writereview?placeid=PLACE_ID" target="_blank" rel="noopener noreferrer">
-              <span className="inline-block border-2 border-foreground/20 px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] text-foreground hover:border-header hover:bg-header hover:text-white transition-all rounded-sm active:scale-[0.97]">
-                Google Review
-              </span>
-            </a>
-            <a href="https://www.zomato.com/shillong/crumbs-bakery-and-cafe-jaiaw/review" target="_blank" rel="noopener noreferrer">
-              <span className="inline-block border-2 border-foreground/20 px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] text-foreground hover:border-header hover:bg-header hover:text-white transition-all rounded-sm active:scale-[0.97]">
-                Zomato Review
-              </span>
-            </a>
+      {cta?.title && (
+        <section className="py-8 md:py-12 px-4 md:px-6 bg-primary/10 text-center">
+          <div className="mx-auto max-w-xl">
+            <h2 className="font-display text-2xl md:text-3xl text-foreground tracking-tight mb-3">
+              {cta.title}
+            </h2>
+            {cta?.body && (
+              <p className="text-sm text-muted-foreground mb-5">{cta.body}</p>
+            )}
+            <div className="flex items-center justify-center gap-3">
+              {cta?.button1_text && cta?.button1_link && (
+                <a href={cta.button1_link} target="_blank" rel="noopener noreferrer">
+                  <span className="inline-block border-2 border-foreground/20 px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] text-foreground hover:border-header hover:bg-header hover:text-white transition-all rounded-sm active:scale-[0.97]">
+                    {cta.button1_text}
+                  </span>
+                </a>
+              )}
+              {cta?.button2_text && cta?.button2_link && (
+                <a href={cta.button2_link} target="_blank" rel="noopener noreferrer">
+                  <span className="inline-block border-2 border-foreground/20 px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] text-foreground hover:border-header hover:bg-header hover:text-white transition-all rounded-sm active:scale-[0.97]">
+                    {cta.button2_text}
+                  </span>
+                </a>
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </motion.div>
   )
 }

@@ -77,7 +77,7 @@ export default function AdminLayout() {
             Logout
           </button>
           <a
-            href="/crumbs-bakery-/"
+            href="/"
             className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-100 w-full transition-all mt-1"
           >
             ← View Site
@@ -104,9 +104,9 @@ export default function AdminLayout() {
             <Cake size={20} className="text-teal-500" />
             <span className="font-bold text-gray-800 text-sm">Crumbs CMS</span>
           </div>
-          <button onClick={() => setSidebarOpen(false)} className="p-1">
-            <X size={18} />
-          </button>
+<button onClick={() => setSidebarOpen(false)} className="p-1 hover:bg-red-50 rounded text-red-400 hover:text-red-600">
+             <X size={18} />
+           </button>
         </div>
         <nav className="p-3 space-y-1">
           {sidebarLinks.map((link) => (

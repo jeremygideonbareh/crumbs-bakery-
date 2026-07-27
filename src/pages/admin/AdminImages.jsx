@@ -4,6 +4,7 @@ import { Upload, Trash2, RefreshCw, Loader2, Image as ImageIcon, ExternalLink, C
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { supabase } from '@/lib/supabase'
+import ConfirmDialog from '@/components/admin/ConfirmDialog'
 
 const BUCKET = 'site-images'
 
@@ -12,6 +13,7 @@ export default function AdminImages() {
   const [loading, setLoading] = useState(true)
   const [uploading, setUploading] = useState(false)
   const [copiedId, setCopiedId] = useState(null)
+  const [confirmDelete, setConfirmDelete] = useState(null)
   const fileInputRef = useRef(null)
 
   useEffect(() => { loadFiles() }, [])
@@ -57,7 +59,6 @@ export default function AdminImages() {
   }
 
   async function handleDelete(name) {
-    if (!window.confirm(`Delete "${name}"?`)) return
     try {
       const { error } = await supabase.storage.from(BUCKET).remove([name])
       if (error) throw error
@@ -66,6 +67,8 @@ export default function AdminImages() {
     } catch (err) {
       console.error('Delete failed:', err)
       toast.error('Failed to delete image')
+    } finally {
+      setConfirmDelete(null)
     }
   }
 
@@ -182,7 +185,7 @@ export default function AdminImages() {
                         <ExternalLink size={14} className="text-gray-700" />
                       </a>
                       <button
-                        onClick={() => handleDelete(file.name)}
+                        onClick={() => setConfirmDelete(file.name)}
                         className="p-2 bg-white rounded-full shadow hover:bg-red-50 transition-colors"
                         title="Delete"
                       >
@@ -199,6 +202,14 @@ export default function AdminImages() {
           </div>
         )}
       </div>
+
+      <ConfirmDialog
+        open={confirmDelete !== null}
+        title="Delete Image"
+        message={`Delete "${confirmDelete ?? ''}"?`}
+        onConfirm={() => handleDelete(confirmDelete)}
+        onCancel={() => setConfirmDelete(null)}
+      />
     </div>
   )
 }

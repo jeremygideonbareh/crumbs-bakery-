@@ -60,6 +60,8 @@ export function useAdminApi() {
         rpc('admin_upsert_page_section', {
           p_key: key, p_label: label, p_type: type, p_data: data,
         }),
+      recoverImages: (sectionKey) =>
+        rpc('admin_recover_section_images', { p_section_key: sectionKey }),
     },
   }
 }

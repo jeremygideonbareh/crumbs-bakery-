@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Globe, Phone, MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { getImageUrl } from '@/lib/image'
 
 const icons = {
   website: Globe,
@@ -192,7 +193,7 @@ const HeroSection = React.forwardRef(
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
             <img
-              src={backgroundImage}
+              src={getImageUrl(backgroundImage)}
               alt=""
               className="w-full h-full object-cover object-center"
               loading="eager"
@@ -210,7 +211,7 @@ const HeroSection = React.forwardRef(
             style={{ y: imageY }}
           >
             <img
-              src={backgroundImage}
+              src={getImageUrl(backgroundImage)}
               alt=""
               className="w-full h-full object-cover object-center"
               loading="eager"

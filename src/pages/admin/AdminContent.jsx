@@ -44,6 +44,7 @@ const typeIcons = {
   image_grid: Image,
   social: Star,
   menu_categories: List,
+  product_grid: Package,
   menus: Image,
   footer: Settings,
   team: Star,
@@ -65,6 +66,7 @@ const typeColors = {
   image_grid: 'bg-rose-50 text-rose-600',
   social: 'bg-fuchsia-50 text-fuchsia-600',
   menu_categories: 'bg-orange-50 text-orange-600',
+  product_grid: 'bg-teal-50 text-teal-600',
   menus: 'bg-amber-50 text-amber-600',
   footer: 'bg-gray-50 text-gray-600',
   team: 'bg-sky-50 text-sky-600',
@@ -133,7 +135,10 @@ export default function AdminContent() {
     if (page?.productCategory) {
       api.products.list().then(({ data }) => {
         setProducts(data?.filter((p) => p.category_slug === page.productCategory) ?? [])
-      }).catch(() => {})
+      }).catch((err) => {
+        console.error('Failed to load products for tab:', err)
+        toast.error('Failed to load products')
+      })
     }
   }, [activeTab])
 
@@ -148,7 +153,10 @@ export default function AdminContent() {
           list: listRes.data ?? [],
           unapprovedCount: countRes.data ?? 0,
         })
-      }).catch(() => {})
+      }).catch((err) => {
+        console.error('Failed to load reviews:', err)
+        toast.error('Failed to load reviews')
+      })
     }
   }, [activeTab])
 
@@ -180,9 +188,11 @@ export default function AdminContent() {
     const data = previewData[section.id]
     if (!data) return 'Using defaults'
     if (Array.isArray(data)) return `${data.length} item${data.length !== 1 ? 's' : ''}`
+    const keyCount = Object.keys(data).length
+    if (keyCount === 0) return 'Using defaults'
     const keys = Object.keys(data).filter((k) => typeof data[k] === 'string' && data[k])
     const preview = keys.slice(0, 2).map((k) => data[k].substring(0, 40)).join(', ')
-    return preview || `${Object.keys(data).length} fields`
+    return preview || `${keyCount} fields`
   }
 
   // Build combined display list: real sections + hardcoded markers in page order
@@ -212,7 +222,7 @@ export default function AdminContent() {
             id: `pending-${entry.key}`,
             section_key: entry.key,
             section_label: entry.label,
-            section_type: 'pending',
+            section_type: entry.type || 'pending',
             data: null,
             pending: true,
           })
@@ -253,6 +263,7 @@ export default function AdminContent() {
           currentData={previewData[editing.id] || {}}
           onSave={handleSave}
           onClose={() => setEditing(null)}
+          productGridItems={editing.section_type === 'product_grid' ? products : undefined}
         />
       )}
 

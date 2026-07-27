@@ -24,8 +24,8 @@ export default function ImagePicker({ files, bucket, onSelect, onUpload, onRefre
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[85vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={onClose}>
+      <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[85vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 shrink-0">
           <h2 className="font-semibold text-gray-900">Uploaded Images</h2>
@@ -54,7 +54,7 @@ export default function ImagePicker({ files, bucket, onSelect, onUpload, onRefre
             </button>
             <button
               onClick={onClose}
-              className="p-1.5 hover:bg-gray-100 rounded text-gray-500 hover:text-gray-700 transition-colors"
+              className="p-1.5 hover:bg-red-50 rounded text-red-400 hover:text-red-600 transition-colors"
               title="Close"
             >
               <X size={16} />

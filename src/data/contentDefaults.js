@@ -438,10 +438,10 @@ export const MENU_CATEGORIES_DEFAULTS = [
       'Corporate Cakes',
     ],
     items: [
-      { name: 'Japanese cheesecake', price: '₹1,100', desc: 'The classic jiggly Japanese cheesecake, soft and airy', image: '/images/Japanese cheesecake.jpeg' },
+      { name: 'Japanese cheesecake', price: '₹1,100', desc: 'The classic jiggly Japanese cheesecake, soft and airy', image: '/images/Japanese cheesecake.jpeg', featured: 'true', highlight: 'Bestseller', badge: 'bg-amber-100 text-amber-700' },
       { name: 'Lemon and blueberry muffins', price: '₹450', desc: 'Freshly baked muffins bursting with lemon and blueberries', image: '/images/Lemon and blueberry muffins.jpeg' },
       { name: 'Banana pudding brioche', price: '₹350', desc: 'Soft brioche filled with creamy banana pudding', image: '/images/Banana pudding brioche.jpeg' },
-      { name: 'Cream puffs', price: '₹300', desc: 'Light choux pastry filled with smooth vanilla cream', image: '/images/Cream puffs.jpeg' },
+      { name: 'Cream puffs', price: '₹300', desc: 'Light choux pastry filled with smooth vanilla cream', image: '/images/Cream puffs.jpeg', featured: 'true', highlight: 'Best Seller', badge: 'bg-amber-100 text-amber-700' },
       { name: 'Quiche', price: '₹400', desc: 'Savory egg custard baked in a buttery, flaky crust', image: '/images/Quiche.jpeg' },
       { name: 'Vintage Heart Cake', price: '₹1,200', desc: 'Layered sponge with pink piped Swiss Meringue buttercream', subcategory: 'Vintage Cakes', options: ['Ivory', 'Pink', 'Lilac', 'Green', 'Peach', 'Yellow'] },
       { name: 'Bespoke Cake', price: '₹2,500', desc: 'Design your own — get in touch to create your perfect cake', subcategory: 'Bespoke Cakes' },

@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import { Mail, MailOpen, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { useAdminApi } from '@/hooks/useAdminApi'
+import ConfirmDialog from '@/components/admin/ConfirmDialog'
 
 export default function AdminMessages() {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState(null)
+  const [confirmDelete, setConfirmDelete] = useState(null)
   const api = useAdminApi()
 
   useEffect(() => { loadMessages() }, [])
@@ -28,12 +30,12 @@ export default function AdminMessages() {
   }
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Delete this message?')) return
     try {
       await api.messages.delete(id)
       setMessages((prev) => prev.filter((m) => m.id !== id))
       if (selected === id) setSelected(null)
     } catch (err) { console.error(err); toast.error('Failed to delete message') }
+    finally { setConfirmDelete(null) }
   }
 
   return (
@@ -76,8 +78,8 @@ export default function AdminMessages() {
                         className={`p-1.5 rounded ${msg.read ? 'text-gray-300 hover:text-gray-500' : 'text-teal-500'}`}>
                         {msg.read ? <MailOpen size={14} /> : <Mail size={14} />}
                       </button>
-                      <button onClick={(e) => { e.stopPropagation(); handleDelete(msg.id) }}
-                        className="p-1.5 hover:bg-red-50 rounded text-red-400 hover:text-red-600">
+                       <button onClick={(e) => { e.stopPropagation(); setConfirmDelete(msg.id) }}
+                         className="p-1.5 hover:bg-red-50 rounded text-red-400 hover:text-red-600">
                         <Trash2 size={14} />
                       </button>
                     </div>
@@ -116,7 +118,7 @@ export default function AdminMessages() {
                       className="text-xs px-3 py-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-600">
                       {msg.read ? 'Mark as Unread' : 'Mark as Read'}
                     </button>
-                    <button onClick={() => { handleDelete(msg.id) }}
+                    <button onClick={() => { setConfirmDelete(msg.id) }}
                       className="text-xs px-3 py-1.5 rounded-lg border border-red-200 hover:bg-red-50 text-red-500">
                       Delete
                     </button>
@@ -132,6 +134,14 @@ export default function AdminMessages() {
           )}
         </div>
       </div>
+
+      <ConfirmDialog
+        open={confirmDelete !== null}
+        title="Delete Message"
+        message="Delete this message?"
+        onConfirm={() => handleDelete(confirmDelete)}
+        onCancel={() => setConfirmDelete(null)}
+      />
     </div>
   )
 }

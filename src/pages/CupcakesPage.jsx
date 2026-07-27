@@ -1,19 +1,71 @@
+import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import CategoryHero from '@/components/CategoryHero'
 import ProductGrid from '@/components/ProductGrid'
-import { useProducts } from '@/hooks/useProducts'
+import usePageSection from '@/hooks/usePageSection'
+import { supabase } from '@/lib/supabase'
+import { cupcakes as fallbackProducts } from '@/data/products'
 
 const LOCAL = (name) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(name)}`
-const HERO = LOCAL('vanilla-cupcake-1200.jpeg')
+const FALLBACK_HERO = LOCAL('vanilla-cupcake-1200.jpeg')
+
+function normalizeProducts(productsData, fallback) {
+  if (!Array.isArray(productsData) || productsData.length === 0) return fallback
+  return productsData.map((p, i) => ({
+    id: p.id || `p-${i}`,
+    name: p.name || '',
+    price: p.price || '',
+    image: p.image || '',
+    desc: p.desc || p.description || '',
+    badge: p.badge || '',
+    variants: typeof p.variants === 'string'
+      ? p.variants.split(',').map(v => v.trim()).filter(Boolean)
+      : (Array.isArray(p.variants) ? p.variants : []),
+  }))
+}
 
 export default function CupcakesPage() {
-  const { products } = useProducts('cupcakes')
+  const [dbProducts, setDbProducts] = useState(null)
+  const { data: rawProductData } = usePageSection('cupcakes_product_grid', fallbackProducts)
+  const { data: heroData } = usePageSection('cupcakes_hero', {
+    title: 'CUPCAKES',
+    subtitle: "Shillong's best cupcakes, baked fresh every day. Order online for pickup or delivery.",
+    image: FALLBACK_HERO,
+  })
+  const { data: deliveryData } = usePageSection('cupcakes_delivery', {
+    heading: 'CUPCAKE DELIVERY IN SHILLONG',
+    card1_heading: 'Hand Delivery',
+    card1_desc: 'Fresh cupcakes delivered to your door anywhere in Shillong.',
+    card2_heading: 'Cafe Pickup',
+    card2_desc: 'Order online and collect from our Jaiaw cafe at your convenience.',
+  })
+
+  useEffect(() => {
+    supabase
+      .from('products')
+      .select('*')
+      .eq('category_slug', 'cupcakes')
+      .eq('active', true)
+      .order('sort_order', { ascending: true, nullsFirst: false })
+      .then(({ data, error }) => {
+        if (!error && data && data.length > 0) {
+          setDbProducts(data)
+        }
+      })
+      .catch(() => {/* use fallback */})
+  }, [])
+
+  const products = useMemo(() => {
+    const source = dbProducts || rawProductData || fallbackProducts
+    return normalizeProducts(source, fallbackProducts)
+  }, [dbProducts, rawProductData])
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.3 } }}>
       <CategoryHero
-        title="CUPCAKES"
-        subtitle="Shillong's best cupcakes, baked fresh every day. Order online for pickup or delivery."
-        image={HERO}
+        title={heroData?.title}
+        subtitle={heroData?.subtitle}
+        image={heroData?.image}
         count={products.length}
       />
 
@@ -29,16 +81,16 @@ export default function CupcakesPage() {
       <section className="bg-primary py-8 md:py-14 px-4 md:px-6">
         <div className="mx-auto max-w-6xl">
           <h2 className="font-display text-2xl md:text-3xl text-foreground text-center mb-6 md:mb-8 tracking-tight">
-            CUPCAKE DELIVERY IN SHILLONG
+            {deliveryData?.heading}
           </h2>
           <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto">
             <div className="bg-white/80 p-4 md:p-5 rounded-sm">
-              <h3 className="font-work text-sm font-bold text-foreground mb-1">Hand Delivery</h3>
-              <p className="text-[13px] text-muted-foreground">Fresh cupcakes delivered to your door anywhere in Shillong.</p>
+              <h3 className="font-work text-sm font-bold text-foreground mb-1">{deliveryData?.card1_heading}</h3>
+              <p className="text-[13px] text-muted-foreground">{deliveryData?.card1_desc}</p>
             </div>
             <div className="bg-white/80 p-4 md:p-5 rounded-sm">
-              <h3 className="font-work text-sm font-bold text-foreground mb-1">Cafe Pickup</h3>
-              <p className="text-[13px] text-muted-foreground">Order online and collect from our Jaiaw cafe at your convenience.</p>
+              <h3 className="font-work text-sm font-bold text-foreground mb-1">{deliveryData?.card2_heading}</h3>
+              <p className="text-[13px] text-muted-foreground">{deliveryData?.card2_desc}</p>
             </div>
           </div>
         </div>

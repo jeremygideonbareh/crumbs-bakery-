@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ABOUT_DEFAULTS } from '@/data/contentDefaults'
+import { getImageUrl } from '@/lib/image'
 
 const containerVariants = {
   hidden: {},
@@ -42,7 +43,7 @@ export default function About({ data: propData }) {
             >
               <div className="aspect-[4/3] overflow-hidden rounded-lg mb-5">
                 <img
-                  src={col.image}
+                  src={getImageUrl(col.image)}
                   alt={col.heading}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   loading="lazy"

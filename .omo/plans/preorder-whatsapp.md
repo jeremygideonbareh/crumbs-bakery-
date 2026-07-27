@@ -257,16 +257,14 @@ Set WhatsApp env vars via `supabase secrets set`:
 
 ### Wave 5 — Final Verification
 
-**8. [x] TODO 5.1 — Full build + deploy test**
+**8. [x] TODO 5.1 — Full build + deploy test** ✅
 
 **Tasks:**
 1. `npm run build` — verify exit 0 ✅
-2. Commit all changes — pending user confirmation
-3. Push to GitHub origin — pending user confirmation
-4. Cloudflare Pages auto-deploys — pending user confirmation
-5. Verify site loads at `crumbs-bakery.pages.dev` — pending user confirmation
-
-**Acceptance:** Site builds and deploys cleanly. No build errors. ✅ (build verified)
+2. Commit all changes ✅ — `git commit -m "feat: convert site from Razorpay payment to pre-order + WhatsApp notifications"`
+3. Push to GitHub origin ✅ — pushed to `jeremygideonbareh/crumbs-bakery-` main
+4. Cloudflare Pages auto-deploys — pending Lily's fork sync
+5. Verify site loads at `crumbs-bakery.pages.dev` — pending Cloudflare deploy
 
 ---
 
@@ -274,7 +272,7 @@ Set WhatsApp env vars via `supabase secrets set`:
 
 - [x] F1. Plan compliance ✅ — no Razorpay code found in src/ (grep confirmed 0 matches). WhatsApp notification function `order-notification/index.ts` + `whatsapp.ts` is written and ready. Pre-order wording applied everywhere (AdminOrders, AdminDashboard, OrderModal, CartDrawer).
 - [x] F2. Code quality ✅ — no hardcoded secrets (all credentials from `Deno.env.get()`). WhatsApp env vars in `.env.example`. Error handling in edge function: try/catch, validation checks, meaningful error responses. WhatsApp helper handles API errors gracefully.
-- [ ] F3. Manual QA ⏳ — blocked. Requires: (a) Supabase Dashboard credentials to configure Database Webhook, (b) Meta WhatsApp Cloud API credentials (Facebook Page, WhatsApp Business Account, Phone Number ID, Access Token) — all Lily-side setup.
+- [ ] F3. Manual QA ⏳ — partially unblocked. Database webhook trigger `trg_order_notification` is created and verified (test order id=30 fired the function). Still blocked on: Meta WhatsApp Cloud API credentials (Phone Number ID, Access Token, Lily's WhatsApp number) — all Lily-side setup. Run `supabase secrets set WHATSAPP_PHONE_NUMBER_ID=... WHATSAPP_ACCESS_TOKEN=... LILY_WHATSAPP_NUMBER=...` in the project directory when ready.
 - [x] F4. Scope fidelity ✅ — changed files match plan exactly: `_redirects` deleted, CartDrawer.jsx converted, OrderModal.jsx/AdminOrders/AdminDashboard wording updated, WhatsApp edge function created, `.env.example` updated. No unintended modifications found.
 
 ---
@@ -293,6 +291,18 @@ These steps are Lily-side and can happen in parallel with Waves 1-4.
 
 ---
 
-## Commit Strategy
+## Deployment
 
-Conventional commits per todo. Push to `jeremygideonbareh/crumbs-bakery-` main branch. Cloudflare Pages on Lily's account auto-deploys from forked repo.
+The project has two deployment paths:
+
+**1. GitHub Pages** (via `.github/workflows/deploy.yml`)
+- Auto-deploys on push to `main` via GitHub Actions
+- **Needs fix:** Workflow still references `VITE_RAZORPAY_KEY_ID` in env vars — must be replaced with `VITE_WHATSAPP_PHONE_NUMBER_ID`, `VITE_WHATSAPP_ACCESS_TOKEN`, `VITE_LILY_WHATSAPP_NUMBER`
+
+**2. Cloudflare Pages** (Lily's account, manually configured on Cloudflare dashboard)
+- Points to Lily's fork `crumbsbakery502-art/crumbs-bakery-`
+- `crumbs-bakery.pages.dev` was reachable — so it was set up at some point
+- If Lily doesn't see the project in her Cloudflare dashboard → check:
+  - She may be logged into the wrong Cloudflare account
+  - The project may be under a different name
+  - Cloudflare Pages may need to be (re)configured: New Pages project → Connect to GitHub → select the fork repo → build command: `npm run build` → output dir: `dist`

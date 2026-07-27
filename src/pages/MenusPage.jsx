@@ -31,6 +31,8 @@ function normalizeAdminData(adminData) {
               price: item.price || '',
               desc: item.desc || '',
               highlight: item.highlight || '',
+              badge: item.badge || '',
+              featured: item.featured || '',
               subcategory: item.subcategory || '',
               options: Array.isArray(item.options) ? item.options : undefined,
               image: item.image || '',

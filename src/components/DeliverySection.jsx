@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { DELIVERY_DEFAULTS } from '@/data/contentDefaults'
+import { getImageUrl } from '@/lib/image'
 
 export default function DeliverySection({ data: propData }) {
   const d = propData || DELIVERY_DEFAULTS
@@ -37,7 +38,7 @@ export default function DeliverySection({ data: propData }) {
               className="group relative aspect-[4/3] cursor-pointer overflow-hidden"
             >
               <img
-                src={area.image}
+                src={getImageUrl(area.image)}
                 alt={area.name}
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"

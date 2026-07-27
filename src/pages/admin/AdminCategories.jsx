@@ -3,6 +3,7 @@ import { Pencil, Trash2, X, Check, Plus } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { useAdminApi } from '@/hooks/useAdminApi'
+import ConfirmDialog from '@/components/admin/ConfirmDialog'
 
 const emptyCategory = { slug: '', name: '', description: '', hero_image: '' }
 
@@ -11,6 +12,8 @@ export default function AdminCategories() {
   const [loading, setLoading] = useState(true)
   const [editing, setEditing] = useState(null)
   const [form, setForm] = useState(emptyCategory)
+  const [saving, setSaving] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(null)
   const api = useAdminApi()
 
   useEffect(() => { loadCategories() }, [])
@@ -31,7 +34,8 @@ export default function AdminCategories() {
   const handleChange = (e) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }))
 
   const handleSave = async () => {
-    if (!form.name || !form.slug) return
+    if (!form.name || !form.slug || saving) return
+    setSaving(true)
     try {
       const payload = { ...form }
       delete payload.id
@@ -42,12 +46,13 @@ export default function AdminCategories() {
       }
       close(); await loadCategories()
     } catch (err) { console.error(err); toast.error('Failed to save category') }
+    finally { setSaving(false) }
   }
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Delete this category?')) return
     try { await api.categories.delete(id); await loadCategories() }
     catch (err) { console.error(err); toast.error('Failed to delete category') }
+    finally { setConfirmDelete(null) }
   }
 
   return (
@@ -65,7 +70,7 @@ export default function AdminCategories() {
           <div className="bg-white rounded-xl shadow-xl w-full max-w-md">
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <h2 className="font-semibold text-gray-900">{editing === 'new' ? 'New Category' : 'Edit Category'}</h2>
-              <button onClick={close} className="p-1 hover:bg-gray-100 rounded"><X size={16} /></button>
+              <button onClick={close} className="p-1 hover:bg-red-50 rounded text-red-400 hover:text-red-600"><X size={16} /></button>
             </div>
             <div className="p-5 space-y-4">
               <div>
@@ -87,7 +92,7 @@ export default function AdminCategories() {
             </div>
             <div className="flex justify-end gap-3 px-5 py-4 border-t border-gray-100">
               <Button variant="neutral" onClick={close} size="sm">Cancel</Button>
-              <Button onClick={handleSave} disabled={!form.name || !form.slug} size="sm" className="gap-1"><Check size={14} /> Save</Button>
+              <Button onClick={handleSave} disabled={saving || !form.name || !form.slug} size="sm" className="gap-1"><Check size={14} /> {saving ? 'Saving...' : 'Save'}</Button>
             </div>
           </div>
         </div>
@@ -123,7 +128,7 @@ export default function AdminCategories() {
                   <td className="px-4 py-3 text-gray-500 text-xs">{cat.slug}</td>
                   <td className="px-4 py-3 text-right">
                     <button onClick={() => openEdit(cat)} className="p-1.5 hover:bg-blue-50 rounded text-blue-500"><Pencil size={14} /></button>
-                    <button onClick={() => handleDelete(cat.id)} className="p-1.5 hover:bg-red-50 rounded text-red-500"><Trash2 size={14} /></button>
+                    <button onClick={() => setConfirmDelete(cat.id)} className="p-1.5 hover:bg-red-50 rounded text-red-500"><Trash2 size={14} /></button>
                   </td>
                 </tr>
               ))
@@ -131,6 +136,14 @@ export default function AdminCategories() {
           </tbody>
         </table>
       </div>
+
+      <ConfirmDialog
+        open={confirmDelete !== null}
+        title="Delete Category"
+        message="Delete this category?"
+        onConfirm={() => handleDelete(confirmDelete)}
+        onCancel={() => setConfirmDelete(null)}
+      />
     </div>
   )
 }

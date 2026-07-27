@@ -1,17 +1,67 @@
-import { useState } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import CategoryHero from '@/components/CategoryHero'
 import ProductGrid from '@/components/ProductGrid'
-import { useProducts } from '@/hooks/useProducts'
+import usePageSection from '@/hooks/usePageSection'
+import { supabase } from '@/lib/supabase'
+import { cakes as fallbackProducts } from '@/data/products'
 
 const CATEGORIES = ['ALL', 'BIRTHDAY', 'CELEBRATION', 'SHEET', 'BESPOKE', 'CLASSIC', 'VINTAGE', 'KIDS', 'CORPORATE']
 
 const LOCAL = (name) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(name)}`
-const HERO = LOCAL('bespoke-cake.jpeg')
+const FALLBACK_HERO = LOCAL('bespoke-cake.jpeg')
+
+function normalizeProducts(productsData, fallback) {
+  if (!Array.isArray(productsData) || productsData.length === 0) return fallback
+  return productsData.map((p, i) => ({
+    id: p.id || `p-${i}`,
+    name: p.name || '',
+    price: p.price || '',
+    image: p.image || '',
+    desc: p.desc || p.description || '',
+    badge: p.badge || '',
+    variants: typeof p.variants === 'string'
+      ? p.variants.split(',').map(v => v.trim()).filter(Boolean)
+      : (Array.isArray(p.variants) ? p.variants : []),
+  }))
+}
 
 export default function CakesPage() {
   const [activeCategory, setActiveCategory] = useState('ALL')
-  const { products } = useProducts('cakes')
+  const [dbProducts, setDbProducts] = useState(null)
+  const { data: rawProductData } = usePageSection('cakes_product_grid', fallbackProducts)
+  const { data: heroData } = usePageSection('cakes_hero', {
+    title: 'CAKES',
+    subtitle: 'Amazing cakes for any occasion. Freshly baked, expertly decorated and hand delivered in Shillong.',
+    image: FALLBACK_HERO,
+  })
+  const { data: deliveryData } = usePageSection('cakes_delivery', {
+    heading: 'CAKE DELIVERY IN SHILLONG',
+    card1_heading: 'Hand Delivery',
+    card1_desc: 'Safe, contact-free delivery anywhere in Shillong. Order by 2PM for same-day.',
+    card2_heading: 'Collection',
+    card2_desc: 'Pick up from our Jaiaw cafe — open Mon–Sat 9AM–8PM, Sun 10AM–6PM.',
+  })
+
+  useEffect(() => {
+    supabase
+      .from('products')
+      .select('*')
+      .eq('category_slug', 'cakes')
+      .eq('active', true)
+      .order('sort_order', { ascending: true, nullsFirst: false })
+      .then(({ data, error }) => {
+        if (!error && data && data.length > 0) {
+          setDbProducts(data)
+        }
+      })
+      .catch(() => {/* use fallback */})
+  }, [])
+
+  const products = useMemo(() => {
+    const source = dbProducts || rawProductData || fallbackProducts
+    return normalizeProducts(source, fallbackProducts)
+  }, [dbProducts, rawProductData])
 
   const filteredCakes = activeCategory === 'ALL'
     ? products
@@ -20,9 +70,9 @@ export default function CakesPage() {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.3 } }}>
       <CategoryHero
-        title="CAKES"
-        subtitle="Amazing cakes for any occasion. Freshly baked, expertly decorated and hand delivered in Shillong."
-        image={HERO}
+        title={heroData?.title}
+        subtitle={heroData?.subtitle}
+        image={heroData?.image}
         count={products.length}
       />
 
@@ -51,16 +101,16 @@ export default function CakesPage() {
       <section className="bg-primary py-8 md:py-14 px-4 md:px-6">
         <div className="mx-auto max-w-6xl">
           <h2 className="font-display text-2xl md:text-3xl text-foreground text-center mb-6 md:mb-8 tracking-tight">
-            CAKE DELIVERY IN SHILLONG
+            {deliveryData?.heading}
           </h2>
           <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto">
             <div className="bg-white/80 p-4 md:p-5 rounded-sm">
-              <h3 className="font-work text-sm font-bold text-foreground mb-1">Hand Delivery</h3>
-              <p className="text-[13px] text-muted-foreground">Safe, contact-free delivery anywhere in Shillong. Order by 2PM for same-day.</p>
+              <h3 className="font-work text-sm font-bold text-foreground mb-1">{deliveryData?.card1_heading}</h3>
+              <p className="text-[13px] text-muted-foreground">{deliveryData?.card1_desc}</p>
             </div>
             <div className="bg-white/80 p-4 md:p-5 rounded-sm">
-              <h3 className="font-work text-sm font-bold text-foreground mb-1">Collection</h3>
-              <p className="text-[13px] text-muted-foreground">Pick up from our Jaiaw cafe — open Mon–Sat 9AM–8PM, Sun 10AM–6PM.</p>
+              <h3 className="font-work text-sm font-bold text-foreground mb-1">{deliveryData?.card2_heading}</h3>
+              <p className="text-[13px] text-muted-foreground">{deliveryData?.card2_desc}</p>
             </div>
           </div>
         </div>

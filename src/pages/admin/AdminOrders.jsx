@@ -100,7 +100,7 @@ export default function AdminOrders() {
                       <td className="px-4 py-3 text-right">
                         <div className="flex items-center justify-end gap-1">
                           <button onClick={() => setSelectedOrder(selectedOrder === order.id ? null : order.id)}
-                            className="p-1.5 hover:bg-gray-100 rounded text-gray-500">
+                            className="p-1.5 hover:bg-red-50 rounded text-red-400 hover:text-red-600">
                             <Eye size={14} />
                           </button>
                           {order.status === 'pending' && (
@@ -163,7 +163,7 @@ export default function AdminOrders() {
                 <>
                   <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
                     <h2 className="font-semibold text-gray-900">Pre-Order #{order.id}</h2>
-                    <button onClick={() => setSelectedOrder(null)} className="text-gray-400 hover:text-gray-600"><XCircle size={18} /></button>
+                    <button onClick={() => setSelectedOrder(null)} className="text-red-400 hover:text-red-600"><XCircle size={18} /></button>
                   </div>
                   <div className="p-5 space-y-4">
                     <div className="grid grid-cols-2 gap-4">

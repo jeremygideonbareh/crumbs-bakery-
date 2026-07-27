@@ -5,6 +5,7 @@ import ImageUploader from '@/components/admin/ImageUploader'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { useAdminApi } from '@/hooks/useAdminApi'
+import ConfirmDialog from '@/components/admin/ConfirmDialog'
 
 const emptyProduct = {
   name: '',
@@ -26,6 +27,7 @@ export default function AdminProducts() {
   const [editing, setEditing] = useState(null)
   const [form, setForm] = useState(emptyProduct)
   const [saving, setSaving] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(null)
   const api = useAdminApi()
 
   useEffect(() => {
@@ -125,13 +127,14 @@ export default function AdminProducts() {
   }
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Delete this product?')) return
     try {
       await api.products.delete(id)
       await loadData()
     } catch (err) {
       console.error('Failed to delete product:', err)
       toast.error('Failed to delete product')
+    } finally {
+      setConfirmDelete(null)
     }
   }
 
@@ -159,7 +162,7 @@ export default function AdminProducts() {
               <h2 className="font-semibold text-gray-900">
                 {editing === 'new' ? 'New Product' : 'Edit Product'}
               </h2>
-              <button onClick={closeEditor} className="p-1 hover:bg-gray-100 rounded">
+              <button onClick={closeEditor} className="p-1 hover:bg-red-50 rounded text-red-400 hover:text-red-600">
                 <X size={16} />
               </button>
             </div>
@@ -278,7 +281,7 @@ export default function AdminProducts() {
                         <button onClick={() => openEdit(product)} className="p-1.5 hover:bg-blue-50 rounded text-blue-500 transition-colors">
                           <Pencil size={14} />
                         </button>
-                        <button onClick={() => handleDelete(product.id)} className="p-1.5 hover:bg-red-50 rounded text-red-500 transition-colors">
+                        <button onClick={() => setConfirmDelete(product.id)} className="p-1.5 hover:bg-red-50 rounded text-red-500 transition-colors">
                           <Trash2 size={14} />
                         </button>
                       </div>
@@ -290,6 +293,14 @@ export default function AdminProducts() {
           </table>
         </div>
       </div>
+
+      <ConfirmDialog
+        open={confirmDelete !== null}
+        title="Delete Product"
+        message="Delete this product?"
+        onConfirm={() => handleDelete(confirmDelete)}
+        onCancel={() => setConfirmDelete(null)}
+      />
     </div>
   )
 }

@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react'
 import { Check, X, Star, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { useAdminApi } from '@/hooks/useAdminApi'
+import ConfirmDialog from '@/components/admin/ConfirmDialog'
 
 export default function AdminReviews() {
   const [reviews, setReviews] = useState([])
   const [loading, setLoading] = useState(true)
+  const [confirmDelete, setConfirmDelete] = useState(null)
   const api = useAdminApi()
 
   useEffect(() => { loadReviews() }, [])
@@ -27,11 +29,11 @@ export default function AdminReviews() {
   }
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Delete this review?')) return
     try {
       await api.reviews.delete(id)
       setReviews((prev) => prev.filter((r) => r.id !== id))
     } catch (err) { console.error(err); toast.error('Failed to delete review') }
+    finally { setConfirmDelete(null) }
   }
 
   return (
@@ -98,7 +100,7 @@ export default function AdminReviews() {
                           }`}>
                           {review.approved ? <X size={14} /> : <Check size={14} />}
                         </button>
-                        <button onClick={() => handleDelete(review.id)}
+                        <button onClick={() => setConfirmDelete(review.id)}
                           className="p-1.5 hover:bg-red-50 rounded text-red-500">
                           <Trash2 size={14} />
                         </button>
@@ -111,6 +113,14 @@ export default function AdminReviews() {
           </table>
         </div>
       </div>
+
+      <ConfirmDialog
+        open={confirmDelete !== null}
+        title="Delete Review"
+        message="Delete this review?"
+        onConfirm={() => handleDelete(confirmDelete)}
+        onCancel={() => setConfirmDelete(null)}
+      />
     </div>
   )
 }

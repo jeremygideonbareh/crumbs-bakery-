@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useMemo } from 'react'
 import { HeroSection } from '@/components/ui/hero-section-2'
 import CategoryGrid from '@/components/CategoryGrid'
+import { sanitizeHtml } from '@/lib/sanitize'
 import About from '@/components/About'
 import SheetCakesMarquee from '@/components/SheetCakesMarquee'
 import BrowseByBake from '@/components/BrowseByBake'
@@ -12,7 +14,7 @@ import MenusGallery from '@/components/MenusGallery'
 import DeliverySection from '@/components/DeliverySection'
 import Gallery from '@/components/Gallery'
 import InstagramSection from '@/components/InstagramSection'
-import PromoCards from '@/components/PromoCards'
+
 import NewsSection from '@/components/NewsSection'
 import FaqSection from '@/components/FaqSection'
 import ScrambleText from '@/components/ScrambleText'
@@ -29,14 +31,27 @@ export default function HomePage() {
   const categories = usePageSection('category_grid', DEFAULTS.CATEGORY_GRID_DEFAULTS)
   const about = usePageSection('about', DEFAULTS.ABOUT_DEFAULTS)
   const browseByBake = usePageSection('browse_by_bake', DEFAULTS.BROWSE_BY_BAKE_DEFAULTS)
-  const signatureItems = usePageSection('signature_items', DEFAULTS.SIGNATURE_ITEMS_DEFAULTS)
+  const menuCategories = usePageSection('menu_categories', DEFAULTS.MENU_CATEGORIES_DEFAULTS)
+  const signatureItems = useMemo(() => {
+    const cats = Array.isArray(menuCategories.data) ? menuCategories.data : []
+    const allItems = cats.flatMap(cat => cat.items || [])
+    return allItems.filter(item => item.featured === 'true')
+      .map(item => ({
+        name: item.name,
+        desc: item.desc || '',
+        highlight: item.highlight || '',
+        price: item.price || '',
+        image: item.image || '',
+        badge: item.badge || 'bg-gray-100 text-gray-700',
+      }))
+  }, [menuCategories.data])
   const imageCarousel = usePageSection('image_carousel', DEFAULTS.IMAGE_CAROUSEL_DEFAULTS)
   const productCarousel = usePageSection('product_carousel', DEFAULTS.PRODUCT_CAROUSEL_DEFAULTS)
   const menus = usePageSection('menus', DEFAULTS.MENUS_DEFAULTS)
   const delivery = usePageSection('delivery', DEFAULTS.DELIVERY_DEFAULTS)
   const gallery = usePageSection('gallery', DEFAULTS.GALLERY_DEFAULTS)
   const instagram = usePageSection('instagram', DEFAULTS.INSTAGRAM_DEFAULTS)
-  const promoCards = usePageSection('promo_cards', DEFAULTS.PROMO_CARDS_DEFAULTS)
+
   const news = usePageSection('news', DEFAULTS.NEWS_DEFAULTS)
   const faq = usePageSection('faq_section', DEFAULTS.FAQ_DEFAULTS)
 
@@ -50,7 +65,7 @@ export default function HomePage() {
       <HeroSection
         slogan={<ScrambleText text={h.slogan} delay={0.8} speed={40} />}
         title={
-          <span dangerouslySetInnerHTML={{ __html: h.title || '' }} />
+          <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(h.title) }} />
         }
         subtitle={h.subtitle}
         callToAction={{ text: h.cta_text || 'ORDER CUSTOM CAKE' }}
@@ -68,14 +83,13 @@ export default function HomePage() {
       <About data={about.data} />
       <SheetCakesMarquee />
       <BrowseByBake data={browseByBake.data} />
-      <SignatureItems data={signatureItems.data} />
+      <SignatureItems data={signatureItems} />
       <ImageCarousel data={imageCarousel.data} />
       <ProductCarousel data={productCarousel.data} />
       <MenusGallery data={menus.data} />
       <DeliverySection data={delivery.data} />
       <Gallery data={gallery.data} />
       <InstagramSection data={instagram.data} />
-      <PromoCards data={promoCards.data} />
 
       {/* Condensed Reviews preview */}
       <section className="py-8 md:py-16 px-4 md:px-6 bg-background">

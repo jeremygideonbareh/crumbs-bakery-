@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { getImageUrl } from '@/lib/image'
 import { IMAGE_CAROUSEL_DEFAULTS } from '@/data/contentDefaults'
 
 export default function ImageCarousel({ data: propData }) {
@@ -50,7 +51,7 @@ export default function ImageCarousel({ data: propData }) {
               {slides.map((slide, i) => (
                 <div key={i} className="relative min-w-0 flex-[0_0_100%] aspect-[16/9] md:aspect-[21/9]">
                   <img
-                    src={slide.image}
+                    src={getImageUrl(slide.image)}
                     alt={slide.label}
                     className="absolute inset-0 w-full h-full object-cover"
                   />

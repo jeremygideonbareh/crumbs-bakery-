@@ -1,0 +1,13 @@
+name = "crumbs-bakery"
+compatibility_date = "2026-07-26"
+compatibility_flags = ["nodejs_compat"]
+account_id = "a932e1a054730ffd914f8a961488ed50"
+
+workers_dev = false
+route = "crumbsbakery.in/*"
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
+
+[assets.redirects]
+"/crumbs-bakery-/images/*" = "/images/*"

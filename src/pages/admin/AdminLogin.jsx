@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Cake, Lock, LogIn } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'admin123'
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD
 
 // Simple auth context — stores password for RPC-authenticated DB calls
 const AuthContext = createContext({
@@ -19,17 +19,12 @@ export function useAdminAuth() {
 }
 
 export function AdminAuthProvider({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    () => sessionStorage.getItem('crumbs_admin') === 'true'
-  )
-  const [password, setPassword] = useState(
-    () => sessionStorage.getItem('crumbs_admin_pw') || ''
-  )
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [password, setPassword] = useState('')
 
   const login = (pw) => {
     if (pw === ADMIN_PASSWORD) {
       sessionStorage.setItem('crumbs_admin', 'true')
-      sessionStorage.setItem('crumbs_admin_pw', pw)
       setIsAuthenticated(true)
       setPassword(pw)
       return true
@@ -39,7 +34,6 @@ export function AdminAuthProvider({ children }) {
 
   const logout = () => {
     sessionStorage.removeItem('crumbs_admin')
-    sessionStorage.removeItem('crumbs_admin_pw')
     setIsAuthenticated(false)
     setPassword('')
   }
@@ -51,7 +45,7 @@ export function AdminAuthProvider({ children }) {
   )
 }
 
-const USING_DEFAULT_PASSWORD = !import.meta.env.VITE_ADMIN_PASSWORD
+const ADMIN_CONFIGURED = !!ADMIN_PASSWORD
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('')
@@ -64,6 +58,10 @@ export default function AdminLogin() {
   const handleSubmit = (e) => {
     e.preventDefault()
     setError('')
+    if (!ADMIN_CONFIGURED) {
+      setError('Admin password not configured. Set VITE_ADMIN_PASSWORD in your environment.')
+      return
+    }
     if (login(password)) {
       navigate(from, { replace: true })
     } else {
@@ -81,10 +79,12 @@ export default function AdminLogin() {
         className="w-full max-w-sm"
       >
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
-          {USING_DEFAULT_PASSWORD && (
-            <div className="mb-6 p-3 bg-amber-50 border border-amber-200 rounded-lg">
-              <p className="text-xs text-amber-700 font-medium">⚠️ Default password in use</p>
-              <p className="text-[10px] text-amber-600 mt-0.5">Set <code className="bg-amber-100 px-1 rounded">VITE_ADMIN_PASSWORD</code> in your <code className="bg-amber-100 px-1 rounded">.env</code> file for production.</p>
+          {!ADMIN_CONFIGURED && (
+            <div className="mb-6 p-3 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-xs text-red-700 font-medium">⚠️ Admin password not configured</p>
+              <p className="text-[10px] text-red-600 mt-0.5">
+                Set <code className="bg-red-100 px-1 rounded">VITE_ADMIN_PASSWORD</code> in your environment to enable admin access.
+              </p>
             </div>
           )}
 

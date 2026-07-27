@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { SectionEyebrow, CharReveal } from './RevealText'
 import { GALLERY_DEFAULTS } from '@/data/contentDefaults'
+import { getImageUrl } from '@/lib/image'
 
 export default function Gallery({ data: propData }) {
   const images = propData || GALLERY_DEFAULTS
@@ -53,7 +54,7 @@ export default function Gallery({ data: propData }) {
               className="group relative w-full overflow-hidden rounded-xl aspect-[4/3] block active:scale-[0.97]"
             >
               <img
-                src={img.src}
+                src={getImageUrl(img.src)}
                 alt={img.alt}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
@@ -106,7 +107,7 @@ export default function Gallery({ data: propData }) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              src={selected.src}
+              src={getImageUrl(selected.src)}
               alt={selected.alt}
               className="max-w-full max-h-[80vh] md:max-h-[85vh] rounded-xl shadow-2xl object-contain"
               onClick={(e) => e.stopPropagation()}
