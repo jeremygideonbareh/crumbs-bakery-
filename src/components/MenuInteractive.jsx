@@ -276,7 +276,7 @@ function ItemCard({ item, index, phone, social }) {
                 <div className="img-placeholder hidden absolute inset-0 flex items-center justify-center text-lg text-foreground/30 select-none">
                   🍰
                 </div>
-              </div>
+        </div>
             )}
             <div className="flex-1 min-w-0">
               {!!item.subcategory && (
@@ -411,10 +411,17 @@ export default function MenuInteractive({
 }) {
   const categories = propCategories || FALLBACK_CATEGORIES
   const header = propHeader || FALLBACK_HEADER
-  const category = categories[0]
+  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0)
+  const category = categories[activeCategoryIndex]
 
   const [activeSub, setActiveSub] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
+
+  function switchCategory(index) {
+    setActiveCategoryIndex(index)
+    setActiveSub('All')
+    setSearchQuery('')
+  }
 
   const filteredItems = useMemo(() => {
     if (!category) return []
@@ -446,9 +453,28 @@ export default function MenuInteractive({
     <div className="max-w-3xl mx-auto">
       <MenuHeader header={header} />
 
+      {/* Category tabs */}
+      <div className="flex flex-wrap justify-center gap-2 mb-6">
+          {categories.map((cat, i) => (
+            <button
+              key={cat.id || i}
+              onClick={() => switchCategory(i)}
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full font-work text-sm font-medium transition-all ${
+                i === activeCategoryIndex
+                  ? 'bg-foreground text-background shadow-sm'
+                  : 'bg-foreground/5 text-foreground/60 hover:bg-foreground/10 hover:text-foreground/80'
+              }`}
+            >
+              <span className="text-base">{cat.emoji}</span>
+              {cat.name}
+            </button>
+          ))}
+        </div>
+
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
+        key={activeCategoryIndex}
         className="text-center mb-4"
       >
         <p className="font-display text-2xl text-foreground">
