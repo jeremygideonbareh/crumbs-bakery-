@@ -55,7 +55,7 @@ export default function CartDrawer({ isOpen, onClose }) {
       const { error } = await supabase.from('orders').insert(ordersInsert)
       if (error) throw error
 
-      toast.success('Pre-order submitted! Lily will confirm via WhatsApp shortly.', {
+      toast.success('Pre-order submitted! We\'ll confirm your order shortly.', {
         description: `Total: ${formatPrice(subtotal)}`,
         duration: 5000,
       })
